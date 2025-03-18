@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "apat")
-public class ApatEntity {
+public class Apat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,15 +23,15 @@ public class ApatEntity {
 	private String descripcio;
 	private int categoria;
 
-	public ApatEntity() {
+	public Apat() {
 
 	}
 
-	public ApatEntity(int id) {
+	public Apat(int id) {
 		this.id = id;
 	}
 
-	public ApatEntity(String nom, String descripcio, int categoria) {
+	public Apat(String nom, String descripcio, int categoria) {
 		this.nom = nom;
 		this.descripcio = descripcio;
 		this.categoria = categoria;
