@@ -9,16 +9,15 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import ioc.cat.camptina.model.Entity.Apat;
+import ioc.cat.camptina.model.Entity.ApatEntity;
 
 /**
  * 
  */
 @Repository
-public interface ApatRepository extends JpaRepository<Apat, Integer>{
+public interface ApatRepository extends JpaRepository<ApatEntity, Integer>{
 	
-	List<Apat> findByCategoria(int categoria);
-	List<Apat> findAll();
-	Optional <Apat> findById(int id);
+	List<ApatEntity> findByCategoria(int categoria);
+	Optional <ApatEntity> findById(int id);
 	
 }
