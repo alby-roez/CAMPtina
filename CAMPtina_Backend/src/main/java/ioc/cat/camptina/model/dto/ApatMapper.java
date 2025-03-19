@@ -19,7 +19,7 @@ public interface ApatMapper {
 	ApatMapper INSTANCE = Mappers.getMapper(ApatMapper.class);
 
 	ApatDTO apatToApatDto(ApatEntity apatEntity);
-	
+
 	ApatEntity apatDtoToApat(ApatDTO apatDto);
 
 	List<ApatDTO> listApatDto(List<ApatEntity> apats);
