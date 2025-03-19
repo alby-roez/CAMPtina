@@ -6,6 +6,7 @@ package ioc.cat.camptina.model.dto;
 import java.util.List;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import ioc.cat.camptina.model.Entity.ApatEntity;
@@ -18,9 +19,11 @@ public interface ApatMapper {
 
 	ApatMapper INSTANCE = Mappers.getMapper(ApatMapper.class);
 
-	ApatDTO apatToApatDto(ApatEntity apatEntity);
+	@Mapping(source="categoria.id", target="categoriaId")
+	ApatDTO apatEntityToApatDto(ApatEntity apatEntity);
 	
-	ApatEntity apatDtoToApat(ApatDTO apatDto);
+	@Mapping(source="categoriaId", target="categoria.id")
+	ApatEntity apatDtoToApatEntity(ApatDTO apatDto);
 
 	List<ApatDTO> listApatDto(List<ApatEntity> apats);
 }

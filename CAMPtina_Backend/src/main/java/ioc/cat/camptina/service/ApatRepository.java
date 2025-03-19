@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import ioc.cat.camptina.model.Entity.ApatEntity;
+import ioc.cat.camptina.model.Entity.CategoriaEntity;
 
 /**
  * 
@@ -17,7 +18,7 @@ import ioc.cat.camptina.model.Entity.ApatEntity;
 @Repository
 public interface ApatRepository extends JpaRepository<ApatEntity, Integer>{
 	
-	List<ApatEntity> findByCategoria(int categoria);
+	//List<ApatEntity> findByCategoria(CategoriaEntity categoria);
 	Optional <ApatEntity> findById(int id);
 	
 }

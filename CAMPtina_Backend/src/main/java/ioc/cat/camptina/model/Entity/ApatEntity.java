@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
@@ -21,7 +23,10 @@ public class ApatEntity {
 	private int id;
 	private String nom;
 	private String descripcio;
-	private int categoria;
+
+	@ManyToOne
+	@JoinColumn(name = "categoria")
+	private CategoriaEntity categoria;
 
 	public ApatEntity() {
 
@@ -31,7 +36,7 @@ public class ApatEntity {
 		this.id = id;
 	}
 
-	public ApatEntity(String nom, String descripcio, int categoria) {
+	public ApatEntity(String nom, String descripcio, CategoriaEntity categoria) {
 		this.nom = nom;
 		this.descripcio = descripcio;
 		this.categoria = categoria;
@@ -40,8 +45,17 @@ public class ApatEntity {
 	/*
 	 * Setters i Getters
 	 */
+
 	public int getId() {
 		return id;
+	}
+
+	public CategoriaEntity getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaEntity categoria) {
+		this.categoria = categoria;
 	}
 
 	public void setId(int id) {
@@ -62,14 +76,6 @@ public class ApatEntity {
 
 	public void setDescripcio(String descripcio) {
 		this.descripcio = descripcio;
-	}
-
-	public int getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(int categoria) {
-		this.categoria = categoria;
 	}
 
 }

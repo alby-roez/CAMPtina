@@ -38,10 +38,7 @@ public class ApatController {
 		return apatService.findApatById(id);
 	}
 
-	@GetMapping("/apats/categoria/{categoria}")
-	public List<ApatDTO> getApatsByCategoria(@PathVariable int categoria) {
-		return apatService.findApatsByCategoria(categoria);
-	}
+	
 
 	@PostMapping
 	public ApatDTO crearApat(@RequestBody ApatDTO apatDto) {

@@ -12,7 +12,7 @@ public class ApatDTO {
 	private int id;
 	private String nom;
 	private String descripcio;
-	private int categoria;
+	private int categoriaId;
 
 	public int getId() {
 		return id;
@@ -38,12 +38,14 @@ public class ApatDTO {
 		this.descripcio = descripcio;
 	}
 
-	public int getCategoria() {
-		return categoria;
+	public int getCategoriaId() {
+		return categoriaId;
 	}
 
-	public void setCategoria(int categoria) {
-		this.categoria = categoria;
+	public void setCategoriaId(int categoriaId) {
+		this.categoriaId = categoriaId;
 	}
+
+	
 
 }
