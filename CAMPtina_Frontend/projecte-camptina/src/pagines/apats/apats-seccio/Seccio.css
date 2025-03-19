@@ -1,0 +1,211 @@
+.cn-section-seccio {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    padding: 0.15em;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 1000px;
+    height: 200px;
+    overflow: auto;
+}
+
+.cn-article-nom-seccio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    background: #369;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.cn-h3-nom-seccio {
+    font-size: 1.5em;
+}
+
+.cn-article-contingut-seccio {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 150px;
+}
+
+.cn-div-contingut-interactiu-seccio {
+    display: flex;
+    gap: 15px;
+    padding-left: 15px;
+    width: 500px;
+    height: 150px;
+}
+
+.cn-div-contingut-interactiu-seccio > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    justify-self: center;
+    align-self: center;
+    border-radius: 8px;
+}
+
+.cn-img-seccio {
+    aspect-ratio: 800/800;
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cn-subdiv-contingut-interactiu-seccio {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 350px;
+    height: 150px;
+}
+
+.cn-subdiv-contingut-interactiu-seccio > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 16px;
+    font-size: 1em;
+    color: #fff;
+    background: linear-gradient(180deg, #369, #222);
+    transition: font-size 0.2s ease;
+}
+
+.cn-subdiv-contingut-interactiu-seccio > a:hover {
+    font-size: 0.9em;
+    background: #1e5;
+}
+
+.cn-subdiv-contingut-interactiu-seccio > a:active {
+    transform: scale(0.9);
+}
+
+.cn-div-checkbox-seccio {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    height: 30px;
+}
+
+.cn-checkbox-seccio {
+    appearance: none;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    background: #e15;
+    cursor: pointer;
+}
+
+.cn-checkbox-seccio:checked {
+    background: #1e5;
+}
+
+.cn-div-checkbox-seccio > label {
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.cn-div-contingut-info-seccio {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 150px;
+}
+
+.cn-div-contingut-info-seccio > h4 {
+    display: flex;
+    font-size: 0.8em;
+    padding: 5px;
+    width: 100%;
+    max-height: 100px;
+    overflow: auto;
+}
+
+.cn-div-contingut-info-seccio > div {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+}
+
+.cn-div-contingut-info-seccio > div > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    background: linear-gradient(180deg, #369, #222);
+    font-size: 1.5em;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+}
+
+.cn-div-contingut-info-seccio > div > button:hover {
+    font-size: 2em;
+    background: #1e5;
+}
+
+.cn-div-contingut-info-seccio > div > button:active {
+    transform: scale(0.9);
+}
+
+@media (max-width: 550px) {
+    .cn-section-seccio {
+        margin-top: 10px;
+    }
+
+    .cn-subdiv-contingut-interactiu-seccio > a {
+        font-size: 0.8em;
+        padding: 8px;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 900px) {
+    .cn-section-seccio {
+        height: 350px;
+    }
+
+    .cn-article-contingut-seccio {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 300px;
+    }
+
+    .cn-div-contingut-interactiu-seccio {
+        justify-content: space-around;
+        width: 100%;
+        padding-right: 15px;
+    }
+
+    .cn-div-contingut-info-seccio {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    .cn-section-seccio {
+        width: 96%;
+    }
+}
