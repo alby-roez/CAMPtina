@@ -46,6 +46,4 @@ public class ApatDTO {
 		this.categoriaId = categoriaId;
 	}
 
-	
-
 }

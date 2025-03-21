@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ioc.cat.camptina.model.dto;
+package ioc.cat.camptina.mapper;
 
 import java.util.List;
 
@@ -9,7 +9,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-import ioc.cat.camptina.model.Entity.ApatEntity;
+import ioc.cat.camptina.model.dto.ApatDTO;
+import ioc.cat.camptina.model.entity.ApatEntity;
 
 /**
  * Mapper que ens permet convertir els camps de l'Entitat amb el DTO

@@ -4,14 +4,16 @@
 package ioc.cat.camptina.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ioc.cat.camptina.model.Entity.ApatEntity;
-import ioc.cat.camptina.model.Entity.CategoriaEntity;
+
+import ioc.cat.camptina.mapper.ApatMapper;
 import ioc.cat.camptina.model.dto.ApatDTO;
-import ioc.cat.camptina.model.dto.ApatMapper;
+import ioc.cat.camptina.model.entity.ApatEntity;
+import ioc.cat.camptina.model.entity.CategoriaEntity;
+import ioc.cat.camptina.repository.ApatRepository;
+import ioc.cat.camptina.repository.CategoriaRepository;
 
 /**
  * Classe service
@@ -29,7 +31,7 @@ public class ApatService {
 	private CategoriaRepository categoriaRepository;
 
 	public List<ApatDTO> findApatsByCategoria(int categoriaId) {
-		List<ApatEntity> apats = apatRepository.findByCategoria(categoriaId);
+		List<ApatEntity> apats = apatRepository.findByCategoriaId(categoriaId);
 
 		return apatMapper.listApatEntityToDto(apats);
 	}

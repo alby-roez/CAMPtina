@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ioc.cat.camptina.model.Entity;
+package ioc.cat.camptina.model.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,34 +28,8 @@ public class ApatEntity {
 	@JoinColumn(name = "categoria_id")
 	private CategoriaEntity categoria;
 
-	public ApatEntity() {
-
-	}
-
-	public ApatEntity(int id) {
-		this.id = id;
-	}
-
-	public ApatEntity(String nom, String descripcio, CategoriaEntity categoria) {
-		this.nom = nom;
-		this.descripcio = descripcio;
-		this.categoria = categoria;
-	}
-
-	/*
-	 * Setters i Getters
-	 */
-
 	public int getId() {
 		return id;
-	}
-
-	public CategoriaEntity getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(CategoriaEntity categoria) {
-		this.categoria = categoria;
 	}
 
 	public void setId(int id) {
@@ -76,6 +50,14 @@ public class ApatEntity {
 
 	public void setDescripcio(String descripcio) {
 		this.descripcio = descripcio;
+	}
+
+	public CategoriaEntity getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaEntity categoria) {
+		this.categoria = categoria;
 	}
 
 }

@@ -8,9 +8,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ioc.cat.camptina.model.Entity.CategoriaEntity;
+import ioc.cat.camptina.mapper.CategoriaMapper;
 import ioc.cat.camptina.model.dto.CategoriaDTO;
-import ioc.cat.camptina.model.dto.CategoriaMapper;
+import ioc.cat.camptina.model.entity.CategoriaEntity;
+import ioc.cat.camptina.repository.CategoriaRepository;
 
 /**
  * 

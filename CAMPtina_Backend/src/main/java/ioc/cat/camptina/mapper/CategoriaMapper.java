@@ -1,16 +1,16 @@
 /**
  * 
  */
-package ioc.cat.camptina.model.dto;
+package ioc.cat.camptina.mapper;
 
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
-import ioc.cat.camptina.model.Entity.CategoriaEntity;
+import ioc.cat.camptina.model.dto.CategoriaDTO;
+import ioc.cat.camptina.model.entity.CategoriaEntity;
 
 /**
  * 
- */
+ */	
 @Mapper(componentModel = "spring")
 public interface CategoriaMapper {
 
