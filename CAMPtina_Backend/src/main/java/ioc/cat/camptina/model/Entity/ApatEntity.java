@@ -25,7 +25,7 @@ public class ApatEntity {
 	private String descripcio;
 
 	@ManyToOne
-	@JoinColumn(name = "categoria")
+	@JoinColumn(name = "categoria_id")
 	private CategoriaEntity categoria;
 
 	public ApatEntity() {

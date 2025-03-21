@@ -35,14 +35,22 @@ public class CategoriaService {
 
 	}
 
-	public CategoriaDTO crearCategoria(CategoriaDTO categoriaDto) {
+	public CategoriaDTO createCategoria(CategoriaDTO categoriaDto) {
 		CategoriaEntity categoria = categoriaMapper.categoriaDTOToCategoriaEntity(categoriaDto);
-
 		categoria = categoriaRepository.save(categoria);
 		return categoriaMapper.categoriaEntityToCategoriaDTO(categoria);
 	}
 
-	public void eliminarCategoria(int id) {
+	public CategoriaDTO updateCategoria(int id, CategoriaDTO categoriaDto) {
+		CategoriaEntity categoria = categoriaRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Categoria no trobada"));
+		categoria.setNom(categoriaDto.getNom());
+		categoria.setId(id);
+		categoria = categoriaRepository.save(categoria);
+		return categoriaMapper.categoriaEntityToCategoriaDTO(categoria);
+	}
+
+	public void deleteCategoria(int id) {
 		categoriaRepository.deleteById(id);
 	}
 

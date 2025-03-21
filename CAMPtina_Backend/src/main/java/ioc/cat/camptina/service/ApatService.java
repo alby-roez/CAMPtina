@@ -28,17 +28,15 @@ public class ApatService {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 
-	/*public List<ApatDTO> findApatsByCategoria(CategoriaEntity categoriaEntity) {
-		CategoriaEntity categoria = categoriaRepository.findById(categoriaEntity.getId())
-				.orElseThrow(() -> new RuntimeException("Categoria no trobada"));
-		List<ApatEntity> apats = apatRepository.findByCategoria(categoria);
+	public List<ApatDTO> findApatsByCategoria(int categoriaId) {
+		List<ApatEntity> apats = apatRepository.findByCategoria(categoriaId);
 
-		return apatMapper.listApatDto(apats);
-	}*/
+		return apatMapper.listApatEntityToDto(apats);
+	}
 
 	public List<ApatDTO> findAllApats() {
 		List<ApatEntity> apats = apatRepository.findAll();
-		return apatMapper.listApatDto(apats);
+		return apatMapper.listApatEntityToDto(apats);
 	}
 
 	public ApatDTO findApatById(int id) {
@@ -47,13 +45,16 @@ public class ApatService {
 
 	}
 
-	public ApatDTO crearApat(ApatDTO apatDto) {
+	public ApatDTO createApat(ApatDTO apatDto) {
+		CategoriaEntity categoria = categoriaRepository.findById(apatDto.getCategoriaId())
+				.orElseThrow(() -> new RuntimeException("Categoria no trobada"));
 		ApatEntity apatEntity = apatMapper.apatDtoToApatEntity(apatDto);
+		apatEntity.setCategoria(categoria);
 		apatEntity = apatRepository.save(apatEntity);
 		return apatMapper.apatEntityToApatDto(apatEntity);
 	}
 
-	public ApatDTO actualizarApat(int id, ApatDTO apatDto) {
+	public ApatDTO updateApat(int id, ApatDTO apatDto) {
 		ApatEntity apatEntity = apatRepository.findById(id).orElseThrow(() -> new RuntimeException("Apat no trobat"));
 
 		apatEntity.setNom(apatDto.getNom());
@@ -67,7 +68,7 @@ public class ApatService {
 
 	}
 	
-	public void eliminarApat(int id) {
+	public void deleteApat(int id) {
 		apatRepository.deleteById(id);
 	}
 

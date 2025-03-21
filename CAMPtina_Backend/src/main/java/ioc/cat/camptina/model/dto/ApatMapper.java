@@ -25,5 +25,7 @@ public interface ApatMapper {
 	@Mapping(source="categoriaId", target="categoria.id")
 	ApatEntity apatDtoToApatEntity(ApatDTO apatDto);
 
-	List<ApatDTO> listApatDto(List<ApatEntity> apats);
+	List<ApatDTO> listApatEntityToDto(List<ApatEntity> apats);
+	
+	List<ApatEntity> listApatDtoToEntity(List<ApatDTO> apats);
 }

@@ -24,26 +24,22 @@ import jakarta.persistence.Table;
 public class CategoriaEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String nom;
 
-	@OneToMany()
-	@JoinColumn(name = "apat")
+	@OneToMany(mappedBy = "categoria")
 	private List<ApatEntity> apats;
 
 	public CategoriaEntity() {
 	};
 
-	public CategoriaEntity(int id) {
-		this.id = id;
-	}
 
-	public CategoriaEntity(String nom) {
+
+	public CategoriaEntity(int id, String nom) {
+		this.id = id;
 		this.nom = nom;
 	}
-
 
 	public List<ApatEntity> getApats() {
 		return apats;
