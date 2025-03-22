@@ -9,6 +9,25 @@
     min-height: 70px;
 }
 
+/* Estats dinàmics */
+.cn-section-tancada {
+    height: 70px !important;
+    overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.cn-section-buida {
+    background-color: #ffe6e6;
+    border: 2px dashed #ff4444;
+}
+
+.cn-missatge-buit {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
 .cn-article-nom-llista-apats {
     display: flex;
     justify-content: center;
@@ -115,6 +134,25 @@
 .cn-bttn-finestra-llista-apats:active {
     transform: scale(0.9);
 }
+
+/* Nova columna per als botons (solucionar) */
+.cn-bttn-eliminar {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .cn-bttn-eliminar svg {
+    width: 24px; 
+    height: 24px;
+    stroke: #000000; /* Color de la icona */
+    transition: stroke 0.3s ease;
+  }
+  
+  .cn-bttn-eliminar:hover svg {
+    stroke: #ffffff; /* Color al passar el ratolí */
+  }
 
 @media (max-width: 550px) {
     .cn-section-llista-apats {

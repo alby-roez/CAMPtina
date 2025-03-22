@@ -1,16 +1,23 @@
 import './FormCrearApat.css'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useForm } from 'react-hook-form'
 
-export const FormCrearApat = () => {
+export const FormCrearApat = ({alCrearApat}) => {
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearApat = handleSubmit((data) => {
-        console.log(data)
+        const nouApat = {
+            nom: data.nomDeApat,
+            categoria: parseInt(data.categoriaDeApat),
+            descripcio: data.descripcioDeApat
+        };
+
+        alCrearApat(nouApat); 
+        reset();
+        
     })
-   
+
     const [esTancat, setEsTancat] = useState(false)
 
     const tancarFinestra = () => {

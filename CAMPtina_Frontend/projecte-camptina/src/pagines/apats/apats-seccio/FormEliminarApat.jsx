@@ -1,9 +1,10 @@
 import './FormEliminarApat.css'
 import { useState, useEffect } from 'react'
 
-export const FormEliminarApat = () => {
+export const FormEliminarApat = ({alEliminarApat}) => {
 
     const [esTancat, setEsTancat] = useState(false)
+    const [idApat, setIdApat] = useState('')
 
     const tancarFinestra = () => {
         setEsTancat(!esTancat);
@@ -23,6 +24,16 @@ export const FormEliminarApat = () => {
         }
     }, [esTancat])
 
+    const eliminarApat = async (event) => {
+        event.preventDefault()
+        try {
+            await alEliminarApat(idApat)
+            setIdApat('')
+        } catch (error) {
+            console.log("Error eliminant l'apat:", error)
+        }
+    }
+
     const className_section = 'cn-section-form-eliminar-apat';
     const id_section = 'id_section_form_eliminar_apat'
     const className_article_nom = 'cn-article-nom-form-eliminar-apat';
@@ -31,8 +42,8 @@ export const FormEliminarApat = () => {
 
     const className_form = 'cn-form-eliminar-apat';
     const id_form = 'id_form_eliminar_apat';
-    const method_form = 'post';
-    const action_form = 'http://localhost:5173'; /* Cal modificar per passar les dades al servidor. */
+    //const method_form = 'post';
+    //const action_form = 'http://localhost:5173'; /* Cal modificar per passar les dades al servidor. */
 
     const className_div_contingut_form = 'cn-div-contingut-form-eliminar-apat';
     const className_div_bttn_form = 'cn-div-bttn-form-eliminar-apat';
@@ -73,15 +84,16 @@ export const FormEliminarApat = () => {
                         </svg>
                     </button>
                 </article>
-                <form className={className_form} id={id_form} method={method_form} action={action_form}>
+                <form className={className_form} id={id_form} onSubmit={eliminarApat}>
                     <div className={className_div_contingut_form}>
                         <label htmlFor={id_input_txt}>{txtInputIDApat}</label>
                         <input
-                            defaultValue={''}
                             className={className_input_txt}
                             id={id_input_txt}
                             name={name_input_txt}
                             type='text'
+                            value={idApat}
+                            onChange={event => setIdApat(event.target.value)}
                             required
                         />
                     </div>
@@ -91,6 +103,7 @@ export const FormEliminarApat = () => {
                             name={name_reset}
                             value={value_reset}
                             type='reset'
+                            onClick={() => setIdApat('')}
                         />
                         <input
                             id={id_submit}
