@@ -4,10 +4,11 @@ import { useForm } from 'react-hook-form'
 
 export const FormCrearApat = () => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm()
+    const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearApat = handleSubmit((data) => {
         console.log(data)
+        reset()
     })
 
     const [esTancat, setEsTancat] = useState(false)
@@ -118,11 +119,17 @@ export const FormCrearApat = () => {
                                     name={name_input_txt}
                                     type='text'
                                     { ... register('nomDeApat', {
-                                        required: true
+                                        required: true,
+                                        minLength: 3,
+                                        maxLength: 20
                                     })}
                                 />
                                 { errors.nomDeApat?.type === 'required' &&
-                                <span className={className_span}>El nom és requerit</span> }
+                                <span className={className_span}>El nom és obligatori</span> }
+                                { errors.nomDeApat?.type === 'minLength' &&
+                                <span className={className_span}>Mínim 3 caràcters</span> }
+                                { errors.nomDeApat?.type === 'maxLength' &&
+                                <span className={className_span}>Màxim 25 caràcters</span> }
                             </div>
                             <div className={className_div_lbl_select_form}>
                                 <label htmlFor={id_select}>{txtSelectCategoriaApat}</label>
@@ -136,7 +143,7 @@ export const FormCrearApat = () => {
                                     <option value={valuePostres}>{txtPostres}</option>
                                 </select>
                                 { errors.categoriaDeApat?.type === 'required' &&
-                                <span className={className_span}>La categoria és requerida</span> }
+                                <span className={className_span}>Has de seleccionar una categoria</span> }
                             </div>
                         </div>
                         <div className={className_div_txtarea_form}>
@@ -150,11 +157,17 @@ export const FormCrearApat = () => {
                                 rows={txtareaRows}
                                 cols={txtareaCols}
                                 { ... register('descripcioDeApat', {
-                                    required: true
+                                    required: true,
+                                    minLength: 5,
+                                    maxLength: 50
                                 })}
                             />
                             { errors.descripcioDeApat?.type === 'required' &&
-                                <span className={className_span}>La descripció és requerida</span> }
+                                <span className={className_span}>La descripció és obligatòria</span> }
+                                { errors.descripcioDeApat?.type === 'minLength' &&
+                                <span className={className_span}>Mínim 5 caràcters</span> }
+                                { errors.descripcioDeApat?.type === 'maxLength' &&
+                                <span className={className_span}>Màxim 50 caràcters</span> }
                         </div>
                     </div>
                     <div className={className_div_bttn_form}>

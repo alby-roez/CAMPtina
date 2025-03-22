@@ -1,7 +1,7 @@
 import { Navegacio } from '../header/Navegacio.jsx'
 import { Peu } from '../footer/Peu.jsx'
-import { Link } from '../Link.jsx';
-import team from '../assets/team.png'
+//import { Link } from '../Link.jsx';
+//import team from '../assets/team.png'
 import camptina from '../assets/camptina.mp4'
 import menjador from '../assets/menjador.mp4'
 
