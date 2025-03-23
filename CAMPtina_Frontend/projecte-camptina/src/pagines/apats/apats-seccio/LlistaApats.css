@@ -8,6 +8,9 @@
     width: 80%;
     min-height: 70px;
 }
+.cn-section-llista-apats.plena {
+    height: auto;
+}
 
 .cn-article-nom-llista-apats {
     display: flex;
@@ -30,7 +33,7 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    height: 50px;
+    min-height: 70px;
 }
 
 .cn-ul-llista-apats {
@@ -38,7 +41,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    min-height: 70px;
 }
 
 .cn-li-id-llista-apats {
@@ -47,8 +50,8 @@
     align-items: center;
     padding: 5px;
     font-size: 0.8em;
-    width: 20%;
-    height: 100%;
+    width: 10%;
+    height: 50px;
     background: #222;
     border-bottom-right-radius: 8px;
 }
@@ -60,7 +63,7 @@
     padding: 5px;
     font-size: 0.8em;
     width: 20%;
-    height: 100%;
+    height: 50px;
     background: #333;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -73,7 +76,7 @@
     padding: 5px;
     font-size: 0.8em;
     width: 20%;
-    height: 100%;
+    height: 50px;
     background: #444;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -86,9 +89,21 @@
     padding: 5px;
     font-size: 0.8em;
     width: 40%;
-    height: 100%;
+    height: 50px;
     background: #555;
     border-bottom-left-radius: 8px;
+}
+
+.cn-li-eliminar-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-size: 0.8em;
+    width: 10%;
+    height: 50px;
+    background: #666;
+    border-bottom-right-radius: 8px;
 }
 
 .cn-bttn-finestra-llista-apats {
@@ -105,7 +120,7 @@
     cursor: pointer;
     margin: 4px;
     width: 38px;
-    height: 38px;
+    height: 50px;
 }
 
 .cn-bttn-finestra-llista-apats:hover {
@@ -116,7 +131,7 @@
     transform: scale(0.9);
 }
 
-/* Nova columna per als botons (s'ha de millorar) */
+/* Nova columna per als botons (es pot millorar) */
 .cn-bttn-eliminar {
     background: none;
     border: none;
@@ -127,12 +142,12 @@
   .cn-bttn-eliminar svg {
     width: 24px; 
     height: 24px;
-    stroke: #000000; /* Color de la icona */
+    stroke: #000; 
     transition: stroke 0.3s ease;
   }
   
   .cn-bttn-eliminar:hover svg {
-    stroke: #ffffff; /* Color al passar el ratolí */
+    stroke: #fff; 
   }
 
 @media (max-width: 550px) {
