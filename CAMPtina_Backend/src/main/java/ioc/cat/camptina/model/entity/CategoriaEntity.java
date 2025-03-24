@@ -5,6 +5,7 @@ package ioc.cat.camptina.model.entity;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,13 +17,15 @@ import jakarta.persistence.Table;
  * 
  */
 @Entity
-@Table(name = "categoria")
+@Table(name = "CATEGORIA")
 public class CategoriaEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_CATEGORIA", nullable = false)
 	private int id;
 
+	@Column(name = "NOM", nullable = false)
 	private String nom;
 
 	@OneToMany(mappedBy = "categoria")
