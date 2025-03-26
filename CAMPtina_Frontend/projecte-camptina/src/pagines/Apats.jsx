@@ -3,6 +3,7 @@ import { Peu } from '../footer/Peu.jsx'
 /*import { Link } from '../Link.jsx'*/
 import camptina from '../assets/camptina.mp4'
 /*import team from '../assets/team.png'
+/*import team from '../assets/team.png'
 import menjar from '../assets/menjar.mp4'
 import clock from '../assets/clock.mp4'
 import clock_old from '../assets/clock_old.mp4'
