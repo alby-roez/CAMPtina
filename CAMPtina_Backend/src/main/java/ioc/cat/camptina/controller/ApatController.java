@@ -40,21 +40,22 @@ public class ApatController {
 
 	@GetMapping("/apats/categoria/{categoria}")
 	public List<ApatDTO> getApatsByCategoria(@PathVariable int categoria) {
-		return apatService.findApatsByCategoria(categoria);
+		List<ApatDTO> apats = apatService.findApatsByCategoria(categoria);
+		return apats;
 	}
 
 	@PostMapping
-	public ApatDTO crearApat(@RequestBody ApatDTO apatDto) {
-		return apatService.crearApat(apatDto);
+	public ApatDTO createApat(@RequestBody ApatDTO apatDto) {
+		return apatService.createApat(apatDto);
 	}
 
 	@PutMapping("/{id}")
-	public ApatDTO actualitzarApat(@PathVariable int id, @RequestBody ApatDTO apatDto) {
-		return apatService.actualizarApat(id, apatDto);
+	public ApatDTO updateApat(@PathVariable int id, @RequestBody ApatDTO apatDto) {
+		return apatService.updateApat(id, apatDto);
 	}
 
 	@DeleteMapping("/{id}")
-	public void eliminarApat(@PathVariable int id) {
-		apatService.eliminarApat(id);
+	public void deleteApat(@PathVariable int id) {
+		apatService.deleteApat(id);
 	}
 }
