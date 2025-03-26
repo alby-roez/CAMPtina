@@ -3,6 +3,7 @@
  */
 package ioc.cat.camptina.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,17 +16,22 @@ import jakarta.persistence.Table;
  * Creació de la entitat per a la taula Àpat
  */
 @Entity
-@Table(name = "apat")
+@Table(name = "APAT")
 public class ApatEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="ID_APAT")
 	private int id;
+	
+	@Column(name="NOM", nullable = false)
 	private String nom;
+	
+	@Column(name="DESCRIPCIO", nullable = true)
 	private String descripcio;
 
 	@ManyToOne
-	@JoinColumn(name = "categoria_id")
+	@JoinColumn(name = "ID_CATEGORIA")
 	private CategoriaEntity categoria;
 
 	public int getId() {
