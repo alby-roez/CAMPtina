@@ -136,7 +136,7 @@ export const FormCrearApat = ({alCrearApat}) => {
                                 { errors.nomDeApat?.type === 'minLength' &&
                                 <span className={className_span}>Mínim 3 caràcters</span> }
                                 { errors.nomDeApat?.type === 'maxLength' &&
-                                <span className={className_span}>Màxim 25 caràcters</span> }
+                                <span className={className_span}>Màxim 50 caràcters</span> }
                             </div>
                             <div className={className_div_lbl_select_form}>
                                 <label htmlFor={id_select}>{txtSelectCategoriaApat}</label>
@@ -174,7 +174,7 @@ export const FormCrearApat = ({alCrearApat}) => {
                                 { errors.descripcioDeApat?.type === 'minLength' &&
                                 <span className={className_span}>Mínim 5 caràcters</span> }
                                 { errors.descripcioDeApat?.type === 'maxLength' &&
-                                <span className={className_span}>Màxim 50 caràcters</span> }
+                                <span className={className_span}>Màxim 100 caràcters</span> }
                         </div>
                     </div>
                     <div className={className_div_bttn_form}>
