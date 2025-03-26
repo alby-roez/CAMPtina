@@ -121,7 +121,7 @@ export const FormCrearApat = () => {
                                     { ... register('nomDeApat', {
                                         required: true,
                                         minLength: 3,
-                                        maxLength: 20
+                                        maxLength: 50
                                     })}
                                 />
                                 { errors.nomDeApat?.type === 'required' &&
@@ -159,7 +159,7 @@ export const FormCrearApat = () => {
                                 { ... register('descripcioDeApat', {
                                     required: true,
                                     minLength: 5,
-                                    maxLength: 50
+                                    maxLength: 100
                                 })}
                             />
                             { errors.descripcioDeApat?.type === 'required' &&
