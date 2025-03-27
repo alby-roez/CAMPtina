@@ -1,9 +1,10 @@
 import './FormCrearApat.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useApats } from '../ApatsContext.jsx'
 
-export const FormCrearApat = ({alCrearApat}) => {
-
+export const FormCrearApat = () => {
+    const { crearApat } = useApats()
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearApat = handleSubmit((data) => {
@@ -13,7 +14,7 @@ export const FormCrearApat = ({alCrearApat}) => {
             descripcio: data.descripcioDeApat
         };
 
-        alCrearApat(nouApat); 
+        crearApat(nouApat); 
         reset();
         
     })

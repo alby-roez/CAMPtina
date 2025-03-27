@@ -1,7 +1,9 @@
 import './LlistaApats.css'
 import { useState, useEffect } from 'react'
+import { useApats } from '../ApatsContext.jsx'
 
-export const LlistaApats = ({ apats, alEliminarApat }) => {
+export const LlistaApats = () => {
+    const { apats, eliminarApat } = useApats()
     const [esTancat, setEsTancat] = useState(false)
     
     const tancarFinestra = () => {
@@ -9,19 +11,19 @@ export const LlistaApats = ({ apats, alEliminarApat }) => {
     }
 
     useEffect(() => {
-        if (esTancat) {
-            const section = document.getElementById('id_section_llista_apats');
+        //if (esTancat) {
+            //const section = document.getElementById('id_section_llista_apats');
             const article = document.getElementById('id_article_llista_apats');
             //article.setAttribute('style', 'display: none;');
             //section.setAttribute('style', 'height: 70px');
-            article.style.display = 'none';
-        } else {
-            const section = document.getElementById('id_section_llista_apats');
-            const article = document.getElementById('id_article_llista_apats');
+            article.style.display = esTancat ? 'none' : '';
+        //} else {
+            //const section = document.getElementById('id_section_llista_apats');
+            //const article = document.getElementById('id_article_llista_apats');
             //article.removeAttribute('style');
             //section.removeAttribute('style');
-            article.style.display = '';
-        }
+            //article.style.display = '';
+        //}
     }, [esTancat])
 
     const className_section = 'cn-section-llista-apats';
@@ -92,7 +94,7 @@ export const LlistaApats = ({ apats, alEliminarApat }) => {
                                 <li className={className_li_descripcio_llista}>{apat.descripcio}</li>
                                 <li className={className_li_eliminar_llista}>
                                     <button 
-                                        onClick={() => alEliminarApat(apat.id)}
+                                        onClick={() => eliminarApat(apat.id)}
                                         className={className_bttn_eliminar}
                                     >
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" 

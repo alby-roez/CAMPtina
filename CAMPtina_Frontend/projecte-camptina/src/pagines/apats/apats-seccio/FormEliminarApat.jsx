@@ -1,10 +1,11 @@
 import './FormEliminarApat.css'
 import { useState, useEffect } from 'react'
+import { useApats } from '../ApatsContext.jsx'
 
-export const FormEliminarApat = ({alEliminarApat}) => {
-
+export const FormEliminarApat = () => {
     const [esTancat, setEsTancat] = useState(false)
     const [idApat, setIdApat] = useState('')
+    const { eliminarApat } = useApats()
 
     const tancarFinestra = () => {
         setEsTancat(!esTancat);
@@ -24,10 +25,10 @@ export const FormEliminarApat = ({alEliminarApat}) => {
         }
     }, [esTancat])
 
-    const eliminarApat = async (event) => {
+    const handleEliminar = async (event) => {
         event.preventDefault()
         try {
-            await alEliminarApat(idApat)
+            await eliminarApat(idApat)
             setIdApat('')
         } catch (error) {
             console.log("Error eliminant l'apat:", error)
@@ -84,14 +85,14 @@ export const FormEliminarApat = ({alEliminarApat}) => {
                         </svg>
                     </button>
                 </article>
-                <form className={className_form} id={id_form} onSubmit={eliminarApat}>
+                <form className={className_form} id={id_form} onSubmit={handleEliminar}>
                     <div className={className_div_contingut_form}>
                         <label htmlFor={id_input_txt}>{txtInputIDApat}</label>
                         <input
                             className={className_input_txt}
                             id={id_input_txt}
                             name={name_input_txt}
-                            type='text'
+                            type='number'
                             value={idApat}
                             onChange={event => setIdApat(event.target.value)}
                             required
