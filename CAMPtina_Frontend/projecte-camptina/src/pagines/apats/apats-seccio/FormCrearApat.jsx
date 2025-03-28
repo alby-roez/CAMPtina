@@ -10,7 +10,7 @@ export const FormCrearApat = () => {
     const peticioCrearApat = handleSubmit((data) => {
         const nouApat = {
             nom: data.nomDeApat,
-            categoria: parseInt(data.categoriaDeApat),
+            categoriaId: parseInt(data.categoriaDeApat),
             descripcio: data.descripcioDeApat
         };
 

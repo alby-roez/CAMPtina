@@ -10,6 +10,12 @@ export const LlistaApats = () => {
         setEsTancat(!esTancat);
     }
 
+    const categories = {
+        1: 'Primer',
+        2: 'Segon',
+        3: 'Postres',
+    }
+
     useEffect(() => {
         //if (esTancat) {
             //const section = document.getElementById('id_section_llista_apats');
@@ -90,7 +96,9 @@ export const LlistaApats = () => {
                             <ul key={apat.id} className={className_ul_llista}>
                                 <li className={className_li_id_llista}>{apat.id}</li>
                                 <li className={className_li_nom_llista}>{apat.nom}</li>
-                                <li className={className_li_categoria_llista}>{apat.categoria}</li>
+                                <li className={className_li_categoria_llista}>
+                                    {categories[apat.categoriaId]}
+                                </li>
                                 <li className={className_li_descripcio_llista}>{apat.descripcio}</li>
                                 <li className={className_li_eliminar_llista}>
                                     <button 
