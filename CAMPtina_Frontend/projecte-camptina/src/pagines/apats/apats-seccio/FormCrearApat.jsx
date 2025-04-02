@@ -2,6 +2,7 @@ import './FormCrearApat.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useApats } from '../ApatsContext.jsx'
+import { ResetRoda } from '../../../Icones.jsx'
 
 export const FormCrearApat = () => {
     const { crearApat } = useApats()
@@ -179,12 +180,12 @@ export const FormCrearApat = () => {
                         </div>
                     </div>
                     <div className={className_div_bttn_form}>
-                        <input
+                        <button
                             id={id_reset}
                             name={name_reset}
-                            value={value_reset}
-                            type='reset'
-                        />
+                        >
+                            <ResetRoda />
+                        </button>
                         <input
                             id={id_submit}
                             name={name_submit}
@@ -197,3 +198,12 @@ export const FormCrearApat = () => {
         </>
     )
 }
+
+/*
+    <input
+        id={id_reset}
+        name={name_reset}
+        value={value_reset}
+        type='reset'
+    />
+ */

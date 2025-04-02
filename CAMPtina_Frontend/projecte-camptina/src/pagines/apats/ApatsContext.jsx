@@ -38,6 +38,7 @@ export const ApatsProvider = ({ children }) => {
 
     // Funció per eliminar un àpat
     const eliminarApat = async (idApat) => {
+        console.log('QUe ha pasado')
         try {
             await axios.delete(`http://localhost:8080/api/${idApat}`)
             await carregarApats()

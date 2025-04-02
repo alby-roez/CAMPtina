@@ -8,9 +8,6 @@
     width: 80%;
     min-height: 70px;
 }
-.cn-section-llista-apats.plena {
-    height: auto;
-}
 
 .cn-article-nom-llista-apats {
     display: flex;
@@ -33,7 +30,7 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    min-height: 70px;
+    min-height: 50px;
 }
 
 .cn-ul-llista-apats {
@@ -41,7 +38,18 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 70px;
+    height: 50px;
+}
+
+.cn-li-update-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 50px;
+    background: #111;
+    border-bottom-right-radius: 8px;
+    visibility: hidden;
 }
 
 .cn-li-id-llista-apats {
@@ -50,10 +58,12 @@
     align-items: center;
     padding: 5px;
     font-size: 0.8em;
-    width: 10%;
+    width: 20%;
     height: 50px;
     background: #222;
     border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
 .cn-li-nom-llista-apats {
@@ -67,6 +77,7 @@
     background: #333;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
 .cn-li-categoria-llista-apats {
@@ -75,11 +86,12 @@
     align-items: center;
     padding: 5px;
     font-size: 0.8em;
-    width: 20%;
+    width: 10%;
     height: 50px;
     background: #444;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
 .cn-li-descripcio-llista-apats {
@@ -88,24 +100,106 @@
     align-items: center;
     padding: 5px;
     font-size: 0.8em;
-    width: 40%;
+    width: 35%;
     height: 50px;
     background: #555;
+    border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
-.cn-li-eliminar-llista-apats {
+.cn-li-delete-llista-apats {
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 5%;
+    height: 50px;
+    background: #666;
+    border-bottom-left-radius: 8px;
+    visibility: hidden;
+}
+
+.cn-div-llista-apats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    min-height: 50px;
+}
+
+.cn-li-item-update-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+    height: 50px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.cn-li-item-id-llista-apats {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    font-size: 0.8em;
+    width: 20%;
+    height: 50px;
+    background: #f75;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.cn-li-item-nom-llista-apats {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    font-size: 0.8em;
+    width: 20%;
+    height: 50px;
+    background: #e75;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.cn-li-item-categoria-llista-apats {
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
     padding: 5px;
     font-size: 0.8em;
     width: 10%;
     height: 50px;
-    background: #666;
-    border-bottom-right-radius: 8px;
+    background: #d75;
+    border-radius: 8px;
+    overflow: auto;
 }
 
+.cn-li-item-descripcio-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px;
+    font-size: 0.8em;
+    width: 35%;
+    height: 50px;
+    background: #c75;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.cn-li-item-delete-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    height: 50px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+/* CloseFinestra A- */
 .cn-bttn-finestra-llista-apats {
     position: absolute;
     right: 0;
@@ -129,25 +223,87 @@
 .cn-bttn-finestra-llista-apats:active {
     transform: scale(0.9);
 }
+/* CloseFinestra -Z */
 
-/* Nova columna per als botons (es pot millorar) */
-.cn-bttn-eliminar {
-    background: none;
+/* FilterIcona A- */
+.cn-bttn-filtre-llista-apats {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    padding: 5px;
+    border-top-left-radius: 4px;
+    background: #258;
+    color: #fff;
     cursor: pointer;
-  }
-  
-  .cn-bttn-eliminar svg {
-    width: 24px; 
-    height: 24px;
-    stroke: #000; 
-    transition: stroke 0.3s ease;
-  }
-  
-  .cn-bttn-eliminar:hover svg {
-    stroke: #fff; 
-  }
+    margin: 4px;
+    width: 38px;
+}
+
+.cn-bttn-filtre-llista-apats:hover {
+    background: #b44;
+}
+
+.cn-bttn-filtre-llista-apats:active {
+    transform: scale(0.9);
+}
+/* FilterIcona -Z */
+
+/* UpdateLlapis A- */
+.cn-bttn-update-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #258;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.cn-bttn-update-llista-apats:hover {
+    background: #111;
+}
+
+.cn-bttn-update-llista-apats:active {
+    transform: scale(0.9);
+}
+/* UpdateLlapis -Z */
+
+/* DeletePaperera A- */
+.cn-bttn-delete-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background: #b44;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.cn-bttn-delete-llista-apats:hover {
+    background: #f44;
+}
+
+.cn-bttn-delete-llista-apats:active {
+    transform: scale(0.9);
+}
+/* DeletePaperera -Z */
+
+/* Icones A- */
+.content-icon {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+/* Icones -Z */
 
 @media (max-width: 550px) {
     .cn-section-llista-apats {

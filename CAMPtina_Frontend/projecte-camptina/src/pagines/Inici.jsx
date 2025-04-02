@@ -1,9 +1,9 @@
+import './css/Inici.css'
 import { Navegacio } from '../header/Navegacio.jsx'
 import { Peu } from '../footer/Peu.jsx'
-//import { Link } from '../Link.jsx';
-//import team from '../assets/team.png'
-import camptina from '../assets/camptina.mp4'
+import triarApat from '../assets/triar-apat.png'
 import menjador from '../assets/menjador.mp4'
+import { Link } from '../Link.jsx'
 
 export default function Inici() {
     const className_main = 'cn-main-navegacio';
@@ -12,30 +12,22 @@ export default function Inici() {
         <>
             <Navegacio />
             <main className={className_main}>
-                <section className='cn-video-select-inici'>
+                <section className='cn-video-a-inici'>
                     <video id='id_menjador' src={menjador} autoPlay loop muted></video>
-                    <article>
-                        PRUEBA
-                    </article>
-                    <select className='cn-select-inici' name='nameSI'>
-                        <option></option>
-                        <option>Hola</option>
-                    </select>
-                    <select className='cn-select-inici' name='nameSI'>
-                        <option></option>
-                        <option>Adeu</option>
-                    </select>
-                    <select className='cn-select-inici' name='nameSI'>
-                        <option></option>
-                        <option>Si</option>
-                    </select>
-                    <select className='cn-select-inici' name='nameSI'>
-                        <option></option>
-                        <option>No</option>
-                    </select>
+                    <Link to='/apats/triar-apat'>Triar Àpat</Link>
                 </section>
-                <video id='id_camptina' src={camptina} autoPlay loop muted></video>
-                <h1>Inici</h1>
+                <section className='cn-info-inici'>
+                    <h1>Pagina d'inici</h1>
+                    <article className='cn-article-info-inici'>
+                        <p>A la secció del vídeo tens un enllaç directe a la pàgina de reserva i elecció de l'àpat.</p>
+                        <p>A la capçalera de dalt tens un navegador de pagines per interactuar amb la resta de pagines.</p>
+                    </article>
+                    <article className='cn-article-menu-inici'>
+                        <h3>Recomanació del dia</h3>
+                        <Link to='/apats/menus'><img className='cn-img-menus-inici' src={triarApat} alt='Imatge' /></Link>
+                    </article>
+                    <Link to='/blackmarket'>/blackmarket</Link>
+                </section>
             </main>
             <Peu />
         </>

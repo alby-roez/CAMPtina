@@ -9,8 +9,6 @@ export const Navegacio = () => {
     const className_section_usuari_navegacio = 'cn-section-usuari-navegacio';
     const className_article_usuari_ui_navegacio = 'cn-article-usuari-ui-navegacio';
     const className_article_usuari_imatge_navegacio = 'cn-article-usuari-imatge-navegacio';
-    const className_div_usuari_ui_nom_edat_navegacio = 'cn-div-usuari-ui-nom-edat-navegacio';
-    const className_div_usuari_ui_detalls_navegacio = 'cn-div-usuari-ui-detalls-navegacio';
     const className_img_logo = 'cn-img-logo';
     const className_img_usuari = 'cn-img-usuari';
 
@@ -18,10 +16,7 @@ export const Navegacio = () => {
     const className_num_li_3 = 'cn-num-li-3-navegacio';
 
     const txt_NOM_COMPLET = 'Albert Rodríguez';
-    const txt_EDAT = '26';
     const txt_USUARI = 'albyroez';
-    const txt_CC = '5 CC';
-    const txt_EXP = 'JU';
 
     return (
         <>
@@ -52,15 +47,8 @@ export const Navegacio = () => {
                 </section>
                 <section className={className_section_usuari_navegacio}>
                     <article className={className_article_usuari_ui_navegacio}>
-                        <div className={className_div_usuari_ui_nom_edat_navegacio}>
-                            <h4>{txt_NOM_COMPLET}</h4>
-                            <p>{txt_EDAT}</p>
-                        </div>
-                        <div className={className_div_usuari_ui_detalls_navegacio}>
+                            <h3>{txt_NOM_COMPLET}</h3>
                             <h4>{txt_USUARI}</h4>
-                            <p>{txt_CC}</p>
-                            <p>{txt_EXP}</p>
-                        </div>
                     </article>
                     <article className={className_article_usuari_imatge_navegacio}>
                         <Link to='/login'><img className={className_img_usuari} src={usuari} alt="Usuari" /></Link>
@@ -69,5 +57,4 @@ export const Navegacio = () => {
             </header>
         </>
     )
-    
 }
