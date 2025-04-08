@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
@@ -14,7 +16,7 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "MENU_APATS")
-public class MenuApat {
+public class MenuApatEntity {
 
 	@EmbeddedId
 	private MenuApatId id;
@@ -71,7 +73,7 @@ public class MenuApat {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MenuApat other = (MenuApat) obj;
+		MenuApatEntity other = (MenuApatEntity) obj;
 		return Objects.equals(apat, other.apat) && Objects.equals(id, other.id) && Objects.equals(menu, other.menu);
 	}
 	

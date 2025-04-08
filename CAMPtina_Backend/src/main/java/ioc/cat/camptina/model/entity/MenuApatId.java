@@ -11,11 +11,24 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class MenuApatId implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "ID_MENU")
 	private int menuId;
 
 	@Column(name = "ID_APAT")
 	private int apatId;
+
+	public MenuApatId() {
+	}
+
+	public MenuApatId(int menuId, int apatId) {
+		this.menuId = menuId;
+		this.apatId = apatId;		
+	}
 
 	public int getMenuId() {
 		return menuId;
