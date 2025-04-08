@@ -43,8 +43,40 @@ export const LlistaApats = () => {
     }
     
     useEffect(() => {
-        console.log('Filtre')
+        const select = document.getElementById('id_select_filtre_categoria_llista_apats');
+        const bttn = document.getElementById('id_bttn_filtre_llista_apats');
+        if (shaFiltrat) {
+            select.setAttribute('style', 'display: flex;');
+            bttn.setAttribute('style', 'background: #075;');
+        } else {
+            select.removeAttribute('style');
+            bttn.removeAttribute('style');
+        }
     }, [shaFiltrat])
+
+    const [filters, setFilters] = useState({
+        categoriaId: 0
+    })
+
+    const maneigFiltre = (event) => {
+        const valor = parseInt(event.currentTarget.value)
+        setFilters(estatAnterior => ({
+            ... estatAnterior,
+            categoriaId: valor
+        }))
+    }
+
+    /* FILTRAR UN ARRAY ¡IMPORTANT ESTUDIAR! */
+    const filtreApats = (apats) => {
+        return apats.filter(apat => {
+            return (
+                filters.categoriaId === 0 ||
+                apat.categoriaId === filters.categoriaId
+            )
+        })
+    }
+
+    const filtratApats = filtreApats(apats)
     /* useState shaFiltrat ================================================== -Z */
     
     /* useState shaActualitzat ================================================== A- */
@@ -90,7 +122,7 @@ export const LlistaApats = () => {
     }
 
     useEffect(() => {
-        console.log('Filtre')
+        console.log('Actualitzat')
     }, [shaActualitzat])
     /* useState shaActualitzat ================================================== -Z */
 
@@ -130,9 +162,15 @@ export const LlistaApats = () => {
     const id_bttn_finestra = 'id_bttn_finestra_llista_apats';
     const name_bttn_finestra = 'finestraDeLlistaApats';
 
+    const className_div_filtre_intern = 'cn-div-filtre-intern-llista-apats';
+
     const className_bttn_filtre = 'cn-bttn-filtre-llista-apats';
     const id_bttn_filtre = 'id_bttn_filtre_llista_apats';
     const name_bttn_filtre = 'filtreDeLlistaApats';
+
+    const className_select_filtre_categoria = 'cn-select-filtre-categoria-llista-apats';
+    const id_select_filtre_categoria = 'id_select_filtre_categoria_llista_apats';
+    const name_select_filtre_categoria = 'categoriaFiltre';
 
     const className_bttn_update = 'cn-bttn-update-llista-apats';
     const id_bttn_update = 'id_bttn_update_llista_apats';
@@ -147,14 +185,27 @@ export const LlistaApats = () => {
             <section className={className_section} id={id_section}>
                 <article className={className_article_nom}>
                     <h3 className={className_h3_nom}>{nomSeccio}</h3>
-                    <button
-                        className={className_bttn_filtre}
-                        id={id_bttn_filtre}
-                        name={name_bttn_filtre}
-                        onClick={filtreIcona}
-                    >
-                        <FilterIcona />
-                    </button>
+                    <div className={className_div_filtre_intern}>
+                        <button
+                            className={className_bttn_filtre}
+                            id={id_bttn_filtre}
+                            name={name_bttn_filtre}
+                            onClick={filtreIcona}
+                        >
+                            <FilterIcona />
+                        </button>
+                        <select
+                            className={className_select_filtre_categoria}
+                            id={id_select_filtre_categoria}
+                            name={name_select_filtre_categoria}
+                            onChange={maneigFiltre}
+                        >
+                            <option value={0}>Totes</option>
+                            <option value={1}>Primer</option>
+                            <option value={2}>Segon</option>
+                            <option value={3}>Postres</option>
+                        </select>
+                    </div>
                     <button
                         className={className_bttn_finestra}
                         id={id_bttn_finestra}
@@ -173,7 +224,7 @@ export const LlistaApats = () => {
                         <li className={className_li_descripcio_llista}>{llistaDescripcio}</li>
                         <li className={className_li_delete_llista}></li>
                     </ul>
-                    {apats.map((apat) => (
+                    {filtratApats.map((apat) => (
                         <div key={apat.id} className={className_div_llista}>
                             <ul key={apat.id} className={className_ul_llista}>
                                 <li className={className_li_item_update}>

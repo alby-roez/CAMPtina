@@ -43,6 +43,11 @@
   width: 100%;
 }
 
+#id_video_menus_carta {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+
 #id_camptina {
   aspect-ratio: 16/9;
   width: 100%;

@@ -226,20 +226,27 @@
 /* CloseFinestra -Z */
 
 /* FilterIcona A- */
-.cn-bttn-filtre-llista-apats {
+.cn-div-filtre-intern-llista-apats {
     position: absolute;
     left: 0;
     top: 0;
+    display: flex;
+    gap: 2px;
+    margin: 4px;
+    width: 240px;
+    height: 38px;
+}
+
+.cn-bttn-filtre-llista-apats {
     display: flex;
     justify-content: center;
     align-items: center;
     border: none;
     border-top-left-radius: 4px;
     background: #258;
-    color: #fff;
     cursor: pointer;
-    margin: 4px;
     width: 38px;
+    height: 38px;
 }
 
 .cn-bttn-filtre-llista-apats:hover {
@@ -248,6 +255,19 @@
 
 .cn-bttn-filtre-llista-apats:active {
     transform: scale(0.9);
+}
+
+.cn-select-filtre-categoria-llista-apats {
+    display: none;
+    width: 200px;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    color: #258;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
 }
 /* FilterIcona -Z */
 
@@ -337,5 +357,20 @@
 
     .cn-li-descripcio-llista-apats {
         font-size: 0.6em;
+    }
+}
+
+@media (min-width: 450px) and (max-width: 900px) {
+    .cn-select-filtre-categoria-llista-apats {
+        width: 60px;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .cn-select-filtre-categoria-llista-apats {
+        width: 60px;
+        font-size: 0.6rem;
+        opacity: 0.5;
     }
 }
