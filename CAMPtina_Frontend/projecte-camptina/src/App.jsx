@@ -9,6 +9,7 @@ import Contacte from './pagines/Contacte.jsx'
 import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
 import CrearApat from './pagines/apats/CrearApat.jsx'
+import Torns from './pagines/apats/Torns.jsx'
 
 import EquipDev from './pagines/equip/EquipDev.jsx'
 import Gerent from './pagines/equip/Gerent.jsx'
@@ -22,6 +23,11 @@ import SearchPage from './pagines/Search.jsx'
 import Contrasenya from './pagines/Contrasenya.jsx'
 
 const rutesApp = [
+
+  {
+    cami: '/apats/torns',
+    Component: Torns
+  },
   {
     cami: '/apats/menus',
     Component: Menus

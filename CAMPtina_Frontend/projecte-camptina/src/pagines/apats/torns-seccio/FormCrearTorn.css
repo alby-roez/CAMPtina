@@ -1,4 +1,4 @@
-.cn-section-form-crear-apat {
+.cn-section-form-crear-torn {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -6,10 +6,10 @@
     border-radius: 8px;
     padding: 0.65em;
     width: 80%;
-    height: 300px;
+    height: 340px;
 }
 
-.cn-article-nom-form-crear-apat {
+.cn-article-nom-form-crear-torn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,42 +21,69 @@
     position: relative;
 }
 
-.cn-h3-nom-form-crear-apat {
+.cn-h3-nom-form-crear-torn {
     font-size: 1.5em;
 }
 
-.cn-form-crear-apat {
+.cn-form-crear-torn {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 100%;
     height: 220px;
 }
 
-.cn-div-contingut-form-crear-apat {
+.cn-div-contingut-form-crear-torn {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 160px;
 }
 
-.cn-div-txt-select-form-crear-apat {
+.cn-div-txt-form-crear-torn {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     width: 50%;
     height: 100%;
+    margin-top: 25px;
+    margin-left: 15px;
 }
 
-.cn-div-lbl-text-form-crear-apat {
+.cn-div-lbl-text-form-crear-torn {
     display: flex;
     justify-content: space-between;
     width: 100%;
     height: 50px;
     position: relative;
+    
 }
 
-.cn-div-lbl-text-form-crear-apat > label {
+.cn-div-lbl-time-form-crear-torn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    position: relative;
+    gap: 3.0em;
+    
+}
+
+.cn-div-lbl-time-form-crear-torn > label {
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+    background: #222;
+    opacity: 0.9;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-left: 5px;
+    width: 30%;
+    height: 100%;
+    
+}
+
+.cn-div-lbl-text-form-crear-torn > label {
     display: flex;
     align-items: center;
     font-size: 1.2em;
@@ -69,28 +96,7 @@
     height: 100%;
 }
 
-.cn-div-lbl-select-form-crear-apat {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 50px;
-    position: relative;
-}
-
-.cn-div-lbl-select-form-crear-apat > label {
-    display: flex;
-    align-items: center;
-    font-size: 1.2em;
-    background: #222;
-    opacity: 0.9;
-    border-top-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding-left: 5px;
-    width: 40%;
-    height: 100%;
-}
-
-.cn-input-txt-form-crear-apat {
+.cn-input-txt-form-crear-torn {
     display: flex;
     align-items: center;
     border: none;
@@ -101,60 +107,30 @@
     padding: 0.65em;
 }
 
-.cn-select-form-crear-apat {
-    display: flex;
-    align-items: center;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.2em;
-    width: 50%;
-    height: 100%;
-    cursor: pointer;
-}
-
-.cn-div-txtarea-form-crear-apat {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 40%;
-    height: 100%;
-    position: relative;
-}
-
-.cn-div-txtarea-form-crear-apat > label {
+.cn-input-time-form-crear-torn {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2em;
-    background: #222;
-    opacity: 0.9;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding-left: 5px;
-    width: 100%;
-    height: 50px;
-}
-
-.cn-txtarea-form-crear-apat {
-    width: 100%;
-    height: 100px;
-    resize: none;
     border: none;
     border-radius: 8px;
-    padding: 0.65em;
     font-size: 1.2em;
+    width: 18%;
+    height: 100%;
+    padding: 0.65em;
 }
 
-.cn-div-bttn-form-crear-apat {
+.cn-div-bttn-form-crear-torn {
     display: flex;
     align-self: flex-end;
     justify-content: flex-end;
     gap: 10%;
     width: 20%;
     height: 50px;
+    margin-top: 25px;
 }
 
-#id_reset_form_crear_apat {
+
+#id_reset_form_crear_torn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,15 +144,15 @@
     height: 100%;
 }
 
-#id_reset_form_crear_apat:hover {
+#id_reset_form_crear_torn:hover {
     background: #369;
 }
 
-#id_reset_form_crear_apat:active {
+#id_reset_form_crear_torn:active {
     transform: scale(0.9);
 }
 
-#id_submit_form_crear_apat {
+#id_submit_form_crear_torn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -190,15 +166,15 @@
     height: 100%;
 }
 
-#id_submit_form_crear_apat:hover {
+#id_submit_form_crear_torn:hover {
     background: #f44;
 }
 
-#id_submit_form_crear_apat:active {
+#id_submit_form_crear_torn:active {
     transform: scale(0.9);
 }
 
-.cn-bttn-finestra-form-crear-apat {
+.cn-bttn-finestra-form-crear-torn {
     position: absolute;
     right: 0;
     top: 0;
@@ -215,118 +191,122 @@
     height: 38px;
 }
 
-.cn-bttn-finestra-form-crear-apat:hover {
+.cn-bttn-finestra-form-crear-torn:hover {
     background: #b44;
 }
 
-.cn-bttn-finestra-form-crear-apat:active {
+.cn-bttn-finestra-form-crear-torn:active {
     transform: scale(0.9);
 }
 
-.cn-span-error-form-apats {
-    position: absolute;
-    top: 50%;
-    right: 4px;
+.cn-span-error-container-text {
+    margin-top: -25px;
+    display:block;  
+}
+
+.cn-span-error-container-time {
+    margin-top: -25px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:auto;
+
+}
+
+.cn-span-error-form-torns {
     display: flex;
-    color: #f22;
-    font-size: 0.6em;
+    align-items: center;
     padding: 5px;
-    background: #222;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 8px;
+    width: auto;
+    height: 24px;
+    font-size: 0.8rem;
+    background: #ddd;
+    color: #b44;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 @media (max-width: 550px) {
-    .cn-section-form-crear-apat {
+    .cn-section-form-crear-torn {
         margin-top: 100px;
         overflow: auto;
     }
 
-    .cn-div-lbl-select-form-crear-apat > label {
-        width: 60%;
-    }
-
-    .cn-select-form-crear-apat {
-        width: 30%;
-    }
 }
 
 @media (max-width: 800px) {
-    .cn-section-form-crear-apat {
+    .cn-section-form-crear-torn {
         width: 96%;
     }
 
-    .cn-h3-nom-form-crear-apat {
+    .cn-h3-nom-form-crear-torn {
         font-size: 1em;
         overflow: auto;
     }
 
-    .cn-div-lbl-text-form-crear-apat > label {
+    .cn-div-lbl-text-form-crear-torn > label {
         font-size: 0.8em;
         overflow: auto;
     }
 
-    .cn-div-lbl-select-form-crear-apat > label {
+    .cn-div-lbl-time-form-crear-torn > label {
         font-size: 0.8em;
         overflow: auto;
     }
-
-    .cn-div-txtarea-form-crear-apat > label {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-input-txt-form-crear-apat {
+   
+    .cn-input-txt-form-crear-torn {
         font-size: 0.8em;
         overflow: auto;
     }
     
-    .cn-select-form-crear-apat {
+    .cn-input-time-form-crear-torn {
         font-size: 0.8em;
         overflow: auto;
-    }
+    }    
 
-    .cn-txtarea-form-crear-apat {
-        font-size: 0.8em;
-        overflow: auto;
-    }
 }
 
 @media (max-width: 1500px) {
-    .cn-section-form-crear-apat {
-        height: 420px;
+    .cn-section-form-crear-torn {
+        height: 600px;
     }
 
-    .cn-form-crear-apat {
-        height: 340px;
+    .cn-form-crear-torn {
+        gap: 150px;
     }
 
-    .cn-div-contingut-form-crear-apat {
+    .cn-div-contingut-form-crear-torn {
         flex-direction: column;
         gap: 10px;
         width: 100%;
         height: 280px;
     }
 
-    .cn-div-txt-select-form-crear-apat {
-        width: 100%;
+    .cn-div-txt-form-crear-torn {
+        width: 90%;
     }
 
-    .cn-div-txtarea-form-crear-apat {
-        width: 100%;
-    }
-
-    .cn-div-bttn-form-crear-apat {
+    .cn-div-bttn-form-crear-torn {
         width: 100%;
         justify-content: center;
         gap: 10px;
     }
 
-    #id_reset_form_crear_apat {
+    #id_reset_form_crear_torn {
         font-size: 1em;
     }
 
-    #id_submit_form_crear_apat {
+    #id_submit_form_crear_torn {
         font-size: 1.2em;
+    }
+    
+    .cn-div-lbl-time-form-crear-torn { 
+        justify-content: start;
+    }
+
+    .cn-span-error-container-time{
+        margin-left: 0px; 
+        width: 100%;
+        display: block;
     }
 }

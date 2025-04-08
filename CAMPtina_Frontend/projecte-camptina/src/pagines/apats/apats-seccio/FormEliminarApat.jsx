@@ -1,11 +1,11 @@
 import './FormEliminarApat.css'
 import { useState, useEffect } from 'react'
-import { useApats } from '../ApatsContext.jsx'
+import { useAxiosPeticions } from './AxiosPeticions.js'
 
 export const FormEliminarApat = () => {
     const [esTancat, setEsTancat] = useState(false)
     const [idApat, setIdApat] = useState('')
-    const { eliminarApat } = useApats()
+    const { eliminarApat } = useAxiosPeticions()
 
     const tancarFinestra = () => {
         setEsTancat(!esTancat);

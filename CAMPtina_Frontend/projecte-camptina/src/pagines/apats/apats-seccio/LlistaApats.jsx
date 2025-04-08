@@ -1,12 +1,12 @@
 import './LlistaApats.css'
 import { useState, useEffect } from 'react'
-import { useApats } from '../ApatsContext.jsx'
 import { FormActualitzarApat } from './FormActualitzarApat.jsx'
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../../Icones.jsx'
 
-export const LlistaApats = () => {
+export const LlistaApats = ({ apats, eliminarApat }) => {
+    
     /* useApats & categories ================================================== A- */
-    const { apats, eliminarApat } = useApats()
+    
 
     const categories = {
         1: 'Primer',

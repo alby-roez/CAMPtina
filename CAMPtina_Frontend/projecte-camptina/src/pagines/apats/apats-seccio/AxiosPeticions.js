@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 
 const axiosClient = axios.create({
-    baseURL: '' /* API */
+    baseURL: 'http://localhost:8080/api' /* API */
 })
 
 export const useAxiosPeticions = () => {
@@ -21,7 +21,7 @@ export const useAxiosPeticions = () => {
         try {
             const resposta = await axiosClient.get('/apats');
             setApats(resposta.data)
-            console.log(resposta.data)
+            console.log("",resposta.data)
         } catch (error) {
             console.log('Error obtenint els àpats:', error)
         }
@@ -33,9 +33,8 @@ export const useAxiosPeticions = () => {
      * @description Funció per crear un nou àpat
      */
     const crearApat = async (nouApat) => {
-        console.log('Àpat Abans de crear:', nouApat)
         try {
-            const resposta = await axiosClient.post('/apats', nouApat, {
+            const resposta = await axiosClient.post('', nouApat, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -54,7 +53,7 @@ export const useAxiosPeticions = () => {
      */
     const eliminarApat = async (idApat) => {
         try {
-            await axiosClient.delete(`/apats/${idApat}`)
+            await axiosClient.delete(`/${idApat}`)
             await carregarApats()
         } catch (error) {
             console.log('Error eliminant l\'àpat:', error)

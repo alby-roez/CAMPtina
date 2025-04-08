@@ -1,11 +1,10 @@
 import './FormCrearApat.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useApats } from '../ApatsContext.jsx'
 import { ResetRoda } from '../../../Icones.jsx'
 
-export const FormCrearApat = () => {
-    const { crearApat } = useApats()
+export const FormCrearApat = ({crearApat}) => {
+    
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearApat = handleSubmit((data) => {
@@ -97,7 +96,7 @@ export const FormCrearApat = () => {
     const name_bttn_finestra = 'finestraDeFormCrear';
     //const txt_bttn_finestra = '✕';
 
-    const className_span = 'cn-span-error';
+    const className_span = 'cn-span-error-form-apats';
 
     return (
         <>
