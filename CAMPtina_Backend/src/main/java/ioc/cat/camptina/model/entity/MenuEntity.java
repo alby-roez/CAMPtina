@@ -3,11 +3,14 @@
  */
 package ioc.cat.camptina.model.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -34,7 +37,11 @@ public class MenuEntity {
 
 	@Column(name = "ACTIU")
 	private int actiu;
-
+	
+	@OneToMany(mappedBy = "menu")
+	private List<MenuApatEntity> menuApatsEntity;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -66,7 +73,15 @@ public class MenuEntity {
 	public void setActiu(int actiu) {
 		this.actiu = actiu;
 	}
+
+	public List<MenuApatEntity> getMenuApatsEntity() {
+		return menuApatsEntity;
+	}
+
+	public void setMenuApatsEntity(List<MenuApatEntity> menuApatsEntity) {
+		this.menuApatsEntity = menuApatsEntity;
+	}
 	
-	
+
 
 }

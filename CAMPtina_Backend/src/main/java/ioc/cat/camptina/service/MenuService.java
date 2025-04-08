@@ -1,12 +1,20 @@
 package ioc.cat.camptina.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ioc.cat.camptina.mapper.ApatMapper;
 import ioc.cat.camptina.mapper.MenuMapper;
+import ioc.cat.camptina.model.dto.ApatDTO;
 import ioc.cat.camptina.model.dto.MenuDTO;
+import ioc.cat.camptina.model.dto.MenuLlistaApatsDTO;
+import ioc.cat.camptina.model.entity.ApatEntity;
+import ioc.cat.camptina.model.entity.MenuApatEntity;
 import ioc.cat.camptina.model.entity.MenuEntity;
 import ioc.cat.camptina.repository.MenuRepository;
 
@@ -23,6 +31,10 @@ public class MenuService {
 
 	@Autowired
 	private MenuMapper menuMapper;
+	
+	@Autowired
+	ApatMapper apatMapper;
+
 
 	/**
 	 * Mètode que retorna la llista de tots els menús existents a la base de dades.
@@ -82,6 +94,33 @@ public class MenuService {
 	 */
 	public void deleteMenu(int id) {
 		menuRepository.deleteById(id);
+	}
+	
+	/**
+	 * Mètode que retorna el menú complet amb llista de plats i per categories, introduïnt el id per paràmetre
+	 * @param menuId
+	 * @return menú complet
+	 */
+	public MenuLlistaApatsDTO getMenuAmbPlats(int menuId) {
+
+		MenuEntity menuEntity = menuRepository.findById(menuId)
+				.orElseThrow(() -> new RuntimeException("Menú no trobat"));
+
+		Map<String, List<ApatDTO>> mapApatsDTO = new HashMap<>();
+
+		for (MenuApatEntity ma : menuEntity.getMenuApatsEntity()) {
+			ApatEntity apat = ma.getApat();
+			String categoria = apat.getCategoria().getNom();
+			mapApatsDTO.putIfAbsent(categoria, new ArrayList<>());
+			mapApatsDTO.get(categoria).add(apatMapper.apatEntityToApatDto(apat));
+		}
+
+		MenuLlistaApatsDTO menuLlistaApatsDTO = new MenuLlistaApatsDTO();
+		menuLlistaApatsDTO.setId(menuEntity.getId());
+		menuLlistaApatsDTO.setNom(menuEntity.getNom());
+		menuLlistaApatsDTO.setApatsPerCategoria(mapApatsDTO);
+		
+		return menuLlistaApatsDTO;
 	}
 
 }

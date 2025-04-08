@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ioc.cat.camptina.model.dto.MenuDTO;
+import ioc.cat.camptina.model.dto.MenuLlistaApatsDTO;
 import ioc.cat.camptina.service.MenuService;
 
 /**
@@ -28,27 +29,32 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 
-	@GetMapping("/menus")
+	@GetMapping()
 	public List<MenuDTO> getAllMenus() {
 		return menuService.getAllMenus();
 	}
 
-	@GetMapping("/menus/{id}")
+	@GetMapping("{id}")
 	public MenuDTO getMenuById(@PathVariable int id) {
 		return menuService.getMenuById(id);
 	}
+	
+	@GetMapping("/menu-complet/{id}")
+	public MenuLlistaApatsDTO getMenuComplet(@PathVariable int id) {
+		return menuService.getMenuAmbPlats(id);
+	}
 
-	@PostMapping("/menus")
+	@PostMapping()
 	public MenuDTO createMenu(@RequestBody MenuDTO menuDTO) {
 		return menuService.crearMenu(menuDTO);
 	}
 
-	@PutMapping("/menus/{id}")
+	@PutMapping("{id}")
 	public MenuDTO updateMenu(@PathVariable int id, @RequestBody MenuDTO menuDTO) {
 		return menuService.updateMenu(id, menuDTO);
 	}
 
-	@DeleteMapping("/menus/{id}")
+	@DeleteMapping("{id}")
 	public void deleteMenu(@PathVariable int id) {
 		menuService.deleteMenu(id);
 	}
