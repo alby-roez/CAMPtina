@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import ioc.cat.camptina.service.TornService; 
 import ioc.cat.camptina.model.dto.TornDTO;
-import ioc.cat.camptina.service.TornService;
-
 @RestController
 @RequestMapping("/api/torn")
 public class TornController {

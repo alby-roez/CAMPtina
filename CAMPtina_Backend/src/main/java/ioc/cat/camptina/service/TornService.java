@@ -33,12 +33,14 @@ public class TornService {
                 .orElseThrow(() -> new RuntimeException("Torn no trobat"));
     }
     public TornDTO createTorn(TornDTO tornDto) {
+        validacioHoraIniciFiTorn(tornDto);
         TornEntity torn = tornMapper.tornDtoToTornEntity(tornDto);
         torn = tornRepository.save(torn);
         return tornMapper.tornEntityToTornDto(torn);    
     }
 
     public TornDTO updateTorn(int id, TornDTO tornDto) {
+        validacioHoraIniciFiTorn(tornDto);
         TornEntity tornEntity = tornRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Torn no trobat"));
         tornEntity.setNom(tornDto.getNom());
@@ -48,8 +50,15 @@ public class TornService {
         tornEntity = tornRepository.save(tornEntity);
         return tornMapper.tornEntityToTornDto(tornEntity);
     }
+
     public void deleteTorn(int id) {
         tornRepository.deleteById(id);
+    }
+
+    private void validacioHoraIniciFiTorn(TornDTO tornDto) {
+        if (!tornDto.getHoraInici().isBefore(tornDto.getHoraFi())) {
+            throw new IllegalArgumentException("L'hora d'inici ha de ser anterior a l'hora de fi.");
+        }
     }
 
 }

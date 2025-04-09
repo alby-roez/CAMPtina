@@ -1,10 +1,12 @@
 package ioc.cat.camptina.model.dto;
 
+import java.time.LocalTime;
+
 public class TornDTO {
     private int id;
     private String nom;
-    private String horaInici;
-    private String horaFi;
+    private LocalTime  horaInici;
+    private LocalTime  horaFi;
     private int aforament;
 
     public int getId() {
@@ -23,19 +25,19 @@ public class TornDTO {
         this.nom = nom;
     }
 
-    public String getHoraInici() {
+    public LocalTime  getHoraInici() {
         return horaInici;
     }
 
-    public void setHoraInici(String horaInici) {
+    public void setHoraInici(LocalTime  horaInici) {
         this.horaInici = horaInici;
     }
 
-    public String getHoraFi() {
+    public LocalTime  getHoraFi() {
         return horaFi;
     }
 
-    public void setHoraFi(String horaFi) {
+    public void setHoraFi(LocalTime  horaFi) {
         this.horaFi = horaFi;
     }
 

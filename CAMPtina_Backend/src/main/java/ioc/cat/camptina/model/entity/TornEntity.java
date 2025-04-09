@@ -1,5 +1,7 @@
 package ioc.cat.camptina.model.entity;
 
+import java.time.LocalTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,10 +25,10 @@ public class TornEntity {
     private String nom;
 
     @Column(name="HORA_INICI")
-    private String horaInici;
+    private LocalTime horaInici;
 
     @Column(name="HORA_FI")
-    private String horaFi;
+    private LocalTime horaFi;
 
     @Column(name="AFORAMENT_MAXIM")
     private int aforament;
@@ -47,19 +49,19 @@ public class TornEntity {
         this.nom = nom;
     }
 
-    public String getHoraInici() {
+    public LocalTime  getHoraInici() {
         return horaInici;
     }
 
-    public void setHoraInici(String horaInici) {
+    public void setHoraInici(LocalTime  horaInici) {
         this.horaInici = horaInici;
     }
 
-    public String getHoraFi() {
+    public LocalTime  getHoraFi() {
         return horaFi;
     }
 
-    public void setHoraFi(String horaFi) {
+    public void setHoraFi(LocalTime  horaFi) {
         this.horaFi = horaFi;
     }
 
