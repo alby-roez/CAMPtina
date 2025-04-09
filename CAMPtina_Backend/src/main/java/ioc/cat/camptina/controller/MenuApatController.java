@@ -26,7 +26,6 @@ public class MenuApatController {
 
 	@PostMapping
 	public MenuApatDTO createMenuApat(@RequestBody MenuApatDTO menuApatDTO) {
-
 		return menuApatService.createMenuApat(menuApatDTO);
 	}
 
@@ -37,9 +36,7 @@ public class MenuApatController {
 
 	@DeleteMapping("/{menuId}/{apatId}")
 	public void deleteMenuApat(@PathVariable int menuId, @PathVariable int apatId) {
-
 		menuApatService.deleteMenuApat(menuId, apatId);
-
 	}
 
 }
