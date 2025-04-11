@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const axiosClient = axios.create({
@@ -59,6 +59,10 @@ export const useAxiosPeticions = () => {
             console.log('Error eliminant l\'àpat:', error)
         }
     }
+
+    useEffect(() => {
+        carregarApats()
+    }, [])
 
     return { apats, carregarApats, crearApat, eliminarApat }
 }
