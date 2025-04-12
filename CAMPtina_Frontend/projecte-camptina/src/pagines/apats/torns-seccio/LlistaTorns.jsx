@@ -8,23 +8,21 @@ import {
   CheckIcona,
 } from "../../../Icones.jsx";
 
+import { useTorns } from "../../../context/TornsContext.jsx";
+import { FormActualitzarTorn } from "./FormActualitzarTorn.jsx";
+
 export const LlistaTorns = () => {
   const [shaTancat, setShaTancat] = useState(false);
-  const [torns, setTorns] = useState([]);
-
+  
   const tancarFinestra = () => {
     setShaTancat(!shaTancat);
   };
 
-  const eliminarTorn = (indexEliminar) => {
-    const tornsDesats = JSON.parse(localStorage.getItem("torns")) || [];
-    const tornsRestants = tornsDesats.filter(
-      (_, index) => index !== indexEliminar
-    );
-    localStorage.setItem("torns", JSON.stringify(tornsRestants));
-    setTorns(tornsRestants);
-  };
+  const {torns, eliminarTorn} = useTorns()
 
+  const [editantId, setEditantId ] = useState(null);
+
+  
   useEffect(() => {
     const section = document.getElementById("id_section_llista_torns");
     const article = document.getElementById("id_article_llista_torns");
@@ -37,12 +35,7 @@ export const LlistaTorns = () => {
     }
   }, [shaTancat]);
 
-  // Llegeix de localStorage al iniciar
-  useEffect(() => {
-    const tornsDesats = JSON.parse(localStorage.getItem("torns")) || [];
-    setTorns(tornsDesats);
-  }, []);
-
+ 
   const className_section = "cn-section-llista-torns";
   const id_section = "id_section_llista_torns";
 
@@ -115,39 +108,46 @@ export const LlistaTorns = () => {
             <li className={className_li_horafi_llista}>{llistaHorafi}</li>
             <li className={className_li_delete_llista}></li>
           </ul>
-          {torns.map((torn, index) => (
-            <div key={index} className={className_div_llista}>
-              <ul key={index} className={className_ul_llista}>
+          {torns.map((torn) => (
+            <div key={torn.id} className={className_div_llista}>
+              {editantId === torn.id ? (
+                <FormActualitzarTorn 
+                  torn={torn} 
+                  onCancel={() => setEditantId(null)}
+                />
+              ) : (
+              <ul key={torn.id} className={className_ul_llista}>
                 <li className={className_li_item_update}>
                   <button
                     className={className_bttn_update}
                     id={id_bttn_update}
                     name={name_bttn_update}
-                    
+                    onClick={() => setEditantId(torn.id)}
                   >
                     <UpdateLlapis />
                   </button>
                 </li>
-                <li className={className_li_item_id}>{index + 1}</li>
+                <li className={className_li_item_id}>{torn.id}</li>
                 <li className={className_li_item_nom}>{torn.nom}</li>
                 <li className={className_li_item_aforament}>
-                  {torn.aforament_maxim}
+                  {torn.aforament}
                 </li>
                 <li className={className_li_item_horainici}>
-                  {torn.hora_inici}
+                  {torn.horaInici}
                 </li>
-                <li className={className_li_item_horafi}>{torn.hora_final}</li>
+                <li className={className_li_item_horafi}>{torn.horaFi}</li>
                 <li className={className_li_item_delete}>
                   <button
                     className={className_bttn_delete}
-                    id={id_bttn_delete + index}
-                    name={name_bttn_delete + index}
-                    onClick={() => eliminarTorn(index)}
+                    id={id_bttn_delete}
+                    name={name_bttn_delete}
+                    onClick={() => eliminarTorn(torn.id)}
                   >
                     <DeletePaperera />
                   </button>
                 </li>
               </ul>
+              )}
             </div>
           ))}
         </article>

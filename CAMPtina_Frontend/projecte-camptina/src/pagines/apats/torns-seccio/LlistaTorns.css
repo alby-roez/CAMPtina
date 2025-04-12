@@ -336,7 +336,7 @@
 /* Icones -Z */
 
 /* Estil pr als amps inputs del mode edició */
-.input-edit {
+.cn-input-llista-torns-editing {
   width: 100%;
   padding: 0;
   border: none;
@@ -354,7 +354,7 @@
   padding: 5px;
 }
 
-.bttn-guardar {
+.cn-bttn-save-edition {
   background: #4caf50;
   color: white;
   border: none;
@@ -367,7 +367,7 @@
   display: flex;
 }
 
-.bttn-cancelar {
+.cn-bttn-cancel-edition {
     background: #f44336;
     color: white;
     border: none;

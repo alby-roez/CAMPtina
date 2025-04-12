@@ -23,6 +23,7 @@ import SearchPage from './pagines/Search.jsx'
 import Contrasenya from './pagines/Contrasenya.jsx'
 
 import { ApatsProvider } from './context/ApatsContext.jsx'
+import { TornsProvider } from './context/TornsContext.jsx'
 
 const rutesApp = [
 
@@ -76,16 +77,18 @@ function App() {
   const className_pagina = 'cn-pagina';
   return (
     <>
-      <ApatsProvider>
-        <div className={className_pagina}> 
-          <Router rutes={rutesApp} componentPerDefecte={Page404}>
-            <Route cami='/' Component={Inici} />
-            <Route cami='/apats' Component={Apats} />
-            <Route cami='/equip' Component={Equip} />
-            <Route cami='/contacte' Component={Contacte} />
-          </Router>
-        </div>
-      </ApatsProvider>
+      <TornsProvider>
+        <ApatsProvider>
+          <div className={className_pagina}> 
+            <Router rutes={rutesApp} componentPerDefecte={Page404}>
+              <Route cami='/' Component={Inici} />
+              <Route cami='/apats' Component={Apats} />
+              <Route cami='/equip' Component={Equip} />
+              <Route cami='/contacte' Component={Contacte} />
+            </Router>
+          </div>
+        </ApatsProvider>
+      </TornsProvider>
     </>
   )
 }

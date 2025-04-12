@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const axiosClient = axios.create({
-    baseURL: 'http://localhost:8080/api' /* API */
+    baseURL: import.meta.env.VITE_API_URL /* API */
 })
 
 export const useAxiosPeticions = () => {
@@ -40,7 +40,8 @@ export const useAxiosPeticions = () => {
                 },
             })
             console.log('Àpat creat:', resposta.data)
-            await carregarApats()
+            //await carregarApats()
+            setApats([...apats, resposta.data])
         } catch (error) {
             console.error('Error creant l\'àpat:', error.response?.data)
         }
@@ -54,7 +55,8 @@ export const useAxiosPeticions = () => {
     const eliminarApat = async (idApat) => {
         try {
             await axiosClient.delete(`/${idApat}`)
-            await carregarApats()
+            //await carregarApats()
+            setApats(apats.filter(apat => apat.id !== idApat));
         } catch (error) {
             console.log('Error eliminant l\'àpat:', error)
         }
