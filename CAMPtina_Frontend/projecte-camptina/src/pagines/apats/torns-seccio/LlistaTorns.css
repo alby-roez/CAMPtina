@@ -253,55 +253,29 @@
 }
 /* CloseFinestra -Z */
 
-/* FilterIcona A- */
-.cn-bttn-filtre-llista-torns {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  border-top-left-radius: 4px;
-  background: #258;
-  color: #fff;
-  cursor: pointer;
-  margin: 4px;
-  width: 38px;
-}
-
-.cn-bttn-filtre-llista-torns:hover {
-  background: #b44;
-}
-
-.cn-bttn-filtre-llista-torns:active {
-  transform: scale(0.9);
-}
-/* FilterIcona -Z */
-
 /* UpdateLlapis A- */
 .cn-bttn-update-llista-torns {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: none;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border:none;
+  border-radius: 8px;
   background: #258;
   transition: background 0.3s;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
+  margin: 0 auto;
+  transform-origin: center;
   height: 100%;
 }
 
 .cn-bttn-update-llista-torns:hover {
-  background: #111;
+  background: #2563eb;
 }
 
 .cn-bttn-update-llista-torns:active {
   transform: scale(0.9);
 }
-/* UpdateLlapis -Z */
 
 /* DeletePaperera A- */
 .cn-bttn-delete-llista-torns {
@@ -309,12 +283,11 @@
   justify-content: center;
   align-items: center;
   border: none;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
+  border-radius: 8px;
   background: #b44;
   transition: background 0.3s;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   height: 100%;
 }
 
@@ -334,60 +307,6 @@
   color: #fff;
 }
 /* Icones -Z */
-
-/* Estil pr als amps inputs del mode edició */
-.cn-input-llista-torns-editing {
-  width: 100%;
-  padding: 0;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  font-size: inherit;
-  background: transparent;
-  border-radius: 8px;
-}
-
-/* Estil per a tots els camps en mode edició */
-.llista-torns-editing {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 5px;
-}
-
-.cn-bttn-save-edition {
-  background: #4caf50;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s;
-  height: 100%;
-  width:40%;
-  display: flex;
-}
-
-.cn-bttn-cancel-edition {
-    background: #f44336;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-    height: 100%;
-    width:40%;
-    display: flex;
-}
-
-.bttn-cancelar:hover {
-  background: #d32f2f;
-
-}
-
-.bttn-guardar:hover {
-  background: #45a049;
-}
 
 @media (max-width: 550px) {
   .cn-section-llista-torns {

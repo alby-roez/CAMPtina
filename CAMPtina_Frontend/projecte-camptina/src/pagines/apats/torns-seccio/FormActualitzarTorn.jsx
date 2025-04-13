@@ -63,7 +63,11 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
           <input
             type="text"
             placeholder="Nom del torn"
-            {...register("nom", { required: "El nom és obligatori" })}
+            {...register("nom", {
+              required: "El nom és obligatori",
+              min: { value: 3, message: "Mínim 3 caràcters" },
+              max: { value: 25, message: "Màxim 25 caràcters" },
+            })}
             className={errors.nomDeTorn ? "error" : ""}
           />
           {errors.nom && (
@@ -80,6 +84,7 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
             {...register("aforament", {
               required: "Aforament obligatori",
               min: { value: 1, message: "Mínim 1 persona" },
+              max: { value: 50, message: "Màxim 50 persones" },
             })}
             className={errors.aforament ? "error" : ""}
           />

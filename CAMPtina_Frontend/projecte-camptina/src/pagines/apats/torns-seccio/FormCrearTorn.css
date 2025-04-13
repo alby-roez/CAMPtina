@@ -142,10 +142,11 @@
     cursor: pointer;
     width: 30%;
     height: 100%;
+    transition: all 0.2s ease-in-out;
 }
 
 #id_reset_form_crear_torn:hover {
-    background: #369;
+    background: #2563eb;
 }
 
 #id_reset_form_crear_torn:active {
@@ -164,6 +165,7 @@
     cursor: pointer;
     width: 60%;
     height: 100%;
+    transition: all 0.2s ease-in-out;
 }
 
 #id_submit_form_crear_torn:hover {
