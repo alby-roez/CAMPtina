@@ -35,11 +35,7 @@ export const Navegacio = () => {
                                 </ul>
                             </li>
                             <li>
-                                <Link to='/equip'>Equip</Link>
-                                <ul className={className_num_li_2}>
-                                    <li><Link to='/equip/equip-dev'>Equip DEV</Link></li>
-                                    <li><Link to='/equip/gerent'>Gerent</Link></li>
-                                </ul>
+                                <Link to='/usuaris/gestio-usuaris'>Gestió Usuaris</Link>
                             </li>
                             <li><Link to='/contacte'>Contacte</Link></li>
                         </ul>
