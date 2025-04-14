@@ -1,10 +1,11 @@
 import './FormCrearApat.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useApats } from '../ApatsContext.jsx'
 import { ResetRoda } from '../../../Icones.jsx'
+import { useApats } from '../../../context/ApatsContext.jsx'
 
 export const FormCrearApat = () => {
+    
     const { crearApat } = useApats()
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
@@ -48,9 +49,7 @@ export const FormCrearApat = () => {
 
     const className_form = 'cn-form-crear-apat';
     const id_form = 'id_form_crear_apat';
-    const method_form = 'POST';
-    const action_form = 'http://localhost:5173'; /* Cal modificar per passar les dades al servidor. */
-
+   
     const className_div_contingut_form = 'cn-div-contingut-form-crear-apat';
     const className_div_txt_select_form = 'cn-div-txt-select-form-crear-apat';
     const className_div_lbl_txt_form = 'cn-div-lbl-text-form-crear-apat';
@@ -95,9 +94,8 @@ export const FormCrearApat = () => {
     const className_bttn_finestra = 'cn-bttn-finestra-form-crear-apat';
     const id_bttn_finestra = 'id_bttn_finestra_form_crear_apat';
     const name_bttn_finestra = 'finestraDeFormCrear';
-    //const txt_bttn_finestra = '✕';
-
-    const className_span = 'cn-span-error';
+    
+    const className_span = 'cn-span-error-form-apats';
 
     return (
         <>
@@ -199,11 +197,3 @@ export const FormCrearApat = () => {
     )
 }
 
-/*
-    <input
-        id={id_reset}
-        name={name_reset}
-        value={value_reset}
-        type='reset'
-    />
- */

@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const axiosClient = axios.create({
-    baseURL: '' /* API */
+    baseURL: import.meta.env.VITE_API_URL /* API */
 })
 
 export const useAxiosPeticions = () => {
@@ -21,7 +21,7 @@ export const useAxiosPeticions = () => {
         try {
             const resposta = await axiosClient.get('/apats');
             setApats(resposta.data)
-            console.log(resposta.data)
+            console.log("",resposta.data)
         } catch (error) {
             console.log('Error obtenint els àpats:', error)
         }
@@ -33,15 +33,15 @@ export const useAxiosPeticions = () => {
      * @description Funció per crear un nou àpat
      */
     const crearApat = async (nouApat) => {
-        console.log('Àpat Abans de crear:', nouApat)
         try {
-            const resposta = await axiosClient.post('/apats', nouApat, {
+            const resposta = await axiosClient.post('', nouApat, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
             console.log('Àpat creat:', resposta.data)
-            await carregarApats()
+            //await carregarApats()
+            setApats([...apats, resposta.data])
         } catch (error) {
             console.error('Error creant l\'àpat:', error.response?.data)
         }
@@ -54,12 +54,17 @@ export const useAxiosPeticions = () => {
      */
     const eliminarApat = async (idApat) => {
         try {
-            await axiosClient.delete(`/apats/${idApat}`)
-            await carregarApats()
+            await axiosClient.delete(`/${idApat}`)
+            //await carregarApats()
+            setApats(apats.filter(apat => apat.id !== idApat));
         } catch (error) {
             console.log('Error eliminant l\'àpat:', error)
         }
     }
+
+    useEffect(() => {
+        carregarApats()
+    }, [])
 
     return { apats, carregarApats, crearApat, eliminarApat }
 }

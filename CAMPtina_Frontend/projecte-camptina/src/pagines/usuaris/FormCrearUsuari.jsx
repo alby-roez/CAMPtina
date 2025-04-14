@@ -1,7 +1,7 @@
 import './FormCrearUsuari.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useUsuaris } from './UsuarisContext.jsx'
+import { useUsuaris } from '../../context/UsuarisContext.jsx'
 import { ResetRoda } from '../../Icones.jsx'
 
 export const FormCrearUsuari = () => {

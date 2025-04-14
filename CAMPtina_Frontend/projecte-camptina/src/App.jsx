@@ -9,6 +9,7 @@ import Contacte from './pagines/Contacte.jsx'
 import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
 import CrearApat from './pagines/apats/CrearApat.jsx'
+import Torns from './pagines/apats/Torns.jsx'
 
 import User from './pagines/User.jsx'
 import Login from './pagines/Login.jsx'
@@ -17,11 +18,18 @@ import Page404 from './pagines/Page404.jsx'
 import SearchPage from './pagines/Search.jsx'
 import Contrasenya from './pagines/Contrasenya.jsx'
 
-import { ApatsProvider } from './pagines/apats/ApatsContext.jsx'
+
+import { ApatsProvider } from './context/ApatsContext.jsx'
+import { TornsProvider } from './context/TornsContext.jsx'
+import { UsuarisProvider } from './context/UsuarisContext.jsx'
 import { MenusProvider } from './pagines/apats/menus-seccio/MenusContext.jsx'
-import { UsuarisProvider } from './pagines/usuaris/UsuarisContext.jsx'
 
 const rutesApp = [
+
+  {
+    cami: '/apats/torns',
+    Component: Torns
+  },
   {
     cami: '/apats/menus',
     Component: Menus
@@ -67,14 +75,16 @@ function App() {
     <UsuarisProvider>
       <ApatsProvider>
         <MenusProvider>
-          <div className={className_pagina}> 
-            <Router rutes={rutesApp} componentPerDefecte={Page404}>
-              <Route cami='/' Component={Inici} />
-              <Route cami='/apats' Component={Apats} />
-              <Route cami='/usuaris' Component={Usuaris} />
-              <Route cami='/contacte' Component={Contacte} />
-            </Router>
-          </div>
+          <TornsProvider>
+            <div className={className_pagina}> 
+              <Router rutes={rutesApp} componentPerDefecte={Page404}>
+                <Route cami='/' Component={Inici} />
+                <Route cami='/apats' Component={Apats} />
+                <Route cami='/usuaris' Component={Usuaris} />
+                <Route cami='/contacte' Component={Contacte} />
+              </Router>
+            </div>
+          </TornsProvider>
         </MenusProvider>
       </ApatsProvider>
     </UsuarisProvider>

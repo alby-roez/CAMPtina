@@ -16,6 +16,7 @@ import { Seccio } from './apats/apats-seccio/Seccio.jsx'
 import menus from '../assets/menus.png'
 import triarApat from '../assets/triar-apat.png'
 import crearApat from '../assets/crear-apat.png'
+import crearTorn from '../assets/crear-torn.png'
 
 export default function Apats() {
     const className_main = 'cn-main-navegacio';
@@ -26,6 +27,8 @@ export default function Apats() {
     const txt_triar_apat = 'Secció on l\'usuari/client pot triar els àpats disponibles del menú i reservar hora a la cantina.';
 
     const txt_crear_apat = 'Secció on només el gerent pot entrar i crear/afegir un àpat al menú.';
+
+    const txt_crear_torn = 'Secció on només el gerent pot entrar i crear/afegir un torn a la cantina.';
 
     const mg = () => {
         alert('Gran')
@@ -76,6 +79,18 @@ export default function Apats() {
                     mesGran={mg}
                     mesPetit={mp}
                     txtInfo={txt_crear_apat}
+                >
+                </Seccio>
+                <Seccio
+                    nomSeccio='Crear Torn'
+                    srcImatge={crearTorn}
+                    camiA='/apats/torns'
+                    txtA='Crea torns ara'
+                    id_check_gerent='id_checkbox_gerent_seccio_crear_apat'
+                    id_check_usuari='id_checkbox_usuari_seccio_crear_apat'
+                    mesGran={mg}
+                    mesPetit={mp}
+                    txtInfo={txt_crear_torn}
                 >
                 </Seccio>
             </main>

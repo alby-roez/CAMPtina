@@ -1,6 +1,6 @@
 import './LlistaUsuaris.css'
 import { useState, useEffect } from 'react'
-import { useUsuaris } from './UsuarisContext.jsx'
+import { useUsuaris } from '../../context/UsuarisContext.jsx'
 //import { FormActualitzarUsuari } from './FormActualitzarUsuari.jsx'
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
 

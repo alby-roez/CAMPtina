@@ -262,6 +262,14 @@
   display: none;
 }
 
+.cn-header-navegacio > section > nav > ul > li > ul.cn-num-li-4-navegacio {
+  position: absolute;
+  top: 100%;
+  width: 144px;
+  height: 272px;
+  display: none;
+}
+
 .cn-header-navegacio > section > nav > ul > li:hover > ul  {
   display: flex;
   flex-direction: column;

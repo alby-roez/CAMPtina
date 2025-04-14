@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useApats } from '../ApatsContext.jsx'
+import { useApats } from '../../../context/ApatsContext.jsx'
 import { PaginacioMenus } from './PaginacioMenus.jsx'
 import { useMenus } from './LogicaMenus.js'
 import './LlistaMenus.css'
@@ -31,7 +31,7 @@ export const LlistaMenus = () => {
         }))
     }
     
-    const filtrarLlista = (apats) => {
+   /* const filtrarLlista = (apats) => {
         return apats.filter(apat => {
             return (
                 filtreApat.name === '' ||
@@ -40,7 +40,7 @@ export const LlistaMenus = () => {
         })
     }
 
-    const llistaFiltrada = filtrarLlista(apats)
+    const llistaFiltrada = filtrarLlista(apats)*/
     /* useState filtreApat ================================================== -Z */
 
     const className_section = 'cn-section-llista-menus';
@@ -136,7 +136,7 @@ export const LlistaMenus = () => {
                 />
             </article>
             <article className={className_article_llista}>
-                {llistaFiltrada.map((apat) => {
+                {/*llistaFiltrada.map((apat) => {
                     const esAfegit = checkMenu(apat)
                     const llistaActual = fn_menu(apat.categoriaId)
                     return (

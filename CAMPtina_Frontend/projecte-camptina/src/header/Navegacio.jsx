@@ -14,6 +14,7 @@ export const Navegacio = () => {
 
     const className_num_li_2 = 'cn-num-li-2-navegacio';
     const className_num_li_3 = 'cn-num-li-3-navegacio';
+    const className_num_li_4 = 'cn-num-li-4-navegacio';
 
     const txt_NOM_COMPLET = 'Albert Rodríguez';
     const txt_USUARI = 'albyroez';
@@ -28,10 +29,11 @@ export const Navegacio = () => {
                             <li><Link to='/'>Inici</Link></li>
                             <li>
                                 <Link to='/apats'>Àpats</Link>
-                                <ul className={className_num_li_3}>
+                                <ul className={className_num_li_4}>
                                     <li><Link to='/apats/menus'>Menús</Link></li>
                                     <li><Link to='/apats/triar-apat'>Triar Àpat</Link></li>
                                     <li><Link to='/apats/crear-apat'>Crear Àpat</Link></li>
+                                    <li><Link to='/apats/torns'>Torns</Link></li>
                                 </ul>
                             </li>
                             <li>
