@@ -4,10 +4,11 @@ import { PaginacioMenus } from './PaginacioMenus.jsx'
 import { useMenus } from './LogicaMenus.js'
 import './LlistaMenus.css'
 import { BotoAddMenu, BotoAddMenuAfegit } from './BotonsMenus.jsx'
+import { LlistaItem } from './LlistaItem.jsx'
 
 export const LlistaMenus = () => {
     const { apats } = useApats()
-
+console.log(apats);
     const totalApats = apats.length;
 
     const [apatsPerPagina, setApatsPerPagina] = useState(5)
@@ -18,7 +19,6 @@ export const LlistaMenus = () => {
 
     const { menuPrimer, menuSegon, menuPostres, addMenuPrimer, addMenuSegon, addMenuPostres } = useMenus()
 
-    /* useState filtreApat ================================================== A- */
     const [filtreApat, setFiltreApat] = useState({
         name: ''
     })
@@ -31,7 +31,7 @@ export const LlistaMenus = () => {
         }))
     }
     
-   /* const filtrarLlista = (apats) => {
+    const filtrarLlista = (apats) => {
         return apats.filter(apat => {
             return (
                 filtreApat.name === '' ||
@@ -40,8 +40,7 @@ export const LlistaMenus = () => {
         })
     }
 
-    const llistaFiltrada = filtrarLlista(apats)*/
-    /* useState filtreApat ================================================== -Z */
+    const llistaFiltrada = filtrarLlista(apats)
 
     const className_section = 'cn-section-llista-menus';
     const id_section = 'id_section_llista_menus';
@@ -60,10 +59,10 @@ export const LlistaMenus = () => {
     const className_div_llista = 'cn-div-llista-menus';
     const className_h4_nom_llista = 'cn-h4-nom-llista-menus';
 
-    /*const defaultItems = end - llista.length;
+    const defaultItems = indexFinal - llistaFiltrada.length;
     const newArray = () => {
         let defaultArray = [];
-        if (end > llista.length) {
+        if (indexFinal > llistaFiltrada.length) {
             if (defaultItems === 4) {
                 return ['no_1', 'no_2', 'no_3', 'no_4']
             } else if (defaultItems === 3) {
@@ -80,7 +79,7 @@ export const LlistaMenus = () => {
         } else {
             return defaultArray
         }
-    }*/
+    }
 
     /* categoriaId class ================================================== A- */
     const categoriaApat = id => {
@@ -136,7 +135,7 @@ export const LlistaMenus = () => {
                 />
             </article>
             <article className={className_article_llista}>
-                {/*llistaFiltrada.map((apat) => {
+                {llistaFiltrada.map((apat) => {
                     const esAfegit = checkMenu(apat)
                     const llistaActual = fn_menu(apat.categoriaId)
                     return (
@@ -151,9 +150,9 @@ export const LlistaMenus = () => {
                         </div>
                     )
                 }).slice(indexInicial, indexFinal)}
-                {/*newArray().map((item) => (
+                {newArray().map((item) => (
                     <LlistaItem key={item} />
-                ))*/}
+                ))}
             </article>
             <PaginacioMenus
                 totalApats={totalApats}

@@ -58,32 +58,35 @@ export const FormCrearUsuari = () => {
     const className_div_txt_select_form = 'cn-div-txt-select-form-crear-usuari';
     const className_div_lbl_txt_form = 'cn-div-lbl-text-form-crear-usuari';
     const className_div_lbl_select_form = 'cn-div-lbl-select-form-crear-usuari';
-    const className_div_txtarea_form = 'cn-div-txtarea-form-crear-usuari';
     const className_div_bttn_form = 'cn-div-bttn-form-crear-usuari';
+    const className_input_txt = '.cn-input-txt-form-crear-usuari';
 
-    const className_input_txt = 'cn-input-txt-form-crear-usuari';
-    const id_input_txt = 'id_input_txt_form_crear_usuari';
+    const id_input_txt_nom = 'id_input_txt_form_crear_usuari';
     const name_input_txt = 'nomUsuari';
-    const txtInputNomApat = 'Nom de l\'usuari:';
+    const txtInputNomUsuari = 'Nom:';
+
+    const id_input_txt_cognom1 = 'id_input_txt_cognom1_form_crear_usuari';
+    const cognom1_input_txt = 'cognom1Usuari';
+    const txtInputCognom1Usuari = 'Primer Cognom:';
+
+    const id_input_txt_cognom2 = 'id_input_txt_cognom2_form_crear_usuari';
+    const cognom2_input_txt = 'cognom2Usuari';
+    const txtInputCognom2Usuari = 'Segon Cognom:';
+
+    const id_input_txt_email = 'id_input_txt_email_form_crear_usuari';
+    const email_input_txt = 'emailUsuari';
+    const txtInputEmailUsuari = 'eMail:';
 
     const className_select = 'cn-select-form-crear-usuari';
     const id_select = 'id_select_form_crear_usuari';
     const name_select = 'rolUsuari';
-    const txtSelectCategoriaApat = 'Rol de l\'usuari:';
+    const txtSelectRolUsuari = 'Rol:';
 
     const valueGestor = 1;
     const valueTreballador = 2;
  
     const txtGestor = 'Gestor';
     const txtTreballador = 'Treballador';
-
-    const className_txtarea = 'cn-txtarea-form-crear-usuari';
-    const id_txtarea = 'id_txtarea_form_crear_usuari';
-    const name_txtarea = 'cognomUsuari';
-    const txtAreaCognom1 = 'Primer cognom de l\'usuari:';
-    const txtareaRows = 3;
-    const txtareaCols = 30;
-    const preTxtarea = 'Primer cognom de l\'usuari';
 
     const id_reset = 'id_reset_form_crear_usuari';
     const name_reset = 'resetejarCrearUsuari';
@@ -117,32 +120,89 @@ export const FormCrearUsuari = () => {
                         </svg>
                     </button>
                 </article>
-                <form className={className_form} id={id_form} onSubmit>
+                <form className={className_form} id={id_form} onSubmit>     {/*pendent afegir acció de onSubmit*/}
                     <div className={className_div_contingut_form}>
                         <div className={className_div_txt_select_form}>
                             <div className={className_div_lbl_txt_form}>
-                                <label htmlFor={id_input_txt}>{txtInputNomApat}</label>
+                                <label htmlFor={id_input_txt_nom}>{txtInputNomUsuari}</label>
                                 <input
                                     defaultValue={''}
                                     className={className_input_txt}
-                                    id={id_input_txt}
+                                    id={id_input_txt_nom}
                                     name={name_input_txt}
                                     type='text'
                                     { ... register('nomUsuari', {
                                         required: true,
-                                        minLength: 3,
-                                        maxLength: 50
+                                        minLength: 2,
+                                        maxLength: 45
                                     })}
                                 />
-                                { errors.nomDeApat?.type === 'required' &&
+                                { errors.nomUsuari?.type === 'required' &&
                                 <span className={className_span}>El nom és obligatori</span> }
-                                { errors.nomDeApat?.type === 'minLength' &&
-                                <span className={className_span}>Mínim 3 caràcters</span> }
-                                { errors.nomDeApat?.type === 'maxLength' &&
-                                <span className={className_span}>Màxim 50 caràcters</span> }
+                                { errors.nomUsuari?.type === 'minLength' &&
+                                <span className={className_span}>Mínim 2 caràcters</span> }
+                                { errors.nomUsuari?.type === 'maxLength' &&
+                                <span className={className_span}>Màxim 45 caràcters</span> }
+                            </div>
+                            <div className={className_div_lbl_txt_form}>
+                                <label htmlFor={id_input_txt_cognom1}>{txtInputCognom1Usuari}</label>
+                                <input
+                                    defaultValue={''}
+                                    className={className_input_txt}
+                                    id={id_input_txt_cognom1}
+                                    name={cognom1_input_txt}
+                                    type='text'
+                                    { ... register('cognom1Usuari', {
+                                        required: true,
+                                        minLength: 2,
+                                        maxLength: 45
+                                    })}
+                                />
+                                { errors.cognom1Usuari?.type === 'required' &&
+                                <span className={className_span}>El primer cognom és obligatori</span> }
+                                { errors.cognom1Usuari?.type === 'minLength' &&
+                                <span className={className_span}>Mínim 2 caràcters</span> }
+                                { errors.cognom1Usuari?.type === 'maxLength' &&
+                                <span className={className_span}>Màxim 45 caràcters</span> }
+                            </div>
+                            <div className={className_div_lbl_txt_form}>
+                                <label htmlFor={id_input_txt_cognom2}>{txtInputCognom2Usuari}</label>
+                                <input
+                                    defaultValue={''}
+                                    className={className_input_txt}
+                                    id={id_input_txt_cognom2}
+                                    name={cognom2_input_txt}
+                                    type='text'
+                                    { ... register('cognom2Usuari', {
+                                        maxLength: 45
+                                    })}
+                                />
+                                { errors.cognom2Usuari?.type === 'maxLength' &&
+                                <span className={className_span}>Màxim 45 caràcters</span> }
+                            </div>
+                            <div className={className_div_lbl_txt_form}>
+                                <label htmlFor={id_input_txt_email}>{txtInputEmailUsuari}</label>
+                                <input
+                                    defaultValue={''}
+                                    className={className_input_txt}
+                                    id={id_input_txt_email}
+                                    name={email_input_txt}
+                                    type="email"
+                                    { ...register('email', {
+                                        required: true,
+                                        pattern: {
+                                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                            message: 'Format de correu no vàlid'
+                                        }
+                                    })}
+                                />
+                                { errors.email?.type === 'required' &&
+                                <span className={className_span}>El correu és obligatori</span> }
+                                { errors.email?.type === 'pattern' &&
+                                <span className={className_span}>{errors.email.message}</span> }
                             </div>
                             <div className={className_div_lbl_select_form}>
-                                <label htmlFor={id_select}>{txtSelectCategoriaApat}</label>
+                                <label htmlFor={id_select}>{txtSelectRolUsuari}</label>
                                 <select defaultValue={''} className={className_select} id={id_select} name={name_select}
                                 { ... register('rolUsuari', {
                                     required: true
@@ -152,31 +212,8 @@ export const FormCrearUsuari = () => {
                                     <option value={valueTreballador}>{txtTreballador}</option>
                                 </select>
                                 { errors.rolUsuari?.type === 'required' &&
-                                <span className={className_span}>Has de seleccionar un rol</span> }
+                                <span className={className_span}>El rol és obligatori</span> }
                             </div>
-                        </div>
-                        <div className={className_div_txtarea_form}>
-                            <label htmlFor={id_txtarea}>{txtAreaCognom1}</label>
-                            <textarea
-                                defaultValue={''}
-                                className={className_txtarea}
-                                id={id_txtarea}
-                                name={name_txtarea}
-                                placeholder={preTxtarea}
-                                rows={txtareaRows}
-                                cols={txtareaCols}
-                                { ... register('cognom1', {
-                                    required: true,
-                                    minLength: 5,
-                                    maxLength: 100
-                                })}
-                            />
-                            { errors.descripcioDeApat?.type === 'required' &&
-                                <span className={className_span}>El primer cognom és obligatori</span> }
-                                { errors.descripcioDeApat?.type === 'minLength' &&
-                                <span className={className_span}>Mínim 5 caràcters</span> }
-                                { errors.descripcioDeApat?.type === 'maxLength' &&
-                                <span className={className_span}>Màxim 100 caràcters</span> }
                         </div>
                     </div>
                     <div className={className_div_bttn_form}>
@@ -198,12 +235,3 @@ export const FormCrearUsuari = () => {
         </>
     )
 }
-
-/*
-    <input
-        id={id_reset}
-        name={name_reset}
-        value={value_reset}
-        type='reset'
-    />
- */
