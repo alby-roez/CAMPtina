@@ -13,7 +13,6 @@ import CrearApat from './pagines/apats/CrearApat.jsx'
 import EquipDev from './pagines/equip/EquipDev.jsx'
 import Gerent from './pagines/equip/Gerent.jsx'
 
-
 import User from './pagines/User.jsx'
 import Login from './pagines/Login.jsx'
 import SignUp from './pagines/SignUp.jsx'
@@ -21,8 +20,8 @@ import Page404 from './pagines/Page404.jsx'
 import SearchPage from './pagines/Search.jsx'
 import Contrasenya from './pagines/Contrasenya.jsx'
 
-import { ApatsProvider } from './pagines/apats/ApatsContext.jsx'
 import { MenusProvider } from './pagines/apats/menus-seccio/MenusContext.jsx'
+import { DadesCamptinaProvider } from './services/DadesCamptina.jsx'
 
 const rutesApp = [
   {
@@ -71,7 +70,7 @@ function App() {
   const className_pagina = 'cn-pagina';
   return (
     <>
-      <ApatsProvider>
+      <DadesCamptinaProvider>
         <MenusProvider>
           <div className={className_pagina}> 
             <Router rutes={rutesApp} componentPerDefecte={Page404}>
@@ -82,7 +81,7 @@ function App() {
             </Router>
           </div>
         </MenusProvider>
-      </ApatsProvider>
+      </DadesCamptinaProvider>
     </>
   )
 }

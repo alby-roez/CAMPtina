@@ -3,14 +3,13 @@ import { Peu } from '../../footer/Peu.jsx'
 import { FormCrearApat } from './apats-seccio/FormCrearApat.jsx'
 import { LlistaApats } from './apats-seccio/LlistaApats.jsx'
 import clock from '../../assets/clock_old.mp4'
-import { ApatsProvider } from './ApatsContext.jsx'
 
 export default function CrearApat() {
     const className_main = 'cn-main-navegacio';
     const className_section_video = 'cn-section-video-navegacio';
 
     return (
-        <ApatsProvider>
+        <>
             <Navegacio />
             <main className={className_main}>
                 <section className={className_section_video}>
@@ -20,6 +19,6 @@ export default function CrearApat() {
                 <LlistaApats />
             </main>
             <Peu />
-        </ApatsProvider>
+        </>
     )
 }

@@ -5,6 +5,8 @@
     width: 100%;
     min-height: 150px;
     overflow: hidden;
+    border-radius: 12px;
+    background: #2bb;
 }
 
 .cn-form-div-inputs-update-llista-apats {
@@ -31,6 +33,9 @@
     border: none;
     border-radius: 8px;
     font-size: 0.8rem;
+}
+
+.cn-input-nom-update-llista-apats:focus {
     outline: 4px solid #222;
 }
 
@@ -52,6 +57,9 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 0.8rem;
+}
+
+.cn-select-categoria-update-llista-apats:focus {
     outline: 4px solid #222;
 }
 
@@ -74,6 +82,9 @@
     overflow: auto;
     resize: none;
     font-size: 0.8rem;
+}
+
+.cn-txtarea-descripcio-update-llista-apats:focus {
     outline: 4px solid #222;
 }
 
@@ -93,6 +104,7 @@
 .cn-form-div-bttns-update-llista-apats {
     display: flex;
     justify-content: space-between;
+    padding: 5px;
     width: 100%;
     height: 60px;
 }
@@ -101,8 +113,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background: #b44;
     border: none;
     border-radius: 8px;
@@ -121,8 +133,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
     background: #222;
     color: #fff;
     border: none;
@@ -131,9 +143,69 @@
 }
 
 .cn-submit-update-llista-apats:hover {
-    background: #111;
+    background: #000;
 }
 
 .cn-submit-update-llista-apats:active {
     transform: scale(0.9);
+}
+
+@media (max-width: 550px) {
+    .cn-form-update-llista-apats {
+        min-height: 90px;
+    }
+    
+    .cn-form-div-inputs-update-llista-apats {
+        height: 50px;
+    }
+    
+    .cn-form-div-inputs-nom-update-llista-apats {
+        min-height: 50px;
+    }
+    
+    .cn-input-nom-update-llista-apats {
+        height: 20px;
+        font-size: 0.5rem;
+    }
+
+    .cn-form-div-inputs-categoria-update-llista-apats {
+        min-height: 50px;
+    }
+    
+    .cn-select-categoria-update-llista-apats {
+        height: 20px;
+        font-size: 0.3rem;
+    }
+    
+    .cn-form-div-inputs-descripcio-update-llista-apats {
+        min-height: 50px;
+    }
+    
+    .cn-txtarea-descripcio-update-llista-apats {
+        height: 20px;
+        font-size: 0.3rem;
+    }
+    
+    .cn-span-update-llista-apats {
+        height: 10px;
+        font-size: 0.3rem;
+        border-top-right-radius: 4px;
+        border-bottom-left-radius: 4px;
+        overflow: auto;
+    }
+    
+    .cn-form-div-bttns-update-llista-apats {
+        height: 35px;
+    }
+    
+    .cn-bttn-cancelar-update-llista-apats {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .cn-submit-update-llista-apats {
+        width: 50px;
+        height: 25px;
+        font-size: 0.5rem;
+    }
 }

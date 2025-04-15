@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { MenusContext } from './MenusContext'
+import { MenusContext } from './MenusContext.jsx'
 
 export const useMenus = () => {
     const context = useContext(MenusContext)

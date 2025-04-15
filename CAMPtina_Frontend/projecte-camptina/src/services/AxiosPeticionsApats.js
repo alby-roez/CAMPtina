@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const axiosClient = axios.create({
-    baseURL: '' /* API */
+    baseURL: 'http://localhost:8080' /* API */
 })
 
-export const useAxiosPeticions = () => {
+export const useAxiosPeticionsApats = () => {
 
     /**
      * @author Miquel & Albert
@@ -18,10 +18,10 @@ export const useAxiosPeticions = () => {
      * @description Funció per obtenir els àpats del backend
      */
     const carregarApats = async () => {
+        console.log('Carregant... (Apats)')
         try {
-            const resposta = await axiosClient.get('/apats');
+            const resposta = await axiosClient.get('/api/apats');
             setApats(resposta.data)
-            console.log(resposta.data)
         } catch (error) {
             console.log('Error obtenint els àpats:', error)
         }
@@ -35,7 +35,7 @@ export const useAxiosPeticions = () => {
     const crearApat = async (nouApat) => {
         console.log('Àpat Abans de crear:', nouApat)
         try {
-            const resposta = await axiosClient.post('/apats', nouApat, {
+            const resposta = await axiosClient.post('/api', nouApat, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -47,6 +47,27 @@ export const useAxiosPeticions = () => {
         }
     }
 
+   /**
+    * @author Miquel & Albert
+    * @param {*} idApat
+    * @param {*} nouApat
+    * @description Funció per actualitzar un àpat
+    */
+    const actualitzarApat = async (idApat, nouApat) => {
+        console.log('Àpat Abans de actualitzar:', nouApat)
+        try {
+            const resposta = await axiosClient.put(`/api/${idApat}`, nouApat, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            console.log('Àpat actualitzat:', resposta.data)
+            await carregarApats()
+        } catch (error) {
+            console.error('Error actualitzant l\'àpat:', error.response?.data)
+        }
+    }
+
     /**
      * @author Miquel & Albert
      * @param {*} idApat
@@ -54,12 +75,16 @@ export const useAxiosPeticions = () => {
      */
     const eliminarApat = async (idApat) => {
         try {
-            await axiosClient.delete(`/apats/${idApat}`)
+            await axiosClient.delete(`/api/${idApat}`)
             await carregarApats()
         } catch (error) {
             console.log('Error eliminant l\'àpat:', error)
         }
     }
 
-    return { apats, carregarApats, crearApat, eliminarApat }
+    /*useEffect(() => {
+        carregarApats()
+    }, [])*/
+
+    return { apats, carregarApats, crearApat, actualitzarApat, eliminarApat }
 }
