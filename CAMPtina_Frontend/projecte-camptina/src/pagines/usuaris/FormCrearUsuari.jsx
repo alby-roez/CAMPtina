@@ -59,7 +59,7 @@ export const FormCrearUsuari = () => {
     const className_div_lbl_txt_form = 'cn-div-lbl-text-form-crear-usuari';
     const className_div_lbl_select_form = 'cn-div-lbl-select-form-crear-usuari';
     const className_div_bttn_form = 'cn-div-bttn-form-crear-usuari';
-    const className_input_txt = '.cn-input-txt-form-crear-usuari';
+    const className_input_txt = 'cn-input-txt-form-crear-usuari';
 
     const id_input_txt_nom = 'id_input_txt_form_crear_usuari';
     const name_input_txt = 'nomUsuari';
@@ -128,7 +128,7 @@ export const FormCrearUsuari = () => {
                                 <input
                                     defaultValue={''}
                                     className={className_input_txt}
-                                    id={id_input_txt_nom}
+                                    id={name_input_txt}
                                     name={name_input_txt}
                                     type='text'
                                     { ... register('nomUsuari', {
