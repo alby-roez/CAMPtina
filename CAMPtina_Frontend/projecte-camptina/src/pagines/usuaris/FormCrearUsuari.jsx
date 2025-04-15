@@ -8,20 +8,20 @@ export const FormCrearUsuari = () => {
     const { crearUsuari } = useUsuaris()
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
-   /* const peticioCrearUsuari = handleSubmit((data) => {
+    const peticioCrearUsuari = handleSubmit((data) => {
         const nouUsuari = {
             nom: data.nomUsuari,
             cognom1: data.cognom1Usuari,
             cognom2: data.cognom2Usuari,
-            nom: data.nomUsuari,
+            email: data.email,
             rolId: parseInt(data.rolUsuari),
-            email: data.emailUsuari
+            
         };
 
         crearUsuari(nouUsuari); 
         reset();
         
-    })*/
+    })
 
     const [esTancat, setEsTancat] = useState(false)
 
@@ -120,7 +120,7 @@ export const FormCrearUsuari = () => {
                         </svg>
                     </button>
                 </article>
-                <form className={className_form} id={id_form} onSubmit>     {/*pendent afegir acció de onSubmit*/}
+                <form className={className_form} id={id_form} onSubmit={peticioCrearUsuari}>     {/*pendent afegir acció de onSubmit*/}
                     <div className={className_div_contingut_form}>
                         <div className={className_div_txt_select_form}>
                             <div className={className_div_lbl_txt_form}>
@@ -220,6 +220,8 @@ export const FormCrearUsuari = () => {
                         <button
                             id={id_reset}
                             name={name_reset}
+                            type="button"
+                            onClick={() => reset()}
                         >
                             <ResetRoda />
                         </button>

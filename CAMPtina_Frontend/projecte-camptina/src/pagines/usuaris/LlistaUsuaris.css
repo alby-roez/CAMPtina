@@ -236,6 +236,27 @@
     width: 240px;
     height: 38px;
 }
+.cn-bttn-update-llista-usuaris {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    border-radius: 8px;
+    background: #258;
+    transition: background 0.3s;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+    transform-origin: center;
+    height: 100%;
+  }
+  .cn-bttn-update-llista-usuaris:hover {
+    background: #2563eb;
+  }
+  
+  .cn-bttn-update-llista-usuaris:active {
+    transform: scale(0.9);
+  }
 
 .cn-bttn-filtre-llista-usuaris {
     display: flex;

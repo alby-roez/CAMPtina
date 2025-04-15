@@ -1,8 +1,8 @@
 import './LlistaUsuaris.css'
 import { useState, useEffect } from 'react'
 import { useUsuaris } from '../../context/UsuarisContext.jsx'
-//import { FormActualitzarUsuari } from './FormActualitzarUsuari.jsx'
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
+import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
 
 export const LlistaUsuaris = () => {
     const { usuaris, eliminarUsuari } = useUsuaris()
@@ -13,7 +13,7 @@ export const LlistaUsuaris = () => {
     }
 
     const [shaTancat, setShaTancat] = useState(false)
-    
+    const [editantId, setEditantId ] = useState(null);
     const tancarFinestra = () => {
         setShaTancat(!shaTancat);
     }
@@ -33,11 +33,11 @@ export const LlistaUsuaris = () => {
 
     /* useState shaFiltrat ================================================== A- */
     const [shaFiltrat, setShaFiltrat] = useState(false)
-    
+
     const filtreIcona = () => {
         setShaFiltrat(!shaFiltrat);
     }
-    
+
     useEffect(() => {
         const select = document.getElementById('id_select_filtre_categoria_llista_usuaris');
         const bttn = document.getElementById('id_bttn_filtre_llista_usuaris');
@@ -57,7 +57,7 @@ export const LlistaUsuaris = () => {
     const maneigFiltre = (event) => {
         const valor = parseInt(event.currentTarget.value)
         setFilters(estatAnterior => ({
-            ... estatAnterior,
+            ...estatAnterior,
             rolId: valor
         }))
     }
@@ -73,7 +73,7 @@ export const LlistaUsuaris = () => {
 
     const filtratUsuaris = filtreUsuaris(usuaris)
     /* useState shaFiltrat ================================================== -Z */
-    
+
     /* useState shaActualitzat ================================================== A- */
     const formAndBttn = {
         form: '',
@@ -81,8 +81,7 @@ export const LlistaUsuaris = () => {
     }
 
     const [shaActualitzat, setShaActualitzat] = useState(false)
-    
-    const actualitzarLlapis = event => {
+    /*const actualitzarLlapis = event => {
         setShaActualitzat(!shaActualitzat);
         const actualForm = event.currentTarget.parentNode.parentNode.nextElementSibling.id;
         const actualBttn = event.currentTarget.id;
@@ -95,11 +94,19 @@ export const LlistaUsuaris = () => {
             form.removeAttribute('style');
             bttn.removeAttribute('style');
         }
-    }
+    }*/
 
-    useEffect(() => {
-        console.log('Actualitzat')
-    }, [shaActualitzat])
+        useEffect(() => {
+            const section = document.getElementById("id_section_llista_usuaris");
+            const article = document.getElementById("id_article_llista_usuaris");
+            if (shaTancat) {
+              article.setAttribute("style", "display: none;");
+              section.setAttribute("style", "height: 70px");
+            } else {
+              article.removeAttribute("style");
+              section.removeAttribute("style");
+            }
+          }, [shaTancat]);
 
     const className_section = 'cn-section-llista-usuaris';
     const id_section = 'id_section_llista_usuaris'
@@ -115,8 +122,8 @@ export const LlistaUsuaris = () => {
     const className_li_update_llista = 'cn-li-update-llista-usuaris';
     const className_li_id_llista = 'cn-li-id-llista-usuaris';
     const className_li_nom_llista = 'cn-li-nom-llista-usuaris';
-    const className_li_categoria_llista = 'cn-li-categoria-llista-usuaris';
-    const className_li_descripcio_llista = 'cn-li-descripcio-llista-usuaris';
+    const className_li_rol_llista = 'cn-li-categoria-llista-usuaris';
+    const className_li_email_llista = 'cn-li-descripcio-llista-usuaris';
     const className_li_delete_llista = 'cn-li-delete-llista-usuaris';
 
     const className_div_llista = 'cn-div-llista-usuaris';
@@ -124,14 +131,14 @@ export const LlistaUsuaris = () => {
     const className_li_item_update = 'cn-li-item-update-llista-usuaris';
     const className_li_item_id = 'cn-li-item-id-llista-usuaris';
     const className_li_item_nom = 'cn-li-item-nom-llista-usuaris';
-    const className_li_item_categoria = 'cn-li-item-categoria-llista-usuaris';
-    const className_li_item_descripcio = 'cn-li-item-descripcio-llista-usuaris';
+    const className_li_item_rol = 'cn-li-item-categoria-llista-usuaris';
+    const className_li_item_email = 'cn-li-item-descripcio-llista-usuaris';
     const className_li_item_delete = 'cn-li-item-delete-llista-usuaris';
 
-    const llistaID = 'ID de l\'àpat';
-    const llistaNom = 'Nom de l\'àpat';
-    const llistaCategoria = 'Categoria';
-    const llistaDescripcio = 'Breu descripció de l\'àpat';
+    const llistaID = 'ID';
+    const llistaNom = 'Nom Complet';
+    const llistaEmail = 'Correu electrònic';
+    const llistaRol = 'Rol';
 
     const className_bttn_finestra = 'cn-bttn-finestra-llista-usuaris';
     const id_bttn_finestra = 'id_bttn_finestra_llista_usuaris';
@@ -165,7 +172,7 @@ export const LlistaUsuaris = () => {
                             className={className_bttn_filtre}
                             id={id_bttn_filtre}
                             name={name_bttn_filtre}
-                            //onClick={filtreIcona}
+                            onClick={filtreIcona}
                         >
                             <FilterIcona />
                         </button>
@@ -173,7 +180,7 @@ export const LlistaUsuaris = () => {
                             className={className_select_filtre_categoria}
                             id={id_select_filtre_categoria}
                             name={name_select_filtre_categoria}
-                           // onChange={maneigFiltre}
+                            onChange={maneigFiltre}
                         >
                             <option value={1}>Gestor</option>
                             <option value={2}>Treballador</option>
@@ -194,43 +201,49 @@ export const LlistaUsuaris = () => {
                         <li className={className_li_update_llista}></li>
                         <li className={className_li_id_llista}>{llistaID}</li>
                         <li className={className_li_nom_llista}>{llistaNom}</li>
-                        <li className={className_li_categoria_llista}>{llistaCategoria}</li>
-                        <li className={className_li_descripcio_llista}>{llistaDescripcio}</li>
+                        <li className={className_li_rol_llista}>{llistaRol}</li>
+                        <li className={className_li_email_llista}>{llistaEmail}</li>
                         <li className={className_li_delete_llista}></li>
                     </ul>
                     {filtratUsuaris.map((usuari) => (
                         <div key={usuari.id} className={className_div_llista}>
-                            <ul key={usuari.id} className={className_ul_llista}>
-                                <li className={className_li_item_update}>
-                                    <button
-                                        className={className_bttn_update}
-                                        id={id_bttn_update}
-                                        name={name_bttn_update}
-                                       // onClick={actualitzarLlapis}
-                                    >
-                                        <UpdateLlapis />
-                                    </button>
-                                </li>
-                                <li className={className_li_item_id}>{usuari.id}</li>
-                                <li className={className_li_item_nom}>{usuari.nom}</li>
-                                <li className={className_li_item_categoria}>{usuari.rolId}</li>
-                                <li className={className_li_item_descripcio}>{usuari.cognom1}</li>
-                                <li className={className_li_item_delete}>
-                                    <button
-                                        className={className_bttn_delete}
-                                        id={id_bttn_delete}
-                                        name={name_bttn_delete}
-                                       // onClick={() => eliminarUsuari(usuari.id)}
-                                    >
-                                        <DeletePaperera />
-                                    </button>
-                                </li>
-                            </ul>
-                         {/* <FormActualitzarUsuari id={usuari.id} /> */}
+                            {editantId === usuari.id ? (
+                                <FormActualitzarUsuaris
+                                    usuari={usuari}
+                                    onCancel={() => setEditantId(null)}
+                                />
+                            ) : (
+                                <ul key={usuari.id} className={className_ul_llista}>
+                                    <li className={className_li_item_update}>
+                                        <button
+                                            className={className_bttn_update}
+                                            id={id_bttn_update}
+                                            name={name_bttn_update}
+                                            onClick={() => setEditantId(usuari.id)}
+                                        >
+                                            <UpdateLlapis />
+                                        </button>
+                                    </li>
+                                    <li className={className_li_item_id}>{usuari.id}</li>
+                                    <li className={className_li_item_nom}>{usuari.nom} {usuari.cognom1} {usuari.cognom2} </li>
+                                    <li className={className_li_item_rol}>{rols[usuari.rolId]}</li>
+                                    <li className={className_li_item_email}>{usuari.email}</li>
+                                    <li className={className_li_item_delete}>
+                                        <button
+                                            className={className_bttn_delete}
+                                            id={id_bttn_delete}
+                                            name={name_bttn_delete}
+                                            onClick={() => eliminarUsuari(usuari.id)}
+                                        >
+                                            <DeletePaperera />
+                                        </button>
+                                    </li>
+                                </ul>
+                            )}
                         </div>
                     ))}
                 </article>
             </section>
         </>
-    )
-}
+    );
+};
