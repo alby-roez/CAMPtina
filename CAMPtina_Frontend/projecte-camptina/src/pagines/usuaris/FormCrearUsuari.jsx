@@ -11,8 +11,8 @@ export const FormCrearUsuari = () => {
    /* const peticioCrearUsuari = handleSubmit((data) => {
         const nouUsuari = {
             nom: data.nomUsuari,
-            cognom1: data.cognom1,
-            cognom2: data.cognom2,
+            cognom1: data.cognom1Usuari,
+            cognom2: data.cognom2Usuari,
             nom: data.nomUsuari,
             rolId: parseInt(data.rolUsuari),
             email: data.emailUsuari
