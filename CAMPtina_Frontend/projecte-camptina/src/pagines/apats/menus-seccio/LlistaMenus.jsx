@@ -8,9 +8,8 @@ import { LlistaItem } from './LlistaItem.jsx'
 
 export const LlistaMenus = () => {
     const { apats } = useApats()
-console.log(apats);
-    const totalApats = apats.length;
 
+    const totalApats = apats.length;
     const [apatsPerPagina, setApatsPerPagina] = useState(5)
     const [paginaActual, setPaginaActual] = useState(1)
 
