@@ -18,11 +18,9 @@ import Page404 from './pagines/Page404.jsx'
 import SearchPage from './pagines/Search.jsx'
 import Contrasenya from './pagines/Contrasenya.jsx'
 
-
-import { ApatsProvider } from './context/ApatsContext.jsx'
-import { TornsProvider } from './context/TornsContext.jsx'
 import { UsuarisProvider } from './context/UsuarisContext.jsx'
 import { MenusProvider } from './pagines/apats/menus-seccio/MenusContext.jsx'
+import { DadesCamptinaProvider } from './services/DadesCamptina.jsx'
 
 const rutesApp = [
 
@@ -72,22 +70,20 @@ function App() {
   const className_pagina = 'cn-pagina';
   return (
     <>
-    <UsuarisProvider>
-      <ApatsProvider>
-        <MenusProvider>
-          <TornsProvider>
-            <div className={className_pagina}> 
-              <Router rutes={rutesApp} componentPerDefecte={Page404}>
-                <Route cami='/' Component={Inici} />
-                <Route cami='/apats' Component={Apats} />
-                <Route cami='/usuaris' Component={Usuaris} />
-                <Route cami='/contacte' Component={Contacte} />
-              </Router>
-            </div>
-          </TornsProvider>
-        </MenusProvider>
-      </ApatsProvider>
-    </UsuarisProvider>
+    <DadesCamptinaProvider>
+      <UsuarisProvider>
+          <MenusProvider>
+              <div className={className_pagina}> 
+                <Router rutes={rutesApp} componentPerDefecte={Page404}>
+                  <Route cami='/' Component={Inici} />
+                  <Route cami='/apats' Component={Apats} />
+                  <Route cami='/usuaris' Component={Usuaris} />
+                  <Route cami='/contacte' Component={Contacte} />
+                </Router>
+              </div>
+          </MenusProvider>
+      </UsuarisProvider>
+    </DadesCamptinaProvider>
     </>
   )
 }

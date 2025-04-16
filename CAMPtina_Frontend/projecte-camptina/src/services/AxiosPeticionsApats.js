@@ -5,7 +5,7 @@ const axiosClient = axios.create({
     baseURL: "http://localhost:8080/api" //import.meta.env.VITE_API_URL /* API */
 })
 
-export const useAxiosPeticions = () => {
+export const useAxiosPeticionsApats = () => {
 
     /**
      * @author Miquel & Albert
@@ -18,6 +18,7 @@ export const useAxiosPeticions = () => {
      * @description Funció per obtenir els àpats del backend
      */
     const carregarApats = async () => {
+        console.log('Carregant... (Apats)')
         try {
             const resposta = await axiosClient.get('/apats');
             setApats(resposta.data)
@@ -40,10 +41,30 @@ export const useAxiosPeticions = () => {
                 },
             })
             console.log('Àpat creat:', resposta.data)
-            //await carregarApats()
             setApats([...apats, resposta.data])
         } catch (error) {
             console.error('Error creant l\'àpat:', error.response?.data)
+        }
+    }
+
+   /**
+    * @author Miquel & Albert
+    * @param {*} idApat
+    * @param {*} nouApat
+    * @description Funció per actualitzar un àpat
+    */
+    const actualitzarApat = async (idApat, nouApat) => {
+        console.log('Àpat Abans de actualitzar:', nouApat)
+        try {
+            const resposta = await axiosClient.put(`/${idApat}`, nouApat, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            console.log('Àpat actualitzat:', resposta.data)
+            await carregarApats()
+        } catch (error) {
+            console.error('Error actualitzant l\'àpat:', error.response?.data)
         }
     }
 
@@ -55,16 +76,16 @@ export const useAxiosPeticions = () => {
     const eliminarApat = async (idApat) => {
         try {
             await axiosClient.delete(`/${idApat}`)
-            //await carregarApats()
             setApats(apats.filter(apat => apat.id !== idApat));
+            await carregarApats()
         } catch (error) {
             console.log('Error eliminant l\'àpat:', error)
         }
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         carregarApats()
-    }, [])
+    }, [])*/
 
-    return { apats, carregarApats, crearApat, eliminarApat }
+    return { apats, carregarApats, crearApat, actualitzarApat, eliminarApat }
 }

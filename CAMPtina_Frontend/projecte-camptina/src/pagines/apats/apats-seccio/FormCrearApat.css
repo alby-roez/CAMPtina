@@ -6,7 +6,7 @@
     border-radius: 8px;
     padding: 0.65em;
     width: 80%;
-    height: 300px;
+    min-height: 70px;
 }
 
 .cn-article-nom-form-crear-apat {
@@ -30,22 +30,38 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    height: 220px;
+    height: 260px;
 }
 
 .cn-div-contingut-form-crear-apat {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 160px;
+    height: 200px;
 }
 
 .cn-div-txt-select-form-crear-apat {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 50%;
     height: 100%;
+}
+
+.cn-div-container-input-form-crear-apat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 90px;
+}
+
+.cn-div-container-select-form-crear-apat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 90px;
 }
 
 .cn-div-lbl-text-form-crear-apat {
@@ -53,7 +69,6 @@
     justify-content: space-between;
     width: 100%;
     height: 50px;
-    position: relative;
 }
 
 .cn-div-lbl-text-form-crear-apat > label {
@@ -74,7 +89,6 @@
     justify-content: space-between;
     width: 100%;
     height: 50px;
-    position: relative;
 }
 
 .cn-div-lbl-select-form-crear-apat > label {
@@ -97,8 +111,14 @@
     border-radius: 8px;
     font-size: 1.2em;
     width: 50%;
-    height: 100%;
-    padding: 0.65em;
+    height: 40px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.cn-input-txt-form-crear-apat:focus {
+    outline: 4px solid #222;
 }
 
 .cn-select-form-crear-apat {
@@ -108,17 +128,31 @@
     border-radius: 8px;
     font-size: 1.2em;
     width: 50%;
-    height: 100%;
+    height: 40px;
+    padding: 5px;
     cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.cn-select-form-crear-apat:focus {
+    outline: 4px solid #222;
+}
+
+.cn-div-container-txtarea-form-crear-apat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 40%;
+    height: 100%;
 }
 
 .cn-div-txtarea-form-crear-apat {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 40%;
+    width: 100%;
     height: 100%;
-    position: relative;
 }
 
 .cn-div-txtarea-form-crear-apat > label {
@@ -145,6 +179,10 @@
     font-size: 1.2em;
 }
 
+.cn-txtarea-form-crear-apat:focus {
+    outline: 4px solid #222;
+}
+
 .cn-div-bttn-form-crear-apat {
     display: flex;
     align-self: flex-end;
@@ -169,7 +207,7 @@
 }
 
 #id_reset_form_crear_apat:hover {
-    background: #369;
+    background: #222;
 }
 
 #id_reset_form_crear_apat:active {
@@ -223,96 +261,36 @@
     transform: scale(0.9);
 }
 
-.cn-span-error-form-apats {
-    position: absolute;
-    top: 50%;
-    right: 4px;
+.cn-span-error {
     display: flex;
-    color: #f22;
-    font-size: 0.6em;
-    padding: 5px;
-    background: #222;
+    align-items: center;
+    font-size: 0.8em;
+    padding-left: 10px;
+    background: #ddd;
+    color: #b44;
+    width: 100%;
+    height: 30px;
     border-bottom-right-radius: 8px;
     border-top-left-radius: 8px;
 }
 
-@media (max-width: 550px) {
-    .cn-section-form-crear-apat {
-        margin-top: 100px;
-        overflow: auto;
-    }
-
-    .cn-div-lbl-select-form-crear-apat > label {
-        width: 60%;
-    }
-
-    .cn-select-form-crear-apat {
-        width: 30%;
-    }
-}
-
-@media (max-width: 800px) {
-    .cn-section-form-crear-apat {
-        width: 96%;
-    }
-
-    .cn-h3-nom-form-crear-apat {
-        font-size: 1em;
-        overflow: auto;
-    }
-
-    .cn-div-lbl-text-form-crear-apat > label {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-div-lbl-select-form-crear-apat > label {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-div-txtarea-form-crear-apat > label {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-input-txt-form-crear-apat {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-    
-    .cn-select-form-crear-apat {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-txtarea-form-crear-apat {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-}
-
 @media (max-width: 1500px) {
-    .cn-section-form-crear-apat {
-        height: 420px;
-    }
-
     .cn-form-crear-apat {
-        height: 340px;
+        height: 470px;
     }
 
     .cn-div-contingut-form-crear-apat {
         flex-direction: column;
         gap: 10px;
         width: 100%;
-        height: 280px;
+        height: 410px;
     }
 
     .cn-div-txt-select-form-crear-apat {
         width: 100%;
     }
 
-    .cn-div-txtarea-form-crear-apat {
+    .cn-div-container-txtarea-form-crear-apat {
         width: 100%;
     }
 
@@ -328,5 +306,61 @@
 
     #id_submit_form_crear_apat {
         font-size: 1.2em;
+    }
+}
+
+@media (max-width: 800px) {
+    .cn-section-form-crear-apat {
+        width: 96%;
+    }
+
+    .cn-h3-nom-form-crear-apat {
+        font-size: 1.2em;
+        overflow: auto;
+    }
+
+    .cn-div-lbl-text-form-crear-apat > label {
+        font-size: 1em;
+        overflow: auto;
+    }
+
+    .cn-div-lbl-select-form-crear-apat > label {
+        font-size: 1em;
+        overflow: auto;
+    }
+
+    .cn-div-txtarea-form-crear-apat > label {
+        font-size: 1em;
+        overflow: auto;
+    }
+
+    .cn-input-txt-form-crear-apat {
+        font-size: 1em;
+        overflow: auto;
+    }
+    
+    .cn-select-form-crear-apat {
+        font-size: 1em;
+        overflow: auto;
+    }
+
+    .cn-txtarea-form-crear-apat {
+        font-size: 1em;
+        overflow: auto;
+    }
+}
+
+@media (max-width: 550px) {
+    .cn-section-form-crear-apat {
+        margin-top: 100px;
+        overflow: auto;
+    }
+
+    .cn-div-lbl-select-form-crear-apat > label {
+        width: 60%;
+    }
+
+    .cn-select-form-crear-apat {
+        width: 30%;
     }
 }

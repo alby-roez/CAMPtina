@@ -1,13 +1,18 @@
-import { useState } from 'react'
-import { useApats } from '../../../context/ApatsContext.jsx'
+import { useState, useEffect } from 'react'
 import { PaginacioMenus } from './PaginacioMenus.jsx'
 import { useMenus } from './LogicaMenus.js'
 import './LlistaMenus.css'
 import { BotoAddMenu, BotoAddMenuAfegit } from './BotonsMenus.jsx'
-import { LlistaItem } from './LlistaItem.jsx'
+import { useAxiosPeticionsMenusApats } from '../../../services/AxiosPeticionsMenusApats.js'
+import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 
 export const LlistaMenus = () => {
-    const { apats } = useApats()
+    const { apats, carregarApats } = useAxiosPeticionsApats()
+    const { menusApats, crearMenusApats } = useAxiosPeticionsMenusApats()
+
+    useEffect(() => {
+        carregarApats()
+    }, [])
 
     const totalApats = apats.length;
     const [apatsPerPagina, setApatsPerPagina] = useState(5)

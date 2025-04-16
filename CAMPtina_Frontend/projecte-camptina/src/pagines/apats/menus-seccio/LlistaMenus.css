@@ -7,13 +7,14 @@
     padding: 0.65em;
     width: 80%;
     min-height: 70px;
+    background: #075;
 }
 
 .cn-article-nom-llista-menus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f80;
+    background: #369;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     width: 100%;
@@ -43,6 +44,9 @@
     font-size: 1.5rem;
     background: #fff;
     color: #222;
+}
+
+.cn-input-filtre-llista-menus:focus {
     outline: 4px solid #222;
 }
 
@@ -78,7 +82,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #08f;
+    background: #f80;
     border-radius: 4px;
     width: 75%;
     height: 40px;
@@ -88,7 +92,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0f8;
+    background: #f80;
     border-radius: 4px;
     width: 75%;
     height: 40px;
@@ -98,7 +102,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #044;
+    background: #f80;
     border-radius: 4px;
     width: 75%;
     height: 40px;
@@ -114,14 +118,14 @@
     align-items: center;
     border: none;
     border-radius: 4px;
-    background: #f80;
+    background: #222;
     cursor: pointer;
     width: 40px;
     height: 40px;
 }
 
 .cn-bttn-add-menu-llista-menus:hover {
-    background: radial-gradient(#f60, #f40);
+    background: radial-gradient(#bbb, #999);
 }
 
 .cn-bttn-add-menu-llista-menus:active {

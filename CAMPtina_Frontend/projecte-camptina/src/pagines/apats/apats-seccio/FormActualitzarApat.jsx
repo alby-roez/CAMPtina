@@ -1,14 +1,27 @@
 import './FormActualitzarApat.css'
 import { useForm } from 'react-hook-form'
-import { UpdateEnrere } from '../../../Icones'
+import { UpdateEnrere } from '../../../Icones.jsx'
+import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 
 export const FormActualitzarApat = ({ id }) => {
 
-    const {register, handleSubmit, formState: {errors}} = useForm()
+    const {register, handleSubmit, formState: {errors}, reset} = useForm()
+    const { actualitzarApat } = useAxiosPeticionsApats()
 
     const peticioActualitzarApat = handleSubmit((data) => {
-        console.log(data)
+        const apatActualitzat = {
+            nom: data.nomDeApatUpdate,
+            categoriaId: parseInt(data.categoriaDeApatUpdate),
+            descripcio: data.descripcioDeApatUpdate
+        };
+        actualitzarApat(id, apatActualitzat)
+        reset();
     })
+
+    const fn_resetejar = (event) => {
+        event.preventDefault();
+        reset();
+    }
 
     const className_form_update = 'cn-form-update-llista-apats';
     const id_form_update = `id_${id}_form_update_llista_apats`;
@@ -48,6 +61,7 @@ export const FormActualitzarApat = ({ id }) => {
     const className_form_div_bttns_update = 'cn-form-div-bttns-update-llista-apats';
 
     const className_submit_update = 'cn-submit-update-llista-apats';
+    const id_submit_update = `id_${id}submit_update_llista_apats`;
     const name_submit_update = 'confirmarUpdate';
     const value_submit_update = 'Actualitzar';
 
@@ -102,13 +116,13 @@ export const FormActualitzarApat = ({ id }) => {
                         cols={txtareaCols_update}
                         { ... register('descripcioDeApatUpdate', {
                             required: true,
-                            maxLength: 1000
+                            maxLength: 100
                         })}
                     />
                     { errors.descripcioDeApatUpdate?.type === 'required' &&
                         <span className={className_span_update}>La descripció és requerida</span> }
                     { errors.descripcioDeApatUpdate?.type === 'maxLength' && 
-                        <span className={className_span_update}>Max 1000</span> }
+                        <span className={className_span_update}>Max 100</span> }
                 </div>
             </div>
             <div className={className_form_div_bttns_update}>
@@ -116,11 +130,13 @@ export const FormActualitzarApat = ({ id }) => {
                     className={className_bttn_cancelar_update}
                     id={id_bttn_cancelar_update}
                     name={name_bttn_cancelar_update}
+                    onClick={event => fn_resetejar(event)}
                 >
                     <UpdateEnrere />
                 </button>
                 <input
                     className={className_submit_update}
+                    id={id_submit_update}
                     name={name_submit_update}
                     value={value_submit_update}
                     type='submit'
