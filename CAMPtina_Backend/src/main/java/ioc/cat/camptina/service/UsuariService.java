@@ -50,10 +50,11 @@ public class UsuariService {
 		UsuariEntity usuariEntity = usuariRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuari no trobat"));
 		
 		usuariEntity.setNom(usuariDto.getNom());
-		usuariEntity.setCognom1(usuariEntity.getCognom1());
-		usuariEntity.setCognom2(usuariEntity.getCognom2());
+		usuariEntity.setCognom1(usuariDto.getCognom1());
+		usuariEntity.setCognom2(usuariDto.getCognom2());
 		RolEntity rol = rolRepository.findById(usuariDto.getRolId()).orElseThrow(() -> new RuntimeException("Rol no trobat"));
 		usuariEntity.setRol(rol);   
+		usuariEntity.setEmail(usuariDto.getEmail());
 		usuariEntity = usuariRepository.save(usuariEntity);
 		return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
 				
