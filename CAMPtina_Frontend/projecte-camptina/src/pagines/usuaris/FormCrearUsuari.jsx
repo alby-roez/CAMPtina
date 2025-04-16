@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useUsuaris } from '../../context/UsuarisContext.jsx'
 import { ResetRoda } from '../../Icones.jsx'
+import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 
 export const FormCrearUsuari = () => {
     const { crearUsuari } = useUsuaris()
@@ -22,6 +23,8 @@ export const FormCrearUsuari = () => {
         reset();
         
     })
+
+    const { rols } = useAxiosPeticionsRols();
 
     const [esTancat, setEsTancat] = useState(false)
 
@@ -51,8 +54,6 @@ export const FormCrearUsuari = () => {
 
     const className_form = 'cn-form-crear-usuari';
     const id_form = 'id_form_crear_usuari';
-    const method_form = 'POST';
-    const action_form = 'http://localhost:5173'; /* Cal modificar per passar les dades al servidor. */
 
     const className_div_contingut_form = 'cn-div-contingut-form-crear-usuari';
     const className_div_txt_select_form = 'cn-div-txt-select-form-crear-usuari';
@@ -82,12 +83,6 @@ export const FormCrearUsuari = () => {
     const name_select = 'rolUsuari';
     const txtSelectRolUsuari = 'Rol:';
 
-    const valueGestor = 1;
-    const valueTreballador = 2;
- 
-    const txtGestor = 'Gestor';
-    const txtTreballador = 'Treballador';
-
     const id_reset = 'id_reset_form_crear_usuari';
     const name_reset = 'resetejarCrearUsuari';
     const value_reset = 'Resetejar';
@@ -99,7 +94,7 @@ export const FormCrearUsuari = () => {
     const className_bttn_finestra = 'cn-bttn-finestra-form-crear-usuari';
     const id_bttn_finestra = 'id_bttn_finestra_form_crear_usuari';
     const name_bttn_finestra = 'finestraDeFormCrear';
-    //const txt_bttn_finestra = '✕';
+
 
     const className_span = 'cn-span-error';
 
@@ -208,8 +203,11 @@ export const FormCrearUsuari = () => {
                                     required: true
                                 })}>
                                     <option value='' disabled></option>
-                                    <option value={valueGestor}>{txtGestor}</option>
-                                    <option value={valueTreballador}>{txtTreballador}</option>
+                                    {rols.map((rol) => (
+                                        <option key={rol.id} value={rol.id}>
+                                            {rol.nom}
+                                        </option>
+                                    ))}
                                 </select>
                                 { errors.rolUsuari?.type === 'required' &&
                                 <span className={className_span}>El rol és obligatori</span> }
