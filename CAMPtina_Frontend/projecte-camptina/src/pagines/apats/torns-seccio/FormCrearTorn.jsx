@@ -2,7 +2,7 @@ import "./FormCrearTorn.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { ResetRoda } from "../../../Icones.jsx";
-import { useTorns } from "../../../context/TornsContext.jsx";
+import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
 
 export const FormCrearTorn = () => {
   const {
@@ -13,7 +13,7 @@ export const FormCrearTorn = () => {
     reset,
   } = useForm();
 
-  const { torns, crearTorn } = useTorns();
+  const { torns, crearTorn } = useAxiosPeticions();
 
   // Valor hora inici
   const horaInici = watch("horaInici");

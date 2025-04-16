@@ -154,9 +154,9 @@ export const LlistaMenus = () => {
                         </div>
                     )
                 }).slice(indexInicial, indexFinal)}
-                {newArray().map((item) => (
+                {/*{newArray().map((item) => (
                     <LlistaItem key={item} />
-                ))}
+                ))}*/}
             </article>
             <PaginacioMenus
                 totalApats={totalApats}

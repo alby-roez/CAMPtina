@@ -8,7 +8,7 @@ import {
   CheckIcona,
 } from "../../../Icones.jsx";
 
-import { useTorns } from "../../../context/TornsContext.jsx";
+import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
 import { FormActualitzarTorn } from "./FormActualitzarTorn.jsx";
 
 export const LlistaTorns = () => {
@@ -18,7 +18,7 @@ export const LlistaTorns = () => {
     setShaTancat(!shaTancat);
   };
 
-  const {torns, eliminarTorn} = useTorns()
+  const {torns, eliminarTorn} = useAxiosPeticions()
 
   const [editantId, setEditantId ] = useState(null);
 
