@@ -1,7 +1,7 @@
 import { Link } from '../Link.jsx'
 import logo from '../assets/logo.png'
 import usuari from '../assets/user.png'
-import menu from '../assets/menu.png'
+//import menu from '../assets/menu.png'
 
 export const Navegacio = () => {
     const className_header_navegacio = 'cn-header-navegacio';
@@ -12,8 +12,8 @@ export const Navegacio = () => {
     const className_img_logo = 'cn-img-logo';
     const className_img_usuari = 'cn-img-usuari';
 
-    const className_num_li_2 = 'cn-num-li-2-navegacio';
-    const className_num_li_3 = 'cn-num-li-3-navegacio';
+    //const className_num_li_2 = 'cn-num-li-2-navegacio';
+    //const className_num_li_3 = 'cn-num-li-3-navegacio';
     const className_num_li_4 = 'cn-num-li-4-navegacio';
 
     const txt_NOM_COMPLET = 'Albert Rodríguez';
@@ -37,7 +37,7 @@ export const Navegacio = () => {
                                 </ul>
                             </li>
                             <li>
-                                <Link to='/usuaris/gestio-usuaris'>Gestió Usuaris</Link>
+                                <Link to='/usuaris/gestio-usuaris'>Usuaris</Link>
                             </li>
                             <li><Link to='/contacte'>Contacte</Link></li>
                         </ul>

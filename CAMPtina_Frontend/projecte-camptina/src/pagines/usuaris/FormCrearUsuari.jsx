@@ -1,12 +1,12 @@
 import './FormCrearUsuari.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useUsuaris } from '../../context/UsuarisContext.jsx'
+import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js'
 import { ResetRoda } from '../../Icones.jsx'
 import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 
 export const FormCrearUsuari = () => {
-    const { crearUsuari } = useUsuaris()
+    const { crearUsuari } = useAxiosPeticionsUsuaris()
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearUsuari = handleSubmit((data) => {
@@ -85,7 +85,7 @@ export const FormCrearUsuari = () => {
 
     const id_reset = 'id_reset_form_crear_usuari';
     const name_reset = 'resetejarCrearUsuari';
-    const value_reset = 'Resetejar';
+    //const value_reset = 'Resetejar';
 
     const id_submit = 'id_submit_form_crear_usuari';
     const name_submit = 'crearUsuari';

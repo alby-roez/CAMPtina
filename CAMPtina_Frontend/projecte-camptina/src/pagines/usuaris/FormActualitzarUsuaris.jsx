@@ -1,12 +1,13 @@
 import "./FormActualitzarUsuaris.css";
 import { useForm } from "react-hook-form";
 import { CheckIcona, CloseIcona } from "../../Icones.jsx";
-import { useUsuaris } from "../../context/UsuarisContext.jsx";
+import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js';
 import { useEffect } from "react";
+import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 
 export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
-    const { actualitzarUsuari } = useUsuaris();
-
+    const { actualitzarUsuari } = useAxiosPeticionsUsuaris();
+    const { rols } = useAxiosPeticionsRols();
     const {
         register,
         handleSubmit,
@@ -14,11 +15,8 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
         setValue,
     } = useForm();
 
-    const gestor = 1;
-    const treballador = 2;
 
-    const txtGestor = 'Gestor';
-    const txtTreballador = 'Treballador';
+
     useEffect(() => {
         if (usuari) {
             setValue("nom", usuari.nom);
@@ -37,6 +35,8 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
             console.error("Error actualitzant usuari:", error);
         }
     });
+    const className_span_update = 'cn-span-update-llista-usuaris';
+    
     return (
         <form className="form-update-usuari" onSubmit={peticioActualitzarUsuari}>
             <div className="form-grid">
@@ -46,15 +46,14 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                         type="text"
                         placeholder="Nom"
                         {...register("nom", {
-                            required: "El nom és obligatori",
+                            required: true,
                             min: { value: 3, message: "Mínim 3 caràcters" },
                             max: { value: 25, message: "Màxim 25 caràcters" },
                         })}
-                        className={errors.nomUsuari ? "error" : ""}
+
                     />
-                    {errors.nom && (
-                        <span className="error-message">{errors.nom.message}</span>
-                    )}
+                    {errors.nom?.type === 'required' &&
+                    <span className={className_span_update}>El nom es requerit</span>}
                 </div>
 
                 {/* Camp Aforament */}
@@ -70,7 +69,7 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                         })}
                         className={errors.aforament ? "error" : ""}
                     />
-                    {errors.aforament && (
+                    {errors.message && (
                         <span className="error-message">{errors.cognom1.message}</span>
                     )}
                 </div>
@@ -99,8 +98,11 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                         })}
                     >
                         <option value='' disabled></option>
-                        <option value={gestor}>{txtGestor}</option>
-                        <option value={treballador}>{txtTreballador}</option>
+                        {rols.map((rol) => (
+                            <option key={rol.id} value={rol.id}>
+                                {rol.nom}
+                            </option>
+                        ))}
                     </select>
                     {errors.aforament &&
                         <span className="error-message">{errors.rol.message}</span>}

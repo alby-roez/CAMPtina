@@ -16,9 +16,10 @@ public interface MenuApatMapper {
 	@Mapping(source = "apat.id", target = "apatId")
 	MenuApatDTO menuApatEntityToMenuApatDTO(MenuApatEntity entity);
 
+	/*TODO a arreglar
 	@Mapping(target = "menu", ignore = true)
 	@Mapping(target = "apat", ignore = true)
-	@Mapping(target = "id", expression = "java(new MenuApatId(dto.getMenuId(), dto.getApatId()))")
+	@Mapping(target = "id", expression = "java(new MenuApatId(dto.getMenuId(), dto.getApatId()))")*/
 	MenuApatEntity menuApatDTOToMenuApatEntity(MenuApatDTO dto);
 
 }

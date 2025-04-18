@@ -1,23 +1,33 @@
 import './LlistaUsuaris.css'
 import { useState, useEffect } from 'react'
-import { useUsuaris } from '../../context/UsuarisContext.jsx'
+import { useAxiosPeticionsUsuaris } from "../../services/UsuarisPeticions.js"
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
 import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
+import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 
 export const LlistaUsuaris = () => {
-    const { usuaris, eliminarUsuari } = useUsuaris()
+    const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
 
-    const rols = {
+    /*const rols = {
         1: 'Gestor',
         2: 'Treballador',
-    }
+    }*/
+    const { rols } = useAxiosPeticionsRols();
 
     const [shaTancat, setShaTancat] = useState(false)
-    const [editantId, setEditantId ] = useState(null);
+    const [editantId, setEditantId] = useState(null);
     const tancarFinestra = () => {
         setShaTancat(!shaTancat);
     }
 
+
+    const obtenirRol = (rolId) => {
+        if (!rols || rols.length === 0) {
+          return 'Carregant...'; // O cualquier otro mensaje/valor por defecto
+        }
+        const rolTrobat = rols.find((rol) => rol.id === rolId);
+        return rolTrobat ? rolTrobat.nom : 'Rol Desconegut';
+      };
     useEffect(() => {
         const section = document.getElementById('id_section_llista_usuaris');
         const article = document.getElementById('id_article_llista_usuaris');
@@ -75,12 +85,12 @@ export const LlistaUsuaris = () => {
     /* useState shaFiltrat ================================================== -Z */
 
     /* useState shaActualitzat ================================================== A- */
-    const formAndBttn = {
+    /*const formAndBttn = {
         form: '',
         bttn: ''
-    }
+    }*/
 
-    const [shaActualitzat, setShaActualitzat] = useState(false)
+    //const [shaActualitzat, setShaActualitzat] = useState(false)
     /*const actualitzarLlapis = event => {
         setShaActualitzat(!shaActualitzat);
         const actualForm = event.currentTarget.parentNode.parentNode.nextElementSibling.id;
@@ -96,17 +106,17 @@ export const LlistaUsuaris = () => {
         }
     }*/
 
-        useEffect(() => {
-            const section = document.getElementById("id_section_llista_usuaris");
-            const article = document.getElementById("id_article_llista_usuaris");
-            if (shaTancat) {
-              article.setAttribute("style", "display: none;");
-              section.setAttribute("style", "height: 70px");
-            } else {
-              article.removeAttribute("style");
-              section.removeAttribute("style");
-            }
-          }, [shaTancat]);
+    useEffect(() => {
+        const section = document.getElementById("id_section_llista_usuaris");
+        const article = document.getElementById("id_article_llista_usuaris");
+        if (shaTancat) {
+            article.setAttribute("style", "display: none;");
+            section.setAttribute("style", "height: 70px");
+        } else {
+            article.removeAttribute("style");
+            section.removeAttribute("style");
+        }
+    }, [shaTancat]);
 
     const className_section = 'cn-section-llista-usuaris';
     const id_section = 'id_section_llista_usuaris'
@@ -182,8 +192,12 @@ export const LlistaUsuaris = () => {
                             name={name_select_filtre_categoria}
                             onChange={maneigFiltre}
                         >
-                            <option value={1}>Gestor</option>
-                            <option value={2}>Treballador</option>
+                            <option value='' disabled></option>
+                            {rols.map((rol) => (
+                                <option key={rol.id} value={rol.id}>
+                                    {rol.nom}
+                                </option>
+                            ))}
 
                         </select>
                     </div>
@@ -226,7 +240,7 @@ export const LlistaUsuaris = () => {
                                     </li>
                                     <li className={className_li_item_id}>{usuari.id}</li>
                                     <li className={className_li_item_nom}>{usuari.nom} {usuari.cognom1} {usuari.cognom2} </li>
-                                    <li className={className_li_item_rol}>{rols[usuari.rolId]}</li>
+                                    <li className={className_li_item_rol}>{obtenirRol(usuari.rolId)}</li>
                                     <li className={className_li_item_email}>{usuari.email}</li>
                                     <li className={className_li_item_delete}>
                                         <button

@@ -10,7 +10,7 @@ import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
 import CrearApat from './pagines/apats/CrearApat.jsx'
 import Torns from './pagines/apats/Torns.jsx'
-
+ 
 import User from './pagines/User.jsx'
 import Login from './pagines/Login.jsx'
 import SignUp from './pagines/SignUp.jsx'
@@ -18,7 +18,6 @@ import Page404 from './pagines/Page404.jsx'
 import SearchPage from './pagines/Search.jsx'
 import Contrasenya from './pagines/Contrasenya.jsx'
 
-import { UsuarisProvider } from './context/UsuarisContext.jsx'
 import { MenusProvider } from './pagines/apats/menus-seccio/MenusContext.jsx'
 import { DadesCamptinaProvider } from './services/DadesCamptina.jsx'
 
@@ -71,7 +70,6 @@ function App() {
   return (
     <>
     <DadesCamptinaProvider>
-      <UsuarisProvider>
           <MenusProvider>
               <div className={className_pagina}> 
                 <Router rutes={rutesApp} componentPerDefecte={Page404}>
@@ -82,7 +80,6 @@ function App() {
                 </Router>
               </div>
           </MenusProvider>
-      </UsuarisProvider>
     </DadesCamptinaProvider>
     </>
   )
