@@ -37,7 +37,7 @@ export const Navegacio = () => {
                                 </ul>
                             </li>
                             <li>
-                                <Link to='/usuaris/gestio-usuaris'>Gestió Usuaris</Link>
+                                <Link to='/usuaris/gestio-usuaris'>Usuaris</Link>
                             </li>
                             <li><Link to='/contacte'>Contacte</Link></li>
                         </ul>

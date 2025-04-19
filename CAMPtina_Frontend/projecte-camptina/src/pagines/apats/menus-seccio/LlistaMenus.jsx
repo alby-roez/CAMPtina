@@ -8,7 +8,6 @@ import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js
 
 export const LlistaMenus = () => {
     const { apats, carregarApats } = useAxiosPeticionsApats()
-    const { menusApats, crearMenusApats } = useAxiosPeticionsMenusApats()
 
     useEffect(() => {
         carregarApats()

@@ -6,7 +6,8 @@
     border-radius: 8px;
     padding: 0.65em;
     width: 80%;
-    height: 450px;
+    min-height: 70px;
+    background: #69c;
 }
 
 .cn-article-nom-form-crear-usuari {
@@ -30,69 +31,66 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    height: 220px;
+    height: 260px;
 }
 
 .cn-div-contingut-form-crear-usuari {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15px;
+    gap: 20px;
     width: 100%;
-    height: 280px;
+    height: 200px;
 }
 
-.cn-div-txt-select-form-crear-usuari {
+.cn-div-txt-nom-complet-form-crear-usuari {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 50%;
-    height: 100%;
+    gap: 5%;
+    width: 100%;
+    height: 90px;
+}
+
+.cn-div-txt-email-rol-form-crear-usuari {
+    display: flex;
+    gap: 10%;
+    width: 100%;
+    height: 90px;
 }
 
 .cn-div-lbl-text-form-crear-usuari {
     display: flex;
-    justify-content: center;
-    gap: 5%;
-    width: 100%;
-    height: 50px;
-    position: relative;
+    flex-direction: column;
+    gap: 10px;
+    width: 30%;
+    height: 90px;
 }
 
-.cn-div-lbl-text-form-crear-usuari > label {
+.cn-div-container-txt-form-crear-usuari {
+    display: flex;
+    gap: 10%;
+    width: 100%;
+    height: 50px;
+}
+
+.cn-div-container-txt-form-crear-usuari > label {
     display: flex;
     align-items: center;
-    font-size: 1.2em;
-    background: #222;
+    font-size: 1em;
+    background: #ffc;
+    color: #222;
     opacity: 0.9;
     border-top-left-radius: 8px;
     border-bottom-right-radius: 8px;
     padding-left: 5px;
-    width: 25%;
+    width: 40%;
     height: 100%;
 }
 
 .cn-div-lbl-select-form-crear-usuari {
     display: flex;
-    justify-content: center;
-    gap: 5%;
-    width: 100%;
-    height: 50px;
-    position: relative;
-}
-
-.cn-div-lbl-select-form-crear-usuari > label {
-    display: flex;
-    align-items: center;
-    font-size: 1.2em;
-    background: #222;
-    opacity: 0.9;
-    border-top-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    padding-left: 5px;
-    width: 25%;
-    height: 100%;
+    flex-direction: column;
+    gap: 10px;
+    width: 60%;
+    height: 90px;
 }
 
 .cn-input-txt-form-crear-usuari {
@@ -100,10 +98,18 @@
     align-items: center;
     border: none;
     border-radius: 8px;
-    font-size: 1.2em;
+    font-size: 1em;
     width: 50%;
-    height: 100%;
-    padding: 0.65em;
+    height: 40px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background: #ffc;
+    color: #222;
+}
+
+.cn-input-txt-form-crear-usuari:focus {
+    outline: 4px solid #369;
 }
 
 .cn-select-form-crear-usuari {
@@ -111,10 +117,19 @@
     align-items: center;
     border: none;
     border-radius: 8px;
-    font-size: 1.2em;
+    font-size: 1em;
     width: 50%;
-    height: 100%;
+    height: 40px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
+    background: #ffc;
+    color: #222;
+}
+
+.cn-select-form-crear-usuari:focus {
+    outline: 4px solid #369;
 }
 
 .cn-div-bttn-form-crear-usuari {
@@ -122,7 +137,7 @@
     align-self: flex-end;
     justify-content: flex-end;
     gap: 10%;
-    width: 20%;
+    width: 25%;
     height: 50px;
 }
 
@@ -130,18 +145,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #258;
-    color: #fff;
+    background: #369;
     border: none;
     border-radius: 8px;
-    font-size: 0.8em;
     cursor: pointer;
-    width: 30%;
+    width: 45%;
     height: 100%;
 }
 
 #id_reset_form_crear_usuari:hover {
-    background: #369;
+    background: #9cf;
 }
 
 #id_reset_form_crear_usuari:active {
@@ -152,18 +165,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #b44;
+    background: #369;
     color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 1em;
     cursor: pointer;
-    width: 60%;
+    width: 45%;
     height: 100%;
 }
 
 #id_submit_form_crear_usuari:hover {
-    background: #f44;
+    background: #9cf;
 }
 
 #id_submit_form_crear_usuari:active {
@@ -179,8 +192,7 @@
     align-items: center;
     border: none;
     border-top-right-radius: 4px;
-    background: #258;
-    color: #fff;
+    background: #69c;
     cursor: pointer;
     margin: 4px;
     width: 38px;
@@ -188,42 +200,79 @@
 }
 
 .cn-bttn-finestra-form-crear-usuari:hover {
-    background: #b44;
+    background: #9cf;
 }
 
 .cn-bttn-finestra-form-crear-usuari:active {
     transform: scale(0.9);
 }
 
-.cn-span-error {
-    position: absolute;
-    top: 50%;
-    right: 4px;
+.cn-span-error-form-crear-usuari {
     display: flex;
-    color: #f22;
-    font-size: 0.6em;
-    padding: 5px;
-    background: #222;
+    align-items: center;
+    font-size: 0.8em;
+    padding-left: 10px;
+    background: #ffc;
+    color: #b44;
+    width: 100%;
+    height: 30px;
     border-bottom-right-radius: 8px;
     border-top-left-radius: 8px;
 }
 
-@media (max-width: 550px) {
-    .cn-section-form-crear-usuari {
-        margin-top: 100px;
-        overflow: auto;
+@media (max-width: 1500px) {
+    .cn-div-container-txt-form-crear-usuari > label {
+        font-size: 0.8em;
     }
-
-    .cn-div-lbl-select-form-crear-usuari > label {
-        width: 60%;
+    
+    .cn-input-txt-form-crear-usuari {
+        font-size: 0.8em;
     }
-
+    
     .cn-select-form-crear-usuari {
-        width: 30%;
+        font-size: 0.8em;
+    }
+
+    #id_submit_form_crear_usuari {
+        font-size: 0.8em;
+    }
+    
+    .cn-span-error-form-crear-usuari {
+        font-size: 0.6em;
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1150px) {
+    .cn-form-crear-usuari {
+        height: 590px;
+    }
+
+    .cn-div-contingut-form-crear-usuari {
+        height: 530px;
+    }
+
+    .cn-div-txt-nom-complet-form-crear-usuari {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        height: 310px;
+    }
+
+    .cn-div-txt-email-rol-form-crear-usuari {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        height: 200px;
+    }
+
+    .cn-div-lbl-text-form-crear-usuari {
+        width: 100%;
+    }
+
+    .cn-div-lbl-select-form-crear-usuari {
+        width: 100%;
+    }
+
     .cn-section-form-crear-usuari {
         width: 96%;
     }
@@ -233,72 +282,16 @@
         overflow: auto;
     }
 
-    .cn-div-lbl-text-form-crear-usuari > label {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-div-lbl-select-form-crear-usuari > label {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-div-txtarea-form-crear-usuari > label {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-input-txt-form-crear-usuari {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-    
-    .cn-select-form-crear-usuari {
-        font-size: 0.8em;
-        overflow: auto;
-    }
-
-    .cn-txtarea-form-crear-usuari {
-        font-size: 0.8em;
-        overflow: auto;
+    .cn-div-bttn-form-crear-usuari {
+        align-self: center;
+        justify-self: center;
+        width: 90%;
     }
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 550px) {
     .cn-section-form-crear-usuari {
-        height: 420px;
-    }
-
-    .cn-form-crear-usuari {
-        height: 340px;
-    }
-
-    .cn-div-contingut-form-crear-usuari {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        height: 280px;
-    }
-
-    .cn-div-txt-select-form-crear-usuari {
-        width: 100%;
-    }
-
-    .cn-div-txtarea-form-crear-usuari {
-        width: 100%;
-    }
-
-    .cn-div-bttn-form-crear-usuari {
-        width: 100%;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    #id_reset_form_crear_usuari {
-        font-size: 1em;
-    }
-
-    #id_submit_form_crear_usuari {
-        font-size: 1.2em;
+        margin-top: 100px;
+        overflow: auto;
     }
 }

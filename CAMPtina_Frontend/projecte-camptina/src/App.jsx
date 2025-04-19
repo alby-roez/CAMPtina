@@ -5,6 +5,7 @@ import Inici from './pagines/Inici.jsx'
 import Apats from './pagines/Apats.jsx'
 import Usuaris from './pagines/usuaris/gestio-usuaris.jsx'
 import Contacte from './pagines/Contacte.jsx'
+import Equip from './pagines/Equip.jsx'
 
 import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
@@ -18,7 +19,6 @@ import Page404 from './pagines/Page404.jsx'
 import SearchPage from './pagines/Search.jsx'
 import Contrasenya from './pagines/Contrasenya.jsx'
 
-import { UsuarisProvider } from './context/UsuarisContext.jsx'
 import { MenusProvider } from './pagines/apats/menus-seccio/MenusContext.jsx'
 import { DadesCamptinaProvider } from './services/DadesCamptina.jsx'
 
@@ -43,6 +43,10 @@ const rutesApp = [
   {
     cami: '/usuaris/gestio-usuaris',
     Component: Usuaris
+  },
+  {
+    cami: '/equip/equip-dev',
+    Component: Equip
   },
   {
     cami: '/user',
@@ -70,20 +74,18 @@ function App() {
   const className_pagina = 'cn-pagina';
   return (
     <>
-    <DadesCamptinaProvider>
-      <UsuarisProvider>
-          <MenusProvider>
-              <div className={className_pagina}> 
-                <Router rutes={rutesApp} componentPerDefecte={Page404}>
-                  <Route cami='/' Component={Inici} />
-                  <Route cami='/apats' Component={Apats} />
-                  <Route cami='/usuaris' Component={Usuaris} />
-                  <Route cami='/contacte' Component={Contacte} />
-                </Router>
-              </div>
-          </MenusProvider>
-      </UsuarisProvider>
-    </DadesCamptinaProvider>
+    <MenusProvider>
+      <DadesCamptinaProvider>
+        <div className={className_pagina}> 
+          <Router rutes={rutesApp} componentPerDefecte={Page404}>
+            <Route cami='/' Component={Inici} />
+            <Route cami='/apats' Component={Apats} />
+            <Route cami='/usuaris' Component={Usuaris} />
+            <Route cami='/contacte' Component={Contacte} />
+          </Router>
+        </div>
+      </DadesCamptinaProvider>
+    </MenusProvider>
     </>
   )
 }

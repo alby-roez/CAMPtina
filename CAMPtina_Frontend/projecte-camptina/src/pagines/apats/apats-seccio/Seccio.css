@@ -10,6 +10,7 @@
     width: 1000px;
     height: 200px;
     overflow: auto;
+    background: #69c;
 }
 
 .cn-article-nom-seccio {
@@ -87,7 +88,7 @@
 
 .cn-subdiv-contingut-interactiu-seccio > a:hover {
     font-size: 0.9em;
-    background: #1e5;
+    background: #9cf;
 }
 
 .cn-subdiv-contingut-interactiu-seccio > a:active {
@@ -108,7 +109,7 @@
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
-    background: #e15;
+    background: #b44;
     cursor: pointer;
 }
 
@@ -163,7 +164,7 @@
 
 .cn-div-contingut-info-seccio > div > button:hover {
     font-size: 2em;
-    background: #1e5;
+    background: #9cf;
 }
 
 .cn-div-contingut-info-seccio > div > button:active {

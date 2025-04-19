@@ -8,7 +8,7 @@ import {
   CheckIcona,
 } from "../../../Icones.jsx";
 
-import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
+import { useAxiosPeticionsTorns } from "../../../services/AxiosPeticionsTorns.js"
 import { FormActualitzarTorn } from "./FormActualitzarTorn.jsx";
 
 export const LlistaTorns = () => {
@@ -18,7 +18,7 @@ export const LlistaTorns = () => {
     setShaTancat(!shaTancat);
   };
 
-  const {torns, eliminarTorn} = useAxiosPeticions()
+  const {torns, eliminarTorn} = useAxiosPeticionsTorns()
 
   const [editantId, setEditantId ] = useState(null);
 
@@ -88,7 +88,6 @@ export const LlistaTorns = () => {
       <section className={className_section} id={id_section}>
         <article className={className_article_nom}>
           <h3 className={className_h3_nom}>{nomSeccio}</h3>
-
           <button
             className={className_bttn_finestra}
             id={id_bttn_finestra}

@@ -1,11 +1,11 @@
 import "./FormActualitzarTorn.css";
 import { useForm } from "react-hook-form";
 import { CheckIcona, CloseIcona } from "../../../Icones.jsx";
-import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
+import { useAxiosPeticionsTorns } from "../../../services/AxiosPeticionsTorns.js"
 import { useEffect } from "react";
 
 export const FormActualitzarTorn = ({ torn, onCancel }) => {
-  const { torns, actualitzarTorn } = useAxiosPeticions();
+  const { torns, actualitzarTorn } = useAxiosPeticionsTorns();
 
   const {
     register,

@@ -177,11 +177,11 @@ export const FormCrearApat = () => {
                                     })}
                                 />
                                 { errors.descripcioDeApat?.type === 'required' &&
-                                    <span className={className_span}>La descripció és obligatòria</span> }
-                                    { errors.descripcioDeApat?.type === 'minLength' &&
-                                    <span className={className_span}>Mínim 5 caràcters</span> }
-                                    { errors.descripcioDeApat?.type === 'maxLength' &&
-                                    <span className={className_span}>Màxim 100 caràcters</span> }
+                                <span className={className_span}>La descripció és obligatòria</span> }
+                                { errors.descripcioDeApat?.type === 'minLength' &&
+                                <span className={className_span}>Mínim 5 caràcters</span> }
+                                { errors.descripcioDeApat?.type === 'maxLength' &&
+                                <span className={className_span}>Màxim 100 caràcters</span> }
                             </div>
                         </div>
                     </div>

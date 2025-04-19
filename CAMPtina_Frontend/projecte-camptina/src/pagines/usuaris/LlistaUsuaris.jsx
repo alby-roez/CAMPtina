@@ -1,17 +1,29 @@
 import './LlistaUsuaris.css'
 import { useState, useEffect } from 'react'
-import { useUsuaris } from '../../context/UsuarisContext.jsx'
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
 import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
+import { useAxiosPeticionsUsuaris } from '../../services/AxiosPeticionsUsuaris.js'
+import { PaginacioUsuaris } from './PaginacioUsuaris.jsx'
 
 export const LlistaUsuaris = () => {
-    const { usuaris, eliminarUsuari } = useUsuaris()
+    const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
 
     const rols = {
         1: 'Gestor',
         2: 'Treballador',
     }
 
+    /* PaginacioApats ================================================== A- */
+    const totalLlistaUsuaris = usuaris.length;
+
+    const [usuarisPerPagina, setUsuarisPerPagina] = useState(2)
+    const [paginaActual, setPaginaActual] = useState(1)
+
+    const indexUsuarisFinal = paginaActual * usuarisPerPagina
+    const indexUsuarisInicial = indexUsuarisFinal - usuarisPerPagina
+    /* PaginacioApats ================================================== -Z */
+
+    /* useState shaTancat ================================================== A- */
     const [shaTancat, setShaTancat] = useState(false)
     const [editantId, setEditantId ] = useState(null);
     const tancarFinestra = () => {
@@ -21,12 +33,15 @@ export const LlistaUsuaris = () => {
     useEffect(() => {
         const section = document.getElementById('id_section_llista_usuaris');
         const article = document.getElementById('id_article_llista_usuaris');
+        const paginacio = document.getElementById('id_article_pagines_paginacio_usuaris');
         if (shaTancat) {
             article.setAttribute('style', 'display: none;');
             section.setAttribute('style', 'height: 70px');
+            paginacio.setAttribute('style', 'display: none;');
         } else {
             article.removeAttribute('style');
             section.removeAttribute('style');
+            paginacio.removeAttribute('style');
         }
     }, [shaTancat])
     /* useState shaTancat ================================================== -Z */
@@ -122,8 +137,8 @@ export const LlistaUsuaris = () => {
     const className_li_update_llista = 'cn-li-update-llista-usuaris';
     const className_li_id_llista = 'cn-li-id-llista-usuaris';
     const className_li_nom_llista = 'cn-li-nom-llista-usuaris';
-    const className_li_rol_llista = 'cn-li-categoria-llista-usuaris';
-    const className_li_email_llista = 'cn-li-descripcio-llista-usuaris';
+    const className_li_rol_llista = 'cn-li-rol-llista-usuaris';
+    const className_li_email_llista = 'cn-li-email-llista-usuaris';
     const className_li_delete_llista = 'cn-li-delete-llista-usuaris';
 
     const className_div_llista = 'cn-div-llista-usuaris';
@@ -131,8 +146,8 @@ export const LlistaUsuaris = () => {
     const className_li_item_update = 'cn-li-item-update-llista-usuaris';
     const className_li_item_id = 'cn-li-item-id-llista-usuaris';
     const className_li_item_nom = 'cn-li-item-nom-llista-usuaris';
-    const className_li_item_rol = 'cn-li-item-categoria-llista-usuaris';
-    const className_li_item_email = 'cn-li-item-descripcio-llista-usuaris';
+    const className_li_item_rol = 'cn-li-item-rol-llista-usuaris';
+    const className_li_item_email = 'cn-li-item-email-llista-usuaris';
     const className_li_item_delete = 'cn-li-item-delete-llista-usuaris';
 
     const llistaID = 'ID';
@@ -207,42 +222,51 @@ export const LlistaUsuaris = () => {
                     </ul>
                     {filtratUsuaris.map((usuari) => (
                         <div key={usuari.id} className={className_div_llista}>
-                            {editantId === usuari.id ? (
-                                <FormActualitzarUsuaris
-                                    usuari={usuari}
-                                    onCancel={() => setEditantId(null)}
-                                />
-                            ) : (
-                                <ul key={usuari.id} className={className_ul_llista}>
-                                    <li className={className_li_item_update}>
-                                        <button
-                                            className={className_bttn_update}
-                                            id={id_bttn_update}
-                                            name={name_bttn_update}
-                                            onClick={() => setEditantId(usuari.id)}
-                                        >
-                                            <UpdateLlapis />
-                                        </button>
-                                    </li>
-                                    <li className={className_li_item_id}>{usuari.id}</li>
-                                    <li className={className_li_item_nom}>{usuari.nom} {usuari.cognom1} {usuari.cognom2} </li>
-                                    <li className={className_li_item_rol}>{rols[usuari.rolId]}</li>
-                                    <li className={className_li_item_email}>{usuari.email}</li>
-                                    <li className={className_li_item_delete}>
-                                        <button
-                                            className={className_bttn_delete}
-                                            id={id_bttn_delete}
-                                            name={name_bttn_delete}
-                                            onClick={() => eliminarUsuari(usuari.id)}
-                                        >
-                                            <DeletePaperera />
-                                        </button>
-                                    </li>
-                                </ul>
-                            )}
+                            {editantId === usuari.id
+                                ? (
+                                    <FormActualitzarUsuaris
+                                        usuari={usuari}
+                                        onCancel={() => setEditantId(null)}
+                                    />
+                                ) 
+                                : (
+                                    <ul key={usuari.id} className={className_ul_llista}>
+                                        <li className={className_li_item_update}>
+                                            <button
+                                                className={className_bttn_update}
+                                                id={id_bttn_update}
+                                                name={name_bttn_update}
+                                                onClick={() => setEditantId(usuari.id)}
+                                            >
+                                                <UpdateLlapis />
+                                            </button>
+                                        </li>
+                                        <li className={className_li_item_id}>{usuari.id}</li>
+                                        <li className={className_li_item_nom}>{usuari.nom} {usuari.cognom1} {usuari.cognom2} </li>
+                                        <li className={className_li_item_rol}>{rols[usuari.rolId]}</li>
+                                        <li className={className_li_item_email}>{usuari.email}</li>
+                                        <li className={className_li_item_delete}>
+                                            <button
+                                                className={className_bttn_delete}
+                                                id={id_bttn_delete}
+                                                name={name_bttn_delete}
+                                                onClick={() => eliminarUsuari(usuari.id)}
+                                            >
+                                                <DeletePaperera />
+                                            </button>
+                                        </li>
+                                    </ul>
+                                )
+                            }
                         </div>
-                    ))}
+                    )).slice(indexUsuarisInicial, indexUsuarisFinal)}
                 </article>
+                <PaginacioUsuaris
+                    totalUsuaris={totalLlistaUsuaris}
+                    usuarisPerPagina={usuarisPerPagina}
+                    paginaActual={paginaActual}
+                    setPaginaActual={setPaginaActual}
+                />
             </section>
         </>
     );

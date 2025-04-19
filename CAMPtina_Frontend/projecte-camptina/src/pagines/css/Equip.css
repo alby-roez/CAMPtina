@@ -1,0 +1,49 @@
+.cn-info-equip {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+    height: 300px;
+}
+
+.cn-div-video-equip {
+    width: 300px;
+    height: 180px;
+}
+
+.cn-bttn-more-money-equip {
+    display: flex;
+    background: #369;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    height: 100px;
+}
+
+.cn-bttn-more-money-equip:hover {
+    background: #9cf;
+}
+
+.cn-bttn-more-money-equip:active {
+    transform: scale(0.9);
+}
+
+#id_video_money {
+    aspect-ratio: 16/9;
+    width: 300px;
+    border-radius: 50%;
+}
+
+#id_video_safe {
+    aspect-ratio: 16/9;
+    width: 300px;
+    border-radius: 50%;
+}
+
+@media (max-width: 550px) {
+    .cn-info-equip {
+        margin-top: 100px;
+        overflow: auto;
+    }
+}

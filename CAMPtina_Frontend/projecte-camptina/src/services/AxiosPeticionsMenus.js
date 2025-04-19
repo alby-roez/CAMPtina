@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const axiosClient = axios.create({
-    baseURL: 'http://localhost:8080/api' /* API */
+    baseURL: 'http://localhost:8080/api' //import.meta.env.VITE_API_URL /* API */
 })
 
 export const useAxiosPeticionsMenus = () => {
@@ -18,7 +18,6 @@ export const useAxiosPeticionsMenus = () => {
      * @description Funció per obtenir els menus del backend
      */
     const carregarMenus = async () => {
-        console.log('Carregant... (Menus)')
         try {
             const resposta = await axiosClient.get('/menu');
             setMenus(resposta.data)
@@ -33,15 +32,14 @@ export const useAxiosPeticionsMenus = () => {
      * @description Funció per crear un nou menus
      */
     const crearMenus = async (nouMenu) => {
-        console.log('Menus abans de crear:', nouMenu)
         try {
             const resposta = await axiosClient.post('/menu', nouMenu, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-            console.log('Menus creat:', resposta.data)
-            await carregarMenus()
+            //console.log('Menus creat:', resposta.data)
+            setMenus([... menus, resposta.data])
         } catch (error) {
             console.error('Error creant el menus:', error.response?.data)
         }
@@ -53,15 +51,13 @@ export const useAxiosPeticionsMenus = () => {
      * @description Funció per actualitzar un menus
      */
     const actualitzarMenus = async (nouMenu) => {
-        console.log('Menus abans de actualitzar:', nouMenu)
         try {
             const resposta = await axiosClient.put(`/menu/${nouMenu}`, nouMenu, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-            console.log('Menus actualitzat:', resposta.data)
-            await carregarMenus()
+            setMenus(menus.map(menu => menu.id === nouMenu ? resposta.data : menu))
         } catch (error) {
             console.error('Error actualitzant el menus:', error.response?.data)
         }
@@ -75,15 +71,16 @@ export const useAxiosPeticionsMenus = () => {
     const eliminarMenus = async (idMenu) => {
         try {
             await axiosClient.delete(`/menu/${idMenu}`)
+            setMenus(menus.filter(menu => menu.id !== idMenu));
             await carregarMenus()
         } catch (error) {
             console.log('Error eliminant el menus:', error)
         }
     }
 
-    /*useEffect(() => {
+    useEffect(() => {
         carregarMenus()
-    }, [])*/
+    }, [])
 
     return { menus, carregarMenus, crearMenus, actualitzarMenus, eliminarMenus }
 }
