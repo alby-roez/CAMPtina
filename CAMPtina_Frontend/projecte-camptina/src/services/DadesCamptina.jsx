@@ -12,7 +12,7 @@ export function DadesCamptinaProvider({ children }) {
 
     const { apats, carregarApats, crearApat, actualitzarApat, eliminarApat } = useAxiosPeticionsApats()
     const { menus, carregarMenus, crearMenus, actualitzarMenus, eliminarMenus } = useAxiosPeticionsMenus()
-    const { menusApats, carregarMenusApats, crearMenusApats, eliminarMenuApats } = useAxiosPeticionsMenusApats()
+    const { menusApats, carregarMenusApats, carregarMenusComplet, crearMenusApats, eliminarMenuApats } = useAxiosPeticionsMenusApats()
     const { torns, carregarTorns, crearTorn, actualitzarTorn, eliminarTorn } = useAxiosPeticions()
     const { rols, carregarRols } = useAxiosPeticionsRols()
     const { usuaris, carregarUsuaris, crearUsuari, actualitzarUsuari, eliminarUsuari } = useAxiosPeticionsUsuaris()
@@ -21,7 +21,7 @@ export function DadesCamptinaProvider({ children }) {
         <DadesCamptinaContext.Provider value={{
             apats, carregarApats, crearApat, actualitzarApat, eliminarApat,
             menus, carregarMenus, crearMenus, actualitzarMenus, eliminarMenus,
-            menusApats, carregarMenusApats, crearMenusApats, eliminarMenuApats,
+            menusApats, carregarMenusApats, carregarMenusComplet, crearMenusApats, eliminarMenuApats,
             torns, carregarTorns, crearTorn, actualitzarTorn, eliminarTorn,
             rols, carregarRols,
             usuaris, carregarUsuaris, crearUsuari, actualitzarUsuari, eliminarUsuari

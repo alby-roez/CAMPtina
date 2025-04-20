@@ -10,7 +10,7 @@ import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
 import CrearApat from './pagines/apats/CrearApat.jsx'
 import Torns from './pagines/apats/Torns.jsx'
- 
+
 import User from './pagines/User.jsx'
 import Login from './pagines/Login.jsx'
 import SignUp from './pagines/SignUp.jsx'
@@ -69,18 +69,20 @@ function App() {
   const className_pagina = 'cn-pagina';
   return (
     <>
-    <DadesCamptinaProvider>
-          <MenusProvider>
-              <div className={className_pagina}> 
-                <Router rutes={rutesApp} componentPerDefecte={Page404}>
-                  <Route cami='/' Component={Inici} />
-                  <Route cami='/apats' Component={Apats} />
-                  <Route cami='/usuaris' Component={Usuaris} />
-                  <Route cami='/contacte' Component={Contacte} />
-                </Router>
-              </div>
-          </MenusProvider>
-    </DadesCamptinaProvider>
+      <MenusProvider>
+        <DadesCamptinaProvider>
+
+          <div className={className_pagina}>
+            <Router rutes={rutesApp} componentPerDefecte={Page404}>
+              <Route cami='/' Component={Inici} />
+              <Route cami='/apats' Component={Apats} />
+              <Route cami='/usuaris' Component={Usuaris} />
+              <Route cami='/contacte' Component={Contacte} />
+            </Router>
+          </div>
+        </DadesCamptinaProvider>
+      </MenusProvider>
+
     </>
   )
 }

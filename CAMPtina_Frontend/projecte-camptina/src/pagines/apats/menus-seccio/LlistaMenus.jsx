@@ -3,12 +3,10 @@ import { PaginacioMenus } from './PaginacioMenus.jsx'
 import { useMenus } from './LogicaMenus.js'
 import './LlistaMenus.css'
 import { BotoAddMenu, BotoAddMenuAfegit } from './BotonsMenus.jsx'
-import { useAxiosPeticionsMenusApats } from '../../../services/AxiosPeticionsMenusApats.js'
 import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 
 export const LlistaMenus = () => {
     const { apats, carregarApats } = useAxiosPeticionsApats()
-    const { menusApats, crearMenusApats } = useAxiosPeticionsMenusApats()
 
     useEffect(() => {
         carregarApats()
