@@ -1,124 +1,285 @@
 import './LlistaApats.css'
 import { useState, useEffect } from 'react'
-import { useApats } from '../ApatsContext.jsx'
+import { FormActualitzarApat } from './FormActualitzarApat.jsx'
+import { CloseFinestra, FilterIcona, DeletePaperera } from '../../../Icones.jsx'
+import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
+import { PaginacioApats } from './PaginacioApats.jsx'
+import { BotoUpdate, BotoUpdateDisabled } from './BotonsApats.jsx'
 
 export const LlistaApats = () => {
-    const { apats, eliminarApat } = useApats()
-    const [esTancat, setEsTancat] = useState(false)
     
-    const tancarFinestra = () => {
-        setEsTancat(!esTancat);
-    }
+    /* useApats & categories ================================================== A- */
+    const { apats, carregarApats, eliminarApat } = useAxiosPeticionsApats()
+
+    useEffect(() => {
+        carregarApats()
+    }, [])
 
     const categories = {
         1: 'Primer',
         2: 'Segon',
-        3: 'Postres',
+        3: 'Postres'
+    }
+    /* useApats & categories ================================================== -Z */
+
+    /* PaginacioApats ================================================== A- */
+    const totalLlistaApats = apats.length;
+
+    const [apatsPerPagina, setApatsPerPagina] = useState(10)
+    const [paginaActual, setPaginaActual] = useState(1)
+
+    const indexApatsFinal = paginaActual * apatsPerPagina
+    const indexApatsInicial = indexApatsFinal - apatsPerPagina
+    /* PaginacioApats ================================================== -Z */
+
+    /* useState shaTancat ================================================== A- */
+    const [shaTancat, setShaTancat] = useState(false)
+    
+    const tancarFinestra = () => {
+        setShaTancat(!shaTancat);
     }
 
     useEffect(() => {
-        //if (esTancat) {
-            //const section = document.getElementById('id_section_llista_apats');
-            const article = document.getElementById('id_article_llista_apats');
-            //article.setAttribute('style', 'display: none;');
-            //section.setAttribute('style', 'height: 70px');
-            article.style.display = esTancat ? 'none' : '';
-        //} else {
-            //const section = document.getElementById('id_section_llista_apats');
-            //const article = document.getElementById('id_article_llista_apats');
-            //article.removeAttribute('style');
-            //section.removeAttribute('style');
-            //article.style.display = '';
-        //}
-    }, [esTancat])
+        const section = document.getElementById('id_section_llista_apats');
+        const article = document.getElementById('id_article_llista_apats');
+        const search = document.getElementById('id_article_filtre_search_llista_apats');
+        const paginacio = document.getElementById('id_article_pagines_paginacio_apats');
+        if (shaTancat) {
+            article.setAttribute('style', 'display: none;');
+            search.setAttribute('style', 'display: none;');
+            paginacio.setAttribute('style', 'display: none;');
+            section.setAttribute('style', 'height: 70px');
+        } else {
+            article.removeAttribute('style');
+            section.removeAttribute('style');
+            search.removeAttribute('style');
+            paginacio.removeAttribute('style');
+        }
+    }, [shaTancat])
+    /* useState shaTancat ================================================== -Z */
+
+    /* useState shaFiltrat ================================================== A- */
+    const [shaFiltrat, setShaFiltrat] = useState(false)
+    
+    const filtreIcona = () => {
+        setShaFiltrat(!shaFiltrat);
+    }
+    
+    useEffect(() => {
+        const select = document.getElementById('id_select_filtre_categoria_llista_apats');
+        const bttn = document.getElementById('id_bttn_filtre_llista_apats');
+        if (shaFiltrat) {
+            select.setAttribute('style', 'display: flex;');
+            bttn.setAttribute('style', 'background: #075;');
+        } else {
+            select.removeAttribute('style');
+            bttn.removeAttribute('style');
+        }
+    }, [shaFiltrat])
+
+    const [txtActual, setTxtActual] = useState('')
+
+    const maneigFiltreBuscador = event => {
+        setTxtActual(event.currentTarget.value)
+    }
+
+    const [filters, setFilters] = useState({
+        categoriaId: 0,
+    })
+
+    const maneigFiltre = (event) => {
+        const valor = parseInt(event.currentTarget.value)
+        setFilters(estatAnterior => ({
+            ... estatAnterior,
+            categoriaId: valor,
+        }))
+    }
+
+    /* FILTRAR UN ARRAY ¡IMPORTANT ESTUDIAR! */
+    const filtreApats = (apats) => {
+        return apats.filter(apat => {
+            return (
+                (filters.categoriaId === 0 ||
+                apat.categoriaId === filters.categoriaId) &&
+                (txtActual === '' ||
+                apat.nom.includes(txtActual))
+            )
+        })
+    }
+
+    const filtratApats = filtreApats(apats)
+    /* useState shaFiltrat ================================================== -Z */
+    
+    /* useState shaActualitzat ================================================== A- */
+    const [shaActualitzat, setShaActualitzat] = useState(true)
+    const [idActualitzacio, setIdActualitzacio] = useState({
+        id: 0
+    })
+    
+    const actualitzarLlapis = id => {
+        const actualForm = `id_${id}_form_update_llista_apats`;
+        const actualBttn = `id_${id}_bttn_update_llista_apats`;
+        const form = document.getElementById(actualForm);
+        const bttn = document.getElementById(actualBttn);
+        if (shaActualitzat) {
+            form.setAttribute('style', 'display: flex;');
+            bttn.setAttribute('style', 'background: #2bb;');
+        } else {
+            form.removeAttribute('style');
+            bttn.removeAttribute('style');
+        }
+        setShaActualitzat(!shaActualitzat);
+        setIdActualitzacio(estatAnterior => ({
+            ... estatAnterior,
+            id: id
+        }))
+    }
+    /* useState shaActualitzat ================================================== -Z */
 
     const className_section = 'cn-section-llista-apats';
     const id_section = 'id_section_llista_apats'
+
     const className_article_nom = 'cn-article-nom-llista-apats';
     const className_h3_nom = 'cn-h3-nom-llista-apats';
     const nomSeccio = 'Llista d\'àpats';
 
-    const className_bttn_finestra = 'cn-bttn-finestra-llista-apats';
-    const id_bttn_finestra = 'id_bttn_finestra_llista_apats';
-    const name_bttn_finestra = 'finestraDeLlistaApats';
-    //const txt_bttn_finestra = '✕';
-
     const className_article_llista = 'cn-article-llista-apats';
     const id_article_llista = 'id_article_llista_apats';
     const className_ul_llista = 'cn-ul-llista-apats';
+
+    const className_li_update_llista = 'cn-li-update-llista-apats';
     const className_li_id_llista = 'cn-li-id-llista-apats';
     const className_li_nom_llista = 'cn-li-nom-llista-apats';
     const className_li_categoria_llista = 'cn-li-categoria-llista-apats';
     const className_li_descripcio_llista = 'cn-li-descripcio-llista-apats';
-    const className_li_eliminar_llista = 'cn-li-eliminar-llista-apats';
+    const className_li_delete_llista = 'cn-li-delete-llista-apats';
 
-    const className_li_1 = 'cn-li-1-llista-apats';
-    const className_li_2 = 'cn-li-2-llista-apats';
-    const className_li_3 = 'cn-li-3-llista-apats';
-    const className_li_4 = 'cn-li-4-llista-apats';
+    const className_div_llista = 'cn-div-llista-apats';
 
-    const llistaID = 'ID de l\'àpat';
+    const className_li_item_update = 'cn-li-item-update-llista-apats';
+    const className_li_item_id = 'cn-li-item-id-llista-apats';
+    const className_li_item_nom = 'cn-li-item-nom-llista-apats';
+    const className_li_item_categoria = 'cn-li-item-categoria-llista-apats';
+    const className_li_item_descripcio = 'cn-li-item-descripcio-llista-apats';
+    const className_li_item_delete = 'cn-li-item-delete-llista-apats';
+
+    const llistaID = 'Id';
     const llistaNom = 'Nom de l\'àpat';
-    const llistaCategoria = 'Categoria de l\'àpat';
-    const llistaDescripcio = 'Breu descripció de l\'àpat';
+    const llistaCategoria = 'Categoria';
+    const llistaDescripcio = 'Descripció de l\'àpat';
 
-    const className_bttn_eliminar = 'cn-bttn-eliminar';
+    const className_bttn_finestra = 'cn-bttn-finestra-llista-apats';
+    const id_bttn_finestra = 'id_bttn_finestra_llista_apats';
+    const name_bttn_finestra = 'finestraDeLlistaApats';
+
+    const className_div_filtre_intern = 'cn-div-filtre-intern-llista-apats';
+
+    const className_bttn_filtre = 'cn-bttn-filtre-llista-apats';
+    const id_bttn_filtre = 'id_bttn_filtre_llista_apats';
+    const name_bttn_filtre = 'filtreDeLlistaApats';
+
+    const className_select_filtre_categoria = 'cn-select-filtre-categoria-llista-apats';
+    const id_select_filtre_categoria = 'id_select_filtre_categoria_llista_apats';
+    const name_select_filtre_categoria = 'categoriaFiltre';
+
+    const className_bttn_delete = 'cn-bttn-delete-llista-apats';
+    const id_bttn_delete = 'id_bttn_delete_llista_apats';
+    const name_bttn_delete = 'deleteDeLlistaApats';
+
+    const className_article_filtre_search = 'cn-article-filtre-search-llista-apats';
+    const id_article_filtre_search = 'id_article_filtre_search_llista_apats';
+    const className_input_filtre_search = 'cn-input-filtre-search-llista-apats';
+    const id_input_filtre_search = 'id_input_filtre_search_llista_apats';
+    const name_input_filtre_search = 'nameInputFiltreSearch';
+    const placeholder_input_filtre_search = 'Nom de l\'àpat...';
 
     return (
         <>
-            <section 
-                className={`${className_section} ${apats.length > 0 ? 'plena' : ''} `} 
-                id={id_section}
-            >
+            <section className={className_section} id={id_section}>
                 <article className={className_article_nom}>
                     <h3 className={className_h3_nom}>{nomSeccio}</h3>
+                    <div className={className_div_filtre_intern}>
+                        <button
+                            className={className_bttn_filtre}
+                            id={id_bttn_filtre}
+                            name={name_bttn_filtre}
+                            onClick={filtreIcona}
+                        >
+                            <FilterIcona />
+                        </button>
+                        <select
+                            className={className_select_filtre_categoria}
+                            id={id_select_filtre_categoria}
+                            name={name_select_filtre_categoria}
+                            onChange={maneigFiltre}
+                        >
+                            <option value={0}>Totes</option>
+                            <option value={1}>Primer</option>
+                            <option value={2}>Segon</option>
+                            <option value={3}>Postres</option>
+                        </select>
+                    </div>
                     <button
                         className={className_bttn_finestra}
                         id={id_bttn_finestra}
                         name={name_bttn_finestra}
                         onClick={tancarFinestra}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
-                        stroke="currentColor" className="size-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
+                        <CloseFinestra />
                     </button>
+                </article>
+                <article className={className_article_filtre_search} id={id_article_filtre_search}>
+                    <input
+                        className={className_input_filtre_search}
+                        id={id_input_filtre_search}
+                        name={name_input_filtre_search}
+                        placeholder={placeholder_input_filtre_search}
+                        type='search'
+                        onInput={maneigFiltreBuscador}
+                    />
                 </article>
                 <article className={className_article_llista} id={id_article_llista}>
                     <ul className={className_ul_llista}>
+                        <li className={className_li_update_llista}></li>
                         <li className={className_li_id_llista}>{llistaID}</li>
                         <li className={className_li_nom_llista}>{llistaNom}</li>
                         <li className={className_li_categoria_llista}>{llistaCategoria}</li>
                         <li className={className_li_descripcio_llista}>{llistaDescripcio}</li>
-                        <li className={className_li_eliminar_llista}></li>
+                        <li className={className_li_delete_llista}></li>
                     </ul>
-                    {apats.map((apat) => (
+                    {filtratApats.map((apat) => (
+                        <div key={apat.id} className={className_div_llista}>
                             <ul key={apat.id} className={className_ul_llista}>
-                                <li className={className_li_id_llista}>{apat.id}</li>
-                                <li className={className_li_nom_llista}>{apat.nom}</li>
-                                <li className={className_li_categoria_llista}>
-                                    {categories[apat.categoriaId]}
+                                <li className={className_li_item_update}>
+                                    {shaActualitzat || idActualitzacio.id === apat.id
+                                        ? <BotoUpdate id={apat.id} actualitzarLlapis={id => actualitzarLlapis(id)} />
+                                        : <BotoUpdateDisabled />}
                                 </li>
-                                <li className={className_li_descripcio_llista}>{apat.descripcio}</li>
-                                <li className={className_li_eliminar_llista}>
-                                    <button 
+                                <li className={className_li_item_id} id={`id_${apat.id}_li_item_id_llista_apats`}>{apat.id}</li>
+                                <li className={className_li_item_nom} id={`id_${apat.id}_li_item_nom_llista_apats`}>{apat.nom}</li>
+                                <li className={className_li_item_categoria} id={`id_${apat.id}_li_item_categoria_llista_apats`}>{categories[apat.categoriaId]}</li>
+                                <li className={className_li_item_descripcio} id={`id_${apat.id}_li_item_descripcio_llista_apats`}>{apat.descripcio}</li>
+                                <li className={className_li_item_delete}>
+                                    <button
+                                        className={className_bttn_delete}
+                                        id={id_bttn_delete}
+                                        name={name_bttn_delete}
                                         onClick={() => eliminarApat(apat.id)}
-                                        className={className_bttn_eliminar}
                                     >
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" 
-                                            stroke="currentColor" className="size-6">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 
-                                                0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 
-                                                0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 
-                                                0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 
-                                                0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 
-                                                2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                                            </svg>
+                                        <DeletePaperera />
                                     </button>
-                                </li> 
-                            </ul>           
-                    ))}
+                                </li>
+                            </ul>
+                            <FormActualitzarApat id={apat.id} />
+                        </div>
+                    )).slice(indexApatsInicial, indexApatsFinal)}
                 </article>
+                <PaginacioApats
+                    totalApats={totalLlistaApats}
+                    apatsPerPagina={apatsPerPagina}
+                    paginaActual={paginaActual}
+                    setPaginaActual={setPaginaActual}
+                />
             </section>
         </>
     )

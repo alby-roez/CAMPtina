@@ -1,10 +1,11 @@
 import './FormCrearApat.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useApats } from '../ApatsContext.jsx'
+import { CloseFinestra, ResetRoda } from '../../../Icones.jsx'
+import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 
 export const FormCrearApat = () => {
-    const { crearApat } = useApats()
+    const { crearApat } = useAxiosPeticionsApats()
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearApat = handleSubmit((data) => {
@@ -13,11 +14,14 @@ export const FormCrearApat = () => {
             categoriaId: parseInt(data.categoriaDeApat),
             descripcio: data.descripcioDeApat
         };
-
         crearApat(nouApat); 
         reset();
-        
     })
+
+    const fn_resetejarApat = (event) => {
+        event.preventDefault();
+        reset();
+    }
 
     const [esTancat, setEsTancat] = useState(false)
 
@@ -47,15 +51,16 @@ export const FormCrearApat = () => {
 
     const className_form = 'cn-form-crear-apat';
     const id_form = 'id_form_crear_apat';
-    const method_form = 'POST';
-    const action_form = 'http://localhost:5173'; /* Cal modificar per passar les dades al servidor. */
-
     const className_div_contingut_form = 'cn-div-contingut-form-crear-apat';
     const className_div_txt_select_form = 'cn-div-txt-select-form-crear-apat';
     const className_div_lbl_txt_form = 'cn-div-lbl-text-form-crear-apat';
     const className_div_lbl_select_form = 'cn-div-lbl-select-form-crear-apat';
     const className_div_txtarea_form = 'cn-div-txtarea-form-crear-apat';
     const className_div_bttn_form = 'cn-div-bttn-form-crear-apat';
+
+    const className_div_container_input = 'cn-div-container-input-form-crear-apat';
+    const className_div_container_select = 'cn-div-container-select-form-crear-apat';
+    const className_div_container_txtarea = 'cn-div-container-txtarea-form-crear-apat';
 
     const className_input_txt = 'cn-input-txt-form-crear-apat';
     const id_input_txt = 'id_input_txt_form_crear_apat';
@@ -94,7 +99,6 @@ export const FormCrearApat = () => {
     const className_bttn_finestra = 'cn-bttn-finestra-form-crear-apat';
     const id_bttn_finestra = 'id_bttn_finestra_form_crear_apat';
     const name_bttn_finestra = 'finestraDeFormCrear';
-    //const txt_bttn_finestra = '✕';
 
     const className_span = 'cn-span-error';
 
@@ -109,29 +113,28 @@ export const FormCrearApat = () => {
                         name={name_bttn_finestra}
                         onClick={tancarFinestra}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
-                        stroke="currentColor" className="size-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
+                        <CloseFinestra />
                     </button>
                 </article>
                 <form className={className_form} id={id_form} onSubmit={peticioCrearApat}>
                     <div className={className_div_contingut_form}>
                         <div className={className_div_txt_select_form}>
-                            <div className={className_div_lbl_txt_form}>
-                                <label htmlFor={id_input_txt}>{txtInputNomApat}</label>
-                                <input
-                                    defaultValue={''}
-                                    className={className_input_txt}
-                                    id={id_input_txt}
-                                    name={name_input_txt}
-                                    type='text'
-                                    { ... register('nomDeApat', {
-                                        required: true,
-                                        minLength: 3,
-                                        maxLength: 50
-                                    })}
-                                />
+                            <div className={className_div_container_input}>
+                                <div className={className_div_lbl_txt_form}>
+                                    <label htmlFor={id_input_txt}>{txtInputNomApat}</label>
+                                    <input
+                                        defaultValue={''}
+                                        className={className_input_txt}
+                                        id={id_input_txt}
+                                        name={name_input_txt}
+                                        type='text'
+                                        { ... register('nomDeApat', {
+                                            required: true,
+                                            minLength: 3,
+                                            maxLength: 50
+                                        })}
+                                    />
+                                </div>
                                 { errors.nomDeApat?.type === 'required' &&
                                 <span className={className_span}>El nom és obligatori</span> }
                                 { errors.nomDeApat?.type === 'minLength' &&
@@ -139,52 +142,57 @@ export const FormCrearApat = () => {
                                 { errors.nomDeApat?.type === 'maxLength' &&
                                 <span className={className_span}>Màxim 50 caràcters</span> }
                             </div>
-                            <div className={className_div_lbl_select_form}>
-                                <label htmlFor={id_select}>{txtSelectCategoriaApat}</label>
-                                <select defaultValue={''} className={className_select} id={id_select} name={name_select}
-                                { ... register('categoriaDeApat', {
-                                    required: true
-                                })}>
-                                    <option value='' disabled></option>
-                                    <option value={valuePrimer}>{txtPrimer}</option>
-                                    <option value={valueSegon}>{txtSegon}</option>
-                                    <option value={valuePostres}>{txtPostres}</option>
-                                </select>
+                            <div className={className_div_container_select}>
+                                <div className={className_div_lbl_select_form}>
+                                    <label htmlFor={id_select}>{txtSelectCategoriaApat}</label>
+                                    <select defaultValue={''} className={className_select} id={id_select} name={name_select}
+                                    { ... register('categoriaDeApat', {
+                                        required: true
+                                    })}>
+                                        <option value='' disabled></option>
+                                        <option value={valuePrimer}>{txtPrimer}</option>
+                                        <option value={valueSegon}>{txtSegon}</option>
+                                        <option value={valuePostres}>{txtPostres}</option>
+                                    </select>
+                                </div>
                                 { errors.categoriaDeApat?.type === 'required' &&
                                 <span className={className_span}>Has de seleccionar una categoria</span> }
                             </div>
                         </div>
-                        <div className={className_div_txtarea_form}>
-                            <label htmlFor={id_txtarea}>{txtTxtareaDescripcioApat}</label>
-                            <textarea
-                                defaultValue={''}
-                                className={className_txtarea}
-                                id={id_txtarea}
-                                name={name_txtarea}
-                                placeholder={preTxtarea}
-                                rows={txtareaRows}
-                                cols={txtareaCols}
-                                { ... register('descripcioDeApat', {
-                                    required: true,
-                                    minLength: 5,
-                                    maxLength: 100
-                                })}
-                            />
-                            { errors.descripcioDeApat?.type === 'required' &&
-                                <span className={className_span}>La descripció és obligatòria</span> }
-                                { errors.descripcioDeApat?.type === 'minLength' &&
-                                <span className={className_span}>Mínim 5 caràcters</span> }
-                                { errors.descripcioDeApat?.type === 'maxLength' &&
-                                <span className={className_span}>Màxim 100 caràcters</span> }
+                        <div className={className_div_container_txtarea}>
+                            <div className={className_div_txtarea_form}>
+                                <label htmlFor={id_txtarea}>{txtTxtareaDescripcioApat}</label>
+                                <textarea
+                                    defaultValue={''}
+                                    className={className_txtarea}
+                                    id={id_txtarea}
+                                    name={name_txtarea}
+                                    placeholder={preTxtarea}
+                                    rows={txtareaRows}
+                                    cols={txtareaCols}
+                                    { ... register('descripcioDeApat', {
+                                        required: true,
+                                        minLength: 5,
+                                        maxLength: 100
+                                    })}
+                                />
+                                { errors.descripcioDeApat?.type === 'required' &&
+                                    <span className={className_span}>La descripció és obligatòria</span> }
+                                    { errors.descripcioDeApat?.type === 'minLength' &&
+                                    <span className={className_span}>Mínim 5 caràcters</span> }
+                                    { errors.descripcioDeApat?.type === 'maxLength' &&
+                                    <span className={className_span}>Màxim 100 caràcters</span> }
+                            </div>
                         </div>
                     </div>
                     <div className={className_div_bttn_form}>
-                        <input
+                        <button
                             id={id_reset}
                             name={name_reset}
-                            value={value_reset}
-                            type='reset'
-                        />
+                            onClick={event => fn_resetejarApat(event)}
+                        >
+                            <ResetRoda />
+                        </button>
                         <input
                             id={id_submit}
                             name={name_submit}

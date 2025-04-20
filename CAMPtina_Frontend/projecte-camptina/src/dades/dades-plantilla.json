@@ -1,0 +1,50 @@
+[
+    {
+        "id": "0001",
+        "nom": "Espagueti",
+        "categoria": "1",
+        "descripcio": "L'espagueti és una mena de pasta italiana elaborada amb farina de gra dur i aigua"
+    },
+    {
+        "id": "0002",
+        "nom": "Macarró",
+        "categoria": "1",
+        "descripcio": "El macarró és un tipus de pasta italiana elaborat amb aigua, farina de blat"
+    },
+    {
+        "id": "0003",
+        "nom": "Cigrons",
+        "categoria": "1",
+        "descripcio": "El cigró és una mena de lleguminosa adaptada a tots els continents"
+    },
+    {
+        "id": "0004",
+        "nom": "Arròs",
+        "categoria": "1",
+        "descripcio": "L'arròs és un cereal considerat aliment bàsic en moltes gastronomies del món"
+    },
+    {
+        "id": "0005",
+        "nom": "Hamburguesa",
+        "categoria": "2",
+        "descripcio": "Una hamburguesa és un emparetat que conté, generalment, carn picada o d'origen vegetal"
+    },
+    {
+        "id": "0006",
+        "nom": "Pollastre",
+        "categoria": "2",
+        "descripcio": "S'anomena carn de pollastre als teixits musculars i òrgans procedents del pollastre"
+    },
+    {
+        "id": "0007",
+        "nom": "Gelat",
+        "categoria": "3",
+        "descripcio": "El gelat és un aliment congelat que en general es fa de productes lactis com ara llet o crema"
+    },
+    {
+        "id": "0008",
+        "nom": "Iogurt",
+        "categoria": "3",
+        "descripcio": "El iogurt és un producte lacti obtingut mitjançant la fermentació de la llet"
+    }
+]

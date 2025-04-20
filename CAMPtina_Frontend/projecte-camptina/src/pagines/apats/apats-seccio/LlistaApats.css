@@ -8,9 +8,6 @@
     width: 80%;
     min-height: 70px;
 }
-.cn-section-llista-apats.plena {
-    height: auto;
-}
 
 .cn-article-nom-llista-apats {
     display: flex;
@@ -33,15 +30,27 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    min-height: 70px;
+    min-height: 25px;
 }
 
 .cn-ul-llista-apats {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1%;
     width: 100%;
-    min-height: 70px;
+    height: 50px;
+}
+
+.cn-li-update-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    height: 100%;
+    background: #111;
+    border-bottom-right-radius: 8px;
+    visibility: hidden;
 }
 
 .cn-li-id-llista-apats {
@@ -49,11 +58,13 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-    font-size: 0.8em;
-    width: 10%;
-    height: 50px;
+    font-size: 1.2em;
+    width: 5%;
+    height: 100%;
     background: #222;
     border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
 .cn-li-nom-llista-apats {
@@ -61,12 +72,13 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-    font-size: 0.8em;
-    width: 20%;
-    height: 50px;
+    font-size: 1.2em;
+    width: 35%;
+    height: 100%;
     background: #333;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
 .cn-li-categoria-llista-apats {
@@ -74,12 +86,13 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-    font-size: 0.8em;
-    width: 20%;
-    height: 50px;
+    font-size: 1.2em;
+    width: 10%;
+    height: 100%;
     background: #444;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
 .cn-li-descripcio-llista-apats {
@@ -87,25 +100,111 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
-    font-size: 0.8em;
-    width: 40%;
-    height: 50px;
+    font-size: 1.2em;
+    width: 35%;
+    height: 100%;
     background: #555;
+    border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    overflow: auto;
 }
 
-.cn-li-eliminar-llista-apats {
+.cn-li-delete-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    height: 100%;
+    background: #666;
+    border-bottom-left-radius: 8px;
+    visibility: hidden;
+}
+
+.cn-div-llista-apats {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    min-height: 25px;
+}
+
+.cn-li-item-update-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    height: 100%;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.cn-li-item-id-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 5%;
+    height: 100%;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.cn-li-item-nom-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 35%;
+    height: 100%;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.cn-li-item-categoria-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    font-size: 1.2em;
+    width: 10%;
+    height: 100%;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.cn-li-item-descripcio-llista-apats {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 5px;
     font-size: 0.8em;
-    width: 10%;
-    height: 50px;
-    background: #666;
-    border-bottom-right-radius: 8px;
+    width: 35%;
+    height: 100%;
+    background: #fff;
+    color: #000;
+    border-radius: 8px;
+    overflow: auto;
 }
 
+.cn-li-item-delete-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    height: 100%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+/* CloseFinestra A- */
 .cn-bttn-finestra-llista-apats {
     position: absolute;
     right: 0;
@@ -120,6 +219,7 @@
     cursor: pointer;
     margin: 4px;
     width: 38px;
+    height: 38px;
 }
 
 .cn-bttn-finestra-llista-apats:hover {
@@ -129,25 +229,131 @@
 .cn-bttn-finestra-llista-apats:active {
     transform: scale(0.9);
 }
+/* CloseFinestra -Z */
 
-/* Nova columna per als botons (es pot millorar) */
-.cn-bttn-eliminar {
-    background: none;
+/* FilterIcona A- */
+.cn-div-filtre-intern-llista-apats {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    gap: 2px;
+    margin: 4px;
+    width: 240px;
+    height: 38px;
+}
+
+.cn-bttn-filtre-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
-    padding: 5px;
+    border-top-left-radius: 4px;
+    background: #258;
     cursor: pointer;
-  }
-  
-  .cn-bttn-eliminar svg {
-    width: 24px; 
-    height: 24px;
-    stroke: #000; 
-    transition: stroke 0.3s ease;
-  }
-  
-  .cn-bttn-eliminar:hover svg {
-    stroke: #fff; 
-  }
+    width: 38px;
+    height: 38px;
+}
+
+.cn-bttn-filtre-llista-apats:hover {
+    background: #b44;
+}
+
+.cn-bttn-filtre-llista-apats:active {
+    transform: scale(0.9);
+}
+
+.cn-select-filtre-categoria-llista-apats {
+    display: none;
+    width: 200px;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    color: #258;
+    text-align: center;
+    cursor: pointer;
+    font-size: 1rem;
+}
+/* FilterIcona -Z */
+
+/* UpdateLlapis A- */
+.cn-bttn-update-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #258;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.cn-bttn-update-llista-apats:hover {
+    background: #111;
+}
+
+.cn-bttn-update-llista-apats:active {
+    transform: scale(0.9);
+}
+/* UpdateLlapis -Z */
+
+/* DeletePaperera A- */
+.cn-bttn-delete-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background: #b44;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+.cn-bttn-delete-llista-apats:hover {
+    background: #f44;
+}
+
+.cn-bttn-delete-llista-apats:active {
+    transform: scale(0.9);
+}
+/* DeletePaperera -Z */
+
+.cn-article-filtre-search-llista-apats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+}
+
+.cn-input-filtre-search-llista-apats {
+    display: flex;
+    padding: 5px;
+    width: 80%;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    background: #fff;
+    color: #222;
+}
+
+.cn-input-filtre-search-llista-apats:focus {
+    outline: 4px solid #222;
+}
+
+/* Icones A- */
+.content-icon {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+/* Icones -Z */
 
 @media (max-width: 550px) {
     .cn-section-llista-apats {
@@ -166,20 +372,153 @@
     }
 }
 
-@media (max-width: 1000px) {
+@media (min-width: 450px) and (max-width: 900px) {
+    .cn-select-filtre-categoria-llista-apats {
+        width: 60px;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .cn-select-filtre-categoria-llista-apats {
+        width: 60px;
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .cn-select-filtre-categoria-llista-apats {
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 1350px) {    
     .cn-li-id-llista-apats {
-        font-size: 0.6em;
+        font-size: 1em;
     }
-
+    
     .cn-li-nom-llista-apats {
+        font-size: 1em;
+    }
+    
+    .cn-li-categoria-llista-apats {
+        font-size: 1em;
+    }
+    
+    .cn-li-descripcio-llista-apats {
+        font-size: 1em;
+    }
+    
+    .cn-li-item-id-llista-apats {
+        justify-content: flex-start;
+        font-size: 1em;
+    }
+    
+    .cn-li-item-nom-llista-apats {
+        justify-content: flex-start;
+        font-size: 1em;
+    }
+    
+    .cn-li-item-categoria-llista-apats {
+        justify-content: flex-start;
+        font-size: 1em;
+    }
+    
+    .cn-li-item-descripcio-llista-apats {
+        align-items: flex-start;
         font-size: 0.6em;
     }
+}
 
+@media (max-width: 1150px) {    
+    .cn-li-categoria-llista-apats {
+        font-size: 0.8em;
+    }
+
+    .cn-li-item-categoria-llista-apats {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 950px) {    
+    .cn-li-id-llista-apats {
+        font-size: 0.8em;
+    }
+    
+    .cn-li-nom-llista-apats {
+        font-size: 0.8em;
+    }
+    
     .cn-li-categoria-llista-apats {
         font-size: 0.6em;
     }
-
+    
     .cn-li-descripcio-llista-apats {
+        font-size: 0.8em;
+    }
+    
+    .cn-li-item-id-llista-apats {
+        font-size: 0.8em;
+    }
+    
+    .cn-li-item-nom-llista-apats {
+        font-size: 0.8em;
+    }
+    
+    .cn-li-item-categoria-llista-apats {
         font-size: 0.6em;
+    }
+}
+
+@media (max-width: 650px) {    
+    .cn-li-id-llista-apats {
+        justify-content: flex-start;
+    }
+    
+    .cn-li-categoria-llista-apats {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 550px) {    
+    .cn-ul-llista-apats {
+        height: 25px;
+    }
+
+    .content-icon {
+        width: 75%;
+    }
+
+    .cn-li-id-llista-apats {
+        justify-content: center;
+        font-size: 0.3em;
+    }
+    
+    .cn-li-nom-llista-apats {
+        font-size: 0.3em;
+    }
+    
+    .cn-li-categoria-llista-apats {
+        font-size: 0.1em;
+    }
+    
+    .cn-li-descripcio-llista-apats {
+        font-size: 0.3em;
+    }
+    
+    .cn-li-item-id-llista-apats {
+        font-size: 0.3em;
+    }
+    
+    .cn-li-item-nom-llista-apats {
+        font-size: 0.3em;
+    }
+    
+    .cn-li-item-categoria-llista-apats {
+        font-size: 0.1em;
+    }
+    
+    .cn-li-item-descripcio-llista-apats {
+        font-size: 0.3em;
     }
 }

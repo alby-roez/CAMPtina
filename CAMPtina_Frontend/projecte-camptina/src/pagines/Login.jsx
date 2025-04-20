@@ -37,6 +37,8 @@ export default function Login() {
     const p_footer = 'Don\'t have an account?';
     const txt_signup = 'Sign Up';
 
+    const className_div_a = 'cn-div-a-login';
+
     return (
         <>
             <main className={className_main}>
@@ -82,6 +84,9 @@ export default function Login() {
                         </div>
                     </article>
                 </section>
+                <div className={className_div_a}>
+                    <Link to='/'>Tornar</Link>
+                </div>
             </main>
         </>
     )
