@@ -97,6 +97,7 @@ export const FormCrearUsuari = () => {
 
 
     const className_span = 'cn-span-error';
+    const className_div_span = 'cn-span-error-container';
 
     return (
         <>
@@ -132,6 +133,8 @@ export const FormCrearUsuari = () => {
                                         maxLength: 45
                                     })}
                                 />
+                            </div>
+                            <div className={className_div_span}>
                                 { errors.nomUsuari?.type === 'required' &&
                                 <span className={className_span}>El nom és obligatori</span> }
                                 { errors.nomUsuari?.type === 'minLength' &&
@@ -153,6 +156,8 @@ export const FormCrearUsuari = () => {
                                         maxLength: 45
                                     })}
                                 />
+                            </div>
+                            <div className={className_div_span}>
                                 { errors.cognom1Usuari?.type === 'required' &&
                                 <span className={className_span}>El primer cognom és obligatori</span> }
                                 { errors.cognom1Usuari?.type === 'minLength' &&
@@ -172,6 +177,8 @@ export const FormCrearUsuari = () => {
                                         maxLength: 45
                                     })}
                                 />
+                            </div>
+                            <div className={className_div_span}>
                                 { errors.cognom2Usuari?.type === 'maxLength' &&
                                 <span className={className_span}>Màxim 45 caràcters</span> }
                             </div>
@@ -191,6 +198,8 @@ export const FormCrearUsuari = () => {
                                         }
                                     })}
                                 />
+                            </div>
+                            <div className={className_div_span}>
                                 { errors.email?.type === 'required' &&
                                 <span className={className_span}>El correu és obligatori</span> }
                                 { errors.email?.type === 'pattern' &&
@@ -209,6 +218,8 @@ export const FormCrearUsuari = () => {
                                         </option>
                                     ))}
                                 </select>
+                            </div>
+                            <div className={className_div_span}>
                                 { errors.rolUsuari?.type === 'required' &&
                                 <span className={className_span}>El rol és obligatori</span> }
                             </div>

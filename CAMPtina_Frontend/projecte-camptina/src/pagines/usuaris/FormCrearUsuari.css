@@ -6,7 +6,7 @@
     border-radius: 8px;
     padding: 0.65em;
     width: 80%;
-    height: 450px;
+    height: 540px;
 }
 
 .cn-article-nom-form-crear-usuari {
@@ -30,7 +30,7 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    height: 220px;
+    height: 380px;
 }
 
 .cn-div-contingut-form-crear-usuari {
@@ -40,7 +40,7 @@
     justify-content: center;
     margin-top: 15px;
     width: 100%;
-    height: 280px;
+    height: 380px;
 }
 
 .cn-div-txt-select-form-crear-usuari {
@@ -195,17 +195,23 @@
     transform: scale(0.9);
 }
 
+.cn-span-error-container {
+    display:flex;
+    padding-left: 5px;
+    width: 80%;
+    margin-left: 80px;
+}
+
 .cn-span-error {
-    position: absolute;
-    top: 50%;
-    right: 4px;
     display: flex;
-    color: #f22;
-    font-size: 0.6em;
+    align-items: center;
     padding: 5px;
-    background: #222;
-    border-bottom-right-radius: 8px;
-    border-top-left-radius: 8px;
+    width: 80%;
+    font-size: 0.8rem;
+    background: #ddd;
+    color: #b44;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 @media (max-width: 550px) {
