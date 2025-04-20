@@ -33,6 +33,23 @@
     margin-top: 1rem;
     justify-content: flex-end;
   }
+  .cn-span-error-container {
+    display:flex;
+    padding-left: 5px;
+    width: 80%;
+    margin-left: 80px;
+}
+.cn-span-error {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 80%;
+  font-size: 0.8rem;
+  background: #ddd;
+  color: #b44;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
   
   .btn-cancel,
   .btn-submit {

@@ -35,43 +35,55 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
             console.error("Error actualitzant usuari:", error);
         }
     });
-    const className_span_update = 'cn-span-update-llista-usuaris';
-    
+    const className_div_span = 'cn-span-error-container';
+    const className_span = 'cn-span-error';
+
     return (
         <form className="form-update-usuari" onSubmit={peticioActualitzarUsuari}>
             <div className="form-grid">
                 {/* Camp Nom */}
                 <div className="form-group">
                     <input
+                        defaultValue={usuari.nom}
                         type="text"
                         placeholder="Nom"
                         {...register("nom", {
                             required: true,
-                            min: { value: 3, message: "Mínim 3 caràcters" },
-                            max: { value: 25, message: "Màxim 25 caràcters" },
+                            minLength: 2,
+                            maxLength: 45
                         })}
-
                     />
-                    {errors.nom?.type === 'required' &&
-                    <span className={className_span_update}>El nom es requerit</span>}
+                    <div className={className_div_span}>
+                        {errors.nom?.type === 'required' &&
+                            <span className={className_span}>El nom és obligatori</span>}
+                        {errors.nom?.type === 'minLength' &&
+                            <span className={className_span}>Mínim 2 caràcters</span>}
+                        {errors.nom?.type === 'maxLength' &&
+                            <span className={className_span}>Màxim 45 caràcters</span>}
+                    </div>
                 </div>
 
-                {/* Camp Aforament */}
+
                 <div className="form-group">
                     <input
                         type="text"
                         placeholder="Primer cognom"
                         min="1"
                         {...register("cognom1", {
-                            required: "El cognom és obligatori",
-                            min: { value: 3, message: "Mínim 3 caràcters" },
-                            max: { value: 25, message: "Màxim 25 caràcters" },
+                            required: true,
+                            minLength: 2,
+                            maxLength: 45
                         })}
                         className={errors.aforament ? "error" : ""}
                     />
-                    {errors.message && (
-                        <span className="error-message">{errors.cognom1.message}</span>
-                    )}
+                    <div className={className_div_span}>
+                        {errors.cognom1?.type === 'required' &&
+                            <span className={className_span}>El primer cognom és obligatori</span>}
+                        {errors.cognom1?.type === 'minLength' &&
+                            <span className={className_span}>Mínim 2 caràcters</span>}
+                        {errors.cognom1?.type === 'maxLength' &&
+                            <span className={className_span}>Màxim 45 caràcters</span>}
+                    </div>
                 </div>
                 <div className="form-group">
                     <input
@@ -79,15 +91,20 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                         placeholder="Segon cognom"
                         min="1"
                         {...register("cognom2", {
-                            required: "El cognom és obligatori",
-                            min: { value: 3, message: "Mínim 3 persona" },
-                            max: { value: 25, message: "Màxim 25 caràcters" },
+                            required: true,
+                            minLength: 2,
+                            maxLength: 45
                         })}
                         className={errors.aforament ? "error" : ""}
                     />
-                    {errors.aforament && (
-                        <span className="error-message">{errors.cognom2.message}</span>
-                    )}
+                    <div className={className_div_span}>
+                        {errors.cognom2?.type === 'required' &&
+                            <span className={className_span}>El primer cognom és obligatori</span>}
+                        {errors.cognom2?.type === 'minLength' &&
+                            <span className={className_span}>Mínim 2 caràcters</span>}
+                        {errors.cognom2?.type === 'maxLength' &&
+                            <span className={className_span}>Màxim 45 caràcters</span>}
+                    </div>
                 </div>
                 <div className="form-group">
                     <select
@@ -104,24 +121,31 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                             </option>
                         ))}
                     </select>
-                    {errors.aforament &&
-                        <span className="error-message">{errors.rol.message}</span>}
+                    <div className={className_div_span}>
+                        {errors.rolUsuari?.type === 'required' &&
+                            <span className={className_span}>El rol és obligatori</span>}
+                    </div>
                 </div>
                 <div className="form-group">
                     <input
-                        type="text"
+                        type="email"
                         placeholder="Correu electrònic"
                         min="1"
-                        {...register("email", {
-                            required: "El correu electrònic és obligatori",
-                            min: { value: 3, message: "Mínim 3 caràcters" },
-                            max: { value: 25, message: "Màxim 25 caràcters" },
+                        {...register('email', {
+                            required: true,
+                            pattern: {
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                message: 'Format de correu no vàlid'
+                            }
                         })}
                         className={errors.aforament ? "error" : ""}
                     />
-                    {errors.aforament && (
-                        <span className="error-message">{errors.email.message}</span>
-                    )}
+                    <div className={className_div_span}>
+                        {errors.email?.type === 'required' &&
+                            <span className={className_span}>El correu és obligatori</span>}
+                        {errors.email?.type === 'pattern' &&
+                            <span className={className_span}>{errors.email.message}</span>}
+                    </div>
                 </div>
             </div>
 

@@ -116,7 +116,7 @@ export const FormCrearUsuari = () => {
                         </svg>
                     </button>
                 </article>
-                <form className={className_form} id={id_form} onSubmit={peticioCrearUsuari}>     {/*pendent afegir acció de onSubmit*/}
+                <form className={className_form} id={id_form} onSubmit={peticioCrearUsuari}>
                     <div className={className_div_contingut_form}>
                         <div className={className_div_txt_select_form}>
                             <div className={className_div_lbl_txt_form}>
@@ -174,11 +174,17 @@ export const FormCrearUsuari = () => {
                                     name={cognom2_input_txt}
                                     type='text'
                                     { ... register('cognom2Usuari', {
+                                        required: true,
+                                        minLength: 2,
                                         maxLength: 45
                                     })}
                                 />
                             </div>
                             <div className={className_div_span}>
+                                { errors.cognom2Usuari?.type === 'required' &&
+                                <span className={className_span}>El segon cognom és obligatori</span> }
+                                { errors.cognom2Usuari?.type === 'minLength' &&
+                                <span className={className_span}>Mínim 2 caràcters</span> }
                                 { errors.cognom2Usuari?.type === 'maxLength' &&
                                 <span className={className_span}>Màxim 45 caràcters</span> }
                             </div>
