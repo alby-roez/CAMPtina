@@ -1,5 +1,5 @@
 import "./LlistaTorns.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   CloseFinestra,
   UpdateLlapis,
@@ -8,7 +8,8 @@ import {
   CheckIcona,
 } from "../../../Icones.jsx";
 
-import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
+//import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
+import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
 import { FormActualitzarTorn } from "./FormActualitzarTorn.jsx";
 
 export const LlistaTorns = () => {
@@ -18,7 +19,8 @@ export const LlistaTorns = () => {
     setShaTancat(!shaTancat);
   };
 
-  const {torns, eliminarTorn} = useAxiosPeticions()
+  //const {torns, eliminarTorn} = useAxiosPeticions()
+  const { torns, eliminarTorn } = useContext(DadesCamptinaContext);
 
   const [editantId, setEditantId ] = useState(null);
 

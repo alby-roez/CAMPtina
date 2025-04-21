@@ -37,10 +37,11 @@ export const LlistaMenus = () => {
         return apats.filter(apat => {
             return (
                 filtreApat.name === '' ||
-                apat.nom.includes(filtreApat.name)
+                apat.nom.toLowerCase().includes(filtreApat.name.toLowerCase())
             )
         })
     }
+   
 
     const llistaFiltrada = filtrarLlista(apats)
 

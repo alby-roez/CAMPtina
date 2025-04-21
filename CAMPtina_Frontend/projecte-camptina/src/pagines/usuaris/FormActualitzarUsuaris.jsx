@@ -1,13 +1,16 @@
 import "./FormActualitzarUsuaris.css";
 import { useForm } from "react-hook-form";
 import { CheckIcona, CloseIcona } from "../../Icones.jsx";
-import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js';
-import { useEffect } from "react";
-import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
+//import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js';
+import { useEffect, useContext } from "react";
+import { DadesCamptinaContext } from "../../services/DadesCamptina.jsx";
+//import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 
 export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
-    const { actualitzarUsuari } = useAxiosPeticionsUsuaris();
-    const { rols } = useAxiosPeticionsRols();
+    //const { actualitzarUsuari } = useAxiosPeticionsUsuaris();
+    //const { rols } = useAxiosPeticionsRols();
+    const { actualitzarUsuari, rols } = useContext(DadesCamptinaContext)
+    
     const {
         register,
         handleSubmit,

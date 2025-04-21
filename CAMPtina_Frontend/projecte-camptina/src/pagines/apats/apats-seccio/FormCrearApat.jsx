@@ -1,11 +1,14 @@
 import './FormCrearApat.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { CloseFinestra, ResetRoda } from '../../../Icones.jsx'
-import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
+//import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
+import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const FormCrearApat = () => {
-    const { crearApat } = useAxiosPeticionsApats()
+    //const { crearApat } = useAxiosPeticionsApats()
+    const { crearApat } = useContext(DadesCamptinaContext)
+
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearApat = handleSubmit((data) => {

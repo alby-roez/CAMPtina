@@ -41,7 +41,8 @@ export const useAxiosPeticionsApats = () => {
                 },
             })
             console.log('Àpat creat:', resposta.data)
-            setApats([...apats, resposta.data])
+            await carregarApats()
+            //setApats([...apats, resposta.data])
         } catch (error) {
             console.error('Error creant l\'àpat:', error.response?.data)
         }

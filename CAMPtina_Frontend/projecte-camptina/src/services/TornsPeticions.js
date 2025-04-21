@@ -28,8 +28,8 @@ export const useAxiosPeticions = () => {
                 },
             })
             console.log('Torn creat:', resposta.data)
-            //await carregarTorns()
-            setTorns([...torns, resposta.data])
+            await carregarTorns()
+           //setTorns([...torns, resposta.data])
         } catch (error) {
             console.error('Error creant el torn:', error.response?.data)
         }
@@ -43,7 +43,8 @@ export const useAxiosPeticions = () => {
                 },
             })
             console.log('Torn actualitzat:', resposta.data)
-            setTorns(torns.map(torn => torn.id === idTorn ? resposta.data : torn))
+            await carregarTorns()
+            //setTorns(torns.map(torn => torn.id === idTorn ? resposta.data : torn))
         } catch (error) {
             console.error('Error actualitzant el torn:', error.response?.data)
         }
@@ -52,8 +53,8 @@ export const useAxiosPeticions = () => {
     const eliminarTorn = async (idTorn) => {
         try {
             await axiosClient.delete(`/torn/${idTorn}`)
-            //await carregarTorns()
-            setTorns(torns.filter(torn => torn.id !== idTorn));
+            await carregarTorns()
+            //setTorns(torns.filter(torn => torn.id !== idTorn));
         } catch (error) {
             console.log('Error eliminant el torn:', error)
         }

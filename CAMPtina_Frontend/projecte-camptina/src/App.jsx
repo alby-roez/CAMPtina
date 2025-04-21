@@ -71,7 +71,6 @@ function App() {
     <>
       <MenusProvider>
         <DadesCamptinaProvider>
-
           <div className={className_pagina}>
             <Router rutes={rutesApp} componentPerDefecte={Page404}>
               <Route cami='/' Component={Inici} />

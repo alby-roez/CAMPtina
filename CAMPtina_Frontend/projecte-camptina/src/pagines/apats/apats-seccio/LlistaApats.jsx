@@ -1,15 +1,17 @@
 import './LlistaApats.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { FormActualitzarApat } from './FormActualitzarApat.jsx'
 import { CloseFinestra, FilterIcona, DeletePaperera } from '../../../Icones.jsx'
-import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
+//import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
+import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 import { PaginacioApats } from './PaginacioApats.jsx'
 import { BotoUpdate, BotoUpdateDisabled } from './BotonsApats.jsx'
 
 export const LlistaApats = () => {
     
     /* useApats & categories ================================================== A- */
-    const { apats, carregarApats, eliminarApat } = useAxiosPeticionsApats()
+    //const { apats, carregarApats, eliminarApat } = useAxiosPeticionsApats()
+    const { apats, carregarApats, eliminarApat} = useContext(DadesCamptinaContext)
 
     useEffect(() => {
         carregarApats()
@@ -102,7 +104,7 @@ export const LlistaApats = () => {
                 (filters.categoriaId === 0 ||
                 apat.categoriaId === filters.categoriaId) &&
                 (txtActual === '' ||
-                apat.nom.includes(txtActual))
+                apat.nom.toLowerCase().startsWith(txtActual.toLowerCase()))
             )
         })
     }

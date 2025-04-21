@@ -1,12 +1,15 @@
 import './FormActualitzarApat.css'
 import { useForm } from 'react-hook-form'
+import { useContext } from 'react'
 import { UpdateEnrere } from '../../../Icones.jsx'
-import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
-
+//import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
+import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
+ 
 export const FormActualitzarApat = ({ id }) => {
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
-    const { actualitzarApat } = useAxiosPeticionsApats()
+    //const { actualitzarApat } = useAxiosPeticionsApats()
+    const { actualitzarApat} = useContext(DadesCamptinaContext)
 
     const peticioActualitzarApat = handleSubmit((data) => {
         const apatActualitzat = {

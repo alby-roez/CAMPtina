@@ -1,12 +1,14 @@
 import './FormCrearUsuari.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js'
+//import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js'
 import { ResetRoda } from '../../Icones.jsx'
-import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
+//import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
+import { DadesCamptinaContext } from '../../services/DadesCamptina.jsx'
 
 export const FormCrearUsuari = () => {
-    const { crearUsuari } = useAxiosPeticionsUsuaris()
+    //const { crearUsuari } = useAxiosPeticionsUsuaris()
+    const { crearUsuari, rols } = useContext(DadesCamptinaContext)
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
     const peticioCrearUsuari = handleSubmit((data) => {
@@ -24,7 +26,7 @@ export const FormCrearUsuari = () => {
         
     })
 
-    const { rols } = useAxiosPeticionsRols();
+    //const { rols } = useAxiosPeticionsRols();
 
     const [esTancat, setEsTancat] = useState(false)
 

@@ -1,12 +1,13 @@
 import "./FormActualitzarTorn.css";
 import { useForm } from "react-hook-form";
 import { CheckIcona, CloseIcona } from "../../../Icones.jsx";
-import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
-import { useEffect } from "react";
+//import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
+import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx"
+import { useContext, useEffect } from "react";
 
 export const FormActualitzarTorn = ({ torn, onCancel }) => {
-  const { torns, actualitzarTorn } = useAxiosPeticions();
-
+  //const { torns, actualitzarTorn } = useAxiosPeticions();
+  const {torns, actualitzarTorn } = useContext(DadesCamptinaContext)
   const {
     register,
     handleSubmit,

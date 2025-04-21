@@ -37,8 +37,8 @@ export const useAxiosPeticionsUsuaris = () => {
                 }
             })
             console.log("Usuari creat:", resposta.data)
-            //await carregarUsuaris()
-            setUsuaris([...usuaris, resposta.data])
+            await carregarUsuaris()
+            //setUsuaris([...usuaris, resposta.data])
         } catch (error) {
             console.error("Error creant l'usuari:", error.response?.data)
         }
@@ -51,8 +51,8 @@ export const useAxiosPeticionsUsuaris = () => {
         console.log('Que ha pasado')
         try {
             await axiosClient.delete(`/usuaris/${idUsuari}`)
-            //await carregarUsuaris()
-            setUsuaris(usuaris.filter(usuari => usuari.id !== idUsuari));
+            await carregarUsuaris()
+            //setUsuaris(usuaris.filter(usuari => usuari.id !== idUsuari));
         } catch (error) {
             console.log("Error eliminant l'usuari:", error)
         }
@@ -70,7 +70,8 @@ export const useAxiosPeticionsUsuaris = () => {
                 },
             })
             console.log('Usuari actualitzat', resposta.data)
-            setUsuaris(usuaris.map(usuari => usuari.id === idUsuari ? resposta.data : usuari))
+            await carregarUsuaris()
+            //setUsuaris(usuaris.map(usuari => usuari.id === idUsuari ? resposta.data : usuari))
         } catch (error) {
             console.error('Error actualitzant usuari:', error.response?.data)
         }

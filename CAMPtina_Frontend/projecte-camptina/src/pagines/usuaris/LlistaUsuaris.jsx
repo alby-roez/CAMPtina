@@ -1,18 +1,19 @@
 import './LlistaUsuaris.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useAxiosPeticionsUsuaris } from "../../services/UsuarisPeticions.js"
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
 import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
-import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
+//import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
+import { DadesCamptinaContext } from "../../services/DadesCamptina.jsx";
 
 export const LlistaUsuaris = () => {
-    const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
-
+    //const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
+    const { usuaris, eliminarUsuari, rols } = useContext(DadesCamptinaContext)
     /*const rols = {
         1: 'Gestor',
         2: 'Treballador',
     }*/
-    const { rols } = useAxiosPeticionsRols();
+    //const { rols } = useAxiosPeticionsRols();
 
     const [shaTancat, setShaTancat] = useState(false)
     const [editantId, setEditantId] = useState(null);
