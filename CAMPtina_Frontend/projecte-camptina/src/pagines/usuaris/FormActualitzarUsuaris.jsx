@@ -151,16 +151,14 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                     </div>
                 </div>
             </div>
-
-            <div className="form-actions">
-                <button type="submit" className="btn-submit">
-                    <CheckIcona />
-                </button>
-                <button type="button" onClick={onCancel} className="btn-cancel">
+            <div className="form-actions-form-actualitzar-usuaris">
+                <button type="button" onClick={onCancel} className="btn-cancel-form-actualitzar-usuaris">
                     <CloseIcona />
+                </button>
+                <button type="submit" className="btn-submit-form-actualitzar-usuaris">
+                    <CheckIcona />
                 </button>
             </div>
         </form>
-    );
-
-};
+    )
+}

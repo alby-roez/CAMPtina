@@ -5,6 +5,7 @@ import Inici from './pagines/Inici.jsx'
 import Apats from './pagines/Apats.jsx'
 import Usuaris from './pagines/usuaris/gestio-usuaris.jsx'
 import Contacte from './pagines/Contacte.jsx'
+import Equip from './pagines/Equip.jsx'
 
 import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
@@ -44,6 +45,10 @@ const rutesApp = [
     Component: Usuaris
   },
   {
+    cami: '/equip/equip-dev',
+    Component: Equip
+  },
+  {
     cami: '/user',
     Component: User
   },
@@ -81,7 +86,6 @@ function App() {
           </div>
         </DadesCamptinaProvider>
       </MenusProvider>
-
     </>
   )
 }

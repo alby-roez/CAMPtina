@@ -14,7 +14,10 @@ export default function Inici() {
             <main className={className_main}>
                 <section className='cn-video-a-inici'>
                     <video id='id_menjador' src={menjador} autoPlay loop muted></video>
-                    <Link to='/apats/triar-apat'>Triar Àpat</Link>
+                    <Link to='/apats/triar-apat'>Fer una comanda</Link>
+                    <Link to='/apats/crear-apat'>Gestió d'àpats</Link>
+                    <Link to='/apats/menus'>Gestió menus</Link>
+                    <Link to='/usuaris/gestio-usuaris'>Gestió d'usuaris</Link>
                 </section>
                 <section className='cn-info-inici'>
                     <h1>Pagina d'inici</h1>

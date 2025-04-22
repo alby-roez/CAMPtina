@@ -6,18 +6,14 @@ import { ResetRoda } from "../../../Icones.jsx";
 import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
 
 export const FormCrearTorn = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
 
   //const { torns, crearTorn } = useAxiosPeticions();
   const { torns, crearTorn } = useContext(DadesCamptinaContext);
 
-  // Valor hora inici
+  /**
+   * @description Valor hora inici
+   */
   const horaInici = watch("horaInici");
 
   const peticioCrearTorn = handleSubmit((data) => {
@@ -32,6 +28,11 @@ export const FormCrearTorn = () => {
     crearTorn(nouTorn);
     reset();
   });
+
+  const fn_resetejarTorn = (event) => {
+    event.preventDefault();
+    reset();
+}
 
   const [esTancat, setEsTancat] = useState(false);
 
@@ -82,18 +83,28 @@ export const FormCrearTorn = () => {
   const id_form = "id_form_crear_torn";
 
   const className_div_contingut_form = "cn-div-contingut-form-crear-torn";
-  const className_div_txt_form = "cn-div-txt-form-crear-torn";
+  const className_div_txt_nom_aforament_form = "cn-div-txt-nom-aforament-form-crear-torn";
+  const className_div_txt_horaris_form = "cn-div-txt-horaris-form-crear-torn";
   const className_div_lbl_txt_form = "cn-div-lbl-text-form-crear-torn";
   const className_div_lbl_time_form = "cn-div-lbl-time-form-crear-torn";
   const className_div_bttn_form = "cn-div-bttn-form-crear-torn";
 
-  const className_input_txt = "cn-input-txt-form-crear-torn";
-  const className_input_time = "cn-input-time-form-crear-torn";
-  const id_input_txt = "id_input_txt_form_crear_torn";
-  const name_input_txt = "nomTorn";
+  const className_input_txt_nom = "cn-input-txt-nom-form-crear-torn";
+  const id_input_txt_nom = "id_input_txt_nom_form_crear_torn";
+  const name_input_txt_nom = "nomTorn";
+
+  const className_input_num = "cn-input-num-form-crear-torn";
+  const id_input_num = "id_input_num_form_crear_torn";
   const name_input_num = "numAforament";
+
+  const className_input_inici = "cn-input-inici-form-crear-torn";
+  const id_input_inici = "id_input_inici_form_crear_torn";
   const name_input_inici = "horaInici";
+
+  const className_input_final = "cn-input-final-form-crear-torn";
+  const id_input_final = "id_input_final_form_crear_torn";
   const name_input_final = "horaFinal";
+
   const txtInputNomTorn = "Nom del torn:";
   const txtInputNumAforament = "Aforament:";
   const txtInputhoraInici = "Hora d'inici:";
@@ -110,8 +121,6 @@ export const FormCrearTorn = () => {
   const id_bttn_finestra = "id_bttn_finestra_form_crear_torn";
   const name_bttn_finestra = "finestraDeFormCrear";
 
-  const className_div_span_text = "cn-span-error-container-text";
-  const className_div_span_time = "cn-span-error-container-time";
   const className_span = "cn-span-error-form-torns";
 
   return (
@@ -124,137 +133,110 @@ export const FormCrearTorn = () => {
           name={name_bttn_finestra}
           onClick={tancarFinestra}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18 18 6M6 6l12 12"
-            />
-          </svg>
+          <CloseFinestra />
         </button>
       </article>
       <form className={className_form} id={id_form} onSubmit={peticioCrearTorn}>
         <div className={className_div_contingut_form}>
-          <div className={className_div_txt_form}>
-            <div className={className_div_lbl_txt_form}>
-              <label htmlFor={id_input_txt}>{txtInputNomTorn}</label>
-              <input
-                defaultValue={""}
-                className={className_input_txt}
-                id={name_input_txt}
-                name={name_input_txt}
-                type="text"
-                {...register("nomDeTorn", {
-                  required: true,
-                  minLength: 3,
-                  maxLength: 25,
-                })}
-              />
+          <div className={className_div_txt_nom_aforament_form}>
+            <div className='cn-div-container-form-crear-torn'>
+              <div className={className_div_lbl_txt_form}>
+                <label htmlFor={id_input_txt_nom}>{txtInputNomTorn}</label>
+                <input
+                  defaultValue={""}
+                  className={className_input_txt_nom}
+                  id={id_input_txt_nom}
+                  name={name_input_txt_nom}
+                  type="text"
+                  {...register("nomDeTorn", {
+                    required: true,
+                    minLength: 3,
+                    maxLength: 25,
+                  })}
+                />
+              </div>
+              {errors.nomDeTorn?.type === "required" &&
+              <span className={className_span}>El nom és obligatori</span>}
+              {errors.nomDeTorn?.type === "minLength" &&
+              <span className={className_span}>Mínim 3 caràcters</span>}
+              {errors.nomDeTorn?.type === "maxLength" &&
+              <span className={className_span}>Màxim 25 caràcters</span>}
             </div>
-            <div className={className_div_span_text}>
-              {errors.nomDeTorn?.type === "required" && (
-                <span className={className_span}>El nom és obligatori</span>
-              )}
-              {errors.nomDeTorn?.type === "minLength" && (
-                <span className={className_span}>Mínim 3 caràcters</span>
-              )}
-              {errors.nomDeTorn?.type === "maxLength" && (
-                <span className={className_span}>Màxim 25 caràcters</span>
-              )}
-            </div>
-
-            <div className={className_div_lbl_txt_form}>
-              <label htmlFor={id_input_txt}>{txtInputNumAforament}</label>
-              <input
-                defaultValue={""}
-                className={className_input_txt}
-                id={name_input_num}
-                name={name_input_num}
-                type="number"
-                {...register("aforament", {
-                  required: true,
-                  min: 1,
-                  max: 50,
-                })}
-              />
-            </div>
-            <div className={className_div_span_text}>
-              {errors.aforament?.type === "required" && (
-                <span className={className_span}>
-                  L'aforament és obligatori
-                </span>
-              )}
-              {errors.aforament?.type === "min" && (
-                <span className={className_span}>Mínim 1 persona</span>
-              )}
-              {errors.aforament?.type === "max" && (
-                <span className={className_span}>Màxim 50 persones</span>
-              )}
+            <div className='cn-div-container-form-crear-torn'>
+              <div className={className_div_lbl_txt_form}>
+                <label htmlFor={id_input_num}>{txtInputNumAforament}</label>
+                <input
+                  defaultValue={""}
+                  className={className_input_num}
+                  id={id_input_num}
+                  name={name_input_num}
+                  type="number"
+                  {...register("aforament", {
+                    required: true,
+                    min: 1,
+                    max: 50,
+                  })}
+                />
+              </div>
+              {errors.aforament?.type === "required" &&
+              <span className={className_span}>L'aforament és obligatori</span>}
+              {errors.aforament?.type === "min" &&
+              <span className={className_span}>Mínim 1 persona</span>}
+              {errors.aforament?.type === "max" &&
+              <span className={className_span}>Màxim 50 persones</span>}
             </div>
           </div>
-          <div className={className_div_txt_form}>
-            <div className={className_div_lbl_time_form}>
-              <label htmlFor={id_input_txt}>{txtInputhoraInici}</label>
-              <input
-                defaultValue={""}
-                className={className_input_time}
-                id={name_input_inici}
-                name={name_input_txt}
-                type="time"
-                {...register("horaInici", {
-                  required: true,
-                })}
-              />
+          <div className={className_div_txt_horaris_form}>
+            <div className='cn-div-container-form-crear-torn'>
+              <div className={className_div_lbl_time_form}>
+                <label htmlFor={id_input_inici}>{txtInputhoraInici}</label>
+                <input
+                  defaultValue={""}
+                  className={className_input_inici}
+                  id={id_input_inici}
+                  name={name_input_inici}
+                  type="time"
+                  {...register("horaInici", {
+                    required: true,
+                  })}
+                />
+              </div>
+              {errors.horaInici?.type === "required" &&
+              <span className={className_span}>Hora d'inici obligatòria</span>}
             </div>
-            <div className={className_div_span_time}>
-              {errors.horaInici?.type === "required" && (
-                <span className={className_span}>Hora d'inici obligatòria</span>
-              )}
-            </div>
-            <div className={className_div_lbl_time_form}>
-              <label htmlFor={id_input_txt}>{txtInputhoraFinal}</label>
-              <input
-                defaultValue={""}
-                className={className_input_time}
-                id={name_input_final}
-                name={name_input_num}
-                type="time"
-                {...register("horaFinal", {
-                  required: "Hora final obligatòria",
-                  validate: (value) => {
-                    if (!horaInici) {
-                      return true; // Si no hi ha hora d'inici, no cal validar
-                    }
-                    if (value === horaInici)
-                      return "L'hora final no pot ser igual a la d'inici.";
-                    if (value < horaInici)
-                      return "L'hora final ha de ser posterior a l'hora d'inici.";
-                    if (conflicteHorari(horaInici, value, torns)) {
-                      return "Aquest rang d'hores ja està assignat a un altre torn.";
-                    }
-                    return true;
-                  },
-                })}
-              ></input>
-            </div>
-            <div className={className_div_span_time}>
-              {errors.horaFinal && (
-                <span className={className_span}>
-                  {errors.horaFinal.message}
-                </span>
-              )}
+            <div className='cn-div-container-form-crear-torn'>
+              <div className={className_div_lbl_time_form}>
+                <label htmlFor={id_input_final}>{txtInputhoraFinal}</label>
+                <input
+                  defaultValue={""}
+                  className={className_input_final}
+                  id={id_input_final}
+                  name={name_input_final}
+                  type="time"
+                  {...register("horaFinal", {
+                    required: "Hora final obligatòria",
+                    validate: (value) => {
+                      if (!horaInici) {
+                        return true; // Si no hi ha hora d'inici, no cal validar
+                      }
+                      if (value === horaInici)
+                        return "L'hora final no pot ser igual a la d'inici.";
+                      if (value < horaInici)
+                        return "L'hora final ha de ser posterior a l'hora d'inici.";
+                      if (conflicteHorari(horaInici, value, torns)) {
+                        return "Aquest rang d'hores ja està assignat a un altre torn.";
+                      }
+                      return true;
+                    },
+                  })}
+                ></input>
+              </div>
+              {errors.horaFinal && <span className={className_span}>{errors.horaFinal.message}</span>}
             </div>
           </div>
         </div>
         <div className={className_div_bttn_form}>
-          <button id={id_reset} name={name_reset}>
+          <button id={id_reset} name={name_reset} onClick={event => fn_resetejarTorn(event)}>
             <ResetRoda />
           </button>
           <input
@@ -266,5 +248,5 @@ export const FormCrearTorn = () => {
         </div>
       </form>
     </section>
-  );
-};
+  )
+}

@@ -14,10 +14,10 @@ export const Peu = () => {
                     <h3>Peu de pàgina</h3>
                 </section>
                 <section className={className_section_footer_link_peu}>
-                    <Link to='/equip/equip-dev/cristina'>Cristina Andión Catalán</Link>
-                    <Link to='/equip/equip-dev/albert'>Albert Rodríguez Rodríguez</Link>
-                    <Link to='/equip/equip-dev/miquel'>Miquel Angel Sebastia Lopez</Link>
-                    <Link to='/equip/equip-dev/palmira'>Palmira Romia Segura</Link>
+                    <Link to='/equip/equip-dev'>Cristina Andión Catalán</Link>
+                    <Link to='/equip/equip-dev'>Albert Rodríguez Rodríguez</Link>
+                    <Link to='/equip/equip-dev'>Miquel Angel Sebastia Lopez</Link>
+                    <Link to='/equip/equip-dev'>Palmira Romia Segura</Link>
                 </section>
             </footer>
         </>

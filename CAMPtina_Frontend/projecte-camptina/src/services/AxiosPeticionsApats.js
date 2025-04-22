@@ -18,11 +18,9 @@ export const useAxiosPeticionsApats = () => {
      * @description Funció per obtenir els àpats del backend
      */
     const carregarApats = async () => {
-        console.log('Carregant... (Apats)')
         try {
             const resposta = await axiosClient.get('/apats');
             setApats(resposta.data)
-            console.log("",resposta.data)
         } catch (error) {
             console.log('Error obtenint els àpats:', error)
         }
@@ -55,15 +53,13 @@ export const useAxiosPeticionsApats = () => {
     * @description Funció per actualitzar un àpat
     */
     const actualitzarApat = async (idApat, nouApat) => {
-        console.log('Àpat Abans de actualitzar:', nouApat)
         try {
             const resposta = await axiosClient.put(`/${idApat}`, nouApat, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-            console.log('Àpat actualitzat:', resposta.data)
-            await carregarApats()
+            setApats(apats.map(apat => apat.id === idApat ? resposta.data : apat))
         } catch (error) {
             console.error('Error actualitzant l\'àpat:', error.response?.data)
         }
@@ -84,9 +80,9 @@ export const useAxiosPeticionsApats = () => {
         }
     }
 
-    /*useEffect(() => {
+    useEffect(() => {
         carregarApats()
-    }, [])*/
+    }, [])
 
     return { apats, carregarApats, crearApat, actualitzarApat, eliminarApat }
 }

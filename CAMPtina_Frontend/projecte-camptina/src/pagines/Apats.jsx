@@ -1,18 +1,7 @@
 import { Navegacio } from '../header/Navegacio.jsx'
 import { Peu } from '../footer/Peu.jsx'
-/*import { Link } from '../Link.jsx'*/
 import camptina from '../assets/camptina.mp4'
-/*import team from '../assets/team.png'
-/*import team from '../assets/team.png'
-import menjar from '../assets/menjar.mp4'
-import clock from '../assets/clock.mp4'
-import clock_old from '../assets/clock_old.mp4'
-import yoga from '../assets/yoga.mp4'
-import menjador from '../assets/menjador.mp4'
-import party from '../assets/party.mp4'*/
 import { Seccio } from './apats/apats-seccio/Seccio.jsx'
-//import rm from '../assets/team.png'
-//import carta from '../assets/carta.png'
 import menus from '../assets/menus.png'
 import triarApat from '../assets/triar-apat.png'
 import crearApat from '../assets/crear-apat.png'
@@ -97,5 +86,4 @@ export default function Apats() {
             <Peu />
         </>
     )
-  
 }

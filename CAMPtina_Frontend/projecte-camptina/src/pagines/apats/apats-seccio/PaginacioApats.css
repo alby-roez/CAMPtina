@@ -19,7 +19,7 @@
 }
 
 .cn-bttn-pagina-apats-anterior-enabled-paginacio-apats:hover {
-    background: #08f;
+    background: #9cf;
 }
 
 .cn-bttn-pagina-apats-anterior-enabled-paginacio-apats:active {
@@ -40,7 +40,7 @@
 }
 
 .cn-bttn-pagina-apats-seguent-enabled-paginacio-apats:hover {
-    background: #08f;
+    background: #9cf;
 }
 
 .cn-bttn-pagina-apats-seguent-enabled-paginacio-apats:active {
@@ -93,14 +93,14 @@
     border: none;
     border-radius: 4px;
     background: #f80;
-    color: #fff;
+    color: #ffc;
     cursor: pointer;
     width: 30px;
     height: 30px;
 }
 
 .cn-actiu-span-bttn-paginacio-apats:hover {
-    background: #08f;
+    background: #9cf;
 }
 
 .cn-actiu-span-bttn-paginacio-apats:active {
@@ -114,14 +114,14 @@
     border: none;
     border-radius: 4px;
     background: #222;
-    color: #fff;
+    color: #ffc;
     cursor: pointer;
     width: 30px;
     height: 30px;
 }
 
 .cn-desactiu-span-bttn-paginacio-apats:hover {
-    background: #08f;
+    background: #9cf;
 }
 
 .cn-desactiu-span-bttn-paginacio-apats:active {

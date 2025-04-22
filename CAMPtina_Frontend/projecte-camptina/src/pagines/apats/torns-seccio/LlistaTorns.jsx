@@ -90,7 +90,6 @@ export const LlistaTorns = () => {
       <section className={className_section} id={id_section}>
         <article className={className_article_nom}>
           <h3 className={className_h3_nom}>{nomSeccio}</h3>
-
           <button
             className={className_bttn_finestra}
             id={id_bttn_finestra}

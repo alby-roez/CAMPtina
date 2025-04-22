@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Navegacio } from '../../header/Navegacio.jsx'
 import { Peu } from '../../footer/Peu.jsx'
 import menus_carta from '../../assets/menus_carta.mp4'
@@ -9,27 +9,14 @@ import { useAxiosPeticionsMenus } from '../../services/AxiosPeticionsMenus.js'
 import './Menus.css'
 import { useAxiosPeticionsMenusApats } from '../../services/AxiosPeticionsMenusApats.js'
 import { useMenus } from './menus-seccio/LogicaMenus.js'
-import { useAxiosPeticionsApats } from '../../services/AxiosPeticionsApats.js'
 import { BotoActiu, BotoDesactiu } from './menus-seccio/BotonsMenus.jsx'
 
 export default function Menus() {
-    const { menus, carregarMenus, crearMenus, actualitzarMenu, eliminarMenu } = useAxiosPeticionsMenus()
-    const { menusApats, crearMenusApats, carregarMenusApats  } = useAxiosPeticionsMenusApats()
-    const { apats, carregarApats } = useAxiosPeticionsApats()
-    const { menuPrimer, menuSegon, menuPostres, setMenuPrimer, setMenuSegon, setMenuPostres, addMenuPrimer, addMenuSegon, addMenuPostres } = useMenus()
-
-    useEffect(() => {
-        carregarMenus()
-        //carregarApats()
-        //carregarMenusApats()
-        //console.log(menus)
-    }, [])
+    const { menus } = useAxiosPeticionsMenus()
+    const { menusApats, menusIdApats, crearMenusApats, eliminarMenuApats } = useAxiosPeticionsMenusApats()
+    const { menuPrimer, menuSegon, menuPostres, setMenuPrimer, setMenuSegon, setMenuPostres, removeMenuPrimer, removeMenuSegon, removeMenuPostres } = useMenus()
 
     const [menuActivedDesactived, setMenuActivedDesactived] = useState(true)
-
-    const [keyPrimer, setKeyPrimer] = useState(1)
-    const [keySegon, setKeySegon] = useState(6)
-    const [keyPostres, setKeyPostres] = useState(11)
 
     const className_main = 'cn-main-navegacio';
     const className_section_video = 'cn-section-video-navegacio';
@@ -46,7 +33,7 @@ export default function Menus() {
 
     const fn_actualitzarMenu = (event) => {
         const bttn = document.getElementById(event.currentTarget.id);
-        bttn.setAttribute('style', 'background: #08f; opacity: 0.8;');
+        bttn.setAttribute('style', 'background: #9cf; opacity: 0.8;');
         bttn.setAttribute('disabled', 'true');
         const article = document.getElementById('id_article_titol_menus');
         const h2 = document.getElementsByClassName('cn-h2-titol-menus')[0];
@@ -64,7 +51,7 @@ export default function Menus() {
         const bttn_remove_article = document.getElementsByClassName('cn-bttn-remove-article-menus');
         const section_llista = document.getElementById('id_section_llista_menus');
         const bttn_desar = document.getElementById('id_submit_form_final_menus');
-        for (let i = 0; i < div_apat.length; i++) {
+        /*for (let i = 0; i < div_apat.length; i++) {
             div_apat[i].setAttribute('style', 'justify-content: space-between;');
         }
         for (let i = 0; i < div_apat_nom_primer.length; i++) {
@@ -78,7 +65,7 @@ export default function Menus() {
         }
         for (let i = 0; i < bttn_remove_article.length; i++) {
             bttn_remove_article[i].setAttribute('style', 'display: flex;');
-        }
+        }*/
         section_llista.setAttribute('style', 'display: flex;');
         bttn_desar.setAttribute('style', 'display: flex;');
     }
@@ -104,7 +91,7 @@ export default function Menus() {
         const bttn_remove_article = document.getElementsByClassName('cn-bttn-remove-article-menus');
         const section_llista = document.getElementById('id_section_llista_menus');
         const bttn_desar = document.getElementById('id_submit_form_final_menus');
-        for (let i = 0; i < div_apat.length; i++) {
+        /*for (let i = 0; i < div_apat.length; i++) {
             div_apat[i].setAttribute('style', 'justify-content: center;');
         }
         for (let i = 0; i < div_apat_nom_primer.length; i++) {
@@ -118,17 +105,45 @@ export default function Menus() {
         }
         for (let i = 0; i < bttn_remove_article.length; i++) {
             bttn_remove_article[i].setAttribute('style', 'display: none;');
-        }
+        }*/
         section_llista.removeAttribute('style');
         bttn_desar.removeAttribute('style');
         const llistaTotal = menuPrimer.concat(menuSegon).concat(menuPostres)
+
+
+
+        
+
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ERROR AL RENDERITZAR FALTA ELIMINAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+        /* ================================================================================ ELIMINAR A- */
+        /*for (let i = 0; i < menusIdApats.length; i++) {
+            eliminarMenuApats(1, menusIdApats[i].apatId)
+        }*/
+        /*for (let i = 0; i < menusApats.apatsPerCategoria.PRIMER.length; i++) {
+            eliminarMenuApats(1, menusApats.apatsPerCategoria.PRIMER[i].id)
+        }
+        for (let i = 0; i < menusApats.apatsPerCategoria.SEGON.length; i++) {
+            eliminarMenuApats(1, menusApats.apatsPerCategoria.SEGON[i].id)
+        }
+        for (let i = 0; i < menusApats.apatsPerCategoria.POSTRE.length; i++) {
+            eliminarMenuApats(1, menusApats.apatsPerCategoria.POSTRE[i].id)
+        }*/
+        /* ================================================================================ ELIMINAR -Z */
+        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ERROR AL RENDERITZAR FALTA ELIMINAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+
+
+
+
+        /* ================================================================================ CREAR A- */
         for (let i = 0; i < llistaTotal.length; i++) {
             const newObject = {
-                menuId: 1,
+                menuId: 1, //MALA PRACTICA
                 apatId: llistaTotal[i].id
             }
             crearMenusApats(newObject);
         }
+        /* ================================================================================ CREAR -Z */
     }
 
     const descativarMenu = () => {
@@ -165,9 +180,9 @@ export default function Menus() {
                                 : <BotoDesactiu id={menu.id} activar={ativarMenu} />}
                             <span className={className_span_menu_preu}>{menu.preu}€</span>
                         </article>
-                        <ArticleMenus nomArticle={'Primer'} categoriaNom={'primer'} typeCategoria={1} llista={menuPrimer} setLlista={setMenuPrimer} addLlista={addMenuPrimer} />
-                        <ArticleMenus nomArticle={'Segon'} categoriaNom={'segon'} typeCategoria={2} llista={menuSegon} setLlista={setMenuSegon} addLlista={addMenuSegon} />
-                        <ArticleMenus nomArticle={'Postres'} categoriaNom={'postres'} typeCategoria={3} llista={menuPostres} setLlista={setMenuPostres} addLlista={addMenuPostres} />
+                        <ArticleMenus nomArticle={'Primer'} categoriaNom={'primer'} typeCategoria={1} llista={menuPrimer} removeLlista={removeMenuPrimer}/>
+                        <ArticleMenus nomArticle={'Segon'} categoriaNom={'segon'} typeCategoria={2} llista={menuSegon} removeLlista={removeMenuSegon} />
+                        <ArticleMenus nomArticle={'Postres'} categoriaNom={'postres'} typeCategoria={3} llista={menuPostres} removeLlista={removeMenuPostres} />
                         <LlistaMenus />
                         <input
                             id={id_submit}
