@@ -1,6 +1,5 @@
 import './LlistaUsuaris.css'
 import { useState, useEffect, useContext } from 'react'
-import { useAxiosPeticionsUsuaris } from "../../services/UsuarisPeticions.js"
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
 import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
 //import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
@@ -29,7 +28,7 @@ export const LlistaUsuaris = () => {
     /* PaginacioApats ================================================== A- */
     const totalLlistaUsuaris = usuaris.length;
 
-    const [usuarisPerPagina, setUsuarisPerPagina] = useState(2)
+    const [usuarisPerPagina, setUsuarisPerPagina] = useState(10)
     const [paginaActual, setPaginaActual] = useState(1)
 
     const indexUsuarisFinal = paginaActual * usuarisPerPagina

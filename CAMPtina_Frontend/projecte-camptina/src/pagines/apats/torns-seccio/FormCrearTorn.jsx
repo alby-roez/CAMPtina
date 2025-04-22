@@ -1,7 +1,7 @@
 import "./FormCrearTorn.css";
 import { useForm } from "react-hook-form";
 import { useState, useEffect, useContext } from "react";
-import { ResetRoda } from "../../../Icones.jsx";
+import { ResetRoda, CloseFinestra } from "../../../Icones.jsx";
 //import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
 import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
 

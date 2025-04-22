@@ -2,7 +2,7 @@ import './FormCrearUsuari.css'
 import { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 //import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js'
-import { ResetRoda } from '../../Icones.jsx'
+import { ResetRoda, CloseFinestra } from '../../Icones.jsx'
 //import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 import { DadesCamptinaContext } from '../../services/DadesCamptina.jsx'
 
