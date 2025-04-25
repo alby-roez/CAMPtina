@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Navegacio } from '../../header/Navegacio.jsx'
 import { Peu } from '../../footer/Peu.jsx'
 import menus_carta from '../../assets/menus_carta.mp4'
@@ -12,7 +12,7 @@ import { useMenus } from './menus-seccio/LogicaMenus.js'
 import { BotoActiu, BotoDesactiu } from './menus-seccio/BotonsMenus.jsx'
 
 export default function Menus() {
-    const { menus } = useAxiosPeticionsMenus()
+    const { menus, carregarMenus, actualitzarMenus } = useAxiosPeticionsMenus()
     const { menusApats, menusIdApats, crearMenusApats, eliminarMenuApats } = useAxiosPeticionsMenusApats()
     const { menuPrimer, menuSegon, menuPostres, setMenuPrimer, setMenuSegon, setMenuPostres, removeMenuPrimer, removeMenuSegon, removeMenuPostres } = useMenus()
 
@@ -36,14 +36,25 @@ export default function Menus() {
         bttn.setAttribute('style', 'background: #9cf; opacity: 0.8;');
         bttn.setAttribute('disabled', 'true');
         const article = document.getElementById('id_article_titol_menus');
+        const articlePreu = document.getElementById('id_article_bttn_span_menus');
         const h2 = document.getElementsByClassName('cn-h2-titol-menus')[0];
+        const spanPreu = document.getElementsByClassName('cn-span-menu-preu-menus')[0];
         h2.style.display = 'none';
+        spanPreu.style.display = 'none';
+        /* dynamic elements */
         const input = document.createElement('input');
         input.className = 'cn-dynamic-input-titol-menus';
         input.id = 'id_dynamic_input_titol_menus';
         input.name = 'updateTitolMenu';
         input.placeholder = 'Nou títol del menu...';
         article.appendChild(input);
+        const span = document.createElement('input');
+        span.className = 'cn-dynamic-input-preu-menus';
+        span.id = 'id_dynamic_input_preu_menus';
+        span.name = 'updatePreuMenu';
+        span.placeholder = 'Nou preu...';
+        span.type = 'number';
+        articlePreu.appendChild(span);
         const div_apat = document.getElementsByClassName('cn-div-nom-bttn-article-menus');
         const div_apat_nom_primer = document.getElementsByClassName('cn-primer-div-nom-article-menus');
         const div_apat_nom_segon = document.getElementsByClassName('cn-segon-div-nom-article-menus');
@@ -70,11 +81,13 @@ export default function Menus() {
         bttn_desar.setAttribute('style', 'display: flex;');
     }
 
-    const guardarMenu = () => {
+    const guardarMenu = async () => {
         const bttn = document.getElementById('id_bttn_update_square_menus');
         bttn.removeAttribute('style');
         bttn.removeAttribute('disabled');
         const h2 = document.getElementsByClassName('cn-h2-titol-menus')[0];
+        const spanPreu = document.getElementsByClassName('cn-span-menu-preu-menus')[0];
+        let numPreu = parseInt(spanPreu.textContent.split('')[0]);
         if (document.getElementById('id_dynamic_input_titol_menus') !== null) {
             const txt = document.getElementById('id_dynamic_input_titol_menus').value.trim();
             if (txt !== '') {
@@ -83,6 +96,16 @@ export default function Menus() {
             h2.removeAttribute('style');
             const input = document.getElementById('id_dynamic_input_titol_menus');
             input.remove();
+        }
+        if (document.getElementById('id_dynamic_input_preu_menus') !== null) {
+            const txt = document.getElementById('id_dynamic_input_preu_menus').value.trim();
+            if (txt !== '') {
+                spanPreu.textContent = txt + '€';
+                numPreu = parseInt(txt)
+            }
+            spanPreu.removeAttribute('style');
+            const span = document.getElementById('id_dynamic_input_preu_menus');
+            span.remove();
         }
         const div_apat = document.getElementsByClassName('cn-div-nom-bttn-article-menus');
         const div_apat_nom_primer = document.getElementsByClassName('cn-primer-div-nom-article-menus');
@@ -109,10 +132,15 @@ export default function Menus() {
         section_llista.removeAttribute('style');
         bttn_desar.removeAttribute('style');
         const llistaTotal = menuPrimer.concat(menuSegon).concat(menuPostres)
-
-
-
-        
+        /* Actualitzar Menu */
+        const obj = {
+            id: 1,
+            nom: h2.textContent,
+            preu: numPreu,
+            actiu: 1
+        }
+        await actualitzarMenus(1, obj)
+        await carregarMenus()
 
         /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ERROR AL RENDERITZAR FALTA ELIMINAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
         /* ================================================================================ ELIMINAR A- */
@@ -130,10 +158,6 @@ export default function Menus() {
         }*/
         /* ================================================================================ ELIMINAR -Z */
         /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ERROR AL RENDERITZAR FALTA ELIMINAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
-
-
-
 
         /* ================================================================================ CREAR A- */
         for (let i = 0; i < llistaTotal.length; i++) {
@@ -174,7 +198,7 @@ export default function Menus() {
                                 <UpdateQuadrat />
                             </button>
                         </article>
-                        <article className={'cn-article-bttn-span-menus'}>
+                        <article className={'cn-article-bttn-span-menus'} id={'id_article_bttn_span_menus'}>
                             {menuActivedDesactived
                                 ? <BotoActiu id={menu.id} desactivar={descativarMenu} />
                                 : <BotoDesactiu id={menu.id} activar={ativarMenu} />}

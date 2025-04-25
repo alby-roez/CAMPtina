@@ -10,43 +10,54 @@
   padding: 1rem;
   background: #2bb;
   border-radius: 8px;
+  overflow: auto;
 }
 
-.form-grid {
+.form-grid-form-actualitzar-usuaris {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group input {
-  padding: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  background: #ffc;
-  color: #222;
+  gap: 10px;
   width: 100%;
 }
 
-.form-group input:focus {
+.form-group-form-actualitzar-usuaris {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  height: 70px;
+}
+
+.form-group-form-actualitzar-usuaris > input {
+  display: flex;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8em;
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  color: #222;
+}
+
+.form-group-form-actualitzar-usuaris > input:focus {
   outline: 2px solid var(--color-primary);
 }
 
-.form-group select {
-  padding: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  background: #ffc;
-  color: #222;
+.form-group-form-actualitzar-usuaris select {
   cursor: pointer;
+  display: flex;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8em;
   width: 100%;
+  height: 40px;
+  background: #fff;
+  color: #222;
 }
 
-.form-group select:focus {
+.form-group-form-actualitzar-usuaris select:focus {
   outline: 2px solid var(--color-primary);
 }
 
@@ -65,6 +76,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 40px;
   height: 100%;
   background: #369;
@@ -77,6 +89,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 40px;
   height: 100%;
   background: #369;
@@ -90,20 +103,33 @@
   background: var(--color-secondary);
 }
 
-/* DE MOMENT NO EL TOCO A- */
-.error {
-  border-color: var(--color-error) !important;
-  border-width: 2px;
+.btn-cancel-form-actualitzar-usuaris:active {
+  transform: scale(0.9);
 }
 
-.error-message {
-  color: var(--color-error);
-  font-size: 0.8rem;
-  margin-top: 0.25rem;
-  background-color: #fef2f2;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  display: inline-block;
+.btn-submit-form-actualitzar-usuaris:active {
+  transform: scale(0.9);
+}
+
+/* DE MOMENT NO EL TOCO A- */
+.error-form-actualitzar-usuaris {
+  outline: 2px solid #b44;
+  color: #b44;
+  overflow: auto;
+}
+
+.error-message-form-actualitzar-usuaris {
+  display: flex;
+  align-items: center;
+  font-size: 0.6em;
+  padding-left: 5px;
+  background: #fff;
+  color: #b44;
+  width: 100%;
+  height: 25px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: auto;
 }
 /* DE MOMENT NO EL TOCO  -Z*/
 

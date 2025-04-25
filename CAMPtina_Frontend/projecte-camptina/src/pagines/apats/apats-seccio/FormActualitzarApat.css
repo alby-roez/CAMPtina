@@ -33,7 +33,7 @@
     border: none;
     border-radius: 8px;
     font-size: 0.8rem;
-    background: #ffc;
+    background: #fff;
     color: #222;
 }
 
@@ -59,7 +59,7 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 0.8rem;
-    background: #ffc;
+    background: #fff;
     color: #222;
 }
 
@@ -86,7 +86,7 @@
     overflow: auto;
     resize: none;
     font-size: 0.8rem;
-    background: #ffc;
+    background: #fff;
     color: #222;
 }
 
@@ -97,7 +97,7 @@
 .cn-span-update-llista-apats {
     display: flex;
     align-items: center;
-    background: #ffc;
+    background: #fff;
     color: #b44;
     width: 100%;
     height: 25px;

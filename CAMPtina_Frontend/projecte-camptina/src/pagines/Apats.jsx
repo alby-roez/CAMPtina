@@ -75,8 +75,8 @@ export default function Apats() {
                     srcImatge={crearTorn}
                     camiA='/apats/torns'
                     txtA='Crea torns ara'
-                    id_check_gerent='id_checkbox_gerent_seccio_crear_apat'
-                    id_check_usuari='id_checkbox_usuari_seccio_crear_apat'
+                    id_check_gerent='id_checkbox_gerent_seccio_crear_torn'
+                    id_check_usuari='id_checkbox_usuari_seccio_crear_torn'
                     mesGran={mg}
                     mesPetit={mp}
                     txtInfo={txt_crear_torn}

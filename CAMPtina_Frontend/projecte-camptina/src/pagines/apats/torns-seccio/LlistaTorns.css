@@ -31,13 +31,14 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  min-height: 50px;
+  min-height: 25px;
 }
 
 .cn-ul-llista-torns {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1%;
   width: 100%;
   height: 50px;
 }
@@ -46,8 +47,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
-  height: 50px;
+  width: 5%;
+  height: 100%;
   background: #111;
   border-bottom-right-radius: 8px;
   visibility: hidden;
@@ -58,9 +59,9 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
-  width: 10%;
-  height: 50px;
+  font-size: 1.2em;
+  width: 5%;
+  height: 100%;
   background: #222;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -72,9 +73,9 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
-  width: 30%;
-  height: 50px;
+  font-size: 1.2em;
+  width: 34%;
+  height: 100%;
   background: #333;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -86,9 +87,9 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
+  font-size: 1.2em;
   width: 15%;
-  height: 50px;
+  height: 100%;
   background: #444;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -100,9 +101,9 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
+  font-size: 1.2em;
   width: 15%;
-  height: 50px;
+  height: 100%;
   background: #555;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -114,9 +115,9 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
+  font-size: 1.2em;
   width: 15%;
-  height: 50px;
+  height: 100%;
   background: #666;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -127,8 +128,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
-  height: 50px;
+  width: 5%;
+  height: 100%;
   background: #777;
   border-bottom-left-radius: 8px;
   visibility: hidden;
@@ -139,18 +140,17 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
-  min-height: 50px;
+  min-height: 25px;
 }
 
 .cn-li-item-update-llista-torns {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
-  height: 50px;
+  width: 5%;
+  height: 100%;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
-  gap:10px;
 }
 
 .cn-li-item-id-llista-torns {
@@ -158,10 +158,11 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
-  width: 10%;
-  height: 50px;
-  background: #f75;
+  font-size: 1.2em;
+  width: 5%;
+  height: 100%;
+  background: #fff;
+  color: #222;
   border-radius: 8px;
   overflow: auto;
 }
@@ -171,10 +172,11 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
-  width: 30%;
-  height: 50px;
-  background: #e75;
+  font-size: 1.2em;
+  width: 34%;
+  height: 100%;
+  background: #fff;
+  color: #222;
   border-radius: 8px;
   overflow: auto;
 }
@@ -184,10 +186,11 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
+  font-size: 1.2em;
   width: 15%;
-  height: 50px;
-  background: #d75;
+  height: 100%;
+  background: #fff;
+  color: #222;
   border-radius: 8px;
   overflow: auto;
 }
@@ -197,10 +200,11 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
+  font-size: 1.2em;
   width: 15%;
-  height: 50px;
-  background: #c75;
+  height: 100%;
+  background: #fff;
+  color: #222;
   border-radius: 8px;
   overflow: auto;
 }
@@ -210,10 +214,11 @@
   justify-content: center;
   align-items: center;
   padding: 5px;
-  font-size: 0.8em;
+  font-size: 1.2em;
   width: 15%;
-  height: 50px;
-  background: #b75;
+  height: 100%;
+  background: #fff;
+  color: #222;
   border-radius: 8px;
   overflow: auto;
 }
@@ -222,8 +227,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 10%;
-  height: 50px;
+  width: 5%;
+  height: 100%;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -238,15 +243,16 @@
   align-items: center;
   border: none;
   border-top-right-radius: 4px;
-  background: #258;
+  background: #69c;
   color: #fff;
   cursor: pointer;
   margin: 4px;
   width: 38px;
+  height: 38px;
 }
 
 .cn-bttn-finestra-llista-torns:hover {
-  background: #b44;
+  background: #9cf;
 }
 
 .cn-bttn-finestra-llista-torns:active {
@@ -259,19 +265,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border:none;
-  border-radius: 8px;
-  background: #258;
-  transition: background 0.3s;
+  border: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: #369;
   cursor: pointer;
-  width: 50%;
-  margin: 0 auto;
-  transform-origin: center;
+  width: 100%;
   height: 100%;
 }
 
 .cn-bttn-update-llista-torns:hover {
-  background: #2563eb;
+  background: #9cf;
 }
 
 .cn-bttn-update-llista-torns:active {
@@ -284,30 +288,22 @@
   justify-content: center;
   align-items: center;
   border: none;
-  border-radius: 8px;
-  background: #b44;
-  transition: background 0.3s;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background: #369;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   height: 100%;
 }
 
 .cn-bttn-delete-llista-torns:hover {
-  background: #f44;
+  background: #9cf;
 }
 
 .cn-bttn-delete-llista-torns:active {
   transform: scale(0.9);
 }
 /* DeletePaperera -Z */
-
-/* Icones A- */
-.content-icon {
-  width: 100%;
-  height: 100%;
-  color: #fff;
-}
-/* Icones -Z */
 
 @media (max-width: 550px) {
   .cn-section-llista-torns {
@@ -326,20 +322,142 @@
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .cn-li-id-llista-torns {
-    font-size: 0.6em;
+    font-size: 1em;
   }
 
   .cn-li-nom-llista-torns {
+    font-size: 1em;
+  }
+
+  .cn-li-aforament-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-horainici-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-horafi-llista-torns {
+    font-size: 1em;
+  }
+
+  .cn-li-item-id-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-nom-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-aforament-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-horainici-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-horafi-llista-torns {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cn-li-id-llista-torns {
+    font-size: 0.8em;
+  }
+
+  .cn-li-nom-llista-torns {
+    font-size: 0.8em;
+  }
+
+  .cn-li-aforament-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-horainici-llista-torns {
+    font-size: 0.7em;
+  }
+  
+  .cn-li-horafi-llista-torns {
+    font-size: 0.8em;
+  }
+
+  .cn-li-item-id-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-nom-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-aforament-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-horainici-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-horafi-llista-torns {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 650px) {
+  .cn-li-horainici-llista-torns {
     font-size: 0.6em;
   }
 
-  .cn-li-categoria-llista-torns {
+  .cn-li-horafi-llista-torns {
     font-size: 0.6em;
   }
+}
 
-  .cn-li-descripcio-llista-torns {
-    font-size: 0.6em;
+@media (max-width: 550px) {    
+  .cn-ul-llista-torns {
+      height: 25px;
+  }
+
+  .cn-li-id-llista-torns {
+    font-size: 0.3em;
+  }
+
+  .cn-li-nom-llista-torns {
+    font-size: 0.3em;
+  }
+
+  .cn-li-aforament-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-horainici-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-horafi-llista-torns {
+    font-size: 0.3em;
+  }
+
+  .cn-li-item-id-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-nom-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-aforament-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-horainici-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-horafi-llista-torns {
+    font-size: 0.3em;
   }
 }

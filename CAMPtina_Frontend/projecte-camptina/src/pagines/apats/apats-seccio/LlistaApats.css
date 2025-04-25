@@ -147,7 +147,7 @@
     font-size: 1.2em;
     width: 5%;
     height: 100%;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 8px;
     overflow: auto;
@@ -161,7 +161,7 @@
     font-size: 1.2em;
     width: 35%;
     height: 100%;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 8px;
     overflow: auto;
@@ -175,7 +175,7 @@
     font-size: 1.2em;
     width: 10%;
     height: 100%;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 8px;
     overflow: auto;
@@ -189,7 +189,7 @@
     font-size: 0.8em;
     width: 35%;
     height: 100%;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 8px;
     overflow: auto;
@@ -340,7 +340,7 @@
     border: none;
     border-radius: 8px;
     font-size: 1.5rem;
-    background: #ffc;
+    background: #fff;
     color: #222;
 }
 

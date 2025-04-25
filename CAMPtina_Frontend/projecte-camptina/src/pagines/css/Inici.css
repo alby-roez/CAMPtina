@@ -28,8 +28,8 @@
 
 .cn-video-a-inici > a:hover {
     background: #9cf;
-    border-color: #ffc;
-    color: #ffc;
+    border-color: #fff;
+    color: #fff;
 }
 
 #id_menjador {
@@ -130,7 +130,7 @@
     left: 50%;
     right: 50%;
     font-size: 1em;
-    color: #ffc;
+    color: #fff;
     cursor: pointer;
 }
 

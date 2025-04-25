@@ -3,6 +3,7 @@
     justify-content: space-between;
     width: 100%;
     height: 50px;
+    overflow: auto;
 }
 
 .cn-bttn-pagina-anterior-enabled-paginacio-menus {

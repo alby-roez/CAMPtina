@@ -75,7 +75,7 @@
     display: flex;
     align-items: center;
     font-size: 1em;
-    background: #ffc;
+    background: #fff;
     color: #222;
     opacity: 0.9;
     border-top-left-radius: 8px;
@@ -104,7 +104,7 @@
     padding: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
-    background: #ffc;
+    background: #fff;
     color: #222;
 }
 
@@ -124,7 +124,7 @@
     margin-top: 5px;
     margin-bottom: 5px;
     cursor: pointer;
-    background: #ffc;
+    background: #fff;
     color: #222;
 }
 
@@ -212,7 +212,7 @@
     align-items: center;
     font-size: 0.8em;
     padding-left: 10px;
-    background: #ffc;
+    background: #fff;
     color: #b44;
     width: 100%;
     height: 30px;

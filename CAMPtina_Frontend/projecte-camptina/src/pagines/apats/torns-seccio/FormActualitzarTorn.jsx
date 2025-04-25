@@ -58,9 +58,9 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
 
   return (
     <form className="form-update-torn" onSubmit={peticioActualitzarTorn}>
-      <div className="form-grid">
+      <div className="form-grid-form-actualitzar-torn">
         {/* Camp Nom */}
-        <div className="form-group">
+        <div className="form-group-form-actualitzar-torn">
           <input
             type="text"
             placeholder="Nom del torn"
@@ -69,15 +69,15 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
               min: { value: 3, message: "Mínim 3 caràcters" },
               max: { value: 25, message: "Màxim 25 caràcters" },
             })}
-            className={errors.nomDeTorn ? "error" : ""}
+            className={errors.nomDeTorn ? "error-input-form-actualitzar-torn" : ""}
           />
           {errors.nom && (
-            <span className="error-message">{errors.nom.message}</span>
+            <span className="error-message-form-actualitzar-torn">{errors.nom.message}</span>
           )}
         </div>
 
         {/* Camp Aforament */}
-        <div className="form-group">
+        <div className="form-group-form-actualitzar-torn">
           <input
             type="number"
             placeholder="Aforament"
@@ -87,29 +87,29 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
               min: { value: 1, message: "Mínim 1 persona" },
               max: { value: 50, message: "Màxim 50 persones" },
             })}
-            className={errors.aforament ? "error" : ""}
+            className={errors.aforament ? "error-input-form-actualitzar-torn" : ""}
           />
           {errors.aforament && (
-            <span className="error-message">{errors.aforament.message}</span>
+            <span className="error-message-form-actualitzar-torn">{errors.aforament.message}</span>
           )}
         </div>
 
         {/* Camp Hora Inici */}
-        <div className="form-group">
+        <div className="form-group-form-actualitzar-torn">
           <input
             type="time"
             {...register("horaInici", {
               required: "Hora inici obligatòria",
             })}
-            className={errors.horaInici ? "error" : ""}
+            className={errors.horaInici ? "error-input-form-actualitzar-torn" : ""}
           />
           {errors.horaInici && (
-            <span className="error-message">{errors.horaInici.message}</span>
+            <span className="error-message-form-actualitzar-torn">{errors.horaInici.message}</span>
           )}
         </div>
 
         {/* Camp Hora Fi */}
-        <div className="form-group">
+        <div className="form-group-form-actualitzar-torn">
           <input
             type="time"
             {...register("horaFi", {
@@ -128,20 +128,20 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
                 return true;
               },
             })}
-            className={errors.horaInici ? "error" : ""}
+            className={errors.horaInici ? "error-input-form-actualitzar-torn" : ""}
           />
           {errors.horaFi && (
-            <span className="error-message">{errors.horaFi.message}</span>
+            <span className="error-message-form-actualitzar-torn">{errors.horaFi.message}</span>
           )}
         </div>
       </div>
 
-      <div className="form-actions">
-        <button type="submit" className="btn-submit">
-          <CheckIcona />
-        </button>
-        <button type="button" onClick={onCancel} className="btn-cancel">
+      <div className="form-actions-form-actualitzar-torn">
+        <button type="button" onClick={onCancel} className="btn-cancel-form-actualitzar-torn">
           <CloseIcona />
+        </button>
+        <button type="submit" className="btn-submit-form-actualitzar-torn">
+          <CheckIcona />
         </button>
       </div>
     </form>

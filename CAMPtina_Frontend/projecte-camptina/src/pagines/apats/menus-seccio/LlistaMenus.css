@@ -42,7 +42,7 @@
     border: none;
     border-radius: 8px;
     font-size: 1.5rem;
-    background: #ffc;
+    background: #fff;
     color: #222;
 }
 
@@ -76,39 +76,43 @@
     width: 75%;
     height: 40px;
     cursor: not-allowed;
+    overflow: auto;
 }
 
 .cn-div-nom-1-llista-menus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 4px;
     width: 75%;
     height: 40px;
+    overflow: auto;
 }
 
 .cn-div-nom-2-llista-menus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 4px;
     width: 75%;
     height: 40px;
+    overflow: auto;
 }
 
 .cn-div-nom-3-llista-menus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 4px;
     width: 75%;
     height: 40px;
+    overflow: auto;
 }
 
 .cn-h4-nom-llista-menus {
@@ -145,4 +149,18 @@
     cursor: not-allowed;
     width: 40px;
     height: 40px;
+}
+
+@media (max-width: 400px) {
+    .cn-h3-nom-llista-menus {
+        font-size: 1em;
+    }
+
+    .cn-input-filtre-llista-menus {
+        font-size: 1rem;
+    }
+
+    .cn-h4-nom-llista-menus {
+        font-size: 0.6rem;
+    }
 }

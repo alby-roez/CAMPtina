@@ -59,6 +59,11 @@
   width: 100%;
 }
 
+#id_video_triar_apat {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
+
 #id_camptina {
   aspect-ratio: 16/9;
   width: 100%;
@@ -457,7 +462,7 @@
   align-items: center;
   width: 4rem;
   aspect-ratio: 1;
-  background-color: #555;
+  background-color: #666;
   border-radius: 50%;
   transition: color 0.5s ease;
 }
@@ -469,7 +474,7 @@
 }
 
 .cn-a-img-conic > a:hover {
-  color: #0e0;
+  color: #8f8;
   --fill: 100%;
 }
 
@@ -479,7 +484,7 @@
   content: '';
   inset: -2px;
   border-radius: inherit;
-  background: conic-gradient(#0e0 var(--fill), transparent var(--fill));
+  background: conic-gradient(#8f8 var(--fill), transparent var(--fill));
   transition: --fill 0.6s ease;
 }
 

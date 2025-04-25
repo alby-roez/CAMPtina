@@ -67,7 +67,7 @@ export const LlistaTorns = () => {
   const className_li_item_horafi = "cn-li-item-horafi-llista-torns";
   const className_li_item_delete = "cn-li-item-delete-llista-torns";
 
-  const llistaID = "ID del torn";
+  const llistaID = "Id";
   const llistaNom = "Nom del torn";
   const llistaAforament = "Aforament";
   const llistaHorainici = "Hora d'Inici";

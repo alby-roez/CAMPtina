@@ -40,6 +40,7 @@
     cursor: pointer;
     margin: 4px;
     width: 38px;
+    height: 38px;
 }
 
 .cn-bttn-update-square-menus:hover {
@@ -76,7 +77,7 @@
     display: flex;
     border: none;
     border-radius: 8px;
-    background: #ffc;
+    background: #fff;
     color: #222;
     width: 250px;
     height: 36px;
@@ -91,6 +92,28 @@
 
 .cn-dynamic-input-titol-menus:focus {
     outline: 2px solid #69c;
+}
+
+.cn-dynamic-input-preu-menus {
+    display: flex;
+    align-self: center;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    color: #222;
+    width: 125px;
+    height: 36px;
+    padding: 5px;
+    font-size: 1.2rem;
+    outline: none;
+}
+
+.cn-dynamic-input-preu-menus::placeholder {
+    color: #666;
+}
+
+.cn-dynamic-input-preu-menus:focus {
+    outline: 2px solid #369;
 }
 
 .cn-article-bttn-span-menus {
@@ -126,6 +149,7 @@
     cursor: pointer;
     padding: 5px;
     font-size: 1.2rem;
+    visibility: hidden;
 }
 
 .cn-bttn-menu-actiu-menus:hover {
@@ -143,12 +167,13 @@
     width: 20%;
     height: 100%;
     background: #575;
-    color: #ddd;
+    color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     padding: 5px;
     font-size: 1.2rem;
+    visibility: hidden;
 }
 
 .cn-bttn-menu-actiu-desmenus:hover {
@@ -157,4 +182,27 @@
 
 .cn-bttn-menu-actiu-desmenus:active {
     transform: scale(0.9);
+}
+
+@media (max-width: 600px) {
+    .cn-dynamic-input-titol-menus {
+        width: 125px;
+        font-size: 0.8rem;
+    }
+
+    .cn-dynamic-input-preu-menus {
+        width: 100px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 300px) {
+    .cn-article-titol-menus {
+        justify-content: flex-end;
+        padding-right: 5px;
+    }
+
+    .cn-dynamic-input-titol-menus {
+        width: 80px;
+    }
 }

@@ -19,6 +19,7 @@
     width: 100%;
     height: 36px;
     position: relative;
+    overflow: auto;
 }
 
 .cn-segon-article-menus {
@@ -31,6 +32,7 @@
     width: 100%;
     height: 36px;
     position: relative;
+    overflow: auto;
 }
 
 .cn-postres-article-menus {
@@ -43,6 +45,7 @@
     width: 100%;
     height: 36px;
     position: relative;
+    overflow: auto;
 }
 
 .cn-h3-nom-article-menus {
@@ -63,33 +66,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 4px;
     width: 100%;
     height: 30px;
+    overflow: auto;
 }
 
 .cn-segon-div-nom-article-menus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 4px;
     width: 100%;
     height: 30px;
+    overflow: auto;
 }
 
 .cn-postres-div-nom-article-menus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffc;
+    background: #fff;
     color: #222;
     border-radius: 4px;
     width: 100%;
     height: 30px;
+    overflow: auto;
 }
 
 .cn-h4-nom-article-menus {
@@ -114,4 +120,20 @@
 
 .cn-bttn-remove-article-menus:active {
     transform: scale(0.9);
+}
+
+@media (max-width: 600px) {
+    .cn-article-menus {
+        width: 80%;
+    }
+}
+
+@media (max-width: 400px) {
+    .cn-h3-nom-article-menus {
+        font-size: 1em;
+    }
+
+    .cn-h4-nom-article-menus {
+        font-size: 0.6rem;
+    }
 }

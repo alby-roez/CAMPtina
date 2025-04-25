@@ -47,17 +47,18 @@ export const useAxiosPeticionsMenus = () => {
 
     /**
      * @author Albert
+     * @param {*} idMenu
      * @param {*} nouMenu
      * @description Funció per actualitzar un menus
      */
-    const actualitzarMenus = async (nouMenu) => {
+    const actualitzarMenus = async (idMenu, nouMenu) => {
         try {
-            const resposta = await axiosClient.put(`/menu/${nouMenu}`, nouMenu, {
+            const resposta = await axiosClient.put(`/menu/${idMenu}`, nouMenu, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
             })
-            setMenus(menus.map(menu => menu.id === nouMenu ? resposta.data : menu))
+            setMenus(menus.map(menu => menu.id === idMenu ? resposta.data : menu))
         } catch (error) {
             console.error('Error actualitzant el menus:', error.response?.data)
         }
