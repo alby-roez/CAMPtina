@@ -1,5 +1,7 @@
 package ioc.cat.camptina.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class UsuariDTO {
 	
 	private int id;
@@ -8,6 +10,7 @@ public class UsuariDTO {
 	private String cognom2;
 	private int rolId;
 	private String email;
+	@JsonIgnore
 	private String contrasenya;
 	
 	public String getContrasenya() {
