@@ -8,7 +8,14 @@ public class UsuariDTO {
 	private String cognom2;
 	private int rolId;
 	private String email;
+	private String contrasenya;
 	
+	public String getContrasenya() {
+		return contrasenya;
+	}
+	public void setContrasenya(String contrasenya) {
+		this.contrasenya = contrasenya;
+	}
 	public int getId() {
 		return id;
 	}

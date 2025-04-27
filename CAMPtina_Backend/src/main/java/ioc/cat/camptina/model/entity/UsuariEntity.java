@@ -37,6 +37,17 @@ public class UsuariEntity {
 	
 	@Column(name = "EMAIL", nullable = true)
 	private String email;
+	
+	@Column(name = "CONTRASENYA", nullable = false)
+	private String contrasenya;
+
+	public String getContrasenya() {
+		return contrasenya;
+	}
+
+	public void setContrasenya(String contrasenya) {
+		this.contrasenya = contrasenya;
+	}
 
 	public int getId() {
 		return id;
