@@ -8,26 +8,27 @@ import { PaginacioApats } from './PaginacioApats.jsx'
 import { BotoUpdate, BotoUpdateDisabled } from './BotonsApats.jsx'
 
 export const LlistaApats = () => {
-    
+
     /* useApats & categories ================================================== A- */
     //const { apats, carregarApats, eliminarApat } = useAxiosPeticionsApats()
-    const { apats, carregarApats, eliminarApat} = useContext(DadesCamptinaContext)
+    const { apats, carregarApats, eliminarApat, categories } = useContext(DadesCamptinaContext)
 
     useEffect(() => {
         carregarApats()
     }, [])
 
-    const categories = {
-        1: 'Primer',
-        2: 'Segon',
-        3: 'Postres'
+    const obtenirCategoria = (categoriaId) => {
+        if (!categories || categories.length === 0) {
+            return 'Carregant...';
+        }
+        const categoriaTrobada = categories.find((categoria) => categoria.id === categoriaId);
+        return categoriaTrobada ? categoriaTrobada.nom.charAt(0).toUpperCase() + categoriaTrobada.nom.slice(1).toLowerCase() : 'Categoria no existent';
     }
-    /* useApats & categories ================================================== -Z */
 
     /* PaginacioApats ================================================== A- */
     const totalLlistaApats = apats.length;
 
-    const [apatsPerPagina, setApatsPerPagina] = useState(10)
+    const [apatsPerPagina] = useState(10)
     const [paginaActual, setPaginaActual] = useState(1)
 
     const indexApatsFinal = paginaActual * apatsPerPagina
@@ -36,7 +37,7 @@ export const LlistaApats = () => {
 
     /* useState shaTancat ================================================== A- */
     const [shaTancat, setShaTancat] = useState(false)
-    
+
     const tancarFinestra = () => {
         setShaTancat(!shaTancat);
     }
@@ -62,11 +63,11 @@ export const LlistaApats = () => {
 
     /* useState shaFiltrat ================================================== A- */
     const [shaFiltrat, setShaFiltrat] = useState(false)
-    
+
     const filtreIcona = () => {
         setShaFiltrat(!shaFiltrat);
     }
-    
+
     useEffect(() => {
         const select = document.getElementById('id_select_filtre_categoria_llista_apats');
         const bttn = document.getElementById('id_bttn_filtre_llista_apats');
@@ -79,21 +80,21 @@ export const LlistaApats = () => {
         }
     }, [shaFiltrat])
 
-    const [txtActual, setTxtActual] = useState('')
+    const [ setTxtActual] = useState('')
 
     const maneigFiltreBuscador = event => {
         setTxtActual(event.currentTarget.value)
     }
 
     const [filters, setFilters] = useState({
-        categoriaId: 0,
+        categoriaId: 0
     })
 
     const maneigFiltre = (event) => {
         const valor = parseInt(event.currentTarget.value)
         setFilters(estatAnterior => ({
-            ... estatAnterior,
-            categoriaId: valor,
+            ...estatAnterior,
+            categoriaId: valor
         }))
     }
 
@@ -102,22 +103,20 @@ export const LlistaApats = () => {
         return apats.filter(apat => {
             return (
                 (filters.categoriaId === 0 ||
-                apat.categoriaId === filters.categoriaId) &&
-                (txtActual === '' ||
-                apat.nom.toLowerCase().startsWith(txtActual.toLowerCase()))
+                    apat.categoriaId === filters.categoriaId)
             )
         })
     }
 
     const filtratApats = filtreApats(apats)
     /* useState shaFiltrat ================================================== -Z */
-    
+
     /* useState shaActualitzat ================================================== A- */
     const [shaActualitzat, setShaActualitzat] = useState(true)
     const [idActualitzacio, setIdActualitzacio] = useState({
         id: 0
     })
-    
+
     const actualitzarLlapis = id => {
         const actualForm = `id_${id}_form_update_llista_apats`;
         const actualBttn = `id_${id}_bttn_update_llista_apats`;
@@ -132,7 +131,7 @@ export const LlistaApats = () => {
         }
         setShaActualitzat(!shaActualitzat);
         setIdActualitzacio(estatAnterior => ({
-            ... estatAnterior,
+            ...estatAnterior,
             id: id
         }))
     }
@@ -216,9 +215,11 @@ export const LlistaApats = () => {
                             onChange={maneigFiltre}
                         >
                             <option value={0}>Totes</option>
-                            <option value={1}>Primer</option>
-                            <option value={2}>Segon</option>
-                            <option value={3}>Postres</option>
+                            {categories.map((categoria) => (
+                                <option key={categoria.id} value={categoria.id}>
+                                    {categoria.nom.charAt(0).toUpperCase() + categoria.nom.slice(1).toLowerCase()}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <button
@@ -259,7 +260,7 @@ export const LlistaApats = () => {
                                 </li>
                                 <li className={className_li_item_id} id={`id_${apat.id}_li_item_id_llista_apats`}>{apat.id}</li>
                                 <li className={className_li_item_nom} id={`id_${apat.id}_li_item_nom_llista_apats`}>{apat.nom}</li>
-                                <li className={className_li_item_categoria} id={`id_${apat.id}_li_item_categoria_llista_apats`}>{categories[apat.categoriaId]}</li>
+                                <li className={className_li_item_categoria} id={`id_${apat.id}_li_item_categoria_llista_apats`}>{obtenirCategoria(apat.categoriaId)}</li>
                                 <li className={className_li_item_descripcio} id={`id_${apat.id}_li_item_descripcio_llista_apats`}>{apat.descripcio}</li>
                                 <li className={className_li_item_delete}>
                                     <button
