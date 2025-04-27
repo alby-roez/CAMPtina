@@ -1,20 +1,41 @@
 import './LlistaUsuaris.css'
 import { useState, useEffect, useContext } from 'react'
-import { useAxiosPeticionsUsuaris } from "../../services/UsuarisPeticions.js"
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
 import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
 //import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 import { DadesCamptinaContext } from "../../services/DadesCamptina.jsx";
+import { PaginacioUsuaris } from './PaginacioUsuaris.jsx'
 
 export const LlistaUsuaris = () => {
     //const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
     const { usuaris, eliminarUsuari, rols } = useContext(DadesCamptinaContext)
     /*const rols = {
+import { useState, useEffect } from 'react'
+import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
+import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
+import { useAxiosPeticionsUsuaris } from '../../services/AxiosPeticionsUsuaris.js'
+
+
+export const LlistaUsuaris = () => {
+    const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
+
+    const rols = {
         1: 'Gestor',
         2: 'Treballador',
     }*/
     //const { rols } = useAxiosPeticionsRols();
 
+    /* PaginacioApats ================================================== A- */
+    const totalLlistaUsuaris = usuaris.length;
+
+    const [usuarisPerPagina, setUsuarisPerPagina] = useState(10)
+    const [paginaActual, setPaginaActual] = useState(1)
+
+    const indexUsuarisFinal = paginaActual * usuarisPerPagina
+    const indexUsuarisInicial = indexUsuarisFinal - usuarisPerPagina
+    /* PaginacioApats ================================================== -Z */
+
+    /* useState shaTancat ================================================== A- */
     const [shaTancat, setShaTancat] = useState(false)
     const [editantId, setEditantId] = useState(null);
     const tancarFinestra = () => {
@@ -32,12 +53,15 @@ export const LlistaUsuaris = () => {
     useEffect(() => {
         const section = document.getElementById('id_section_llista_usuaris');
         const article = document.getElementById('id_article_llista_usuaris');
+        const paginacio = document.getElementById('id_article_pagines_paginacio_usuaris');
         if (shaTancat) {
             article.setAttribute('style', 'display: none;');
             section.setAttribute('style', 'height: 70px');
+            paginacio.setAttribute('style', 'display: none;');
         } else {
             article.removeAttribute('style');
             section.removeAttribute('style');
+            paginacio.removeAttribute('style');
         }
     }, [shaTancat])
     /* useState shaTancat ================================================== -Z */
@@ -133,8 +157,8 @@ export const LlistaUsuaris = () => {
     const className_li_update_llista = 'cn-li-update-llista-usuaris';
     const className_li_id_llista = 'cn-li-id-llista-usuaris';
     const className_li_nom_llista = 'cn-li-nom-llista-usuaris';
-    const className_li_rol_llista = 'cn-li-categoria-llista-usuaris';
-    const className_li_email_llista = 'cn-li-descripcio-llista-usuaris';
+    const className_li_rol_llista = 'cn-li-rol-llista-usuaris';
+    const className_li_email_llista = 'cn-li-email-llista-usuaris';
     const className_li_delete_llista = 'cn-li-delete-llista-usuaris';
 
     const className_div_llista = 'cn-div-llista-usuaris';
@@ -142,8 +166,8 @@ export const LlistaUsuaris = () => {
     const className_li_item_update = 'cn-li-item-update-llista-usuaris';
     const className_li_item_id = 'cn-li-item-id-llista-usuaris';
     const className_li_item_nom = 'cn-li-item-nom-llista-usuaris';
-    const className_li_item_rol = 'cn-li-item-categoria-llista-usuaris';
-    const className_li_item_email = 'cn-li-item-descripcio-llista-usuaris';
+    const className_li_item_rol = 'cn-li-item-rol-llista-usuaris';
+    const className_li_item_email = 'cn-li-item-email-llista-usuaris';
     const className_li_item_delete = 'cn-li-item-delete-llista-usuaris';
 
     const llistaID = 'ID';
@@ -256,8 +280,14 @@ export const LlistaUsuaris = () => {
                                 </ul>
                             )}
                         </div>
-                    ))}
+                    )).slice(indexUsuarisInicial, indexUsuarisFinal)}
                 </article>
+                <PaginacioUsuaris
+                    totalUsuaris={totalLlistaUsuaris}
+                    usuarisPerPagina={usuarisPerPagina}
+                    paginaActual={paginaActual}
+                    setPaginaActual={setPaginaActual}
+                />
             </section>
         </>
     );

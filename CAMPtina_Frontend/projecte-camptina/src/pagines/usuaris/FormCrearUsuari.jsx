@@ -2,7 +2,7 @@ import './FormCrearUsuari.css'
 import { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 //import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js'
-import { ResetRoda } from '../../Icones.jsx'
+import { ResetRoda, CloseFinestra } from '../../Icones.jsx'
 //import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 import { DadesCamptinaContext } from '../../services/DadesCamptina.jsx'
 
@@ -58,11 +58,14 @@ export const FormCrearUsuari = () => {
     const id_form = 'id_form_crear_usuari';
 
     const className_div_contingut_form = 'cn-div-contingut-form-crear-usuari';
-    const className_div_txt_select_form = 'cn-div-txt-select-form-crear-usuari';
+    const className_div_txt_nom_complet_form = 'cn-div-txt-nom-complet-form-crear-usuari';
+    const className_div_txt_email_rol_form = 'cn-div-txt-email-rol-form-crear-usuari';
+
     const className_div_lbl_txt_form = 'cn-div-lbl-text-form-crear-usuari';
     const className_div_lbl_select_form = 'cn-div-lbl-select-form-crear-usuari';
-    const className_div_bttn_form = 'cn-div-bttn-form-crear-usuari';
+
     const className_input_txt = 'cn-input-txt-form-crear-usuari';
+    const className_div_bttn_form = 'cn-div-bttn-form-crear-usuari';
 
     const id_input_txt_nom = 'id_input_txt_form_crear_usuari';
     const name_input_txt = 'nomUsuari';
@@ -98,8 +101,7 @@ export const FormCrearUsuari = () => {
     const name_bttn_finestra = 'finestraDeFormCrear';
 
 
-    const className_span = 'cn-span-error';
-    const className_div_span = 'cn-span-error-container';
+    const className_span = 'cn-span-error-form-crear-usuari';
 
     return (
         <>
@@ -112,31 +114,28 @@ export const FormCrearUsuari = () => {
                         name={name_bttn_finestra}
                         onClick={tancarFinestra}
                     >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
-                        stroke="currentColor" className="size-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                        </svg>
+                        <CloseFinestra />
                     </button>
                 </article>
                 <form className={className_form} id={id_form} onSubmit={peticioCrearUsuari}>
                     <div className={className_div_contingut_form}>
-                        <div className={className_div_txt_select_form}>
+                        <div className={className_div_txt_nom_complet_form}>
                             <div className={className_div_lbl_txt_form}>
-                                <label htmlFor={id_input_txt_nom}>{txtInputNomUsuari}</label>
-                                <input
-                                    defaultValue={''}
-                                    className={className_input_txt}
-                                    id={name_input_txt}
-                                    name={name_input_txt}
-                                    type='text'
-                                    { ... register('nomUsuari', {
-                                        required: true,
-                                        minLength: 2,
-                                        maxLength: 45
-                                    })}
-                                />
-                            </div>
-                            <div className={className_div_span}>
+                                <div className='cn-div-container-txt-form-crear-usuari'>
+                                    <label htmlFor={id_input_txt_nom}>{txtInputNomUsuari}</label>
+                                    <input
+                                        defaultValue={''}
+                                        className={className_input_txt}
+                                        id={id_input_txt_nom}
+                                        name={name_input_txt}
+                                        type='text'
+                                        { ... register('nomUsuari', {
+                                            required: true,
+                                            minLength: 2,
+                                            maxLength: 45
+                                        })}
+                                    />
+                                </div>
                                 { errors.nomUsuari?.type === 'required' &&
                                 <span className={className_span}>El nom és obligatori</span> }
                                 { errors.nomUsuari?.type === 'minLength' &&
@@ -145,21 +144,21 @@ export const FormCrearUsuari = () => {
                                 <span className={className_span}>Màxim 45 caràcters</span> }
                             </div>
                             <div className={className_div_lbl_txt_form}>
-                                <label htmlFor={id_input_txt_cognom1}>{txtInputCognom1Usuari}</label>
-                                <input
-                                    defaultValue={''}
-                                    className={className_input_txt}
-                                    id={id_input_txt_cognom1}
-                                    name={cognom1_input_txt}
-                                    type='text'
-                                    { ... register('cognom1Usuari', {
-                                        required: true,
-                                        minLength: 2,
-                                        maxLength: 45
-                                    })}
-                                />
-                            </div>
-                            <div className={className_div_span}>
+                                <div className='cn-div-container-txt-form-crear-usuari'>
+                                    <label htmlFor={id_input_txt_cognom1}>{txtInputCognom1Usuari}</label>
+                                    <input
+                                        defaultValue={''}
+                                        className={className_input_txt}
+                                        id={id_input_txt_cognom1}
+                                        name={cognom1_input_txt}
+                                        type='text'
+                                        { ... register('cognom1Usuari', {
+                                            required: true,
+                                            minLength: 2,
+                                            maxLength: 45
+                                        })}
+                                    />
+                                </div>
                                 { errors.cognom1Usuari?.type === 'required' &&
                                 <span className={className_span}>El primer cognom és obligatori</span> }
                                 { errors.cognom1Usuari?.type === 'minLength' &&
@@ -168,66 +167,62 @@ export const FormCrearUsuari = () => {
                                 <span className={className_span}>Màxim 45 caràcters</span> }
                             </div>
                             <div className={className_div_lbl_txt_form}>
-                                <label htmlFor={id_input_txt_cognom2}>{txtInputCognom2Usuari}</label>
-                                <input
-                                    defaultValue={''}
-                                    className={className_input_txt}
-                                    id={id_input_txt_cognom2}
-                                    name={cognom2_input_txt}
-                                    type='text'
-                                    { ... register('cognom2Usuari', {
-                                        required: true,
-                                        minLength: 2,
-                                        maxLength: 45
-                                    })}
-                                />
-                            </div>
-                            <div className={className_div_span}>
-                                { errors.cognom2Usuari?.type === 'required' &&
-                                <span className={className_span}>El segon cognom és obligatori</span> }
-                                { errors.cognom2Usuari?.type === 'minLength' &&
-                                <span className={className_span}>Mínim 2 caràcters</span> }
+                                <div className='cn-div-container-txt-form-crear-usuari'>
+                                    <label htmlFor={id_input_txt_cognom2}>{txtInputCognom2Usuari}</label>
+                                    <input
+                                        defaultValue={''}
+                                        className={className_input_txt}
+                                        id={id_input_txt_cognom2}
+                                        name={cognom2_input_txt}
+                                        type='text'
+                                        { ... register('cognom2Usuari', {
+                                            maxLength: 45
+                                        })}
+                                    />
+                                </div>
                                 { errors.cognom2Usuari?.type === 'maxLength' &&
                                 <span className={className_span}>Màxim 45 caràcters</span> }
                             </div>
+                        </div>
+                        <div className={className_div_txt_email_rol_form}>
                             <div className={className_div_lbl_txt_form}>
-                                <label htmlFor={id_input_txt_email}>{txtInputEmailUsuari}</label>
-                                <input
-                                    defaultValue={''}
-                                    className={className_input_txt}
-                                    id={id_input_txt_email}
-                                    name={email_input_txt}
-                                    type="email"
-                                    { ...register('email', {
-                                        required: true,
-                                        pattern: {
-                                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                                            message: 'Format de correu no vàlid'
-                                        }
-                                    })}
-                                />
-                            </div>
-                            <div className={className_div_span}>
+                                <div className='cn-div-container-txt-form-crear-usuari'>
+                                    <label htmlFor={id_input_txt_email}>{txtInputEmailUsuari}</label>
+                                    <input
+                                        defaultValue={''}
+                                        className={className_input_txt}
+                                        id={id_input_txt_email}
+                                        name={email_input_txt}
+                                        type="email"
+                                        { ...register('email', {
+                                            required: true,
+                                            pattern: {
+                                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                                message: 'Format de correu no vàlid'
+                                            }
+                                        })}
+                                    />
+                                </div>
                                 { errors.email?.type === 'required' &&
                                 <span className={className_span}>El correu és obligatori</span> }
                                 { errors.email?.type === 'pattern' &&
                                 <span className={className_span}>{errors.email.message}</span> }
                             </div>
                             <div className={className_div_lbl_select_form}>
-                                <label htmlFor={id_select}>{txtSelectRolUsuari}</label>
-                                <select defaultValue={''} className={className_select} id={id_select} name={name_select}
-                                { ... register('rolUsuari', {
-                                    required: true
-                                })}>
-                                    <option value='' disabled></option>
-                                    {rols.map((rol) => (
-                                        <option key={rol.id} value={rol.id}>
-                                            {rol.nom}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className={className_div_span}>
+                                <div className='cn-div-container-txt-form-crear-usuari'>
+                                    <label htmlFor={id_select}>{txtSelectRolUsuari}</label>
+                                    <select defaultValue={''} className={className_select} id={id_select} name={name_select}
+                                    { ... register('rolUsuari', {
+                                        required: true
+                                    })}>
+                                        <option value='' disabled></option>
+                                        {rols.map((rol) => (
+                                            <option key={rol.id} value={rol.id}>
+                                                {rol.nom}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
                                 { errors.rolUsuari?.type === 'required' &&
                                 <span className={className_span}>El rol és obligatori</span> }
                             </div>

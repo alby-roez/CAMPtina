@@ -3,8 +3,10 @@
     width: 100%;
     height: calc(100%*9/16);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     padding: 10px;
     position: relative;
 }
@@ -13,15 +15,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60%;
-    height: 30%;
+    width: 30%;
+    height: 15%;
     border: 10px solid #369;
     border-radius: 8px;
-    background: #0dd;
-    opacity: 0.8;
+    background: #69c;
+    opacity: 0.9;
     color: #369;
-    font-size: 2em;
+    font-size: 1.5em;
     cursor: pointer;
+}
+
+.cn-video-a-inici > a:hover {
+    background: #9cf;
+    border-color: #ffc;
+    color: #ffc;
+}
+
+#id_menjador {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    aspect-ratio: 16/9;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 .cn-info-inici {
@@ -40,7 +58,7 @@
     align-items: center;
     font-size: 2.5em;
     width: 60%;
-    background: #08f;
+    background: #369;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     padding: 5px;
@@ -60,6 +78,7 @@
     width: 100%;
     padding: 5px;
     font-size: 1.5em;
+    color: #222;
 }
 
 .cn-article-menu-inici {
@@ -67,7 +86,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 40px;
     width: 80%;
 }
 
@@ -78,6 +97,9 @@
     width: 100%;
     padding: 5px;
     font-size: 2em;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: #369;
 }
 
 .cn-article-menu-inici > a {
@@ -85,6 +107,11 @@
     justify-content: center;
     align-items: center;
     width: 25%;
+    border-radius: 8px;
+}
+
+.cn-article-menu-inici > a:hover {
+    outline: 4px solid #369;
 }
 
 .cn-img-menus-inici {
@@ -103,37 +130,45 @@
     left: 50%;
     right: 50%;
     font-size: 1em;
-    color: #075;
+    color: #ffc;
     cursor: pointer;
 }
 
 .cn-info-inici > a:hover {
-    color: #fff;
+    color: #9cf;
 }
 
 .cn-info-inici > a:active {
     transform: scale(0.9);
 }
 
+@media (max-width: 800px) {
+    .cn-video-a-inici > a {
+        border-width: 5px;
+        font-size: 0.8em;
+    }
+}
+
 @media (max-width: 550px) {
     .cn-video-a-inici > a {
-      font-size: 0.6em;
+        border-width: 2px;
+        font-size: 0.6em;
     }
   
     .cn-info-inici > h1 {
-      font-size: 1em;
-      width: 80%;
+        font-size: 1em;
+        width: 80%;
     }
   
     .cn-article-info-inici > p {
-      font-size: 1em;
+        font-size: 1em;
     }
   
     .cn-article-menu-inici > h3 {
-      font-size: 1em;
+        font-size: 1em;
     }
   
     .cn-article-menu-inici > a {
-      width: 50%;
+        width: 50%;
     }
 }
