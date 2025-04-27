@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,10 +25,10 @@ public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = -814676478497664399L;
 
 	private int id;
-	private String email;
+	private String username;
 
 	@JsonIgnore
-	private String contrasenya;
+	private String password;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
@@ -35,8 +36,8 @@ public class UserDetailsImpl implements UserDetails {
 			Collection<? extends GrantedAuthority> authorities) {
 		super();
 		this.id = id;
-		this.email = email;
-		this.contrasenya = contrasenya;
+		this.username = email;
+		this.password = contrasenya;
 		this.authorities = authorities;
 	}
 
@@ -49,10 +50,9 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	public static UserDetailsImpl build(UsuariEntity usuari) {
-		SimpleGrantedAuthority authority = new SimpleGrantedAuthority(usuari.getRol().getNom());
-		return new UserDetailsImpl(usuari.getId(), usuari.getEmail(), usuari.getContrasenya(),
-				Collections.singleton(authority));
-
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(usuari.getRol().getNom()));
+		return new UserDetailsImpl(usuari.getId(), usuari.getEmail(), usuari.getContrasenya(), authorities);
 	}
 
 	@Override
@@ -67,13 +67,13 @@ public class UserDetailsImpl implements UserDetails {
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return contrasenya;
+		return password;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return email;
+		return username;
 	}
 
 	@Override
@@ -97,4 +97,23 @@ public class UserDetailsImpl implements UserDetails {
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(authorities, password, username, id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserDetailsImpl other = (UserDetailsImpl) obj;
+		return Objects.equals(authorities, other.authorities) && Objects.equals(password, other.password)
+				&& Objects.equals(username, other.username) && id == other.id;
+	}
+
+	
 }

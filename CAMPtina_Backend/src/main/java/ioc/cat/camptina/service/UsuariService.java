@@ -3,6 +3,7 @@ package ioc.cat.camptina.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ioc.cat.camptina.mapper.UsuariMapper;
@@ -17,53 +18,64 @@ public class UsuariService {
 
 	@Autowired
 	private UsuariRepository usuariRepository;
-	
+
 	@Autowired
-	private UsuariMapper  usuariMapper;
-	
+	private UsuariMapper usuariMapper;
+
 	@Autowired
 	private RolRepository rolRepository;
 
-   
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	public List<UsuariDTO> findAllUsuaris() {
 		List<UsuariEntity> usuaris = usuariRepository.findAll();
 		return usuariMapper.listUsuariEntityToDto(usuaris);
 	}
-	
+
 	public UsuariDTO findUsuariById(int id) {
-        UsuariEntity usuariEntity = usuariRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Usuari no trobat"));
-        return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
-    }
-	
+		UsuariEntity usuariEntity = usuariRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Usuari no trobat"));
+		return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
+	}
+
 	public UsuariDTO createUsuari(UsuariDTO usuariDto) {
-            
-        RolEntity rol = rolRepository.findById(usuariDto.getRolId()).orElseThrow(() -> new RuntimeException("Rol no trobat"));
-        UsuariEntity usuariEntity = usuariMapper.usuariDtoToUsuariEntity(usuariDto);
-        usuariEntity.setRol(rol);
-        usuariEntity = usuariRepository.save(usuariEntity);
-        return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
-        
-    }
-	
+
+		RolEntity rol = rolRepository.findById(usuariDto.getRolId())
+				.orElseThrow(() -> new RuntimeException("Rol no trobat"));
+		UsuariEntity usuariEntity = usuariMapper.usuariDtoToUsuariEntity(usuariDto);
+		usuariEntity.setRol(rol);
+		if (usuariDto.getContrasenya() != null && !usuariDto.getContrasenya().isEmpty()) {
+			usuariEntity.setContrasenya(passwordEncoder.encode(usuariDto.getContrasenya()));
+		} else {
+			throw new RuntimeException("La contrasenya és obligatòria");
+		}
+		usuariEntity = usuariRepository.save(usuariEntity);
+		return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
+
+	}
+
 	public UsuariDTO updateUsuari(int id, UsuariDTO usuariDto) {
-		UsuariEntity usuariEntity = usuariRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuari no trobat"));
-		
+		UsuariEntity usuariEntity = usuariRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Usuari no trobat"));
+
 		usuariEntity.setNom(usuariDto.getNom());
 		usuariEntity.setCognom1(usuariDto.getCognom1());
 		usuariEntity.setCognom2(usuariDto.getCognom2());
-		RolEntity rol = rolRepository.findById(usuariDto.getRolId()).orElseThrow(() -> new RuntimeException("Rol no trobat"));
-		usuariEntity.setRol(rol);   
+		RolEntity rol = rolRepository.findById(usuariDto.getRolId())
+				.orElseThrow(() -> new RuntimeException("Rol no trobat"));
+		usuariEntity.setRol(rol);
 		usuariEntity.setEmail(usuariDto.getEmail());
+		if (usuariDto.getContrasenya() != null && !usuariDto.getContrasenya().isEmpty()) {
+			usuariEntity.setContrasenya(passwordEncoder.encode(usuariDto.getContrasenya()));
+		}
 		usuariEntity = usuariRepository.save(usuariEntity);
 		return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
-				
+
 	}
-	
+
 	public void deleteUsuari(int id) {
 		usuariRepository.deleteById(id);
 	}
-	
-	
-	
+
 }
