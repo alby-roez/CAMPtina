@@ -184,12 +184,13 @@
 /* header-a A- */
 .cn-header-navegacio > section > a {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   align-items: center;
   width: 180px;
   height: 60px;
 }
 /* header-a -Z */
+
 
 /* header-nav A- */
 .cn-header-navegacio > section > nav {
@@ -367,6 +368,7 @@
   width: 60px;
   height: 60px;
 }
+
 /* header-section-usuari -Z */
 
 /* header-MEDIA A- */
@@ -506,6 +508,10 @@
   position: relative;
 }
 
+.error-message {
+  color:red;
+}
+
 .cn-div-a-login {
   position: absolute;
   left: 10px;
@@ -561,6 +567,7 @@
   height: 100px;
   cursor: pointer;
 }
+
 /* img login -end- */
 /* ================================================== */
 
