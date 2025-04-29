@@ -4,9 +4,31 @@ import { Peu } from '../footer/Peu.jsx'
 import triarApat from '../assets/triar-apat.png'
 import menjador from '../assets/menjador.mp4'
 import { Link } from '../Link.jsx'
+import { useState, useEffect } from 'react'
+import { ESDEVENIMENTS } from '../consts.js'
 
 export default function Inici() {
     const className_main = 'cn-main-navegacio';
+
+    // 1) Funció per recuperar l'usuari de localStorage
+    const getUser = () => {
+        const raw = localStorage.getItem('usuari')
+        return raw ? JSON.parse(raw) : null
+    }
+
+    // 2) Estat local i efecte per re-llegir-lo en esdeveniments
+    const [dadesUsuari, setDadesUsuari] = useState(getUser)
+
+    useEffect(() => {
+        const handler = () => setDadesUsuari(getUser())
+        window.addEventListener(ESDEVENIMENTS.CAPENDAVANT, handler)
+        return () => {
+        window.removeEventListener(ESDEVENIMENTS.CAPENDAVANT, handler)
+        }
+    }, [])
+    
+    const esGestor = dadesUsuari?.rol === 1;
+    const esTreballador = dadesUsuari?.rol === 2;
 
     return (
         <>
@@ -14,10 +36,20 @@ export default function Inici() {
             <main className={className_main}>
                 <section className='cn-video-a-inici'>
                     <video id='id_menjador' src={menjador} autoPlay loop muted></video>
-                    <Link to='/apats/triar-apat'>Fer una comanda</Link>
-                    <Link to='/apats/crear-apat'>Gestió d'àpats</Link>
-                    <Link to='/apats/menus'>Gestió menus</Link>
-                    <Link to='/usuaris/gestio-usuaris'>Gestió d'usuaris</Link>
+
+                    {esTreballador && (
+                        <Link to='/apats/triar-apat'>Fer una comanda</Link>
+                    )}
+
+                    {esGestor && (
+                    <>
+                        <Link to='/apats/triar-apat'>Fer una comanda</Link>
+                        <Link to='/apats/crear-apat'>Gestió d'àpats</Link>
+                        <Link to='/apats/menus'>Gestió menus</Link>
+                        <Link to='/usuaris/gestio-usuaris'>Gestió d'usuaris</Link>
+                    </>       
+                    )}    
+
                 </section>
                 <section className='cn-info-inici'>
                     <h1>Pagina d'inici</h1>

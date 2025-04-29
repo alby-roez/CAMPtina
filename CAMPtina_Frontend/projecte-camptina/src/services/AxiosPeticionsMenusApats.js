@@ -42,19 +42,32 @@ export const useAxiosPeticionsMenusApats = () => {
     const carregarMenusComplet = async (idMenu) => {
         try {
             const resposta = await axiosClient.get(`/menu/menu-complet/${idMenu}`);
-            setMenusApats(resposta.data)
+            //setMenusApats(resposta.data)
+            const dades = resposta.data;
             /* MALA PRACTICA O BONA NO SE A- */
             /*if (true) {
                 setMenuPrimer([])
                 setMenuSegon([])
                 setMenuPostres([])
             }*/
-            setMenuPrimer(resposta.data.apatsPerCategoria.PRIMER)
-            setMenuSegon(resposta.data.apatsPerCategoria.SEGON)
-            setMenuPostres(resposta.data.apatsPerCategoria.POSTRE)
+            //setMenuPrimer(resposta.data.apatsPerCategoria.PRIMER)
+            //setMenuSegon(resposta.data.apatsPerCategoria.SEGON)
+            //setMenuPostres(resposta.data.apatsPerCategoria.POSTRE)
+            const apatsPerCategoria = dades.apatsPerCategoria || {}; // Si no existeix, objecte buit
+            const primer = Array.isArray(apatsPerCategoria.PRIMER) ? apatsPerCategoria.PRIMER : [];
+            const segon = Array.isArray(apatsPerCategoria.SEGON) ? apatsPerCategoria.SEGON : [];
+            const postres = Array.isArray(apatsPerCategoria.POSTRE) ? apatsPerCategoria.POSTRE : [];
+
+            setMenuPrimer(primer);
+            setMenuSegon(segon);
+            setMenuPostres(postres);
+
             /* MALA PRACTICA O BONA NOSE -Z */
         } catch (error) {
             console.log('Error obtenint els menus:', error)
+            setMenuPrimer([]);
+            setMenuSegon([]);
+            setMenuPostres([]);
         }
     }
 
