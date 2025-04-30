@@ -1,6 +1,5 @@
 package ioc.cat.camptina.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UsuariDTO {
 	
