@@ -10,7 +10,7 @@ public class UsuariDTO {
 	private String cognom2;
 	private int rolId;
 	private String email;
-	@JsonIgnore
+	
 	private String contrasenya;
 	
 	public String getContrasenya() {
