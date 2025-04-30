@@ -1,16 +1,24 @@
 package ioc.cat.camptina.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-public class UsuariDTO {
+/**
+ * @author Palmira
+ */
+public class UsuariCreacioDTO {
 	
 	private int id;
 	private String nom;
 	private String cognom1;
 	private String cognom2;
 	private int rolId;
-	private String email;
+	private String email;	
+	private String contrasenya;
 
+	public String getContrasenya() {
+		return contrasenya;
+	}
+	public void setContrasenya(String contrasenya) {
+		this.contrasenya = contrasenya;
+	}
 	public int getId() {
 		return id;
 	}

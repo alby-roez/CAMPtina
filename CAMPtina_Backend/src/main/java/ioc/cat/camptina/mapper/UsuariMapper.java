@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
-
+import ioc.cat.camptina.model.dto.UsuariCreacioDTO;
 import ioc.cat.camptina.model.dto.UsuariDTO;
 import ioc.cat.camptina.model.entity.UsuariEntity;
 
@@ -25,4 +25,7 @@ public interface UsuariMapper {
 	List<UsuariDTO> listUsuariEntityToDto(List<UsuariEntity> usuaris);
 	
 	List<UsuariEntity> listusuariDtoToEntity(List<UsuariDTO> usuaris);
+	
+	UsuariEntity toEntity(UsuariCreacioDTO usuariCreacioDTO);
+	
 }

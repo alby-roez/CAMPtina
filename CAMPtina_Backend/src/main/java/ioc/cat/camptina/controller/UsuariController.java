@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ioc.cat.camptina.model.dto.UsuariCreacioDTO;
 import ioc.cat.camptina.model.dto.UsuariDTO;
 import ioc.cat.camptina.service.UsuariService;
 
@@ -36,12 +37,12 @@ public class UsuariController {
 	}
 	
 	@PostMapping
-	public UsuariDTO createUsuari(@RequestBody UsuariDTO usuariDto) {
+	public UsuariDTO createUsuari(@RequestBody UsuariCreacioDTO usuariDto) {
 		return usuariService.createUsuari(usuariDto);
 	}
 	
 	@PutMapping("/{id}")
-	public UsuariDTO updateUsuari(@PathVariable int id, @RequestBody UsuariDTO usuariDto) {
+	public UsuariDTO updateUsuari(@PathVariable int id, @RequestBody UsuariCreacioDTO usuariDto) {
 		return usuariService.updateUsuari(id, usuariDto);
 	}
 	

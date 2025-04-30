@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ioc.cat.camptina.model.dto.JwtResponseDTO;
 import ioc.cat.camptina.model.dto.LoginDTO;
+import ioc.cat.camptina.model.dto.UsuariCreacioDTO;
 import ioc.cat.camptina.model.dto.UsuariDTO;
 import ioc.cat.camptina.model.entity.RolEntity;
 import ioc.cat.camptina.model.entity.UsuariEntity;
@@ -90,7 +91,7 @@ public class LoginController {
 	
 	@PostMapping("/crear-usuari")
 	@PreAuthorize("hasAuthority('GESTOR')")
-	public ResponseEntity<?> registerUser(@RequestBody UsuariDTO usuariDto){
+	public ResponseEntity<?> registerUser(@RequestBody UsuariCreacioDTO usuariDto){
 		Optional<UsuariEntity> usuariEntrant = usuariRepository.findByEmail(usuariDto.getEmail());
 		if(!usuariEntrant.isEmpty()) {
 			return ResponseEntity.badRequest().body("Error: Aquest email ja existeix!");
