@@ -26,6 +26,9 @@ public class UserDetailsImpl implements UserDetails {
 
 	private int id;
 	private String username;
+	private String nom;
+	private String cognom1;
+	
 
 	@JsonIgnore
 	private String password;
@@ -33,12 +36,16 @@ public class UserDetailsImpl implements UserDetails {
 	private Collection<? extends GrantedAuthority> authorities;
 
 	public UserDetailsImpl(int id, String email, String contrasenya,
-			Collection<? extends GrantedAuthority> authorities) {
+			Collection<? extends GrantedAuthority> authorities,
+			String nom, String cognom1) {
 		super();
 		this.id = id;
 		this.username = email;
 		this.password = contrasenya;
 		this.authorities = authorities;
+		this.nom = nom;
+		this.cognom1 = cognom1;
+        
 	}
 
 	public int getId() {
@@ -48,11 +55,28 @@ public class UserDetailsImpl implements UserDetails {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	public String getCognom1() {
+		return cognom1;
+	}
+	
+	public void setCognom1(String cognom1) {
+		this.cognom1 = cognom1;
+	}
+	
+	
 	public static UserDetailsImpl build(UsuariEntity usuari) {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(usuari.getRol().getNom()));
-		return new UserDetailsImpl(usuari.getId(), usuari.getEmail(), usuari.getContrasenya(), authorities);
+		return new UserDetailsImpl(usuari.getId(), usuari.getEmail(), usuari.getContrasenya(), authorities, usuari.getNom(), usuari.getCognom1());
 	}
 
 	@Override

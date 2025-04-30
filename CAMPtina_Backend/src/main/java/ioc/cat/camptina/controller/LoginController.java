@@ -78,13 +78,13 @@ public class LoginController {
 		GrantedAuthority au = ((ArrayList<GrantedAuthority>) userDetails.getAuthorities()).get(0);
 
 		return ResponseEntity
-				.ok(new JwtResponseDTO(jwt, userDetails.getUsername(), userDetails.getId(), au.getAuthority()));
+				.ok(new JwtResponseDTO(jwt, userDetails.getUsername(), userDetails.getId(), au.getAuthority(), userDetails.getNom(), userDetails.getCognom1()));
 
 	}
 
 	@GetMapping("/validate-jwt")
 	public ResponseEntity<Boolean> validateJwt(HttpServletRequest request) {
-		String jwt = request.getHeader("Authorization").replace("Bearer", "");
+		String jwt = request.getHeader("Authorization").replace("Bearer ", "");
 		return ResponseEntity.ok(this.jwtUtils.validarJwtToken(jwt));
 	}
 	

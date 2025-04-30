@@ -24,18 +24,6 @@ export default function Login() {
         const resposta = await loginUsuari(email, password);
         
         if (resposta.success) {
-            // Guardem les dades de l'usuari a localStorage
-            const dadesUsuari = {
-                nom: resposta.nom,
-                cognom1: resposta.cognom1,
-                email: resposta.email,
-                rol: resposta.rol,
-                token: resposta.token
-
-            }
-
-            localStorage.setItem('usuari', JSON.stringify(dadesUsuari));
-            console.log(dadesUsuari)
             
             // Redirigir a la pàgina principal
             window.history.pushState({}, '', '/')
@@ -45,8 +33,6 @@ export default function Login() {
         }
         
     }
-
-
 
     const className_main = 'cn-main-login';
 

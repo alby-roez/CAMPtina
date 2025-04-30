@@ -1,24 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from '../Link.jsx'
 import logo from '../assets/logo.png'
 import usuari from '../assets/user.png'
 //import menu from '../assets/menu.png'
 import { ESDEVENIMENTS } from '../consts.js'
+import { jwtDecode } from 'jwt-decode'
 
 export const Navegacio = () => {
 
-    const[dadesUsuari, setDadesUsuari] = useState(() => {
-        const usuariGuardat = localStorage.getItem('usuari')
-        return usuariGuardat ? JSON.parse(usuariGuardat) : null
-    })
+    const[dadesUsuari, setDadesUsuari] = useState(null)
 
-    const esGestor = dadesUsuari?.rol === 1;
-    const esTreballador = dadesUsuari?.rol === 2;
+    useEffect(() => {
+        const token = localStorage.getItem('jwtToken')
+        if(token) {
+            try {
+                const dades = jwtDecode(token)
+                console.log("email", dades)
+                setDadesUsuari({
+                    nom: dades.nom,
+                    cognom1: dades.cognom1,
+                    email: dades.sub,
+                    rol: dades.rol
+                })
+            } catch(error) {
+                localStorage.removeItem('jwtToken')
+            }
+        }
+    }, [])
+
+    const esGestor = dadesUsuari?.rol === 'GESTOR';
+    const esTreballador = dadesUsuari?.rol === 'TREBALLADOR';
 
     // Funció per tancar sessió
     const handleLogout = () => {
-        localStorage.removeItem('usuari')
-        setDadesUsuari(null);
+        localStorage.removeItem('jwtToken')
+        setDadesUsuari(null)
         window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
     }
 

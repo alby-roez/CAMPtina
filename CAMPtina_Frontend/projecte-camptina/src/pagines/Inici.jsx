@@ -6,29 +6,43 @@ import menjador from '../assets/menjador.mp4'
 import { Link } from '../Link.jsx'
 import { useState, useEffect } from 'react'
 import { ESDEVENIMENTS } from '../consts.js'
+import  { jwtDecode } from 'jwt-decode'
 
 export default function Inici() {
     const className_main = 'cn-main-navegacio';
 
-    // 1) Funció per recuperar l'usuari de localStorage
-    const getUser = () => {
-        const raw = localStorage.getItem('usuari')
-        return raw ? JSON.parse(raw) : null
+    // 1) Funció per recuperar l'usuari del JWT
+    const getDadesUsuari = () => {
+        const token = localStorage.getItem('jwtToken')
+        if(!token) return null
+        
+        try {
+            const dades = jwtDecode(token)
+            return {
+                nom: dades.nom,
+                cognom1: dades.cognom1,
+                email: dades.sub,
+                rol: dades.rol
+            }
+        } catch(error) {
+            localStorage.removeItem('jwtToken')
+            return null
+        }
     }
 
-    // 2) Estat local i efecte per re-llegir-lo en esdeveniments
-    const [dadesUsuari, setDadesUsuari] = useState(getUser)
+    // 2) Estat local i efecte per actualitzar en esdeveniments
+    const [dadesUsuari, setDadesUsuari] = useState(getDadesUsuari())
 
     useEffect(() => {
-        const handler = () => setDadesUsuari(getUser())
+        const handler = () => setDadesUsuari(getDadesUsuari())
         window.addEventListener(ESDEVENIMENTS.CAPENDAVANT, handler)
         return () => {
         window.removeEventListener(ESDEVENIMENTS.CAPENDAVANT, handler)
         }
     }, [])
     
-    const esGestor = dadesUsuari?.rol === 1;
-    const esTreballador = dadesUsuari?.rol === 2;
+    const esGestor = dadesUsuari?.rol === 'GESTOR'
+    const esTreballador = dadesUsuari?.rol === 'TREBALLADOR'
 
     return (
         <>
