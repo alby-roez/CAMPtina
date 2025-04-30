@@ -23,21 +23,19 @@ export const loginUsuari = async (email,contrasenya) => {
             contrasenya: contrasenya
         })
 
-        console.log(resposta.data)
-
+        
         // Obtenim dades del token
         const token = resposta.data.token
-        const dadesUsuari = jwtDecode(token)
-
+        
         // Configurem el token globalment
         setAuthToken(token)
 
         return {
             success: true,
-            nom: dadesUsuari.nom,
-            cognom1: dadesUsuari.cognom1,
-            email: dadesUsuari.email,
-            rol: dadesUsuari.rolId,
+            nom: resposta.data.nom,
+            cognom1: resposta.data.cognom1,
+            email: resposta.data.email,
+            rol: resposta.data.rolNom,
             token: token
         }
     } catch (error) {

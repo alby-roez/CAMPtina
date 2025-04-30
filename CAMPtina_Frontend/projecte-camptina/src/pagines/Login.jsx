@@ -24,8 +24,12 @@ export default function Login() {
         const resposta = await loginUsuari(email, password);
         
         if (resposta.success) {
-            
-            // Redirigir a la pàgina principal
+            localStorage.setItem('dadesUsuari', JSON.stringify({
+                nom: resposta.nom,
+                cognom1: resposta.cognom1,
+                email: resposta.email,
+                rol: resposta.rol
+            }))
             window.history.pushState({}, '', '/')
             window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT));
         } else {

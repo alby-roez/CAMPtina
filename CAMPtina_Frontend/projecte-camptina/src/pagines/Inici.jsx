@@ -6,26 +6,19 @@ import menjador from '../assets/menjador.mp4'
 import { Link } from '../Link.jsx'
 import { useState, useEffect } from 'react'
 import { ESDEVENIMENTS } from '../consts.js'
-import  { jwtDecode } from 'jwt-decode'
 
 export default function Inici() {
     const className_main = 'cn-main-navegacio';
 
     // 1) Funció per recuperar l'usuari del JWT
     const getDadesUsuari = () => {
-        const token = localStorage.getItem('jwtToken')
-        if(!token) return null
+        const usuariGuardat = localStorage.getItem('dadesUsuari')
+        if(!usuariGuardat) return null
         
         try {
-            const dades = jwtDecode(token)
-            return {
-                nom: dades.nom,
-                cognom1: dades.cognom1,
-                email: dades.sub,
-                rol: dades.rol
-            }
+            return JSON.parse(usuariGuardat)
         } catch(error) {
-            localStorage.removeItem('jwtToken')
+            localStorage.removeItem('dadesUsuari')
             return null
         }
     }
@@ -34,10 +27,12 @@ export default function Inici() {
     const [dadesUsuari, setDadesUsuari] = useState(getDadesUsuari())
 
     useEffect(() => {
-        const handler = () => setDadesUsuari(getDadesUsuari())
+        const handler = () => {
+            setDadesUsuari(getDadesUsuari())
+        }
         window.addEventListener(ESDEVENIMENTS.CAPENDAVANT, handler)
         return () => {
-        window.removeEventListener(ESDEVENIMENTS.CAPENDAVANT, handler)
+            window.removeEventListener(ESDEVENIMENTS.CAPENDAVANT, handler)
         }
     }, [])
     

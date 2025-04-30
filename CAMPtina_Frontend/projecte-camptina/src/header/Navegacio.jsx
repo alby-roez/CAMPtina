@@ -4,28 +4,31 @@ import logo from '../assets/logo.png'
 import usuari from '../assets/user.png'
 //import menu from '../assets/menu.png'
 import { ESDEVENIMENTS } from '../consts.js'
-import { jwtDecode } from 'jwt-decode'
 
 export const Navegacio = () => {
 
     const[dadesUsuari, setDadesUsuari] = useState(null)
 
     useEffect(() => {
-        const token = localStorage.getItem('jwtToken')
-        if(token) {
+        const dadesGuardades = localStorage.getItem('dadesUsuari')
+        if(dadesGuardades) {
             try {
-                const dades = jwtDecode(token)
-                console.log("email", dades)
-                setDadesUsuari({
-                    nom: dades.nom,
-                    cognom1: dades.cognom1,
-                    email: dades.sub,
-                    rol: dades.rol
-                })
+                const dades = JSON.parse(dadesGuardades)
+                setDadesUsuari(dades)
             } catch(error) {
+                localStorage.removeItem('dadesUsuari')
                 localStorage.removeItem('jwtToken')
             }
         }
+
+        const refrescar = () => {
+            const dades = localStorage.getItem('dadesUsuari')
+            if (dades) setDadesUsuari(JSON.parse(dades))
+            else setDadesUsuari(null)
+        }
+
+        window.addEventListener(ESDEVENIMENTS.CAPENDAVANT, refrescar)
+        return () => window.removeEventListener(ESDEVENIMENTS.CAPENDAVANT, refrescar)
     }, [])
 
     const esGestor = dadesUsuari?.rol === 'GESTOR';
@@ -34,6 +37,7 @@ export const Navegacio = () => {
     // Funció per tancar sessió
     const handleLogout = () => {
         localStorage.removeItem('jwtToken')
+        localStorage.removeItem('dadesUsuari')
         setDadesUsuari(null)
         window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
     }
