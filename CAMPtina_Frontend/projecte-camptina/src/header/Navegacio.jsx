@@ -39,6 +39,7 @@ export const Navegacio = () => {
         localStorage.removeItem('jwtToken')
         localStorage.removeItem('dadesUsuari')
         setDadesUsuari(null)
+        window.history.pushState({}, '', '/')
         window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
     }
 

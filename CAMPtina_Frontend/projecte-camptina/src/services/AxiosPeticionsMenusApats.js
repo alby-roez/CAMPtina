@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useMenus } from '../pagines/apats/menus-seccio/LogicaMenus.js'
-import axiosClient from 'axios'
+import axiosClient from './auth.js'
 
 
 export const useAxiosPeticionsMenusApats = () => {
