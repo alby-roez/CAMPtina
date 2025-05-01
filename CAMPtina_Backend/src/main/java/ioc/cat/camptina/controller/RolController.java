@@ -3,6 +3,7 @@ package ioc.cat.camptina.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import ioc.cat.camptina.service.RolService;
 
 @RestController
 @RequestMapping("/api/rol")
+@PreAuthorize("hasAuthority('GESTOR')")
 public class RolController {
 	
 	@Autowired
@@ -33,16 +35,19 @@ public class RolController {
 	}
 	
 	@PostMapping()
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public RolDTO createRol(@RequestBody RolDTO rolDto) {
 		return rolService.createRol(rolDto);
 	}
 	
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public RolDTO updateRol(@PathVariable int id, @RequestBody RolDTO rolDto) {
 		return rolService.updateRol(id, rolDto);
 	}
 	
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public void deleteRol(@PathVariable int id) {
 		rolService.deleteRol(id);
 	}

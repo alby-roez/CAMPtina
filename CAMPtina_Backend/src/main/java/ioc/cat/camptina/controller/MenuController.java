@@ -6,6 +6,7 @@ package ioc.cat.camptina.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import ioc.cat.camptina.service.MenuService;
  */
 @RestController
 @RequestMapping("/api/menu")
+@PreAuthorize("hasAuthority('GESTOR')")
 public class MenuController {
 
 	@Autowired
@@ -45,16 +47,19 @@ public class MenuController {
 	}
 
 	@PostMapping()
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public MenuDTO createMenu(@RequestBody MenuDTO menuDTO) {
 		return menuService.crearMenu(menuDTO);
 	}
 
 	@PutMapping("{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public MenuDTO updateMenu(@PathVariable int id, @RequestBody MenuDTO menuDTO) {
 		return menuService.updateMenu(id, menuDTO);
 	}
 
 	@DeleteMapping("{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public void deleteMenu(@PathVariable int id) {
 		menuService.deleteMenu(id);
 	}
