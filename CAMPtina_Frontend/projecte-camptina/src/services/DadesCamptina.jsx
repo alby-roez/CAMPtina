@@ -38,12 +38,12 @@ export function DadesCamptinaProvider({ children }) {
         setUsuariActiu(null)
     }
 
-    const dadesApats = usuariActiu ? useAxiosPeticionsApats() : {}
-    const dadesMenus = usuariActiu ? useAxiosPeticionsMenus() : {}
-    const dadesMenusApats = usuariActiu ? useAxiosPeticionsMenusApats() : {}
-    const dadesTorns = usuariActiu ? useAxiosPeticionsTorns() : {}
-    const dadesRols = usuariActiu ? useAxiosPeticionsRols() : {}
-    const dadesUsuaris = usuariActiu ? useAxiosPeticionsUsuaris() : {}
+    const dadesApats = useAxiosPeticionsApats(usuariActiu)
+    const dadesMenus = useAxiosPeticionsMenus(usuariActiu)
+    const dadesMenusApats = useAxiosPeticionsMenusApats(usuariActiu)
+    const dadesTorns = useAxiosPeticionsTorns(usuariActiu)
+    const dadesRols = useAxiosPeticionsRols(usuariActiu)
+    const dadesUsuaris = useAxiosPeticionsUsuaris(usuariActiu)
 
    
     return (

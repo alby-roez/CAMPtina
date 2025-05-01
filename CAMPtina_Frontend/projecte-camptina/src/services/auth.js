@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ESDEVENIMENTS } from '../consts.js'
+import { ESDEVENIMENTS, PUBLIC_ROUTES } from '../consts.js'
 
 // 1. Creem una sola instància d’Axios
 const axiosClient = axios.create({
@@ -22,15 +22,16 @@ axiosClient.interceptors.request.use(config => {
 axiosClient.interceptors.response.use(
   response => response,
   error => { 
-    if(!token){
-      if (error.response?.status === 401) {
-        // redirigim a /unauthorized
-        window.history.pushState({}, '', '/unauthorized')
-        window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
-      }
-      return Promise.reject(error)
-    } 
-  }
+    const status = error.response?.status;
+    const path = window.location.pathname;
+
+    if (status === 401 && !PUBLIC_ROUTES.includes(path)) {
+      // Només redirigim si NO som en una ruta pública
+      window.history.pushState({}, '', '/unauthorized')
+      window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
+    }
+    return Promise.reject(error)
+  } 
 )
 
 export default axiosClient

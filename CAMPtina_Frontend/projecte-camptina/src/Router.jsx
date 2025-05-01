@@ -67,7 +67,14 @@ export function Router ({ children, rutes = [], componentPerDefecte: ComponentPe
     
         // === Guard 1: necessita autenticació? si no, show Login
         if (requiresAuth && !usuariActiu) {
-          return <Login routeParams={routeParams} />
+            // Només canviem l’URL si no som ja a /login
+            if (camiActual !== '/login') {
+                window.history.replaceState({}, '', '/login');
+                window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT));
+                return null;
+            }
+            // Si ja estem a /login, mostrem el Login realment
+            return <Login routeParams={routeParams} />
         }
     
         // === Guard 2: té rol suficient? si no, show Unauthorized
