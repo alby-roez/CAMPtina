@@ -27,6 +27,7 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
             setValue("cognom2", usuari.cognom2);
             setValue("rolId", usuari.rolId);
             setValue("email", usuari.email);
+            setValue("contrasenyaXifrada", usuari.contrasenya);
         }
     }, [usuari, setValue]);
 
@@ -63,8 +64,6 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                     {errors.nom?.type === 'maxLength' &&
                         <span className={className_span}>Màxim 45 caràcters</span>}
                 </div>
-
-
                 <div className="form-group-form-actualitzar-usuaris">
                     <input
                         type="text"
@@ -133,6 +132,21 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                         <span className={className_span}>El correu és obligatori</span>}
                     {errors.email?.type === 'pattern' &&
                         <span className={className_span}>{errors.email.message}</span>}
+                </div>
+                <div className="form-group-form-actualitzar-usuaris">
+                    <input
+                        defaultValue={usuari.contrasenya}
+                        type="password"
+                        placeholder="Contrasenya"
+                        {...register("contrasenyaXifrada", {
+                            required: true,
+                            minLength: 8
+                        })}
+                    />
+                    {errors.contrasenyaXifrada?.type === 'required' &&
+                        <span className={className_span}>La contrasenya és obligatoria</span>}
+                    {errors.contrasenyaXifrada?.type === 'minLength' &&
+                        <span className={className_span}>La contrasenya ha de tenir mínim 8 caràcters</span>}
                 </div>
             </div>
             <div className="form-actions-form-actualitzar-usuaris">

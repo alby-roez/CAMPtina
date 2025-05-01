@@ -8,13 +8,23 @@ import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const SeccioTriarApat = () => {
 
-    const { torns } = useContext(DadesCamptinaContext);
+    const { torns, crearReserva } = useContext(DadesCamptinaContext);
     const { menuPrimer, menuSegon, menuPostres} = useMenus()
 
     const { handleSubmit, reset, register, formState: {errors} } = useForm()
 
     const ferReserva = handleSubmit((data) => {
-        console.log(data) 
+        console.log(data)
+        /*const obj = {
+            id_usuari: '',
+            id_torn: data.tornTriarApat,
+            id_menu: 1,
+            id_primer: data.apatsPrimer,
+            id_segon: data.apatsSegon,
+            id_postres: data.apatsPostres,
+            id_data: new Date()
+        }
+        crearReserva(obj)*/
         reset();
     })
 

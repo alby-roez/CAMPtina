@@ -49,13 +49,6 @@
     height: 90px;
 }
 
-.cn-div-txt-email-rol-form-crear-usuari {
-    display: flex;
-    gap: 10%;
-    width: 100%;
-    height: 90px;
-}
-
 .cn-div-lbl-text-form-crear-usuari {
     display: flex;
     flex-direction: column;
@@ -83,14 +76,6 @@
     padding-left: 5px;
     width: 40%;
     height: 100%;
-}
-
-.cn-div-lbl-select-form-crear-usuari {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 60%;
-    height: 90px;
 }
 
 .cn-input-txt-form-crear-usuari {
@@ -244,11 +229,11 @@
 
 @media (max-width: 1150px) {
     .cn-form-crear-usuari {
-        height: 590px;
+        height: 700px;
     }
 
     .cn-div-contingut-form-crear-usuari {
-        height: 530px;
+        height: 640px;
     }
 
     .cn-div-txt-nom-complet-form-crear-usuari {
@@ -258,18 +243,7 @@
         height: 310px;
     }
 
-    .cn-div-txt-email-rol-form-crear-usuari {
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-        height: 200px;
-    }
-
     .cn-div-lbl-text-form-crear-usuari {
-        width: 100%;
-    }
-
-    .cn-div-lbl-select-form-crear-usuari {
         width: 100%;
     }
 

@@ -59,10 +59,8 @@ export const FormCrearUsuari = () => {
 
     const className_div_contingut_form = 'cn-div-contingut-form-crear-usuari';
     const className_div_txt_nom_complet_form = 'cn-div-txt-nom-complet-form-crear-usuari';
-    const className_div_txt_email_rol_form = 'cn-div-txt-email-rol-form-crear-usuari';
 
     const className_div_lbl_txt_form = 'cn-div-lbl-text-form-crear-usuari';
-    const className_div_lbl_select_form = 'cn-div-lbl-select-form-crear-usuari';
 
     const className_input_txt = 'cn-input-txt-form-crear-usuari';
     const className_div_bttn_form = 'cn-div-bttn-form-crear-usuari';
@@ -87,6 +85,11 @@ export const FormCrearUsuari = () => {
     const id_select = 'id_select_form_crear_usuari';
     const name_select = 'rolUsuari';
     const txtSelectRolUsuari = 'Rol:';
+
+    //const className_password = 'cn-contrasenya-form-crear-usuari';
+    const id_password = 'id_contrasenya_form_crear_usuari';
+    const name_password = 'contrasenyaUsuari';
+    const txtPassword = 'Contrasenya:';
 
     const id_reset = 'id_reset_form_crear_usuari';
     const name_reset = 'resetejarCrearUsuari';
@@ -184,7 +187,7 @@ export const FormCrearUsuari = () => {
                                 <span className={className_span}>Màxim 45 caràcters</span> }
                             </div>
                         </div>
-                        <div className={className_div_txt_email_rol_form}>
+                        <div className={className_div_txt_nom_complet_form}>
                             <div className={className_div_lbl_txt_form}>
                                 <div className='cn-div-container-txt-form-crear-usuari'>
                                     <label htmlFor={id_input_txt_email}>{txtInputEmailUsuari}</label>
@@ -208,7 +211,27 @@ export const FormCrearUsuari = () => {
                                 { errors.email?.type === 'pattern' &&
                                 <span className={className_span}>{errors.email.message}</span> }
                             </div>
-                            <div className={className_div_lbl_select_form}>
+                            <div className={className_div_lbl_txt_form}>
+                                <div className='cn-div-container-txt-form-crear-usuari'>
+                                    <label htmlFor={id_password}>{txtPassword}</label>
+                                    <input
+                                        defaultValue={''}
+                                        className={className_input_txt}
+                                        id={id_password}
+                                        name={name_password}
+                                        type="password"
+                                        { ...register('contrasenya', {
+                                            required: true,
+                                            minLength: 8
+                                        })}
+                                    />
+                                </div>
+                                { errors.contrasenya?.type === 'required' &&
+                                <span className={className_span}>La contrasenya és obligatoria</span> }
+                                { errors.contrasenya?.type === 'minLength' &&
+                                <span className={className_span}>La contrasenya ha de tenir mínim 8 caràcters</span> }
+                            </div>
+                            <div className={className_div_lbl_txt_form}>
                                 <div className='cn-div-container-txt-form-crear-usuari'>
                                     <label htmlFor={id_select}>{txtSelectRolUsuari}</label>
                                     <select defaultValue={''} className={className_select} id={id_select} name={name_select}

@@ -219,6 +219,7 @@
     cursor: pointer;
     margin: 4px;
     width: 38px;
+    height: 38px;
 }
 
 .cn-bttn-finestra-llista-usuaris:hover {
@@ -342,23 +343,6 @@
 }
 /* Icones -Z */
 
-@media (max-width: 550px) {
-    .cn-section-llista-usuaris {
-        overflow: auto;
-    }
-}
-
-@media (max-width: 800px) {
-    .cn-section-llista-usuaris {
-        width: 96%;
-    }
-
-    .cn-h3-nom-llista-usuaris {
-        font-size: 1em;
-        overflow: auto;
-    }
-}
-
 @media (max-width: 1000px) {
     .cn-li-id-llista-usuaris {
         font-size: 0.6em;
@@ -374,6 +358,55 @@
 
     .cn-li-descripcio-llista-usuaris {
         font-size: 0.6em;
+    }
+}
+
+@media (max-width: 800px) {
+    .cn-section-llista-usuaris {
+        width: 96%;
+    }
+
+    .cn-h3-nom-llista-usuaris {
+        font-size: 1em;
+        overflow: auto;
+    }
+
+    .cn-li-id-llista-usuaris {
+        font-size: 0.5em;
+    }
+    
+    .cn-li-nom-llista-usuaris {
+        font-size: 0.5em;
+    }
+    
+    .cn-li-rol-llista-usuaris {
+        font-size: 0.5em;
+    }
+    
+    .cn-li-email-llista-usuaris {
+        font-size: 0.5em;
+    }
+    
+    .cn-li-item-id-llista-usuaris {
+        font-size: 0.5em;
+    }
+    
+    .cn-li-item-nom-llista-usuaris {
+        font-size: 0.5em;
+    }
+    
+    .cn-li-item-rol-llista-usuaris {
+        font-size: 0.5em;
+    }
+    
+    .cn-li-item-email-llista-usuaris {
+        font-size: 0.5em;
+    }
+}
+
+@media (max-width: 550px) {
+    .cn-section-llista-usuaris {
+        overflow: auto;
     }
 }
 
