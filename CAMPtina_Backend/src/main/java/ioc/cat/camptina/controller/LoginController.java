@@ -1,8 +1,6 @@
 package ioc.cat.camptina.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ioc.cat.camptina.model.dto.JwtResponseDTO;
 import ioc.cat.camptina.model.dto.LoginDTO;
-import ioc.cat.camptina.model.dto.UsuariDTO;
+import ioc.cat.camptina.model.dto.UsuariCreacioDTO;
 import ioc.cat.camptina.model.entity.RolEntity;
 import ioc.cat.camptina.model.entity.UsuariEntity;
 import ioc.cat.camptina.repository.RolRepository;
@@ -30,7 +28,6 @@ import ioc.cat.camptina.repository.UsuariRepository;
 import ioc.cat.camptina.security.jwt.JwtTokenProvider;
 import ioc.cat.camptina.security.service.UserDetailsImpl;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * @author Palmira
@@ -90,7 +87,7 @@ public class LoginController {
 	
 	@PostMapping("/crear-usuari")
 	@PreAuthorize("hasAuthority('GESTOR')")
-	public ResponseEntity<?> registerUser(@RequestBody UsuariDTO usuariDto){
+	public ResponseEntity<?> registerUser(@RequestBody UsuariCreacioDTO usuariDto){
 		Optional<UsuariEntity> usuariEntrant = usuariRepository.findByEmail(usuariDto.getEmail());
 		if(!usuariEntrant.isEmpty()) {
 			return ResponseEntity.badRequest().body("Error: Aquest email ja existeix!");

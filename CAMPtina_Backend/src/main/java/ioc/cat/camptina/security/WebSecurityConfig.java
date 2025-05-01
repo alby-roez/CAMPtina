@@ -23,7 +23,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ioc.cat.camptina.security.jwt.AuthEntryPointJwt;
 import ioc.cat.camptina.security.jwt.JwtAuthenticationFilter;
 import ioc.cat.camptina.security.service.UserDetailsServiceImpl;
-import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * @author Palmira
@@ -78,18 +77,19 @@ public class WebSecurityConfig {
 		return http.build();
 
 	}
-	@Bean
-	public CorsConfigurationSource corsConfigurationSource() {
-	    CorsConfiguration corsConfiguration = new CorsConfiguration();
-	    corsConfiguration.setAllowedOrigins(
-	            Arrays.asList("http://localhost:3000","http://localhost:5173","http://localhost:4200", "http://localhost:8080"));
-	    corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-	    corsConfiguration.setAllowedHeaders(List.of("*"));
-	    corsConfiguration.setAllowCredentials(true);
 
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	    source.registerCorsConfiguration("/**", corsConfiguration);
-	    return source;
+	@Bean
+	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowedOrigins(
+				Arrays.asList("http://localhost:3000", "http://localhost:4200", "http://localhost:8080"));
+		corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+		corsConfiguration.setAllowedHeaders(List.of("*"));
+		corsConfiguration.setAllowCredentials(true);
+
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", corsConfiguration);
+		return source;
 	}
 
 }

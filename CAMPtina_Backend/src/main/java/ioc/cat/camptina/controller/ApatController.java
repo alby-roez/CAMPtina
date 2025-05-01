@@ -6,6 +6,7 @@ package ioc.cat.camptina.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,11 +46,13 @@ public class ApatController {
 	}
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public ApatDTO createApat(@RequestBody ApatDTO apatDto) {
 		return apatService.createApat(apatDto);
 	}
 
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public ApatDTO updateApat(@PathVariable int id, @RequestBody ApatDTO apatDto) {
 		return apatService.updateApat(id, apatDto);
 	}

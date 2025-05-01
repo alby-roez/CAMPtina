@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ioc.cat.camptina.mapper.UsuariMapper;
+import ioc.cat.camptina.model.dto.UsuariCreacioDTO;
 import ioc.cat.camptina.model.dto.UsuariDTO;
 import ioc.cat.camptina.model.entity.RolEntity;
 import ioc.cat.camptina.model.entity.UsuariEntity;
@@ -39,11 +40,11 @@ public class UsuariService {
 		return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
 	}
 
-	public UsuariDTO createUsuari(UsuariDTO usuariDto) {
+	public UsuariDTO createUsuari(UsuariCreacioDTO usuariDto) {
 
 		RolEntity rol = rolRepository.findById(usuariDto.getRolId())
 				.orElseThrow(() -> new RuntimeException("Rol no trobat"));
-		UsuariEntity usuariEntity = usuariMapper.usuariDtoToUsuariEntity(usuariDto);
+		UsuariEntity usuariEntity = usuariMapper.toEntity(usuariDto);
 		usuariEntity.setRol(rol);
 		if (usuariDto.getContrasenya() != null && !usuariDto.getContrasenya().isEmpty()) {
 			usuariEntity.setContrasenya(passwordEncoder.encode(usuariDto.getContrasenya()));
@@ -55,7 +56,7 @@ public class UsuariService {
 
 	}
 
-	public UsuariDTO updateUsuari(int id, UsuariDTO usuariDto) {
+	public UsuariDTO updateUsuari(int id, UsuariCreacioDTO usuariDto) {
 		UsuariEntity usuariEntity = usuariRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Usuari no trobat"));
 
