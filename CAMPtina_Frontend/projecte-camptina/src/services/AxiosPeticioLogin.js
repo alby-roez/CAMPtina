@@ -1,17 +1,11 @@
-import axios from 'axios'
-import { jwtDecode } from "jwt-decode"
+import axiosClient from './auth'
 
-const axiosClient = axios.create({
-    baseURL: "http://localhost:8080/api" //import.meta.env.VITE_API_URL /* API */
-})
 
 // Funció per configurar el token automàticament
 const setAuthToken = (token) => {
     if(token) {
-        axiosClient.defaults.headers.common['Authorization'] = `Bearer ${token}`
         localStorage.setItem('jwtToken', token)
     } else {
-        delete axiosClient.defaults.headers.common['Authorization']
         localStorage.removeItem('jwtToken')
     }
 }

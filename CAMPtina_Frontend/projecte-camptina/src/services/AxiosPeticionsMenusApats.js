@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useMenus } from '../pagines/apats/menus-seccio/LogicaMenus.js'
+import axiosClient from 'axios'
 
-const axiosClient = axios.create({
-    baseURL: 'http://localhost:8080/api' //import.meta.env.VITE_API_URL /* API */
-})
 
 export const useAxiosPeticionsMenusApats = () => {
     const { setMenuPrimer, setMenuSegon, setMenuPostres } = useMenus()
