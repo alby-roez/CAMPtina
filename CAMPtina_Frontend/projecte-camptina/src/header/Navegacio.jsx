@@ -39,7 +39,7 @@ export const Navegacio = () => {
         localStorage.removeItem('jwtToken')
         localStorage.removeItem('dadesUsuari')
         setDadesUsuari(null)
-        window.history.pushState({}, '', '/')
+        window.history.pushState({}, '', '/login')
         window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
     }
 
@@ -55,8 +55,7 @@ export const Navegacio = () => {
     //const className_num_li_3 = 'cn-num-li-3-navegacio';
     const className_num_li_4 = 'cn-num-li-4-navegacio';
 
-    const txt_NOM_COMPLET = 'Albert Rodríguez';
-    const txt_USUARI = 'albyroez';
+
 
     return (
         <>

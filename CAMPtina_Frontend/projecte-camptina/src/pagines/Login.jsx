@@ -30,6 +30,7 @@ export default function Login() {
                 email: resposta.email,
                 rol: resposta.rol
             }))
+            window.location.href = '/'
             window.history.pushState({}, '', '/')
             window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT));
         } else {
@@ -124,9 +125,7 @@ export default function Login() {
                         </div>
                     </article>
                 </section>
-                <div className={className_div_a}>
-                    <Link to='/'>Tornar</Link>
-                </div>
+
             </main>
         </>
     )
