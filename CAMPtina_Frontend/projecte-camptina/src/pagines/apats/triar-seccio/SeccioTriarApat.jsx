@@ -3,28 +3,32 @@ import { useMenus } from '../menus-seccio/LogicaMenus.js'
 import './SeccioTriarApat.css'
 import './ArticleTriarApat.css'
 import { useForm } from 'react-hook-form'
+//import { useAxiosPeticionsTriarApats } from '../../../services/AxiosPeticionsTriarApats.js'
+//import { useAxiosPeticionsTorns } from '../../../services/AxiosPeticionsTorns.js'
 import { useContext } from 'react'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const SeccioTriarApat = () => {
 
     const { torns, crearReserva } = useContext(DadesCamptinaContext);
+
     const { menuPrimer, menuSegon, menuPostres} = useMenus()
 
     const { handleSubmit, reset, register, formState: {errors} } = useForm()
 
     const ferReserva = handleSubmit((data) => {
         console.log(data)
-        /*const obj = {
-            id_usuari: '',
-            id_torn: data.tornTriarApat,
-            id_menu: 1,
-            id_primer: data.apatsPrimer,
-            id_segon: data.apatsSegon,
-            id_postres: data.apatsPostres,
+        const obj = {
+            id_usuari: data.idUsuari,
+            id_torn: data.idTorn,
+            id_menu: data.idMenu,
+            id_primer: data.idPrimer,
+            id_segon: data.idSegon,
+            id_postres: data.idPostre,
             id_data: new Date()
         }
-        crearReserva(obj)*/
+        console.log(obj);
+        crearReserva(obj)
         reset();
     })
 

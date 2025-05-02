@@ -1,7 +1,43 @@
 import { Link } from '../Link'
 import logo_dark from '../assets/user_dark.png'
+import { loginUsuari } from '../services/AxiosPeticioLogin';
+import { useState } from 'react';
+import { ESDEVENIMENTS } from '../consts.js'
 
 export default function Login() {
+
+    const [email, setEmaiLEntrat] = useState('')
+    const [password, setPasswordEntrat] = useState('')
+    const [error, setError] = useState('');
+
+    const handleInputChangeEmail = (e) => {
+        setEmaiLEntrat(e.target.value)
+    }
+
+    const handleInputChangePassword = (e) => {
+        setPasswordEntrat(e.target.value)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        const resposta = await loginUsuari(email, password);
+        
+        if (resposta.success) {
+            localStorage.setItem('dadesUsuari', JSON.stringify({
+                nom: resposta.nom,
+                cognom1: resposta.cognom1,
+                email: resposta.email,
+                rol: resposta.rol
+            }))
+            window.location.href = '/'
+            window.history.pushState({}, '', '/')
+            window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT));
+        } else {
+            setError(resposta.error);
+        }
+        
+    }
 
     const className_main = 'cn-main-login';
 
@@ -46,7 +82,8 @@ export default function Login() {
                     <article className={className_article_main}>
                         <img className={className_img} src={logo_dark} alt='Logo'/>
                         <h3>{title_form}</h3>
-                        <form className={className_form} id={id_form} method={method_form} action={action_form}>
+                        <form className={className_form} id={id_form} method={method_form} action={action_form} onSubmit={handleSubmit}>
+                        {error && <div className='error-message'>{error}</div>}
                             <div>
                                 <label htmlFor={id_input_user}>{txt_label_user}</label>
                                 <input
@@ -54,6 +91,8 @@ export default function Login() {
                                     id={id_input_user}
                                     name={name_input_user}
                                     type='text'
+                                    value={email}
+                                    onChange={handleInputChangeEmail}
                                     required
                                     autoFocus
                                 />
@@ -65,6 +104,8 @@ export default function Login() {
                                     id={id_input_password}
                                     name={name_input_password}
                                     type='password'
+                                    value={password}
+                                    onChange={handleInputChangePassword}
                                     required
                                 /> 
                             </div>
@@ -84,9 +125,7 @@ export default function Login() {
                         </div>
                     </article>
                 </section>
-                <div className={className_div_a}>
-                    <Link to='/'>Tornar</Link>
-                </div>
+
             </main>
         </>
     )

@@ -20,13 +20,13 @@ import ioc.cat.camptina.service.MenuApatService;
  */
 @RestController
 @RequestMapping("/api/menu-apat")
-@PreAuthorize("hasAuthority('GESTOR')")
 public class MenuApatController {
 
 	@Autowired
 	private MenuApatService menuApatService;
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public MenuApatDTO createMenuApat(@RequestBody MenuApatDTO menuApatDTO) {
 		return menuApatService.createMenuApat(menuApatDTO);
 	}
@@ -37,6 +37,7 @@ public class MenuApatController {
 	}
 
 	@DeleteMapping("/{menuId}/{apatId}")
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public void deleteMenuApat(@PathVariable int menuId, @PathVariable int apatId) {
 		menuApatService.deleteMenuApat(menuId, apatId);
 	}

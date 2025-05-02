@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import { useAxiosPeticionsApats } from './AxiosPeticionsApats'
 import { useAxiosPeticionsMenus } from './AxiosPeticionsMenus'
 import { useAxiosPeticionsMenusApats } from './AxiosPeticionsMenusApats.js'
@@ -11,23 +11,47 @@ export const DadesCamptinaContext = createContext()
 
 export function DadesCamptinaProvider({ children }) {
 
-    const { apats, carregarApats, crearApat, actualitzarApat, eliminarApat } = useAxiosPeticionsApats()
-    const { menus, carregarMenus, crearMenus, actualitzarMenus, eliminarMenus } = useAxiosPeticionsMenus()
-    const { menusApats, carregarMenusApats, carregarMenusComplet, crearMenusApats, eliminarMenuApats } = useAxiosPeticionsMenusApats()
-    const { torns, carregarTorns, crearTorn, actualitzarTorn, eliminarTorn } = useAxiosPeticionsTorns()
-    const { rols, carregarRols } = useAxiosPeticionsRols()
-    const { usuaris, carregarUsuaris, crearUsuari, actualitzarUsuari, eliminarUsuari } = useAxiosPeticionsUsuaris()
-    const { reserva, reservaId, reservaIdUsuari, carregarReserva, carregarReservaId, carregarReservaIdUsuari, crearReserva, actualitzarReserva, eliminarReserva } = useAxiosPeticionsTriarApats()
+    const [usuariActiu, setUsuariActiu] = useState(() => {
+        const d = localStorage.getItem('dadesUsuari')
+        return d ? JSON.parse(d) : null
+    })
+
+    useEffect(() => {
+        const emmagatzemaCanvi = (e) => {
+          if (e.key === 'dadesUsuari') {
+            setUsuariActiu(e.newValue ? JSON.parse(e.newValue) : null);
+          }
+        };
+        window.addEventListener('storage', emmagatzemaCanvi);
+        return () => window.removeEventListener('storage', emmagatzemaCanvi);
+      }, []);
+
+    const login = (dades) => {
+        localStorage.setItem('dadesUsuari', JSON.stringify(dades))
+        localStorage.setItem('jwtToken', dades.token);
+        setUsuariActiu(dades)
+        window.location.href = '/';
+    }
+
+    const logout = () => {
+        localStorage.removeItem('dadesUsuari')
+        localStorage.removeItem('jwtToken')
+        setUsuariActiu(null)
+    }
     
+    const dadesApats = useAxiosPeticionsApats(usuariActiu)
+    const dadesMenus = useAxiosPeticionsMenus(usuariActiu)
+    const dadesMenusApats = useAxiosPeticionsMenusApats(usuariActiu)
+    const dadesTorns = useAxiosPeticionsTorns(usuariActiu)
+    const dadesRols = useAxiosPeticionsRols(usuariActiu)
+    const dadesUsuaris = useAxiosPeticionsUsuaris(usuariActiu)
+    const dadesTriarApats = useAxiosPeticionsTriarApats(usuariActiu)
+
+   
     return (
         <DadesCamptinaContext.Provider value={{
-            apats, carregarApats, crearApat, actualitzarApat, eliminarApat,
-            menus, carregarMenus, crearMenus, actualitzarMenus, eliminarMenus,
-            menusApats, carregarMenusApats, carregarMenusComplet, crearMenusApats, eliminarMenuApats,
-            torns, carregarTorns, crearTorn, actualitzarTorn, eliminarTorn,
-            rols, carregarRols,
-            usuaris, carregarUsuaris, crearUsuari, actualitzarUsuari, eliminarUsuari,
-            reserva, reservaId, reservaIdUsuari, carregarReserva, carregarReservaId, carregarReservaIdUsuari, crearReserva, actualitzarReserva, eliminarReserva
+            ...dadesApats, ...dadesMenus, ...dadesMenusApats, ...dadesTorns, ...dadesRols, ...dadesUsuaris, ...dadesTriarApats, 
+            usuariActiu, login, logout
         }}
         >
             {children}

@@ -58,6 +58,7 @@ public class ApatController {
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
 	public void deleteApat(@PathVariable int id) {
 		apatService.deleteApat(id);
 	}

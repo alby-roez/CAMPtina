@@ -25,7 +25,6 @@ import ioc.cat.camptina.service.MenuService;
  */
 @RestController
 @RequestMapping("/api/menu")
-@PreAuthorize("hasAuthority('GESTOR')")
 public class MenuController {
 
 	@Autowired

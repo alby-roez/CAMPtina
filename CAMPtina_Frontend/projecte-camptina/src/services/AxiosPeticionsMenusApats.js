@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { useMenus } from '../pagines/apats/menus-seccio/LogicaMenus.js'
-
-
-const axiosClient = axios.create({
-    baseURL: 'http://localhost:8080/api' /* API */
-})
+import axiosClient from './auth.js'
 
 export const useAxiosPeticionsMenusApats = () => {
     const { setMenuPrimer, setMenuSegon, setMenuPostres } = useMenus()
@@ -40,8 +35,8 @@ export const useAxiosPeticionsMenusApats = () => {
     const carregarMenusComplet = async (idMenu) => {
         try {
             const resposta = await axiosClient.get(`/menu/menu-complet/${idMenu}`);
-            const dades = resposta.data;
             //setMenusApats(resposta.data)
+            const dades = resposta.data;
             /* MALA PRACTICA O BONA NO SE A- */
             /*if (true) {
                 setMenuPrimer([])
@@ -62,7 +57,7 @@ export const useAxiosPeticionsMenusApats = () => {
 
             /* MALA PRACTICA O BONA NOSE -Z */
         } catch (error) {
-            console.log('Error obtenint els menú complet:', error)
+            console.log('Error obtenint els menus:', error)
             setMenuPrimer([]);
             setMenuSegon([]);
             setMenuPostres([]);

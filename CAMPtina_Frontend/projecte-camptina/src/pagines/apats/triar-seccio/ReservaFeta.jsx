@@ -51,17 +51,17 @@ const ApatsExpandir = () => {
 const ApatsReduir = () => {
     return (
         <div className='cn-div-apats-expandir-reduir-reserva-feta'>
-            <h4>{'APAT 1'}</h4>
-            <h4>{'APAT 2'}</h4>
-            <h4>{'APAT 3'}</h4>
+            <h4>{'Primer'}</h4>
+            <h4>{'Segon'}</h4>
+            <h4>{'Postre'}</h4>
         </div>
     )
 }
 
 export const ReservaFeta = ({ fn, state }) => {
 
-    //const { torns, crearReserva } = useContext(DadesCamptinaContext);
-    //const { menuPrimer, menuSegon, menuPostres} = useMenus()
+    const { torns, crearReserva } = useContext(DadesCamptinaContext);
+    const { menuPrimer, menuSegon, menuPostres} = useMenus()
 
     const maneigState = () => {
         fn(!state)
