@@ -3,29 +3,35 @@ import { useMenus } from '../menus-seccio/LogicaMenus.js'
 import './SeccioTriarApat.css'
 import './ArticleTriarApat.css'
 import { useForm } from 'react-hook-form'
-//import { useAxiosPeticionsTriarApats } from '../../../services/AxiosPeticionsTriarApats.js'
-//import { useAxiosPeticionsTorns } from '../../../services/AxiosPeticionsTorns.js'
 import { useContext } from 'react'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const SeccioTriarApat = () => {
 
-    const { torns, crearReserva } = useContext(DadesCamptinaContext);
+    const { torns, crearReserva, menus } = useContext(DadesCamptinaContext);
 
     const { menuPrimer, menuSegon, menuPostres} = useMenus()
 
     const { handleSubmit, reset, register, formState: {errors} } = useForm()
 
+    const usuariGuardat = localStorage.getItem('dadesUsuari');
+
+   const dadesUsuari = usuariGuardat ? JSON.parse(usuariGuardat) : null;
+
+   const menuUnic = menus[0];
+   const idMenu = menuUnic.id;
+
     const ferReserva = handleSubmit((data) => {
-        console.log(data)
+        console.log(usuariGuardat);
         const obj = {
-            id_usuari: data.idUsuari,
-            id_torn: data.idTorn,
-            id_menu: data.idMenu,
-            id_primer: data.idPrimer,
-            id_segon: data.idSegon,
-            id_postres: data.idPostre,
-            id_data: new Date()
+            idUsuari: JSON.parse(dadesUsuari.id),
+            id: data.tornTriarApat,
+            idMenu: idMenu,
+            idPrimer: data.apatsPrimer,
+            idSegon: data.apatsSegon,
+            idPostre: data.apatsPostres,
+            idTorn: data.tornTriarApat,
+            data: new Date().toISOString().split('T')[0]
         }
         console.log(obj);
         crearReserva(obj)

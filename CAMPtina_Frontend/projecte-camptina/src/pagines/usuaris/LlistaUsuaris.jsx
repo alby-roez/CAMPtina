@@ -218,9 +218,10 @@ export const LlistaUsuaris = () => {
                             onChange={maneigFiltre}
                         >
                             <option value='' disabled></option>
+                            <option value={0}>Tots</option>
                             {rols.map((rol) => (
                                 <option key={rol.id} value={rol.id}>
-                                    {rol.nom}
+                                    {rol.nom.charAt(0).toUpperCase() + rol.nom.slice(1).toLowerCase()}
                                 </option>
                             ))}
 

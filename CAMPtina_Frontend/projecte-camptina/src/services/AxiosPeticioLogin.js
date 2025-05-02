@@ -26,6 +26,7 @@ export const loginUsuari = async (email,contrasenya) => {
 
         return {
             success: true,
+            id: resposta.data.usuariId,
             nom: resposta.data.nom,
             cognom1: resposta.data.cognom1,
             email: resposta.data.email,

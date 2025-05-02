@@ -60,8 +60,8 @@ const ApatsReduir = () => {
 
 export const ReservaFeta = ({ fn, state }) => {
 
-    const { torns, crearReserva } = useContext(DadesCamptinaContext);
-    const { menuPrimer, menuSegon, menuPostres} = useMenus()
+    //const { torns, crearReserva } = useContext(DadesCamptinaContext);
+    //const { menuPrimer, menuSegon, menuPostres} = useMenus()
 
     const maneigState = () => {
         fn(!state)

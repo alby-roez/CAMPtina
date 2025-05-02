@@ -73,7 +73,7 @@ export const Navegacio = () => {
                             {esGestor && (
                                 <>
                                     <li>
-                                        <Link to='/apats'>Àpats</Link>
+                                        <Link to=''>Àpats</Link>
                                         <ul className={className_num_li_4}>
                                             <li><Link to='/apats/menus'>Menús</Link></li>
                                             <li><Link to='/apats/triar-apat'>Triar Àpat</Link></li>

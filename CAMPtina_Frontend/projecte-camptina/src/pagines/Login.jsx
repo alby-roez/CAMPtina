@@ -25,11 +25,13 @@ export default function Login() {
         
         if (resposta.success) {
             localStorage.setItem('dadesUsuari', JSON.stringify({
+                id: resposta.id,
                 nom: resposta.nom,
                 cognom1: resposta.cognom1,
                 email: resposta.email,
                 rol: resposta.rol
             }))
+            console.log(localStorage.getItem('dadesUsuari'));
             window.location.href = '/'
             window.history.pushState({}, '', '/')
             window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT));

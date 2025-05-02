@@ -6,6 +6,7 @@ import { useAxiosPeticionsTorns } from './AxiosPeticionsTorns.js'
 import { useAxiosPeticionsRols } from './AxiosPeticionsRols.js'
 import { useAxiosPeticionsUsuaris } from './AxiosPeticionsUsuaris.js'
 import { useAxiosPeticionsTriarApats } from './AxiosPeticionsTriarApats.js'
+import { useAxiosPeticionsCategories } from './AxiosPeticionsCategories.js'
 
 export const DadesCamptinaContext = createContext()
 
@@ -46,11 +47,12 @@ export function DadesCamptinaProvider({ children }) {
     const dadesRols = useAxiosPeticionsRols(usuariActiu)
     const dadesUsuaris = useAxiosPeticionsUsuaris(usuariActiu)
     const dadesTriarApats = useAxiosPeticionsTriarApats(usuariActiu)
+    const dadesCategories = useAxiosPeticionsCategories(usuariActiu)
 
    
     return (
         <DadesCamptinaContext.Provider value={{
-            ...dadesApats, ...dadesMenus, ...dadesMenusApats, ...dadesTorns, ...dadesRols, ...dadesUsuaris, ...dadesTriarApats, 
+            ...dadesApats, ...dadesMenus, ...dadesMenusApats, ...dadesTorns, ...dadesRols, ...dadesUsuaris, ...dadesTriarApats, ...dadesCategories,
             usuariActiu, login, logout
         }}
         >

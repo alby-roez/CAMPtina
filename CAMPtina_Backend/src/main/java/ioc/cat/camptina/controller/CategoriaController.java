@@ -24,7 +24,6 @@ import ioc.cat.camptina.service.CategoriaService;
  */
 @RestController
 @RequestMapping("/api/categoria")
-@PreAuthorize("hasAuthority('GESTOR')")
 public class CategoriaController {
 
 	@Autowired
