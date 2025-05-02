@@ -118,7 +118,9 @@ public class MenuService {
 		MenuLlistaApatsDTO menuLlistaApatsDTO = new MenuLlistaApatsDTO();
 		menuLlistaApatsDTO.setId(menuEntity.getId());
 		menuLlistaApatsDTO.setNom(menuEntity.getNom());
+		menuLlistaApatsDTO.setPreu(menuEntity.getPreu());
 		menuLlistaApatsDTO.setApatsPerCategoria(mapApatsDTO);
+		
 		
 		return menuLlistaApatsDTO;
 	}

@@ -3,33 +3,33 @@ import { useMenus } from '../menus-seccio/LogicaMenus.js'
 import './SeccioTriarApat.css'
 import './ArticleTriarApat.css'
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const SeccioTriarApat = () => {
 
-    const { torns, crearReserva, menus } = useContext(DadesCamptinaContext);
+    const { torns, crearReserva, menus, carregarMenusComplet } = useContext(DadesCamptinaContext);
 
-    const { menuPrimer, menuSegon, menuPostres} = useMenus()
+    const { menuPrimer, menuSegon, menuPostres } = useMenus()
 
-    const { handleSubmit, reset, register, formState: {errors} } = useForm()
+    const { handleSubmit, reset, register, formState: { errors } } = useForm()
 
     const usuariGuardat = localStorage.getItem('dadesUsuari');
+    const [idMenuSeleccionat, setIdMenuSeleccionat] = useState('');
+    const [menuComplet, setMenuComplet] = useState({ primer: [], segon: [], postres: [] });
 
-   const dadesUsuari = usuariGuardat ? JSON.parse(usuariGuardat) : null;
+    const dadesUsuari = usuariGuardat ? JSON.parse(usuariGuardat) : null;
 
-   const menuUnic = menus[0];
-   const idMenu = menuUnic.id;
 
     const ferReserva = handleSubmit((data) => {
         console.log(usuariGuardat);
         const obj = {
             idUsuari: JSON.parse(dadesUsuari.id),
             id: data.tornTriarApat,
-            idMenu: idMenu,
-            idPrimer: data.apatsPrimer,
-            idSegon: data.apatsSegon,
-            idPostre: data.apatsPostres,
+            idMenu: data.idMenu,
+            idPrimer: data.idPrimer,
+            idSegon: data.idSegon,
+            idPostre: data.idPostres,
             idTorn: data.tornTriarApat,
             data: new Date().toISOString().split('T')[0]
         }
@@ -37,6 +37,17 @@ export const SeccioTriarApat = () => {
         crearReserva(obj)
         reset();
     })
+    useEffect(() => {
+        if (idMenuSeleccionat) {
+            carregarMenusComplet(idMenuSeleccionat).then(res => {
+                setMenuComplet(res || { primer: [], segon: [], postres: [] });
+            })
+                .catch(err => {
+                    console.error('Error carregant el menú complet', err);
+                    setMenuComplet({ primer: [], segon: [], postres: [] });
+                });
+        }
+    }, [idMenuSeleccionat]);
 
     const className_form_seccio_triar_apat = 'cn-form-seccio-triar-apat';
     const className_article_titol_seccio_triar_apat = 'cn-article-titol-seccio-triar-apat';
@@ -71,6 +82,26 @@ export const SeccioTriarApat = () => {
             <article className={className_article_titol_seccio_triar_apat} id={id_article_titol_seccio_triar_apat}>
                 <h2 className={className_h2_titol_seccio_triar_apat}>{txt_section}</h2>
             </article>
+            {/* Selecció de menú */}
+            <article className="cn-article-triar-apat">
+                <div className="cn-div-nom-triar-apat">
+                    <h3 className="cn-h3-nom-triar-apat">Menú</h3>
+                </div>
+                <select
+                    className="cn-select-torns-triar-apat"
+                    {...register('idMenu', { required: true })}
+                    onChange={(e) => {
+                        const id = e.target.value;
+                        carregarMenusComplet(id);
+                    }}
+                >
+                    <option value="" disabled>Selecciona un menú</option>
+                    {menus.map(menu => (
+                        <option key={menu.id} value={menu.id}>{menu.nom}:  {menu.preu}€</option>
+                    ))}
+                </select>
+                {errors.idMenu && <span className="cn-span-error-message-torn-triar-apat">Has de seleccionar un menú</span>}
+            </article>
             {/* TORNS */}
             <article className={className_article}>
                 <div className={className_div_nom}>
@@ -81,7 +112,7 @@ export const SeccioTriarApat = () => {
                     className='cn-select-torns-triar-apat'
                     id={'id_select_torns_triar_apat'}
                     name={'tornSelect'}
-                    { ... register('tornTriarApat', {
+                    {...register('tornTriarApat', {
                         required: true
                     })}
                 >
@@ -90,71 +121,63 @@ export const SeccioTriarApat = () => {
                         <option key={item.id} value={item.id}>{item.nom} - {item.horaInici} - {item.horaFi}</option>
                     ))}
                 </select>
-                { errors.tornTriarApat?.type === 'required' &&
-                    <span className={className_span_error}>Has de seleccionar un torn</span> }
+                {errors.tornTriarApat?.type === 'required' &&
+                    <span className={className_span_error}>Has de seleccionar un torn</span>}
             </article>
             {/* PRIMER */}
             <article className={className_article}>
                 <div className={className_div_nom}>
                     <h3 className={className_h3_nom}>{'Primer'}</h3>
                 </div>
-                {menuPrimer.map((item) => (
-                    <div key={item.id} className={className_div_nom_apat}>
-                        <label htmlFor={`id_${item.id}_triar_apat`}>{item.nom}</label>
+                {menuPrimer.length > 0 && menuPrimer.map(apat => (
+                    <div key={apat.id} className={className_div_nom_apat}>
+                        <label>{apat.nom}</label>
                         <input
-                            type='radio'
-                            className={className_radio_input}
-                            id={`id_${item.id}_triar_apat`}
-                            value={item.id}
-                            name={name_radio_input_primer}
-                            { ... register('apatsPrimer', {})}
+                            type="radio"
+                            value={apat.id}
+                            {...register('idPrimer', { required: true })}
                         />
                     </div>
                 ))}
+
                 { /* MALA PARACTICA PER PROBAR SPAN (===) Switch (!==) */ true === false &&
-                    <span className={className_span_error_special_radio}>Has de seleccionar un primer</span> }
+                    <span className={className_span_error_special_radio}>Has de seleccionar un primer</span>}
             </article>
             {/* SEGON */}
             <article className={className_article}>
                 <div className={className_div_nom}>
                     <h3 className={className_h3_nom}>{'Segon'}</h3>
                 </div>
-                {menuSegon.map((item) => (
-                    <div key={item.id} className={className_div_nom_apat}>
-                        <label htmlFor={`id_${item.id}_triar_apat`}>{item.nom}</label>
+                {menuSegon.length > 0 && menuSegon.map(apat => (
+                    <div key={apat.id} className={className_div_nom_apat}>
+                        <label>{apat.nom}</label>
                         <input
-                            type='radio'
-                            className={className_radio_input}
-                            id={`id_${item.id}_triar_apat`}
-                            value={item.id}
-                            name={name_radio_input_segon}
-                            { ... register('apatsSegon')}
+                            type="radio"
+                            value={apat.id}
+                            {...register('idSegon', { required: true })}
                         />
                     </div>
                 ))}
                 { /* MALA PARACTICA PER PROBAR SPAN (===) Switch (!==) */ true === false &&
-                    <span className={className_span_error_special_radio}>Has de seleccionar un segon</span> }
+                    <span className={className_span_error_special_radio}>Has de seleccionar un segon</span>}
             </article>
             {/* POSTRES */}
             <article className={className_article}>
                 <div className={className_div_nom}>
                     <h3 className={className_h3_nom}>{'Postres'}</h3>
                 </div>
-                {menuPostres.map((item) => (
-                    <div key={item.id} className={className_div_nom_apat}>
-                        <label htmlFor={`id_${item.id}_triar_apat`}>{item.nom}</label>
+                {menuPostres.length > 0 && menuPostres.map(apat => (
+                    <div key={apat.id} className={className_div_nom_apat}>
+                        <label>{apat.nom}</label>
                         <input
-                            type='radio'
-                            className={className_radio_input}
-                            id={`id_${item.id}_triar_apat`}
-                            value={item.id}
-                            name={name_radio_input_postres}
-                            { ... register('apatsPostres')}
+                            type="radio"
+                            value={apat.id}
+                            {...register('idPostres', { required: true })}
                         />
                     </div>
                 ))}
                 { /* MALA PARACTICA PER PROBAR SPAN (===) Switch (!==) */ true === false &&
-                    <span className={className_span_error_special_radio}>Has de seleccionar un postres</span> }
+                    <span className={className_span_error_special_radio}>Has de seleccionar un postres</span>}
             </article>
             {/*<ArticleTriarApat nomArticle={'Primer'} nomCategoria={'primer'} llista={menuPrimer} />*/}
             {/*<ArticleTriarApat nomArticle={'Segon'} nomCategoria={'segon'} llista={menuSegon} />*/}

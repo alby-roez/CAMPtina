@@ -50,7 +50,9 @@ export const useAxiosPeticionsMenusApats = () => {
             const primer = Array.isArray(apatsPerCategoria.PRIMER) ? apatsPerCategoria.PRIMER : [];
             const segon = Array.isArray(apatsPerCategoria.SEGON) ? apatsPerCategoria.SEGON : [];
             const postres = Array.isArray(apatsPerCategoria.POSTRE) ? apatsPerCategoria.POSTRE : [];
-
+            console.log('Primers:', primer);
+            console.log('Segons:', segon);
+            console.log('Postres:', postres);
             setMenuPrimer(primer);
             setMenuSegon(segon);
             setMenuPostres(postres);
@@ -62,6 +64,7 @@ export const useAxiosPeticionsMenusApats = () => {
             setMenuSegon([]);
             setMenuPostres([]);
         }
+        return {primer:[], segon: [], postres:[]};
     }
 
     /**

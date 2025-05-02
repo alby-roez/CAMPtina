@@ -11,6 +11,15 @@ public class MenuLlistaApatsDTO {
 	private int id;
 	private String nom;
 	private Map<String, List<ApatDTO>> apatsPerCategoria;
+	private double preu;
+
+	public double getPreu() {
+		return preu;
+	}
+
+	public void setPreu(double preu) {
+		this.preu = preu;
+	}
 
 	public int getId() {
 		return id;
