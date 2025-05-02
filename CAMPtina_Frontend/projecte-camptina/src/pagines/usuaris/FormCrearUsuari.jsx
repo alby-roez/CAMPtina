@@ -18,7 +18,7 @@ export const FormCrearUsuari = () => {
             cognom2: data.cognom2Usuari,
             email: data.email,
             rolId: parseInt(data.rolUsuari),
-            
+            contrasenya: data.contrasenya         
         };
 
         crearUsuari(nouUsuari); 
