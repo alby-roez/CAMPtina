@@ -35,24 +35,12 @@ export const useAxiosPeticionsMenusApats = () => {
     const carregarMenusComplet = async (idMenu) => {
         try {
             const resposta = await axiosClient.get(`/menu/menu-complet/${idMenu}`);
-            //setMenusApats(resposta.data)
             const dades = resposta.data;
-            /* MALA PRACTICA O BONA NO SE A- */
-            /*if (true) {
-                setMenuPrimer([])
-                setMenuSegon([])
-                setMenuPostres([])
-            }*/
-            //setMenuPrimer(resposta.data.apatsPerCategoria.PRIMER)
-            //setMenuSegon(resposta.data.apatsPerCategoria.SEGON)
-            //setMenuPostres(resposta.data.apatsPerCategoria.POSTRE)
-            const apatsPerCategoria = dades.apatsPerCategoria || {}; // Si no existeix, objecte buit
+            const apatsPerCategoria = dades.apatsPerCategoria || {}; 
             const primer = Array.isArray(apatsPerCategoria.PRIMER) ? apatsPerCategoria.PRIMER : [];
             const segon = Array.isArray(apatsPerCategoria.SEGON) ? apatsPerCategoria.SEGON : [];
             const postres = Array.isArray(apatsPerCategoria.POSTRE) ? apatsPerCategoria.POSTRE : [];
-            console.log('Primers:', primer);
-            console.log('Segons:', segon);
-            console.log('Postres:', postres);
+
             setMenuPrimer(primer);
             setMenuSegon(segon);
             setMenuPostres(postres);
@@ -79,7 +67,6 @@ export const useAxiosPeticionsMenusApats = () => {
                     'Content-Type': 'application/json'
                 },
             })
-            //console.log('MenusApats creat:', resposta.data)
             carregarMenusComplet(1)
             carregarMenusApats()
         } catch (error) {
