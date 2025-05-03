@@ -107,7 +107,7 @@ export const ReservaFeta = ({ fn, state }) => {
                     <button
                         className='cn-bttn-actualitzar-eliminar-reserva-feta'
                         name='nameBttnEliminarReservaFeta'
-                        onClick={''}
+                        onClick={() => {}}
                     >
                         <DeletePaperera />
                     </button>

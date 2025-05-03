@@ -7,8 +7,8 @@ const axiosClient = axios.create({
 })
 
 // 2. Afegim un interceptor de request per injectar el token
-const token = localStorage.getItem('jwtToken');
 axiosClient.interceptors.request.use(config => {
+  const token = localStorage.getItem('jwtToken');
   if (token) {
     // Si hi ha token, l’afegim a l’header Authorization
     config.headers.Authorization = `Bearer ${token}`
