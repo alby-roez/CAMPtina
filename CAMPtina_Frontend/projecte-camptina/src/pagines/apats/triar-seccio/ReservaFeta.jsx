@@ -1,8 +1,20 @@
 import './ReservaFeta.css'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { DeletePaperera, ExpandirIcona, ReduirIcona, UpdateLlapis } from '../../../Icones.jsx'
 
+import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
+
+
 const ApatsExpandir = () => {
+    const {reservaIdUsuari, obtenirReservaUsuari} = useContext(DadesCamptinaContext)
+
+    useEffect(() => {
+        const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
+        if (idUsuari) {
+          obtenirReservaUsuari(idUsuari)
+        }
+      }, [])
+
     return (
         <div className='cn-div-apats-expandir-reduir-reserva-feta'>
             <div className='cn-div-apats-expandir-reserva-feta'>
@@ -11,7 +23,7 @@ const ApatsExpandir = () => {
                         <h3>{'PRIMER:'}</h3>
                     </div>
                     <div className='cn-apat-container-e-reserva-feta'>
-                        <h4>{'APAT 1'}</h4>
+                        <h4>{reservaIdUsuari.nomPrimer}</h4>
                     </div>
                 </div>
                 <div className='cn-apat-container-descripcio-e-reserva-feta'>
@@ -24,7 +36,7 @@ const ApatsExpandir = () => {
                         <h3>{'SEGON:'}</h3>
                     </div>
                     <div className='cn-apat-container-e-reserva-feta'>
-                        <h4>{'APAT 2'}</h4>
+                        <h4>{reservaIdUsuari.nomSegon}</h4>
                     </div>
                 </div>
                 <div className='cn-apat-container-descripcio-e-reserva-feta'>
@@ -37,7 +49,7 @@ const ApatsExpandir = () => {
                         <h3>{'POSTRES:'}</h3>
                     </div>
                     <div className='cn-apat-container-e-reserva-feta'>
-                        <h4>{'APAT 3'}</h4>
+                        <h4>{reservaIdUsuari.nomPostre}</h4>
                     </div>
                 </div>
                 <div className='cn-apat-container-descripcio-e-reserva-feta'>
@@ -49,19 +61,35 @@ const ApatsExpandir = () => {
 }
 
 const ApatsReduir = () => {
+
+    const {reservaIdUsuari, obtenirReservaUsuari} = useContext(DadesCamptinaContext)
+
+    useEffect(() => {
+        const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
+        if (idUsuari) {
+          obtenirReservaUsuari(idUsuari)
+        }
+      }, [])
+
     return (
         <div className='cn-div-apats-expandir-reduir-reserva-feta'>
-            <h4>{'Primer'}</h4>
-            <h4>{'Segon'}</h4>
-            <h4>{'Postre'}</h4>
+            <h4>{reservaIdUsuari.nomPrimer}</h4>
+            <h4>{reservaIdUsuari.nomSegon}</h4>
+            <h4>{reservaIdUsuari.nomPostre}</h4>
         </div>
     )
 }
 
 export const ReservaFeta = ({ fn, state }) => {
 
-    //const { torns, crearReserva } = useContext(DadesCamptinaContext);
-    //const { menuPrimer, menuSegon, menuPostres} = useMenus()
+    const {reservaIdUsuari, obtenirReservaUsuari,} = useContext(DadesCamptinaContext)
+
+    useEffect(() => {
+        const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
+        if (idUsuari) {
+          obtenirReservaUsuari(idUsuari)
+        }
+      }, [])
 
     const maneigState = () => {
         fn(!state)
@@ -76,7 +104,7 @@ export const ReservaFeta = ({ fn, state }) => {
     return (
         <section className='cn-section-reserva-feta'>
             <article className='cn-article-titol-torn-reserva-feta'>
-                <h2>{'1 - 5 - 25 ----- 23:00'}</h2>
+                <h2>{reservaIdUsuari.nomTorn}</h2>
             </article>
             <article className='cn-article-contingut-reserva-feta'>
                 <div className='cn-div-actualitzar-eliminar-reserva-feta'>

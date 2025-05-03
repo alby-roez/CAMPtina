@@ -22,19 +22,17 @@ axiosClient.interceptors.request.use(config => {
 axiosClient.interceptors.response.use(
   response => response,
   error => {
-    if (!token) {
+      const token = localStorage.getItem('jwtToken')
       const status = error.response?.status;
       const path = window.location.pathname;
 
-      if (status === 401 && !PUBLIC_ROUTES.includes(path)) {
+      if (status === 401 && !PUBLIC_ROUTES.includes(path) && !token) {
         // Només redirigim si NO som en una ruta pública
         window.history.pushState({}, '', '/unauthorized')
         window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
       }
       return Promise.reject(error)
     }
-  }
-
 )
 
 export default axiosClient
