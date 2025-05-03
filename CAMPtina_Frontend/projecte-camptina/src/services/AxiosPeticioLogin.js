@@ -1,6 +1,5 @@
 import axiosClient from './auth'
 
-
 // Funció per configurar el token automàticament
 const setAuthToken = (token) => {
     if(token) {
@@ -62,7 +61,7 @@ export const logoutUsuari = () => {
 }
 
 // Configuració inicial si hi ha token
-const token = localStorage.getItem('jwtToken')
-if(token) {
-    setAuthToken(token)
-}
+//const token = localStorage.getItem('jwtToken')
+//if(token) {
+//    setAuthToken(token)
+//}

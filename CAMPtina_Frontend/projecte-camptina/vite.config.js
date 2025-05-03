@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     history: {
-      fallback: true // 👈 Habilita el modo SPA
+      fallback: true
     }
   }
 })

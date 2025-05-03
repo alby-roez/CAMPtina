@@ -4,6 +4,7 @@ import logo from '../assets/logo.png'
 import usuari from '../assets/user.png'
 //import menu from '../assets/menu.png'
 import { ESDEVENIMENTS } from '../consts.js'
+import { logoutUsuari } from '../services/AxiosPeticioLogin.js'
 
 export const Navegacio = () => {
 
@@ -36,7 +37,8 @@ export const Navegacio = () => {
 
     // Funció per tancar sessió
     const handleLogout = () => {
-        localStorage.removeItem('jwtToken')
+        //localStorage.removeItem('jwtToken')
+        logoutUsuari()
         localStorage.removeItem('dadesUsuari')
         setDadesUsuari(null)
         window.history.pushState({}, '', '/login')

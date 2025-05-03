@@ -27,7 +27,7 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
             setValue("cognom2", usuari.cognom2);
             setValue("rolId", usuari.rolId);
             setValue("email", usuari.email);
-            setValue("contrasenyaXifrada", usuari.contrasenya);
+            setValue("contrasenya", usuari.contrasenya);
         }
     }, [usuari, setValue]);
 
@@ -138,7 +138,7 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                         defaultValue={usuari.contrasenya}
                         type="password"
                         placeholder="Contrasenya"
-                        {...register("contrasenyaXifrada", {
+                        {...register("contrasenya", {
                             required: true,
                             minLength: 8
                         })}
