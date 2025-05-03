@@ -61,6 +61,20 @@ export const useAxiosPeticionsTriarApats = () => {
             console.log('Error obtenint la reserva de l\'Id del usuari:', error)
         }
     }
+    /**
+     * @author Palmira
+     * @param {*} idUsuari 
+     * @description Funció per obtenir la primera reserva de forma detallada de l'usuari entrat per paràmetre
+     */
+    const obtenirReservaUsuari = async (idUsuari) => {
+        try {
+            const resposta = await axiosClient.get(`/reserva/reservausuari/${idUsuari}`);
+            setReservaIdUsuari(resposta.data);
+        } catch (error) {
+            console.error('Error obtenint la reserva: ', error);
+            throw error;
+        }
+    };
 
     /**
      * @author Albert
@@ -81,12 +95,12 @@ export const useAxiosPeticionsTriarApats = () => {
         }
     }
 
-   /**
-    * @author Albert
-    * @param {*} idReserva
-    * @param {*} novaReserva
-    * @description Funció per actualitzar una reserva
-    */
+    /**
+     * @author Albert
+     * @param {*} idReserva
+     * @param {*} novaReserva
+     * @description Funció per actualitzar una reserva
+     */
     const actualitzarReserva = async (idReserva, novaReserva) => {
         try {
             const resposta = await axiosClient.put(`/reserva/${idReserva}`, novaReserva, {
@@ -119,5 +133,5 @@ export const useAxiosPeticionsTriarApats = () => {
         carregarReserva()
     }, [])
 
-    return { reserva, reservaId, reservaIdUsuari, carregarReserva, carregarReservaId, carregarReservaIdUsuari, crearReserva, actualitzarReserva, eliminarReserva }
+    return { reserva, reservaId, reservaIdUsuari, carregarReserva, carregarReservaId, carregarReservaIdUsuari, crearReserva, actualitzarReserva, eliminarReserva, obtenirReservaUsuari }
 }
