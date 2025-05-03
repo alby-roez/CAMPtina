@@ -12,8 +12,10 @@ import ioc.cat.camptina.model.entity.ReservaEntity;
 @Repository
 public interface ReservaRepository extends JpaRepository<ReservaEntity, Integer> {
 
-    List<ReservaEntity> findReservaByIdUsuari(int idUsuari);
+    List<ReservaEntity> findReservaByUsuariId(int idUsuari);
     Optional<ReservaEntity> findById(int id);
     List<ReservaEntity> findReservesByData(LocalDate data);
+    Optional<ReservaEntity> findFirstByUsuariId(int idUsuari);
+
 
 }

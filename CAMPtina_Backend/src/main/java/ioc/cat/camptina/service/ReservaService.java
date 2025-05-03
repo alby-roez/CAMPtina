@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ioc.cat.camptina.mapper.ReservaMapper;
 import ioc.cat.camptina.model.dto.ReservaDTO;
+import ioc.cat.camptina.model.dto.ReservaDetallDTO;
 import ioc.cat.camptina.model.entity.ApatEntity;
 import ioc.cat.camptina.model.entity.MenuEntity;
 import ioc.cat.camptina.model.entity.ReservaEntity;
@@ -35,9 +36,15 @@ public class ReservaService {
     private MenuRepository menuRepository;
     @Autowired
     private ApatRepository apatRepository;
+    
+    public ReservaDetallDTO obtenirReservaDetalladaPerUsuari(int idUsuari) {
+        ReservaEntity reserva = reservaRepository.findFirstByUsuariId(idUsuari)
+                .orElseThrow(() -> new RuntimeException("Reserva no trobada per l'usuari amb ID: " + idUsuari));
+        return reservaMapper.toDetalladaDTO(reserva);
+    }
 
     public List<ReservaDTO> findReservaByIdUsuari(int idUsuari) {
-        List<ReservaEntity> reserva = reservaRepository.findReservaByIdUsuari(idUsuari);
+        List<ReservaEntity> reserva = reservaRepository.findReservaByUsuariId(idUsuari);
         return reservaMapper.listReservaEntityToDto(reserva);
     } 
 
@@ -72,12 +79,12 @@ public class ReservaService {
         ApatEntity postre = apatRepository.findById(reservaDto.getIdPostre()).orElseThrow(() -> new RuntimeException("Postre no trobat"));
        
         ReservaEntity reservaEntity = reservaMapper.reservaDtoToReservaEntity(reservaDto);
-        reservaEntity.setIdUsuari(usuari.getId());
-        reservaEntity.setIdTorn(torn.getId());
-        reservaEntity.setIdMenu(menu.getId());
-        reservaEntity.setIdPrimer(primer.getId());
-        reservaEntity.setIdSegon(segon.getId());
-        reservaEntity.setIdPostre(postre.getId());
+        reservaEntity.setUsuari(usuari);
+        reservaEntity.setTorn(torn);
+        reservaEntity.setMenu(menu);
+        reservaEntity.setPrimer(primer);
+        reservaEntity.setSegon(segon);
+        reservaEntity.setPostre(postre);
         reservaEntity.setData(reservaDto.getData());
 
         reservaEntity = reservaRepository.save(reservaEntity);
@@ -92,12 +99,12 @@ public class ReservaService {
         ApatEntity segon = apatRepository.findById(reservaDto.getIdSegon()).orElseThrow(() -> new RuntimeException("Segon plat no trobat"));     
         ApatEntity postre = apatRepository.findById(reservaDto.getIdPostre()).orElseThrow(() -> new RuntimeException("Postre no trobat"));
         
-        reservaEntity.setIdUsuari(usuari.getId());
-        reservaEntity.setIdTorn(torn.getId());
-        reservaEntity.setIdMenu(menu.getId());
-        reservaEntity.setIdPrimer(primer.getId());
-        reservaEntity.setIdSegon(segon.getId());
-        reservaEntity.setIdPostre(postre.getId());
+        reservaEntity.setUsuari(usuari);
+        reservaEntity.setTorn(torn);
+        reservaEntity.setMenu(menu);
+        reservaEntity.setPrimer(primer);
+        reservaEntity.setSegon(segon);
+        reservaEntity.setPostre(postre);
         reservaEntity.setData(reservaDto.getData());
 
         reservaRepository.save(reservaEntity);

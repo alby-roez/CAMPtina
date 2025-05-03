@@ -13,89 +13,96 @@ public class ReservaEntity {
     @Column(name = "ID_RESERVA", nullable = false)
     private int idReserva;
 
-    @Column(name = "ID_USUARI", nullable = false)
-    private int idUsuari;
+    @ManyToOne
+    @JoinColumn(name = "ID_USUARI", nullable = false)
+    private UsuariEntity usuari;
 
-    @Column(name = "ID_TORN", nullable = false)
-    private int idTorn;
+    @ManyToOne
+    @JoinColumn(name = "ID_TORN", nullable = false)
+    private TornEntity torn;
 
-    @Column(name = "ID_MENU", nullable = false)
-    private int idMenu;
+    @ManyToOne
+    @JoinColumn(name = "ID_MENU", nullable = false)
+    private MenuEntity menu;
 
-    @Column(name = "ID_PRIMER", nullable = false)
-    private int idPrimer;
+    @ManyToOne
+    @JoinColumn(name = "ID_PRIMER", nullable = false)
+    private ApatEntity primer;
 
-    @Column(name = "ID_SEGON", nullable = false)
-    private int idSegon;
+    @ManyToOne
+    @JoinColumn(name = "ID_SEGON", nullable = false)
+    private ApatEntity segon;
 
-    @Column(name = "ID_POSTRE", nullable = false)
-    private int idPostre;
+    @ManyToOne
+    @JoinColumn(name = "ID_POSTRE", nullable = false)
+    private ApatEntity postre;
 
     @Column(name = "DATA", nullable = false)
     private LocalDate data;
 
-    // Getters and Setters
-    public int getIdReserva() {
-        return idReserva;
-    }
+	public int getIdReserva() {
+		return idReserva;
+	}
 
-    public void setIdReserva(int idReserva) {
-        this.idReserva = idReserva;
-    }
+	public void setIdReserva(int idReserva) {
+		this.idReserva = idReserva;
+	}
 
-    public int getIdUsuari() {
-        return idUsuari;
-    }
+	public UsuariEntity getUsuari() {
+		return usuari;
+	}
 
-    public void setIdUsuari(int idUsuari) {
-        this.idUsuari = idUsuari;
-    }
+	public void setUsuari(UsuariEntity usuari) {
+		this.usuari = usuari;
+	}
 
-    public int getIdTorn() {
-        return idTorn;
-    }
+	public TornEntity getTorn() {
+		return torn;
+	}
 
-    public void setIdTorn(int idTorn) {
-        this.idTorn = idTorn;
-    }
+	public void setTorn(TornEntity torn) {
+		this.torn = torn;
+	}
 
-    public int getIdMenu() {
-        return idMenu;
-    }
+	public MenuEntity getMenu() {
+		return menu;
+	}
 
-    public void setIdMenu(int idMenu) {
-        this.idMenu = idMenu;
-    }
+	public void setMenu(MenuEntity menu) {
+		this.menu = menu;
+	}
 
-    public int getIdPrimer() {
-        return idPrimer;
-    }
+	public ApatEntity getPrimer() {
+		return primer;
+	}
 
-    public void setIdPrimer(int idPrimer) {
-        this.idPrimer = idPrimer;
-    }
+	public void setPrimer(ApatEntity primer) {
+		this.primer = primer;
+	}
 
-    public int getIdSegon() {
-        return idSegon;
-    }
+	public ApatEntity getSegon() {
+		return segon;
+	}
 
-    public void setIdSegon(int idSegon) {
-        this.idSegon = idSegon;
-    }
+	public void setSegon(ApatEntity segon) {
+		this.segon = segon;
+	}
 
-    public int getIdPostre() {
-        return idPostre;
-    }
+	public ApatEntity getPostre() {
+		return postre;
+	}
 
-    public void setIdPostre(int idPostre) {
-        this.idPostre = idPostre;
-    }
+	public void setPostre(ApatEntity postre) {
+		this.postre = postre;
+	}
 
-    public LocalDate getData() {
-        return data;
-    }
+	public LocalDate getData() {
+		return data;
+	}
 
-    public void setData(LocalDate data) {
-        this.data = data;
-    }
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+    
+    
 }
