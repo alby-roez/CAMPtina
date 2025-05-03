@@ -122,6 +122,7 @@ export const useAxiosPeticionsTriarApats = () => {
     const eliminarReserva = async (idReserva) => {
         try {
             await axiosClient.delete(`/reserva/${idReserva}`)
+            setReservaIdUsuari(null)
             setReserva(reserva.filter(reserva => reserva.id !== idReserva));
             await carregarReserva()
         } catch (error) {
