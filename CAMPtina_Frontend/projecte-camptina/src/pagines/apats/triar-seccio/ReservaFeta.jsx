@@ -15,6 +15,10 @@ const ApatsExpandir = () => {
         }
     }, [])
 
+    if (!reservaIdUsuari) {
+        return <p>No tens cap reserva feta.</p>;
+    }
+
     return (
         <div className='cn-div-apats-expandir-reduir-reserva-feta'>
             <div className='cn-div-apats-expandir-reserva-feta'>
@@ -70,6 +74,10 @@ const ApatsReduir = () => {
             obtenirReservaUsuari(idUsuari)
         }
     }, [])
+
+    if (!reservaIdUsuari) {
+        return <p>No tens cap reserva feta.</p>;
+    }
 
     return (
         <div className='cn-div-apats-expandir-reduir-reserva-feta'>
