@@ -25,8 +25,13 @@ import ioc.cat.camptina.security.jwt.JwtAuthenticationFilter;
 import ioc.cat.camptina.security.service.UserDetailsServiceImpl;
 
 /**
- * Classe que gestiona els accessos permesos a l'aplicació, encripta la
- * contrasenya i gestiona permisos de rols
+ * Classe de configuració de Spring Security.
+ * 
+ * Defineix la configuració de seguretat de l'aplicació: 
+ * - Autenticació basada en JWT 
+ * - Gestió de CORS 
+ * - Control d'accessos a les rutes 
+ * - Tractament d'errors d'autenticació
  * 
  * @author Palmira
  */
@@ -40,11 +45,19 @@ public class WebSecurityConfig {
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
 
+	/**
+	 * Bean que proporciona el filtre d'autenticació JWT per analitzar les peticions
+	 * entrants.
+	 */
 	@Bean
 	JwtAuthenticationFilter authenticationJwtTokenFilter() {
 		return new JwtAuthenticationFilter();
 	}
 
+	/**
+	 * Bean que configura el proveïdor d’autenticació basat en la base de dades.
+	 * S’utilitza per verificar l’usuari i la contrasenya.
+	 */
 	@Bean
 	DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -55,16 +68,30 @@ public class WebSecurityConfig {
 		return authProvider;
 	}
 
+	/**
+	 * Bean per codificar contrasenyes amb l'algorisme BCrypt.
+	 */
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
+	/**
+	 * Bean per obtenir l'AuthenticationManager, necessari per autenticar usuaris
+	 * manualment.
+	 */
 	@Bean
 	AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
-
+	
+	/**
+	 * Defineix la cadena de filtres de seguretat:
+	 * - Desactiva CSRF
+	 * - Habilita CORS
+	 * - Defineix rutes públiques i protegides
+	 * - Afegeix el filtre JWT abans del filtre d’autenticació per defecte
+	 */
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -80,6 +107,10 @@ public class WebSecurityConfig {
 
 	}
 
+	/**
+	 * Configura les regles CORS per permetre comunicació amb el frontend. Defineix
+	 * orígens permesos, mètodes i headers.
+	 */
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();

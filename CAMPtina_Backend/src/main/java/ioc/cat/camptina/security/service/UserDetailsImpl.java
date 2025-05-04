@@ -14,6 +14,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ioc.cat.camptina.model.entity.UsuariEntity;
 
 /**
+ * Implementació personalitzada de la interfície UserDetails.
+ * 
+ * Aquesta classe encapsula un usuari del sistema i les seves dades necessàries
+ * per a l'autenticació. Spring Security la utilitza per validar credencials i
+ * gestionar permisos.
+ * 
  * @author Palmira
  */
 public class UserDetailsImpl implements UserDetails {
@@ -27,15 +33,13 @@ public class UserDetailsImpl implements UserDetails {
 	private String username;
 	private String nom;
 	private String cognom1;
-	
 
 	@JsonIgnore
 	private String password;
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(int id, String email, String contrasenya,
-			Collection<? extends GrantedAuthority> authorities,
+	public UserDetailsImpl(int id, String email, String contrasenya, Collection<? extends GrantedAuthority> authorities,
 			String nom, String cognom1) {
 		super();
 		this.id = id;
@@ -44,7 +48,7 @@ public class UserDetailsImpl implements UserDetails {
 		this.authorities = authorities;
 		this.nom = nom;
 		this.cognom1 = cognom1;
-        
+
 	}
 
 	public int getId() {
@@ -54,35 +58,35 @@ public class UserDetailsImpl implements UserDetails {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
-	
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+
 	public String getCognom1() {
 		return cognom1;
 	}
-	
+
 	public void setCognom1(String cognom1) {
 		this.cognom1 = cognom1;
 	}
-	
-	
+
 	public static UserDetailsImpl build(UsuariEntity usuari) {
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(usuari.getRol().getNom()));
-		return new UserDetailsImpl(usuari.getId(), usuari.getEmail(), usuari.getContrasenya(), authorities, usuari.getNom(), usuari.getCognom1());
+		return new UserDetailsImpl(usuari.getId(), usuari.getEmail(), usuari.getContrasenya(), authorities,
+				usuari.getNom(), usuari.getCognom1());
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
 	}
-	
+
 	public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
 		this.authorities = authorities;
 	}
@@ -138,5 +142,4 @@ public class UserDetailsImpl implements UserDetails {
 				&& Objects.equals(username, other.username) && id == other.id;
 	}
 
-	
 }
