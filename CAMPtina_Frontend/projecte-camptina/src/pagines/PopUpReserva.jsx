@@ -3,7 +3,7 @@ export function PopUpReserva({ missatge, onTancar }) {
         <div style={popupFons}>
             <div style={popupContingut}>
                 <p>{missatge}</p>
-                <button onClick={onTancar}>Tancar</button>
+                
             </div>
         </div>
     );

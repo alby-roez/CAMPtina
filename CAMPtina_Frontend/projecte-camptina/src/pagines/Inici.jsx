@@ -55,6 +55,7 @@ export default function Inici() {
                         <Link to='/apats/triar-apat'>Fer una comanda</Link>
                         <Link to='/apats/crear-apat'>Gestió d'àpats</Link>
                         <Link to='/apats/menus'>Gestió menus</Link>
+                        <Link to='/apats/gestio-reserves'>Gestió reserves</Link>
                         <Link to='/usuaris/gestio-usuaris'>Gestió d'usuaris</Link>
                     </>       
                     )}    

@@ -80,6 +80,7 @@ export const Navegacio = () => {
                                             <li><Link to='/apats/menus'>Menús</Link></li>
                                             <li><Link to='/apats/triar-apat'>Triar Àpat</Link></li>
                                             <li><Link to='/apats/crear-apat'>Crear Àpat</Link></li>
+                                            <li><Link to='/apats/gestio-reserves'>Reserves</Link></li>
                                             <li><Link to='/apats/torns'>Torns</Link></li>
                                         </ul>
                                     </li>
