@@ -10,6 +10,10 @@
     min-height: 70px;
     background: #69c;
 }
+.cn-section-filtre-reserves{
+    display: flex;
+    flex-direction: column;
+}
 
 .cn-gestio-reserves {
     width: 90%;
@@ -82,6 +86,7 @@
     background-color: #369;
     color: #fff;
 }
+
 
 .cn-taula-reserves tr:hover {
     background: #9cf;
