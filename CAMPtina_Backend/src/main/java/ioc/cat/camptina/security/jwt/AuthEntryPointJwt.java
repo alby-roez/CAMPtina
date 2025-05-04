@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
+ * Classe per a gestionar l'accés no autoritzat
  * @author Palmira
  */
 @Component
