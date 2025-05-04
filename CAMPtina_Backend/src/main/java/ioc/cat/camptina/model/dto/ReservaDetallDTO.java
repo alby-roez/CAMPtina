@@ -20,6 +20,16 @@ public class ReservaDetallDTO {
 	private int idPostre;
 	private String nomPostre;
 	private LocalDate data;
+	private double preuMenu;
+	
+
+	public double getPreuMenu() {
+		return preuMenu;
+	}
+
+	public void setPreuMenu(double preuMenu) {
+		this.preuMenu = preuMenu;
+	}
 
 	public int getIdReserva() {
 		return idReserva;

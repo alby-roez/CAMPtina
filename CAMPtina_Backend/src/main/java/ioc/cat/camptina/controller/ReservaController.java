@@ -26,7 +26,7 @@ public class ReservaController {
     private ReservaService reservaService;
 
     @GetMapping()
-    public List<ReservaDTO> getAllReserves() {
+    public List<ReservaDetallDTO> getAllReserves() {
          return reservaService.getAllReserves();
     }
 
@@ -43,7 +43,11 @@ public class ReservaController {
     @GetMapping("/reservausuari/{idUsuari}")
     public ResponseEntity<ReservaDetallDTO> obtenirReservaPerUsuari(@PathVariable int idUsuari) {
         ReservaDetallDTO dto = reservaService.obtenirReservaDetalladaPerUsuari(idUsuari);
-        return ResponseEntity.ok(dto);
+        if (dto != null) {
+            return ResponseEntity.ok(dto);
+        } else {
+            return ResponseEntity.noContent().build(); // o ResponseEntity.ok(null)
+        }
     }
 
     @GetMapping("/data/{data}")

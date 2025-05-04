@@ -48,9 +48,9 @@ public class ReservaService {
         return reservaMapper.listReservaEntityToDto(reserva);
     } 
 
-    public List<ReservaDTO> getAllReserves() {
+    public List<ReservaDetallDTO> getAllReserves() {
         return reservaRepository.findAll().stream()
-                .map(reservaMapper::reservaEntityToReservaDto)
+                .map(reservaMapper::toDetalladaDTO)
                 .toList();
     }
 

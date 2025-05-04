@@ -38,6 +38,7 @@ public interface ReservaMapper {
 	@Mapping(source = "postre.id", target = "idPostre")
 	@Mapping(source = "postre.nom", target = "nomPostre")
 	@Mapping(source = "menu.id", target="idMenu")
+	@Mapping(source = "menu.preu", target="preuMenu")
 	ReservaDetallDTO toDetalladaDTO(ReservaEntity reservaEntity);
 
 }

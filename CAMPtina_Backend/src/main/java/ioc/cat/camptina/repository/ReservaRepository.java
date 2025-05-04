@@ -16,6 +16,6 @@ public interface ReservaRepository extends JpaRepository<ReservaEntity, Integer>
     Optional<ReservaEntity> findById(int id);
     List<ReservaEntity> findReservesByData(LocalDate data);
     Optional<ReservaEntity> findFirstByUsuariId(int idUsuari);
-
+    Optional<ReservaEntity> findLastByUsuariId(int idUsuari);
 
 }
