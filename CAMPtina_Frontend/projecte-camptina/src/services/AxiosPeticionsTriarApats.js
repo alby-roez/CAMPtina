@@ -19,7 +19,7 @@ export const useAxiosPeticionsTriarApats = () => {
      * @author Albert
      * @description Estat per guardar la reserva per Id de usuari
      */
-    const [reservaIdUsuari, setReservaIdUsuari] = useState([])
+    const [reservaIdUsuari, setReservaIdUsuari] = useState(null)
 
     /**
      * @author Albert
@@ -70,6 +70,8 @@ export const useAxiosPeticionsTriarApats = () => {
         try {
             const resposta = await axiosClient.get(`/reserva/reservausuari/${idUsuari}`);
             setReservaIdUsuari(resposta.data);
+            console.log('Reserva previ crida:', resposta.data)
+            return resposta.data;
         } catch (error) {
             console.error('Error obtenint la reserva: ', error);
             throw error;

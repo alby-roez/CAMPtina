@@ -6,14 +6,14 @@ import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
 
 
 const ApatsExpandir = () => {
-    const {reservaIdUsuari, obtenirReservaUsuari} = useContext(DadesCamptinaContext)
+    const { reservaIdUsuari, obtenirReservaUsuari } = useContext(DadesCamptinaContext)
 
     useEffect(() => {
         const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
         if (idUsuari) {
-          obtenirReservaUsuari(idUsuari)
+            obtenirReservaUsuari(idUsuari)
         }
-      }, [])
+    }, [])
 
     return (
         <div className='cn-div-apats-expandir-reduir-reserva-feta'>
@@ -62,14 +62,14 @@ const ApatsExpandir = () => {
 
 const ApatsReduir = () => {
 
-    const {reservaIdUsuari, obtenirReservaUsuari} = useContext(DadesCamptinaContext)
+    const { reservaIdUsuari, obtenirReservaUsuari } = useContext(DadesCamptinaContext)
 
     useEffect(() => {
         const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
         if (idUsuari) {
-          obtenirReservaUsuari(idUsuari)
+            obtenirReservaUsuari(idUsuari)
         }
-      }, [])
+    }, [])
 
     return (
         <div className='cn-div-apats-expandir-reduir-reserva-feta'>
@@ -82,14 +82,14 @@ const ApatsReduir = () => {
 
 export const ReservaFeta = ({ fn, state }) => {
 
-    const {reservaIdUsuari, obtenirReservaUsuari, eliminarReserva} = useContext(DadesCamptinaContext)
+    const { reservaIdUsuari, obtenirReservaUsuari, eliminarReserva } = useContext(DadesCamptinaContext)
 
     useEffect(() => {
         const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
         if (idUsuari) {
-          obtenirReservaUsuari(idUsuari)
+            obtenirReservaUsuari(idUsuari)
         }
-      }, [])
+    }, [])
 
     const maneigState = () => {
         fn(!state)
@@ -104,7 +104,7 @@ export const ReservaFeta = ({ fn, state }) => {
     return (
         <section className='cn-section-reserva-feta'>
             <article className='cn-article-titol-torn-reserva-feta'>
-            <h2>{reservaIdUsuari?.nomTorn || ''}</h2>
+                <h2>{reservaIdUsuari?.nomTorn || ''}</h2>
             </article>
             <article className='cn-article-contingut-reserva-feta'>
                 <div className='cn-div-actualitzar-eliminar-reserva-feta'>
@@ -119,17 +119,17 @@ export const ReservaFeta = ({ fn, state }) => {
                 <div className='cn-div-apats-e-r-reserva-feta'>
                     <div className='cn-div-container-titol-apats-reserva-feta'>
                         <h3>{'APATS ESCOLLITS'}</h3>
-                        { cambi
-                        ? <button className='cn-bttn-cambiar-tamany-reserva-feta' name='nameBttnExpandir' onClick={fn_cambiar}>
-                            <ExpandirIcona />
+                        {cambi
+                            ? <button className='cn-bttn-cambiar-tamany-reserva-feta' name='nameBttnExpandir' onClick={fn_cambiar}>
+                                <ExpandirIcona />
                             </button>
-                        : <button className='cn-bttn-cambiar-tamany-reserva-feta' name='nameBttnExpandir' onClick={fn_cambiar}>
-                            <ReduirIcona />
-                            </button> }
+                            : <button className='cn-bttn-cambiar-tamany-reserva-feta' name='nameBttnExpandir' onClick={fn_cambiar}>
+                                <ReduirIcona />
+                            </button>}
                     </div>
-                    { cambi
-                    ? <ApatsReduir />
-                    : <ApatsExpandir /> }
+                    {cambi
+                        ? <ApatsReduir />
+                        : <ApatsExpandir />}
                 </div>
                 <div className='cn-div-actualitzar-eliminar-reserva-feta'>
                     <button
@@ -137,21 +137,21 @@ export const ReservaFeta = ({ fn, state }) => {
                         name='nameBttnEliminarReservaFeta'
                         onClick={async () => {
                             try {
-                              const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
-                              console.log(idUsuari)
-                              if (reservaIdUsuari?.idReserva) { 
-                                await eliminarReserva(reservaIdUsuari.idReserva)
-                                
-                                // Actualització post-eliminació
-                                await obtenirReservaUsuari(idUsuari)
-                                
-                                // Opcional: Reset de l'estat local si cal
-                                setReservaIdUsuari(null)
-                            }
+                                const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
+                                console.log(idUsuari)
+                                if (reservaIdUsuari?.idReserva) {
+                                    await eliminarReserva(reservaIdUsuari.idReserva)
+
+                                    // Actualització post-eliminació
+                                    await obtenirReservaUsuari(idUsuari)
+
+                                    // Opcional: Reset de l'estat local si cal
+                                    setReservaIdUsuari(null)
+                                }
                             } catch (error) {
-                              console.error("Error eliminant reserva:", error)
+                                console.error("Error eliminant reserva:", error)
                             }
-                          }}
+                        }}
                     >
                         <DeletePaperera />
                     </button>

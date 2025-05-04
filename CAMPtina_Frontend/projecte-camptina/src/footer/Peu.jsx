@@ -11,7 +11,7 @@ export const Peu = () => {
         <>
             <footer className={className_footer_peu}>
                 <section className={className_section_footer_titol_peu}>
-                    <h3>Peu de pàgina</h3>
+                    <h3>CAMPtina</h3>
                 </section>
                 <section className={className_section_footer_link_peu}>
                     <Link to='/equip/equip-dev'>Cristina Andión Catalán</Link>
