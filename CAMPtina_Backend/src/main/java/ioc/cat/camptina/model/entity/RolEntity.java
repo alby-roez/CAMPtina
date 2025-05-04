@@ -9,7 +9,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
+/**
+ * Classe de la entitat per a la taula Rol
+ */
 @Entity
 @Table(name = "ROL")
 public class RolEntity {

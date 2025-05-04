@@ -12,42 +12,73 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ioc.cat.camptina.service.TornService; 
+import ioc.cat.camptina.service.TornService;
 import ioc.cat.camptina.model.dto.TornDTO;
+/**
+ * Classe controller per gestionar tots els endpoints del Torn
+ */
 @RestController
 @RequestMapping("/api/torn")
 public class TornController {
 
-    @Autowired
-    private TornService tornService;
-    
+	@Autowired
+	private TornService tornService;
 
-    @GetMapping()
-    public List<TornDTO> getAllTorns() {
-         return tornService.getAllTorns();
-    }
-    
-    @GetMapping("{id}")
-    public TornDTO getTornById(@PathVariable int id) {
-        return tornService.getTornById(id);
-    }
+	/**
+	 * Endpoint que retorna tots els torns
+	 * 
+	 * @return llista de torns
+	 */
+	@GetMapping()
+	public List<TornDTO> getAllTorns() {
+		return tornService.getAllTorns();
+	}
 
-    @PostMapping()
-    @PreAuthorize("hasAuthority('GESTOR')")
-    public TornDTO createTorn(@RequestBody TornDTO tornDto) {
-        return tornService.createTorn(tornDto);
-    }
+	/**
+	 * Endpoint que retorna un torn introduït per id
+	 * 
+	 * @param id del torn
+	 * @return un torn
+	 */
+	@GetMapping("{id}")
+	public TornDTO getTornById(@PathVariable int id) {
+		return tornService.getTornById(id);
+	}
 
-    @PutMapping("{id}")
-    @PreAuthorize("hasAuthority('GESTOR')")
-    public TornDTO updateTorn(@PathVariable int id, @RequestBody TornDTO tornDto) {
-        return tornService.updateTorn(id, tornDto);
-    }
-    
-    @DeleteMapping("{id}")
-    @PreAuthorize("hasAuthority('GESTOR')")
-    public void deleteTorn(@PathVariable int id) {
-        tornService.deleteTorn(id);
-    }
+	/**
+	 * Endpoint per a crear un torn
+	 * 
+	 * @param tornDto
+	 * @return torn creat
+	 */
+	@PostMapping()
+	@PreAuthorize("hasAuthority('GESTOR')")
+	public TornDTO createTorn(@RequestBody TornDTO tornDto) {
+		return tornService.createTorn(tornDto);
+	}
+
+	/**
+	 * Endpoint per actualitza el torn de l'id introduït
+	 * 
+	 * @param id      torn
+	 * @param tornDto
+	 * @return torn modificat
+	 */
+	@PutMapping("{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
+	public TornDTO updateTorn(@PathVariable int id, @RequestBody TornDTO tornDto) {
+		return tornService.updateTorn(id, tornDto);
+	}
+
+	/**
+	 * Endpoint per eliminar el torn de l'id introduït
+	 * 
+	 * @param id torn
+	 */
+	@DeleteMapping("{id}")
+	@PreAuthorize("hasAuthority('GESTOR')")
+	public void deleteTorn(@PathVariable int id) {
+		tornService.deleteTorn(id);
+	}
 
 }

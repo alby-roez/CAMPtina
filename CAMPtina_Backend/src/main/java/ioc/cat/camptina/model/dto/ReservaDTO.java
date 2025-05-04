@@ -1,7 +1,9 @@
 package ioc.cat.camptina.model.dto;
 
 import java.time.LocalDate;
-
+/**
+ * Classe DTO per a ReservaEntity per a no exposar la Entitat 
+ */
 public class ReservaDTO {
 
     private int idReserva;

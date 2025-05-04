@@ -1,6 +1,8 @@
 package ioc.cat.camptina.model.dto;
 
-
+/**
+ * Classe DTO per a UsuariEntity que només conté els camps que volem mostrar
+ */
 public class UsuariDTO {
 	
 	private int id;

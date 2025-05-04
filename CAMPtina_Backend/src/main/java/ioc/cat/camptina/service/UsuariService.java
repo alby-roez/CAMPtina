@@ -14,6 +14,10 @@ import ioc.cat.camptina.model.entity.UsuariEntity;
 import ioc.cat.camptina.repository.RolRepository;
 import ioc.cat.camptina.repository.UsuariRepository;
 
+/**
+ * Classe service que integra la lògica de les crides a BBDD que es faran servir
+ * en els controllers
+ */
 @Service
 public class UsuariService {
 
@@ -29,17 +33,34 @@ public class UsuariService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	/**
+	 * Mètode per retornar la llista d'usuaris
+	 * 
+	 * @return llista d'usuaris
+	 */
 	public List<UsuariDTO> findAllUsuaris() {
 		List<UsuariEntity> usuaris = usuariRepository.findAll();
 		return usuariMapper.listUsuariEntityToDto(usuaris);
 	}
 
+	/**
+	 * Mètode per retornar l'usuari corresponent a l'id introduït
+	 * 
+	 * @param id usuari
+	 * @return usuari
+	 */
 	public UsuariDTO findUsuariById(int id) {
 		UsuariEntity usuariEntity = usuariRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Usuari no trobat"));
 		return usuariMapper.usuariEntityToUsuariDto(usuariEntity);
 	}
 
+	/**
+	 * Mètode per crear un usuari nou
+	 * 
+	 * @param usuariDto
+	 * @return usuari creat
+	 */
 	public UsuariDTO createUsuari(UsuariCreacioDTO usuariDto) {
 
 		RolEntity rol = rolRepository.findById(usuariDto.getRolId())
@@ -56,6 +77,13 @@ public class UsuariService {
 
 	}
 
+	/**
+	 * Mètode per actualitzar un usuari introduït per paràmetre
+	 * 
+	 * @param id        usuari
+	 * @param usuariDto
+	 * @return usuari modificat
+	 */
 	public UsuariDTO updateUsuari(int id, UsuariCreacioDTO usuariDto) {
 		UsuariEntity usuariEntity = usuariRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Usuari no trobat"));
@@ -75,6 +103,11 @@ public class UsuariService {
 
 	}
 
+	/**
+	 * Mètode que elimina l'usuari de l'id introduït
+	 * 
+	 * @param id usuari
+	 */
 	public void deleteUsuari(int id) {
 		usuariRepository.deleteById(id);
 	}

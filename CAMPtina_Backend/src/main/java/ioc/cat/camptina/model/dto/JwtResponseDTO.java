@@ -1,7 +1,10 @@
 package ioc.cat.camptina.model.dto;
 
 /**
+ * Classe DTO per a recollir les dades que necessitem per gestionar la respota
+ * del JWT
  * 
+ * @author Palmira
  */
 public class JwtResponseDTO {
 
@@ -23,7 +26,7 @@ public class JwtResponseDTO {
 		this.nom = nom;
 		this.cognom1 = cognom1;
 	}
-	
+
 	public String getToken() {
 		return token;
 	}
@@ -63,19 +66,19 @@ public class JwtResponseDTO {
 	public void setRolNom(String rolNom) {
 		this.rolNom = rolNom;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
-	
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
+
 	public String getCognom1() {
 		return cognom1;
 	}
-	
+
 	public void setCognom1(String cognom1) {
 		this.cognom1 = cognom1;
 	}

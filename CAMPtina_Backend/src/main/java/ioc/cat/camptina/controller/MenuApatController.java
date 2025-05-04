@@ -16,6 +16,8 @@ import ioc.cat.camptina.model.dto.MenuApatDTO;
 import ioc.cat.camptina.service.MenuApatService;
 
 /**
+ * Classe controller per gestionar tots els endpoints per a menu-apat
+ * 
  * @author Palmira
  */
 @RestController
@@ -25,17 +27,34 @@ public class MenuApatController {
 	@Autowired
 	private MenuApatService menuApatService;
 
+	/**
+	 * Endpoint per crear un MenuÀpat
+	 * 
+	 * @param menuApatDTO
+	 * @return MenuÀpat creat
+	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('GESTOR')")
 	public MenuApatDTO createMenuApat(@RequestBody MenuApatDTO menuApatDTO) {
 		return menuApatService.createMenuApat(menuApatDTO);
 	}
 
+	/**
+	 * Endpoint que retorna tots els MenuÀpats
+	 * 
+	 * @return llista menuApats
+	 */
 	@GetMapping
 	public List<MenuApatDTO> getAllMenuApat() {
 		return menuApatService.findAllMenuApats();
 	}
 
+	/**
+	 * Endpoint per eliminar un menuApat introduïnt el id del menú i el id del Àpat
+	 * 
+	 * @param menuId
+	 * @param apatId
+	 */
 	@DeleteMapping("/{menuId}/{apatId}")
 	@PreAuthorize("hasAuthority('GESTOR')")
 	public void deleteMenuApat(@PathVariable int menuId, @PathVariable int apatId) {

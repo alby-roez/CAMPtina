@@ -3,7 +3,9 @@ package ioc.cat.camptina.model.entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
-
+/**
+ * Classe de la entitat per a la taula Reserva
+ */
 @Entity
 @Table(name = "RESERVA")
 public class ReservaEntity {

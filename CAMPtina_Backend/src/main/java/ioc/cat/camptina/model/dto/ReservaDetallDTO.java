@@ -3,8 +3,9 @@ package ioc.cat.camptina.model.dto;
 import java.time.LocalDate;
 
 /**
- * @author Palmira DTO creat per a retornar tota la informació amb detall de la
- *         reserva
+ * DTO creat per a retornar tota la informació amb detall de la reserva
+ * @author Palmira 
+ * 
  */
 public class ReservaDetallDTO {
 	private int idReserva;
@@ -21,7 +22,6 @@ public class ReservaDetallDTO {
 	private String nomPostre;
 	private LocalDate data;
 	private double preuMenu;
-	
 
 	public double getPreuMenu() {
 		return preuMenu;

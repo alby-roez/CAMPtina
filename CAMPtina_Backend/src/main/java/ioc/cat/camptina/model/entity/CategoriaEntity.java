@@ -14,7 +14,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
- * 
+ * Classe de la entitat per a la taula Categoria
+ * @author Palmira
  */
 @Entity
 @Table(name = "CATEGORIA")

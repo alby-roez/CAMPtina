@@ -6,6 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 /**
+ * Classe embeguda per utilitzarla com a id per a la entitat Menu-Apat
+ * 
  * @author Palmira
  */
 @Embeddable
@@ -27,7 +29,7 @@ public class MenuApatId implements Serializable {
 
 	public MenuApatId(int menuId, int apatId) {
 		this.menuId = menuId;
-		this.apatId = apatId;		
+		this.apatId = apatId;
 	}
 
 	public int getMenuId() {

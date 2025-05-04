@@ -19,7 +19,8 @@ import ioc.cat.camptina.model.entity.MenuEntity;
 import ioc.cat.camptina.repository.MenuRepository;
 
 /**
- * Service per mapejar tots els mètodes del CRUD de la entitat Menú.
+ * Classe service que integra la lògica de les crides a BBDD que es faran servir
+ * en els controllers
  * 
  * @author Palmira
  */
@@ -31,10 +32,9 @@ public class MenuService {
 
 	@Autowired
 	private MenuMapper menuMapper;
-	
+
 	@Autowired
 	ApatMapper apatMapper;
-
 
 	/**
 	 * Mètode que retorna la llista de tots els menús existents a la base de dades.
@@ -95,9 +95,11 @@ public class MenuService {
 	public void deleteMenu(int id) {
 		menuRepository.deleteById(id);
 	}
-	
+
 	/**
-	 * Mètode que retorna el menú complet amb llista de plats i per categories, introduïnt el id per paràmetre
+	 * Mètode que retorna el menú complet amb llista de plats i per categories,
+	 * introduïnt el id per paràmetre
+	 * 
 	 * @param menuId
 	 * @return menú complet
 	 */
@@ -120,8 +122,7 @@ public class MenuService {
 		menuLlistaApatsDTO.setNom(menuEntity.getNom());
 		menuLlistaApatsDTO.setPreu(menuEntity.getPreu());
 		menuLlistaApatsDTO.setApatsPerCategoria(mapApatsDTO);
-		
-		
+
 		return menuLlistaApatsDTO;
 	}
 

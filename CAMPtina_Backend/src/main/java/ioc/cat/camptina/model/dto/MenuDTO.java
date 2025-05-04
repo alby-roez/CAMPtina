@@ -1,6 +1,7 @@
 package ioc.cat.camptina.model.dto;
 
 /**
+ * Classe DTO per a MenuEntity per a no exposar la Entitat 
  * @author Palmira
  */
 public class MenuDTO {

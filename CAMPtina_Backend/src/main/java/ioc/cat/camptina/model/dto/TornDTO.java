@@ -2,6 +2,9 @@ package ioc.cat.camptina.model.dto;
 
 import java.time.LocalTime;
 
+/**
+ * Classe DTO per a TornEntity per a no exposar la Entitat 
+ */
 public class TornDTO {
     private int id;
     private String nom;

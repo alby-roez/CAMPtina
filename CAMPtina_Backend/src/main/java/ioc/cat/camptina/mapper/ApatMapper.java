@@ -13,20 +13,22 @@ import ioc.cat.camptina.model.dto.ApatDTO;
 import ioc.cat.camptina.model.entity.ApatEntity;
 
 /**
- * Mapper que ens permet convertir els camps de l'Entitat amb el DTO
+ * Interficie per mapejar els camps de l'Entitat amb el DTO
+ * 
+ * @author Palmira
  */
 @Mapper(componentModel = "spring")
 public interface ApatMapper {
 
 	ApatMapper INSTANCE = Mappers.getMapper(ApatMapper.class);
 
-	@Mapping(source="categoria.id", target="categoriaId")
+	@Mapping(source = "categoria.id", target = "categoriaId")
 	ApatDTO apatEntityToApatDto(ApatEntity apatEntity);
-	
-	@Mapping(source="categoriaId", target="categoria.id")
+
+	@Mapping(source = "categoriaId", target = "categoria.id")
 	ApatEntity apatDtoToApatEntity(ApatDTO apatDto);
 
 	List<ApatDTO> listApatEntityToDto(List<ApatEntity> apats);
-	
+
 	List<ApatEntity> listApatDtoToEntity(List<ApatDTO> apats);
 }

@@ -18,56 +18,98 @@ import ioc.cat.camptina.model.dto.ReservaDTO;
 import ioc.cat.camptina.model.dto.ReservaDetallDTO;
 import ioc.cat.camptina.service.ReservaService;
 
+/**
+ * Classe controller per gestionar tots els endpoints de Reserva
+ */
 @RestController
 @RequestMapping("/api/reserva")
 public class ReservaController {
 
-    @Autowired
-    private ReservaService reservaService;
+	@Autowired
+	private ReservaService reservaService;
 
-    @GetMapping()
-    public List<ReservaDetallDTO> getAllReserves() {
-         return reservaService.getAllReserves();
-    }
+	/**
+	 * 
+	 * @return totes les reserves
+	 */
+	@GetMapping()
+	public List<ReservaDetallDTO> getAllReserves() {
+		return reservaService.getAllReserves();
+	}
 
-    @GetMapping("/{id}")
-    public ReservaDTO getReservaById(@PathVariable int id) {
-        return reservaService.getReservaById(id);
-    }
+	/**
+	 * 
+	 * @param id de la reserva
+	 * @return la reserva corresponent al id introduït
+	 */
+	@GetMapping("/{id}")
+	public ReservaDTO getReservaById(@PathVariable int id) {
+		return reservaService.getReservaById(id);
+	}
 
-    @GetMapping("/usuari/{idUsuari}")
-    public List<ReservaDTO> findReservaByIdUsuari(@PathVariable int idUsuari) {
-        return reservaService.findReservaByIdUsuari(idUsuari);
-    }
-    
-    @GetMapping("/reservausuari/{idUsuari}")
-    public ResponseEntity<ReservaDetallDTO> obtenirReservaPerUsuari(@PathVariable int idUsuari) {
-        ReservaDetallDTO dto = reservaService.obtenirReservaDetalladaPerUsuari(idUsuari);
-        if (dto != null) {
-            return ResponseEntity.ok(dto);
-        } else {
-            return ResponseEntity.noContent().build(); // o ResponseEntity.ok(null)
-        }
-    }
+	/**
+	 * 
+	 * @param idUsuari
+	 * @return LLista de reserves de l'usuari introduït
+	 */
+	@GetMapping("/usuari/{idUsuari}")
+	public List<ReservaDTO> findReservaByIdUsuari(@PathVariable int idUsuari) {
+		return reservaService.findReservaByIdUsuari(idUsuari);
+	}
 
-    @GetMapping("/data/{data}")
-    public List<ReservaDTO> findReservaByData(@PathVariable LocalDate data) {
-        return reservaService.findReservesByData(data);
-    }   
+	/**
+	 * 
+	 * @param idUsuari
+	 * @return primera reserva detallada del usuari introduït
+	 */
+	@GetMapping("/reservausuari/{idUsuari}")
+	public ResponseEntity<ReservaDetallDTO> obtenirReservaPerUsuari(@PathVariable int idUsuari) {
+		ReservaDetallDTO dto = reservaService.obtenirReservaDetalladaPerUsuari(idUsuari);
+		if (dto != null) {
+			return ResponseEntity.ok(dto);
+		} else {
+			return ResponseEntity.noContent().build(); // o ResponseEntity.ok(null)
+		}
+	}
 
-    @PostMapping()
-    public ReservaDTO createReserva(@RequestBody ReservaDTO reservaDto) {    
-        return reservaService.createReserva(reservaDto);
-    }   
+	/**
+	 * 
+	 * @param data
+	 * @return retorn la llista de reserves per data introduïda
+	 */
+	@GetMapping("/data/{data}")
+	public List<ReservaDTO> findReservaByData(@PathVariable LocalDate data) {
+		return reservaService.findReservesByData(data);
+	}
 
-    @PutMapping("/{id}")
-    public ReservaDTO updateReserva(@PathVariable int id, @RequestBody ReservaDTO reservaDto) {
-        return reservaService.updateReserva(id, reservaDto); 
-    } 
+	/**
+	 * 
+	 * @param reservaDto
+	 * @return reserva creada
+	 */
+	@PostMapping()
+	public ReservaDTO createReserva(@RequestBody ReservaDTO reservaDto) {
+		return reservaService.createReserva(reservaDto);
+	}
 
-    @DeleteMapping("/{id}")
-    public void deleteReserva(@PathVariable int id) {
-        reservaService.deleteReserva(id);
-    }    
-    
+	/**
+	 * 
+	 * @param id
+	 * @param reservaDto
+	 * @return reserva modificada
+	 */
+	@PutMapping("/{id}")
+	public ReservaDTO updateReserva(@PathVariable int id, @RequestBody ReservaDTO reservaDto) {
+		return reservaService.updateReserva(id, reservaDto);
+	}
+
+	/**
+	 * 
+	 * @param id
+	 */
+	@DeleteMapping("/{id}")
+	public void deleteReserva(@PathVariable int id) {
+		reservaService.deleteReserva(id);
+	}
+
 }

@@ -10,7 +10,9 @@ import ioc.cat.camptina.model.dto.UsuariCreacioDTO;
 import ioc.cat.camptina.model.dto.UsuariDTO;
 import ioc.cat.camptina.model.entity.UsuariEntity;
 
-
+/*
+ * Interficie per mapejar els camps de l'Entitat amb el DTO
+ */
 @Mapper(componentModel = "Spring")
 public interface UsuariMapper {
 	

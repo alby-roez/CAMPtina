@@ -10,6 +10,9 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 /**
+ * Classe de la entitat per a la taula Menu-Apat que conté MenuApatId com a id
+ * embegut
+ * 
  * @author Palmira
  */
 @Entity
@@ -74,7 +77,5 @@ public class MenuApatEntity {
 		MenuApatEntity other = (MenuApatEntity) obj;
 		return Objects.equals(apat, other.apat) && Objects.equals(id, other.id) && Objects.equals(menu, other.menu);
 	}
-	
-	
 
 }

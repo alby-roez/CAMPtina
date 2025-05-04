@@ -17,6 +17,9 @@ import ioc.cat.camptina.repository.MenuApatRepository;
 import ioc.cat.camptina.repository.MenuRepository;
 
 /**
+ * Classe service que integra la lògica de les crides a BBDD que es faran servir
+ * en els controllers
+ * 
  * @author Palmira
  */
 @Service
@@ -34,13 +37,19 @@ public class MenuApatService {
 	@Autowired
 	private MenuApatMapper menuApatMapper;
 
+	/**
+	 * Mètode per crear un menu-àpat nou
+	 * 
+	 * @param menuApatDTO
+	 * @return menu-àpat creat
+	 */
 	public MenuApatDTO createMenuApat(MenuApatDTO menuApatDTO) {
 
 		MenuApatId id = new MenuApatId();
-		
+
 		id.setApatId(menuApatDTO.getApatId());
 		id.setMenuId(menuApatDTO.getMenuId());
-		
+
 		MenuApatEntity menuApatEntity = new MenuApatEntity();
 		menuApatEntity.setId(id);
 
@@ -57,12 +66,23 @@ public class MenuApatService {
 
 	}
 
+	/**
+	 * Mètode per retornar la llista completa de menu-àpats
+	 * 
+	 * @return llista menu-àpats
+	 */
 	public List<MenuApatDTO> findAllMenuApats() {
 
 		return menuApatRepository.findAll().stream().map(menuApatMapper::menuApatEntityToMenuApatDTO)
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Mètode que elimina el menu-àpat de l'id menú i l'id àpat introduït
+	 * 
+	 * @param menuId
+	 * @param apatId
+	 */
 	public void deleteMenuApat(int menuId, int apatId) {
 		menuApatRepository.deleteById(new MenuApatId(menuId, apatId));
 	}

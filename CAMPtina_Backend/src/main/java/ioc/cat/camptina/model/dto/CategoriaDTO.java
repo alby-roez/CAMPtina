@@ -4,7 +4,8 @@
 package ioc.cat.camptina.model.dto;
 
 /**
- * 
+ * Classe DTO per a CategoriaEntity per a no exposar la Entitat 
+ * @author Palmira
  */
 public class CategoriaDTO {
 

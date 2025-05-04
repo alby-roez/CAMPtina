@@ -7,7 +7,7 @@ import ioc.cat.camptina.model.dto.MenuDTO;
 import ioc.cat.camptina.model.entity.MenuEntity;
 
 /**
- * Mapper que ens permet convertir els camps de l'entitat amb el DTO
+ * Interficie per mapejar els camps de l'Entitat amb el DTO
  * 
  * @author Palmira
  */

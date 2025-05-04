@@ -8,10 +8,15 @@ import org.springframework.stereotype.Repository;
 
 import ioc.cat.camptina.model.entity.UsuariEntity;
 
+/**
+ * Interficie que utilitza JpaRepository per fer consulta a BBDD
+ */
 @Repository
-public interface UsuariRepository extends JpaRepository<UsuariEntity, Integer>{
-	
-	 Optional<UsuariEntity> findById(int id); 
-	 List<UsuariEntity> findByRolId(int rolId); 
-	 Optional<UsuariEntity> findByEmail(String email);
+public interface UsuariRepository extends JpaRepository<UsuariEntity, Integer> {
+
+	Optional<UsuariEntity> findById(int id);
+
+	List<UsuariEntity> findByRolId(int rolId);
+
+	Optional<UsuariEntity> findByEmail(String email);
 }

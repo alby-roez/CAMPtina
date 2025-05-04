@@ -30,6 +30,8 @@ import ioc.cat.camptina.security.service.UserDetailsImpl;
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
+ * Classe controller per gestionar els endpoints del login
+ * 
  * @author Palmira
  */
 @RestController
@@ -38,20 +40,30 @@ public class LoginController {
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
+
 	@Autowired
 	private UsuariRepository usuariRepository;
-	
+
 	@Autowired
 	private RolRepository rolRepository;
 
 	@Autowired
 	private JwtTokenProvider jwtUtils;
-	
+
 	@Autowired
 	private PasswordEncoder encoder;
 
-	public LoginController(AuthenticationManager authenticationManager, UsuariRepository usuariRepository, RolRepository rolRepository, PasswordEncoder encoder, JwtTokenProvider jwtUtils) {
+	/**
+	 * Constructor
+	 * 
+	 * @param authenticationManager
+	 * @param usuariRepository
+	 * @param rolRepository
+	 * @param encoder
+	 * @param jwtUtils
+	 */
+	public LoginController(AuthenticationManager authenticationManager, UsuariRepository usuariRepository,
+			RolRepository rolRepository, PasswordEncoder encoder, JwtTokenProvider jwtUtils) {
 		super();
 		this.authenticationManager = authenticationManager;
 		this.usuariRepository = usuariRepository;
@@ -60,8 +72,12 @@ public class LoginController {
 		this.jwtUtils = jwtUtils;
 	}
 
-
-	
+	/**
+	 * Endpoint per fer login
+	 * 
+	 * @param login
+	 * @return ResponseEntity
+	 */
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginDTO login) {
 		Authentication authentication = authenticationManager
@@ -74,25 +90,37 @@ public class LoginController {
 
 		GrantedAuthority au = ((ArrayList<GrantedAuthority>) userDetails.getAuthorities()).get(0);
 
-		return ResponseEntity
-				.ok(new JwtResponseDTO(jwt, userDetails.getUsername(), userDetails.getId(), au.getAuthority(), userDetails.getNom(), userDetails.getCognom1()));
+		return ResponseEntity.ok(new JwtResponseDTO(jwt, userDetails.getUsername(), userDetails.getId(),
+				au.getAuthority(), userDetails.getNom(), userDetails.getCognom1()));
 
 	}
 
+	/**
+	 * Login per validar les autoritzacións
+	 * 
+	 * @param request
+	 * @return ResponseEntity
+	 */
 	@GetMapping("/validate-jwt")
 	public ResponseEntity<Boolean> validateJwt(HttpServletRequest request) {
 		String jwt = request.getHeader("Authorization").replace("Bearer ", "");
 		return ResponseEntity.ok(this.jwtUtils.validarJwtToken(jwt));
 	}
-	
+
+	/**
+	 * Mètode per crear un usuari, exclusivament per al rol Gestor
+	 * 
+	 * @param usuariDto
+	 * @return usuari creat
+	 */
 	@PostMapping("/crear-usuari")
 	@PreAuthorize("hasAuthority('GESTOR')")
-	public ResponseEntity<?> registerUser(@RequestBody UsuariCreacioDTO usuariDto){
+	public ResponseEntity<?> registerUser(@RequestBody UsuariCreacioDTO usuariDto) {
 		Optional<UsuariEntity> usuariEntrant = usuariRepository.findByEmail(usuariDto.getEmail());
-		if(!usuariEntrant.isEmpty()) {
+		if (!usuariEntrant.isEmpty()) {
 			return ResponseEntity.badRequest().body("Error: Aquest email ja existeix!");
 		}
-		//Create new user's account
+		// Create new user's account
 		UsuariEntity usuari = new UsuariEntity();
 		RolEntity rol = rolRepository.findById(usuariDto.getRolId())
 				.orElseThrow(() -> new RuntimeException("Rol no trobat"));

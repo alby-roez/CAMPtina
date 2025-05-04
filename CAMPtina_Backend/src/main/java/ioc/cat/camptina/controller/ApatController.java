@@ -29,34 +29,70 @@ public class ApatController {
 	@Autowired
 	private ApatService apatService;
 
+	/**
+	 * Endpoint per retornar la llista d'àpats
+	 * 
+	 * @return llista d'àpats
+	 */
 	@GetMapping("/apats")
 	public List<ApatDTO> getAllApats() {
 		return apatService.findAllApats();
 	}
 
+	/**
+	 * Endpoint per retornar el àpat corresponent a l'id introduït
+	 * 
+	 * @param id àpat
+	 * @return àpat
+	 */
 	@GetMapping("/apats/{id}")
 	public ApatDTO getApatById(@PathVariable int id) {
 		return apatService.findApatById(id);
 	}
 
+	/**
+	 * Endpoint per retornar la llista d'àpats d'una categoria introduïda per
+	 * paràmetre
+	 * 
+	 * @param categoria
+	 * @return llista d'apats per categoria
+	 */
 	@GetMapping("/apats/categoria/{categoria}")
 	public List<ApatDTO> getApatsByCategoria(@PathVariable int categoria) {
 		List<ApatDTO> apats = apatService.findApatsByCategoria(categoria);
 		return apats;
 	}
 
+	/**
+	 * Endpoint per crear un àpat nou
+	 * 
+	 * @param apatDto
+	 * @return àpat creat
+	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('GESTOR')")
 	public ApatDTO createApat(@RequestBody ApatDTO apatDto) {
 		return apatService.createApat(apatDto);
 	}
 
+	/**
+	 * Endpoint per actualitzar un àpat introduït per paràmetre
+	 * 
+	 * @param id      àpat
+	 * @param apatDto
+	 * @return àpat modificat
+	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('GESTOR')")
 	public ApatDTO updateApat(@PathVariable int id, @RequestBody ApatDTO apatDto) {
 		return apatService.updateApat(id, apatDto);
 	}
 
+	/**
+	 * Endpoint que elimina l'àpat de l'id introduït
+	 * 
+	 * @param id àpat
+	 */
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasAuthority('GESTOR')")
 	public void deleteApat(@PathVariable int id) {

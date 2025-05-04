@@ -13,7 +13,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
- * Creació de la entitat per a la taula Àpat
+ * Classe de la entitat per a la taula Àpat
+ * @author Palmira
  */
 @Entity
 @Table(name = "APAT")

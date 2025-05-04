@@ -1,5 +1,8 @@
 package ioc.cat.camptina.model.dto;
 
+/**
+ * Classe DTO per a RolEntity per a no exposar la Entitat 
+ */
 public class RolDTO {
 	
 	private int id;

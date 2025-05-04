@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Classe DTO per a mostrar un menú complet
+ * 
  * @author Palmira
  */
 public class MenuLlistaApatsDTO {

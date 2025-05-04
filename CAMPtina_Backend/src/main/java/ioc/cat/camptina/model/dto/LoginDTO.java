@@ -1,7 +1,10 @@
 package ioc.cat.camptina.model.dto;
 
 /**
+ * Classe DTO per a recollir les dades que necessitem per gestionar el Login
+ * correctament
  * 
+ * @author Palmira
  */
 public class LoginDTO {
 

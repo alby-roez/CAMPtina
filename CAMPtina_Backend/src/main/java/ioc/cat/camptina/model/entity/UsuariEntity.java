@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
- * Creació de la entitat per a la taula Usuari
+ * Classe de la entitat per a la taula Usuari
  */
 
 @Entity

@@ -12,12 +12,15 @@ import org.springframework.stereotype.Repository;
 import ioc.cat.camptina.model.entity.ApatEntity;
 
 /**
+ * Interficie que utilitza JpaRepository per fer consulta a BBDD
  * 
+ * @author Palmira
  */
 @Repository
-public interface ApatRepository extends JpaRepository<ApatEntity, Integer>{
-	
+public interface ApatRepository extends JpaRepository<ApatEntity, Integer> {
+
 	List<ApatEntity> findByCategoriaId(int categoriaId);
+
 	Optional<ApatEntity> findById(int id);
-	
+
 }

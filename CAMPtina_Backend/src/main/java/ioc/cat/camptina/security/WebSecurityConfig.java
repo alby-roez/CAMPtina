@@ -25,6 +25,9 @@ import ioc.cat.camptina.security.jwt.JwtAuthenticationFilter;
 import ioc.cat.camptina.security.service.UserDetailsServiceImpl;
 
 /**
+ * Classe que gestiona els accessos permesos a l'aplicació, encripta la
+ * contrasenya i gestiona permisos de rols
+ * 
  * @author Palmira
  */
 @Configuration
@@ -49,7 +52,6 @@ public class WebSecurityConfig {
 		authProvider.setUserDetailsService(userDetailsService);
 		authProvider.setPasswordEncoder(passwordEncoder());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println(encoder.encode("12345"));
 		return authProvider;
 	}
 
@@ -81,8 +83,8 @@ public class WebSecurityConfig {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.setAllowedOrigins(
-				Arrays.asList("http://localhost:3000","http://localhost:5173", "http://localhost:4200", "http://localhost:8080"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:5173",
+				"http://localhost:4200", "http://localhost:8080"));
 		corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		corsConfiguration.setAllowedHeaders(List.of("*"));
 		corsConfiguration.setAllowCredentials(true);

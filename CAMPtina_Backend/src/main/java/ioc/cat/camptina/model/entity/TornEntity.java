@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * Creació de la entitat per a la taula Torn
+ * Classe de la entitat per a la taula Torn
  */
 @Entity
 @Table(name = "TORN")

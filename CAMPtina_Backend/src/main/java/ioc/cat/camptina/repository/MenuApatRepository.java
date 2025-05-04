@@ -8,6 +8,8 @@ import ioc.cat.camptina.model.entity.MenuApatEntity;
 import ioc.cat.camptina.model.entity.MenuApatId;
 
 /**
+ * Interficie que utilitza JpaRepository per fer consulta a BBDD
+ * 
  * @author Palmira
  */
 public interface MenuApatRepository extends JpaRepository<MenuApatEntity, MenuApatId> {

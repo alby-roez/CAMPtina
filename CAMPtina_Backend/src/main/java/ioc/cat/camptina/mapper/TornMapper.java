@@ -8,6 +8,9 @@ import org.mapstruct.factory.Mappers;
 import ioc.cat.camptina.model.dto.TornDTO;
 import ioc.cat.camptina.model.entity.TornEntity;
 
+/**
+ * Interficie per mapejar els camps de l'Entitat amb el DTO
+ */
 @Mapper(componentModel = "spring")
 public interface TornMapper {
 

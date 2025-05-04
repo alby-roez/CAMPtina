@@ -10,6 +10,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+/**
+ * Interficie per mapejar els camps de l'Entitat amb el DTO
+ */
 @Mapper(componentModel = "spring")
 public interface ReservaMapper {
 
@@ -22,7 +25,7 @@ public interface ReservaMapper {
 	@Mapping(source = "primer.id", target = "idPrimer")
 	@Mapping(source = "segon.id", target = "idSegon")
 	@Mapping(source = "postre.id", target = "idPostre")
-	@Mapping(source = "menu.id", target="idMenu")
+	@Mapping(source = "menu.id", target = "idMenu")
 	ReservaDTO reservaEntityToReservaDto(ReservaEntity reservaEntity);
 
 	ReservaEntity reservaDtoToReservaEntity(ReservaDTO reservaDto);
@@ -37,8 +40,8 @@ public interface ReservaMapper {
 	@Mapping(source = "segon.nom", target = "nomSegon")
 	@Mapping(source = "postre.id", target = "idPostre")
 	@Mapping(source = "postre.nom", target = "nomPostre")
-	@Mapping(source = "menu.id", target="idMenu")
-	@Mapping(source = "menu.preu", target="preuMenu")
+	@Mapping(source = "menu.id", target = "idMenu")
+	@Mapping(source = "menu.preu", target = "preuMenu")
 	ReservaDetallDTO toDetalladaDTO(ReservaEntity reservaEntity);
 
 }
