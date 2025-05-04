@@ -1,6 +1,6 @@
 import './ReservaFeta.css'
 import { useState, useContext, useEffect } from 'react'
-import { DeletePaperera, ExpandirIcona, ReduirIcona, UpdateLlapis } from '../../../Icones.jsx'
+import { DeletePaperera, ExpandirIcona, ReduirIcona, UpdateLlapis, AddMenu } from '../../../Icones.jsx'
 
 import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
 
@@ -99,8 +99,22 @@ export const ReservaFeta = ({ fn, state }) => {
         }
     }, [])
 
-    const maneigState = () => {
+    const maneigState = async () => {
         fn(!state)
+        try {
+            const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
+            console.log(idUsuari)
+            if (reservaIdUsuari?.idReserva) {
+                await eliminarReserva(reservaIdUsuari.idReserva)
+
+                // Actualització post-eliminació
+                await obtenirReservaUsuari(idUsuari)
+                // Opcional: Reset de l'estat local si cal
+                setReservaIdUsuari(null)
+            }
+        } catch (error) {
+            console.error("Error eliminant reserva:", error)
+        }
     }
 
     const [cambi, setCambi] = useState(true)
@@ -121,7 +135,7 @@ export const ReservaFeta = ({ fn, state }) => {
                         name='nameBttnActualitzarReservaFeta'
                         onClick={maneigState}
                     >
-                        <UpdateLlapis />
+                        <AddMenu />
                     </button>
                 </div>
                 <div className='cn-div-apats-e-r-reserva-feta'>
@@ -139,6 +153,7 @@ export const ReservaFeta = ({ fn, state }) => {
                         ? <ApatsReduir />
                         : <ApatsExpandir />}
                 </div>
+        
                 <div className='cn-div-actualitzar-eliminar-reserva-feta'>
                     <button
                         className='cn-bttn-actualitzar-eliminar-reserva-feta'
@@ -152,7 +167,6 @@ export const ReservaFeta = ({ fn, state }) => {
 
                                     // Actualització post-eliminació
                                     await obtenirReservaUsuari(idUsuari)
-
                                     // Opcional: Reset de l'estat local si cal
                                     setReservaIdUsuari(null)
                                 }

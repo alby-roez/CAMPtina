@@ -55,7 +55,7 @@ export const Navegacio = () => {
 
     //const className_num_li_2 = 'cn-num-li-2-navegacio';
     //const className_num_li_3 = 'cn-num-li-3-navegacio';
-    const className_num_li_4 = 'cn-num-li-4-navegacio';
+    const className_num_li_5 = 'cn-num-li-5-navegacio';
 
 
 
@@ -76,7 +76,7 @@ export const Navegacio = () => {
                                 <>
                                     <li>
                                         <Link to=''>Àpats</Link>
-                                        <ul className={className_num_li_4}>
+                                        <ul className={className_num_li_5}>
                                             <li><Link to='/apats/menus'>Menús</Link></li>
                                             <li><Link to='/apats/triar-apat'>Triar Àpat</Link></li>
                                             <li><Link to='/apats/crear-apat'>Crear Àpat</Link></li>
