@@ -11,6 +11,7 @@ import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
 import CrearApat from './pagines/apats/CrearApat.jsx'
 import Torns from './pagines/apats/Torns.jsx'
+import Reserves from './pagines/apats/Reserves.jsx'
 
 import User from './pagines/User.jsx'
 import Login from './pagines/Login.jsx'
@@ -51,6 +52,12 @@ const rutesApp = [
   {
     cami: '/apats/crear-apat',
     Component: CrearApat,
+    requiresAuth: true,
+    allowedRoles: ['GESTOR']
+  },
+  {
+    cami: '/apats/gestio-reserves',
+    Component: Reserves,
     requiresAuth: true,
     allowedRoles: ['GESTOR']
   },
