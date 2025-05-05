@@ -7,7 +7,7 @@ import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const FormCrearApat = () => {
     //const { crearApat } = useAxiosPeticionsApats()
-    const { crearApat } = useContext(DadesCamptinaContext)
+    const { crearApat, categories } = useContext(DadesCamptinaContext)
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
@@ -153,9 +153,11 @@ export const FormCrearApat = () => {
                                         required: true
                                     })}>
                                         <option value='' disabled></option>
-                                        <option value={valuePrimer}>{txtPrimer}</option>
-                                        <option value={valueSegon}>{txtSegon}</option>
-                                        <option value={valuePostres}>{txtPostres}</option>
+                                        {categories.map((categoria)=>(
+                            <option key={categoria.id} value={categoria.id}>
+                                {categoria.nom.charAt(0).toUpperCase() + categoria.nom.slice(1).toLowerCase()}
+                            </option>
+                        ))}
                                     </select>
                                 </div>
                                 { errors.categoriaDeApat?.type === 'required' &&

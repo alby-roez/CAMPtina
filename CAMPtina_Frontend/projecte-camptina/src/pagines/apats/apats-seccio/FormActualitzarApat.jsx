@@ -1,17 +1,18 @@
 import './FormActualitzarApat.css'
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react'
+import { useContext} from 'react'
 import { UpdateEnrere } from '../../../Icones.jsx'
 //import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
- 
+
 export const FormActualitzarApat = ({ id }) => {
 
-    const {register, handleSubmit, formState: {errors}, reset} = useForm()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
     //const { actualitzarApat } = useAxiosPeticionsApats()
-    const { actualitzarApat} = useContext(DadesCamptinaContext)
+    const { actualitzarApat, categories } = useContext(DadesCamptinaContext)
 
-    const peticioActualitzarApat = handleSubmit((data) => {
+
+    const peticioActualitzarApat = handleSubmit(async (data) => {
         const apatActualitzat = {
             nom: data.nomDeApatUpdate,
             categoriaId: parseInt(data.categoriaDeApatUpdate),
@@ -19,7 +20,7 @@ export const FormActualitzarApat = ({ id }) => {
         };
         actualitzarApat(id, apatActualitzat)
         reset();
-    })
+    });
 
     const fn_resetejar = (event) => {
         event.preventDefault();
@@ -47,13 +48,7 @@ export const FormActualitzarApat = ({ id }) => {
     const id_txtarea_descripcio_update = `id_${id}_txtarea_descripcio_update_llista_apats`;
     const name_txtarea_descripcio_update = 'actualitzarDescripcio';
 
-    const valuePrimer = 1;
-    const valueSegon = 2;
-    const valuePostres = 3;
 
-    const txtPrimer = 'Primer';
-    const txtSegon = 'Segon';
-    const txtPostres = 'Postres';
 
     const preTxtarea_update = 'Descriu l\'àpat...';
     const txtareaRows_update = 3;
@@ -83,12 +78,12 @@ export const FormActualitzarApat = ({ id }) => {
                         name={name_input_nom_update}
                         placeholder='Nom'
                         type='text'
-                        { ... register('nomDeApatUpdate', {
+                        {...register('nomDeApatUpdate', {
                             required: true
                         })}
                     />
-                    { errors.nomDeApatUpdate?.type === 'required' &&
-                        <span className={className_span_update}>El nom és requerit</span> }
+                    {errors.nomDeApatUpdate?.type === 'required' &&
+                        <span className={className_span_update}>El nom és requerit</span>}
                 </div>
                 <div className={className_form_div_inputs_categoria_update}>
                     <select
@@ -96,17 +91,19 @@ export const FormActualitzarApat = ({ id }) => {
                         className={className_select_categoria_update}
                         id={id_select_categoria_update}
                         name={name_select_categoria_update}
-                        { ... register('categoriaDeApatUpdate', {
+                        {...register('categoriaDeApatUpdate', {
                             required: true
                         })}
                     >
                         <option value='' disabled>Categoria</option>
-                        <option value={valuePrimer}>{txtPrimer}</option>
-                        <option value={valueSegon}>{txtSegon}</option>
-                        <option value={valuePostres}>{txtPostres}</option>
+                        {categories.map((categoria)=>(
+                            <option key={categoria.id} value={categoria.id}>
+                                {categoria.nom.charAt(0).toUpperCase() + categoria.nom.slice(1).toLowerCase()}
+                            </option>
+                        ))}
                     </select>
-                    { errors.categoriaDeApatUpdate?.type === 'required' &&
-                        <span className={className_span_update}>Escull categoria</span> }
+                    {errors.categoriaDeApatUpdate?.type === 'required' &&
+                        <span className={className_span_update}>Escull categoria</span>}
                 </div>
                 <div className={className_form_div_inputs_descripcio_update}>
                     <textarea
@@ -117,15 +114,15 @@ export const FormActualitzarApat = ({ id }) => {
                         placeholder={preTxtarea_update}
                         rows={txtareaRows_update}
                         cols={txtareaCols_update}
-                        { ... register('descripcioDeApatUpdate', {
+                        {...register('descripcioDeApatUpdate', {
                             required: true,
                             maxLength: 100
                         })}
                     />
-                    { errors.descripcioDeApatUpdate?.type === 'required' &&
-                        <span className={className_span_update}>La descripció és requerida</span> }
-                    { errors.descripcioDeApatUpdate?.type === 'maxLength' && 
-                        <span className={className_span_update}>Max 100</span> }
+                    {errors.descripcioDeApatUpdate?.type === 'required' &&
+                        <span className={className_span_update}>La descripció és requerida</span>}
+                    {errors.descripcioDeApatUpdate?.type === 'maxLength' &&
+                        <span className={className_span_update}>Max 100</span>}
                 </div>
             </div>
             <div className={className_form_div_bttns_update}>

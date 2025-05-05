@@ -241,7 +241,7 @@ export const FormCrearUsuari = () => {
                                         <option value='' disabled></option>
                                         {rols.map((rol) => (
                                             <option key={rol.id} value={rol.id}>
-                                                {rol.nom}
+                                                {rol.nom.charAt(0).toUpperCase() + rol.nom.slice(1).toLowerCase()}
                                             </option>
                                         ))}
                                     </select>

@@ -48,7 +48,7 @@ export const LlistaUsuaris = () => {
           return 'Carregant...'; // O cualquier otro mensaje/valor por defecto
         }
         const rolTrobat = rols.find((rol) => rol.id === rolId);
-        return rolTrobat ? rolTrobat.nom : 'Rol Desconegut';
+        return rolTrobat ? rolTrobat.nom.charAt(0).toUpperCase() + rolTrobat.nom.slice(1).toLowerCase() : 'Rol Desconegut';
       };
     useEffect(() => {
         const section = document.getElementById('id_section_llista_usuaris');
