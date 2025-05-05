@@ -4,10 +4,10 @@ import { ESDEVENIMENTS, PUBLIC_ROUTES } from '../consts.js'
 /**
  * Instància configurada d'Axios per fer peticions a l'API del backend.
  * @type {axios.AxiosInstance}
- * @property {string} baseURL - URL base per totes les peticions (configurada mitjançant variable d'entorn)
+ * @property {string} baseURL - URL base per totes les peticions
  */
 const axiosClient = axios.create({
-  baseURL: "http://localhost:8080/api" // o la teva VITE_API_URL
+  baseURL: "http://localhost:8080/api" 
 })
 
 /**
