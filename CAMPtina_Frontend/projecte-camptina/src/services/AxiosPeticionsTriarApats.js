@@ -1,29 +1,38 @@
 import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
+/**
+ * Hook personalitzat per gestionar reserves d’àpats.
+ *
+ * @function useAxiosPeticionsTriarApats
+ * @returns {Object} Funcions i estats relacionats amb les reserves:
+ *  - {Array} reserva – Totes les reserves
+ *  - {Object} reservaId – Reserva per ID
+ *  - {Object|null} reservaIdUsuari – Reserva per ID d’usuari
+ *  - {Function} carregarReserva – Carrega totes les reserves
+ *  - {Function} carregarReservaId – Carrega una reserva concreta per ID
+ *  - {Function} carregarReservaIdUsuari – Carrega reserva segons ID d’usuari
+ *  - {Function} obtenirReservaUsuari – Obté la primera reserva detallada d’un usuari
+ *  - {Function} crearReserva – Crea una nova reserva
+ *  - {Function} actualitzarReserva – Actualitza una reserva existent
+ *  - {Function} eliminarReserva – Elimina una reserva
+ */
 export const useAxiosPeticionsTriarApats = () => {
 
-    /**
-     * @author Albert
-     * @description Estat per guardar la reserva
-     */
+    /** @type {Array} */
     const [reserva, setReserva] = useState([])
 
-    /**
-     * @author Albert
-     * @description Estat per guardar la reserva per Id
-     */
+    /** @type {Object} */
     const [reservaId, setReservaId] = useState([])
 
-    /**
-     * @author Albert
-     * @description Estat per guardar la reserva per Id de usuari
-     */
+    /** @type {Object|null} */
     const [reservaIdUsuari, setReservaIdUsuari] = useState(null)
 
     /**
-     * @author Albert
-     * @description Funció per obtenir la reserva del backend
+     * Carrega totes les reserves.
+     * @async
+     * @function carregarReserva
+     * @returns {Promise<void>}
      */
     const carregarReserva = async () => {
         try {
@@ -35,9 +44,11 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * @author Albert
-     * @param {*} idReserva
-     * @description Funció per obtenir la reserva de l'Id del backend
+     * Carrega una reserva específica per ID.
+     * @async
+     * @function carregarReservaId
+     * @param {number|string} idReserva - ID de la reserva
+     * @returns {Promise<void>}
      */
     const carregarReservaId = async (idReserva) => {
         try {
@@ -49,9 +60,11 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * @author Albert
-     * @param {*} idReservaUsuari
-     * @description Funció per obtenir la reserva de l'Id del usuari del backend
+     * Carrega la reserva associada a un usuari.
+     * @async
+     * @function carregarReservaIdUsuari
+     * @param {number|string} idReservaUsuari - ID de l'usuari
+     * @returns {Promise<void>}
      */
     const carregarReservaIdUsuari = async (idReservaUsuari) => {
         try {
@@ -61,10 +74,13 @@ export const useAxiosPeticionsTriarApats = () => {
             console.log('Error obtenint la reserva de l\'Id del usuari:', error)
         }
     }
+
     /**
-     * @author Palmira
-     * @param {*} idUsuari 
-     * @description Funció per obtenir la primera reserva de forma detallada de l'usuari entrat per paràmetre
+     * Obté la primera reserva detallada d’un usuari.
+     * @async
+     * @function obtenirReservaUsuari
+     * @param {number|string} idUsuari - ID de l'usuari
+     * @returns {Promise<Object>} Dades de la reserva
      */
     const obtenirReservaUsuari = async (idUsuari) => {
         try {
@@ -78,10 +94,12 @@ export const useAxiosPeticionsTriarApats = () => {
         }
     };
 
-    /**
-     * @author Albert
-     * @param {*} novaReserva
-     * @description Funció per crear una reserva
+     /**
+     * Crea una nova reserva.
+     * @async
+     * @function crearReserva
+     * @param {Object} novaReserva - Dades de la nova reserva
+     * @returns {Promise<void>}
      */
     const crearReserva = async (novaReserva) => {
         try {
@@ -98,10 +116,12 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * @author Albert
-     * @param {*} idReserva
-     * @param {*} novaReserva
-     * @description Funció per actualitzar una reserva
+     * Actualitza una reserva existent.
+     * @async
+     * @function actualitzarReserva
+     * @param {number|string} idReserva - ID de la reserva
+     * @param {Object} novaReserva - Dades actualitzades
+     * @returns {Promise<void>}
      */
     const actualitzarReserva = async (idReserva, novaReserva) => {
         try {
@@ -117,9 +137,11 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * @author Albert
-     * @param {*} idReserva
-     * @description Funció per eliminar una reserva
+     * Elimina una reserva existent.
+     * @async
+     * @function eliminarReserva
+     * @param {number|string} idReserva - ID de la reserva
+     * @returns {Promise<void>}
      */
     const eliminarReserva = async (idReserva) => {
         try {

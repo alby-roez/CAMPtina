@@ -1,10 +1,21 @@
 import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
+/**
+ * Hook personalitzat per gestionar les peticions relacionades amb els menús.
+ * Proporciona l’estat i les funcions per carregar, crear, actualitzar i eliminar menús des del backend.
+ *
+ * @function useAxiosPeticionsMenus
+ * @returns {Object} Objecte amb:
+ *  - {Array} menus – Llista de menús obtinguda del servidor  
+ *  - {Function} carregarMenus – Funció per recarregar la llista de menús  
+ *  - {Function} crearMenus – Funció per crear un nou menú  
+ *  - {Function} actualitzarMenus – Funció per actualitzar un menú existent  
+ *  - {Function} eliminarMenus – Funció per eliminar un menú  
+ */
 export const useAxiosPeticionsMenus = () => {
 
     /**
-     * @author Albert
      * @description Estat per guardar la llista de menus
      */
     const [menus, setMenus] = useState([])
@@ -23,7 +34,6 @@ export const useAxiosPeticionsMenus = () => {
     }
 
     /**
-     * @author Albert
      * @param {*} nouMenu
      * @description Funció per crear un nou menus
      */
@@ -42,7 +52,6 @@ export const useAxiosPeticionsMenus = () => {
     }
 
     /**
-     * @author Albert
      * @param {*} idMenu
      * @param {*} nouMenu
      * @description Funció per actualitzar un menus
@@ -61,7 +70,6 @@ export const useAxiosPeticionsMenus = () => {
     }
 
     /**
-     * @author Albert
      * @param {*} idMenu
      * @description Funció per eliminar un menus
      */
