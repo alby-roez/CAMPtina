@@ -1,6 +1,19 @@
 import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
+
+/**
+ * Hook personalitzat per gestionar les peticions relacionades amb els àpats.
+ * Inclou funcionalitat per carregar, crear, actualitzar i eliminar àpats.
+ *
+ * @function
+ * @returns {Object} Objecte amb els mètodes i estat relacionats amb àpats
+ * @property {Array} apats - Llista d'àpats obtinguda del backend
+ * @property {Function} carregarApats - Funció per carregar àpats
+ * @property {Function} crearApat - Funció per crear un nou àpat
+ * @property {Function} actualitzarApat - Funció per actualitzar un àpat existent
+ * @property {Function} eliminarApat - Funció per eliminar un àpat
+ */
 export const useAxiosPeticionsApats = () => {
 
     /**
