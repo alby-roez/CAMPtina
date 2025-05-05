@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ioc.cat.camptina.mapper.ReservaMapper;
+import ioc.cat.camptina.mapper.MenuMapper;
+import ioc.cat.camptina.mapper.ApatMapper;
+import ioc.cat.camptina.model.dto.ApatDTO;
+import ioc.cat.camptina.model.dto.CategoriaDTO;
+import ioc.cat.camptina.model.dto.MenuDTO;
 import ioc.cat.camptina.model.dto.ReservaDTO;
 import ioc.cat.camptina.model.dto.ReservaDetallDTO;
 import ioc.cat.camptina.model.entity.ApatEntity;
@@ -15,6 +20,7 @@ import ioc.cat.camptina.model.entity.ReservaEntity;
 import ioc.cat.camptina.model.entity.TornEntity;
 import ioc.cat.camptina.model.entity.UsuariEntity;
 import ioc.cat.camptina.repository.ApatRepository;
+import ioc.cat.camptina.repository.MenuApatRepository;
 import ioc.cat.camptina.repository.MenuRepository;
 import ioc.cat.camptina.repository.ReservaRepository;
 import ioc.cat.camptina.repository.TornRepository;
@@ -27,6 +33,10 @@ public class ReservaService {
 
 	@Autowired
 	private ReservaMapper reservaMapper;
+	@Autowired
+	private MenuMapper menuMapper;
+	@Autowired
+	private ApatMapper apatMapper;	
 
 	@Autowired
 	private UsuariRepository usuariRespository;
@@ -36,6 +46,8 @@ public class ReservaService {
 	private MenuRepository menuRepository;
 	@Autowired
 	private ApatRepository apatRepository;
+	@Autowired
+	private MenuApatRepository menuApatRepository;
 
 	/**
 	 * Mètode que retorna la primera reserva detallada del usuari amb el id
@@ -113,6 +125,13 @@ public class ReservaService {
 		ApatEntity postre = apatRepository.findById(reservaDto.getIdPostre())
 				.orElseThrow(() -> new RuntimeException("Postre no trobat"));
 
+		validacioApatPertanyCategoria(1, apatMapper.apatEntityToApatDto(primer));
+		validacioApatPertanyMenu(menuMapper.menuEntityToMenuDTO(menu), apatMapper.apatEntityToApatDto(primer));
+		validacioApatPertanyCategoria(2, apatMapper.apatEntityToApatDto(segon));
+		validacioApatPertanyMenu(menuMapper.menuEntityToMenuDTO(menu), apatMapper.apatEntityToApatDto(segon));
+		validacioApatPertanyCategoria(3, apatMapper.apatEntityToApatDto(postre));
+		validacioApatPertanyMenu(menuMapper.menuEntityToMenuDTO(menu), apatMapper.apatEntityToApatDto(postre));
+
 		ReservaEntity reservaEntity = reservaMapper.reservaDtoToReservaEntity(reservaDto);
 		reservaEntity.setUsuari(usuari);
 		reservaEntity.setTorn(torn);
@@ -170,5 +189,31 @@ public class ReservaService {
 	public void deleteReserva(int id) {
 		reservaRepository.deleteById(id);
 		;
+	}
+
+	/**
+	 * Mètode per validar que els àpats seleccionats pertanyen al menú seleccionat
+	 * 
+	 * @param menuDto
+	 * @param apatDto
+	 * @throws RuntimeException si l'àpat no pertany al menú
+	 */
+	private void validacioApatPertanyMenu(MenuDTO menuDto, ApatDTO apatDto) {
+		menuApatRepository.findByMenuId(menuDto.getId()).stream()
+				.filter(menuApat -> menuApat.getApat().getId() == apatDto.getId()).findFirst()
+				.orElseThrow(() -> new RuntimeException("El menú no conté l'àpat seleccionat"));
+	}
+
+	/**
+	 * Mètode per validar que els àpats seleccionats per categoria pertanyen a la categoria
+	 * 
+	 * @param apatDto
+	 * @param categoriaDto
+	 * @throws RuntimeException si l'àpat no pertany a la categoria
+	 */
+	private void validacioApatPertanyCategoria(Integer categoria, ApatDTO apatDto) {
+		apatRepository.findByCategoriaId(categoria).stream()
+				.filter(apat -> apat.getId() == apatDto.getId()).findFirst()
+				.orElseThrow(() -> new RuntimeException("L'àpat no pertany a la categoria seleccionada"));
 	}
 }
