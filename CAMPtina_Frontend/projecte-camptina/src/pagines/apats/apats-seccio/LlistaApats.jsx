@@ -96,7 +96,7 @@ export const LlistaApats = () => {
                 (filters.categoriaId === 0 ||
                     apat.categoriaId === filters.categoriaId) &&
                     (txtActual === '' ||
-                    apat.nom.toLowerCase().startsWith(txtActual.toLowerCase()))
+                    apat.nom.toLowerCase().includes(txtActual.toLowerCase()))
             )
         })
     }
