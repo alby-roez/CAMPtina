@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { Navegacio } from '../../header/Navegacio.jsx'
 import { Peu } from '../../footer/Peu.jsx'
 import menus_carta from '../../assets/menus_carta.mp4'
@@ -13,8 +13,8 @@ import { BotoActiu, BotoDesactiu } from './menus-seccio/BotonsMenus.jsx'
 
 export default function Menus() {
     const { menus, carregarMenus, actualitzarMenus } = useAxiosPeticionsMenus()
-    const { menusApats, menusIdApats, crearMenusApats, eliminarMenuApats } = useAxiosPeticionsMenusApats()
-    const { menuPrimer, menuSegon, menuPostres, setMenuPrimer, setMenuSegon, setMenuPostres, removeMenuPrimer, removeMenuSegon, removeMenuPostres } = useMenus()
+    const { crearMenusApats } = useAxiosPeticionsMenusApats()
+    const { menuPrimer, menuSegon, menuPostres, removeMenuPrimer, removeMenuSegon, removeMenuPostres } = useMenus()
 
     const [menuActivedDesactived, setMenuActivedDesactived] = useState(true)
 
@@ -55,28 +55,8 @@ export default function Menus() {
         span.placeholder = 'Nou preu...';
         span.type = 'number';
         articlePreu.appendChild(span);
-        const div_apat = document.getElementsByClassName('cn-div-nom-bttn-article-menus');
-        const div_apat_nom_primer = document.getElementsByClassName('cn-primer-div-nom-article-menus');
-        const div_apat_nom_segon = document.getElementsByClassName('cn-segon-div-nom-article-menus');
-        const div_apat_nom_tercer = document.getElementsByClassName('cn-postres-div-nom-article-menus');
-        const bttn_remove_article = document.getElementsByClassName('cn-bttn-remove-article-menus');
         const section_llista = document.getElementById('id_section_llista_menus');
         const bttn_desar = document.getElementById('id_submit_form_final_menus');
-        /*for (let i = 0; i < div_apat.length; i++) {
-            div_apat[i].setAttribute('style', 'justify-content: space-between;');
-        }
-        for (let i = 0; i < div_apat_nom_primer.length; i++) {
-            div_apat_nom_primer[i].setAttribute('style', 'width: 50%;');
-        }
-        for (let i = 0; i < div_apat_nom_segon.length; i++) {
-            div_apat_nom_segon[i].setAttribute('style', 'width: 50%;');
-        }
-        for (let i = 0; i < div_apat_nom_tercer.length; i++) {
-            div_apat_nom_tercer[i].setAttribute('style', 'width: 50%;');
-        }
-        for (let i = 0; i < bttn_remove_article.length; i++) {
-            bttn_remove_article[i].setAttribute('style', 'display: flex;');
-        }*/
         section_llista.setAttribute('style', 'display: flex;');
         bttn_desar.setAttribute('style', 'display: flex;');
     }
@@ -107,32 +87,11 @@ export default function Menus() {
             const span = document.getElementById('id_dynamic_input_preu_menus');
             span.remove();
         }
-        const div_apat = document.getElementsByClassName('cn-div-nom-bttn-article-menus');
-        const div_apat_nom_primer = document.getElementsByClassName('cn-primer-div-nom-article-menus');
-        const div_apat_nom_segon = document.getElementsByClassName('cn-segon-div-nom-article-menus');
-        const div_apat_nom_tercer = document.getElementsByClassName('cn-postres-div-nom-article-menus');
-        const bttn_remove_article = document.getElementsByClassName('cn-bttn-remove-article-menus');
         const section_llista = document.getElementById('id_section_llista_menus');
         const bttn_desar = document.getElementById('id_submit_form_final_menus');
-        /*for (let i = 0; i < div_apat.length; i++) {
-            div_apat[i].setAttribute('style', 'justify-content: center;');
-        }
-        for (let i = 0; i < div_apat_nom_primer.length; i++) {
-            div_apat_nom_primer[i].setAttribute('style', 'width: 100%;');
-        }
-        for (let i = 0; i < div_apat_nom_segon.length; i++) {
-            div_apat_nom_segon[i].setAttribute('style', 'width: 100%;');
-        }
-        for (let i = 0; i < div_apat_nom_tercer.length; i++) {
-            div_apat_nom_tercer[i].setAttribute('style', 'width: 100%;');
-        }
-        for (let i = 0; i < bttn_remove_article.length; i++) {
-            bttn_remove_article[i].setAttribute('style', 'display: none;');
-        }*/
         section_llista.removeAttribute('style');
         bttn_desar.removeAttribute('style');
         const llistaTotal = menuPrimer.concat(menuSegon).concat(menuPostres)
-        /* Actualitzar Menu */
         const obj = {
             id: 1,
             nom: h2.textContent,
@@ -142,32 +101,13 @@ export default function Menus() {
         await actualitzarMenus(1, obj)
         await carregarMenus()
 
-        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ERROR AL RENDERITZAR FALTA ELIMINAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-        /* ================================================================================ ELIMINAR A- */
-        /*for (let i = 0; i < menusIdApats.length; i++) {
-            eliminarMenuApats(1, menusIdApats[i].apatId)
-        }*/
-        /*for (let i = 0; i < menusApats.apatsPerCategoria.PRIMER.length; i++) {
-            eliminarMenuApats(1, menusApats.apatsPerCategoria.PRIMER[i].id)
-        }
-        for (let i = 0; i < menusApats.apatsPerCategoria.SEGON.length; i++) {
-            eliminarMenuApats(1, menusApats.apatsPerCategoria.SEGON[i].id)
-        }
-        for (let i = 0; i < menusApats.apatsPerCategoria.POSTRE.length; i++) {
-            eliminarMenuApats(1, menusApats.apatsPerCategoria.POSTRE[i].id)
-        }*/
-        /* ================================================================================ ELIMINAR -Z */
-        /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ERROR AL RENDERITZAR FALTA ELIMINAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
-        /* ================================================================================ CREAR A- */
         for (let i = 0; i < llistaTotal.length; i++) {
             const newObject = {
-                menuId: 1, //MALA PRACTICA
+                menuId: 1,
                 apatId: llistaTotal[i].id
             }
             crearMenusApats(newObject);
         }
-        /* ================================================================================ CREAR -Z */
     }
 
     const descativarMenu = () => {
@@ -204,9 +144,9 @@ export default function Menus() {
                                 : <BotoDesactiu id={menu.id} activar={ativarMenu} />}
                             <span className={className_span_menu_preu}>{menu.preu}€</span>
                         </article>
-                        <ArticleMenus nomArticle={'Primer'} categoriaNom={'primer'} typeCategoria={1} llista={menuPrimer} removeLlista={removeMenuPrimer}/>
-                        <ArticleMenus nomArticle={'Segon'} categoriaNom={'segon'} typeCategoria={2} llista={menuSegon} removeLlista={removeMenuSegon} />
-                        <ArticleMenus nomArticle={'Postres'} categoriaNom={'postres'} typeCategoria={3} llista={menuPostres} removeLlista={removeMenuPostres} />
+                        <ArticleMenus nomArticle={'Primer'} categoriaNom={'primer'} llista={menuPrimer} removeLlista={removeMenuPrimer}/>
+                        <ArticleMenus nomArticle={'Segon'} categoriaNom={'segon'} llista={menuSegon} removeLlista={removeMenuSegon} />
+                        <ArticleMenus nomArticle={'Postres'} categoriaNom={'postres'} llista={menuPostres} removeLlista={removeMenuPostres} />
                         <LlistaMenus />
                         <input
                             id={id_submit}
@@ -221,5 +161,4 @@ export default function Menus() {
             <Peu />
         </>
     )
-  
 }

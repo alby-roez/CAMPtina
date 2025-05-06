@@ -21,19 +21,13 @@ export function Router ({ children, rutes = [], componentPerDefecte: ComponentPe
 
     let routeParams = {}
 
-    // Add routes from children <Route /> components
     const routesFromChildren = Children.map(children, (child) => {
-        //const { name } = type
-        //const isRoute = name === 'Route'
         if (child?.type?.isRoute) {
             return child.props;
         }
         return null;
-        //return isRoute ? props : null
-        //type.name === 'Route' ? props : null
     })
 
-    //const routesToUse = rutes.concat(routesFromChildren)
     const routesToUse = [
         ...routesFromChildren.filter(route => route !== null),
         ...rutes
@@ -42,9 +36,6 @@ export function Router ({ children, rutes = [], componentPerDefecte: ComponentPe
     const Pagina = routesToUse.find(({ cami }) => {
         if (cami === camiActual) return true
         
-        // Hemos usado path-to-regexp
-        // para poder detectar rutas dinámicas como por ejemplo
-        // /search/:query <- :query es una ruta dinámica
         const matcherUrl = match(cami, { decode: decodeURIComponent })
         const matched = matcherUrl(camiActual)
         if (matched) {
@@ -52,40 +43,27 @@ export function Router ({ children, rutes = [], componentPerDefecte: ComponentPe
             return true
         }
         return false
-        
-        // Guardar los parámetros de la url que eran dinámicos
-        // y que hemos extraído con path-to-regexp
-        // por ejemplo, si la ruta és /search/:query
-        // y la url és /search/javascript
-        // matched.params.query === 'javascript'
-        //routeParams = matched.params
-        //return true
     })
 
     if (Pagina) {
         const { requiresAuth = false, allowedRoles, Component } = Pagina
-    
-        // === Guard 1: necessita autenticació? si no, show Login
+
+        /**
+         * @description Guard 1: necessita autenticació? si no, show Login
+         */
         if (requiresAuth && !usuariActiu) {
-            // Només canviem l’URL si no som ja a /login
-           /* if (camiActual !== '/login') {
-                window.history.replaceState({}, '', '/login');
-                window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT));
-                return null;
-            }*/
-            // Si ja estem a /login, mostrem el Login realment
             return <Login routeParams={routeParams} />
         }
-    
-        // === Guard 2: té rol suficient? si no, show Unauthorized
+
+        /**
+         * @description Guard 2: té rol suficient? si no, show Unauthorized
+         */
         if (requiresAuth && Array.isArray(allowedRoles) && !allowedRoles.includes(usuariActiu?.rol)) {
           return <Unauthorized routeParams={routeParams} />
         }
-    
-        // === Tot ok: renderitzem la pàgina
+
         return <Component routeParams={routeParams} />
       }
-    
-      // Si no hem trobat cap ruta, renderitzem el 404
+      
       return <ComponentPerDefecte routeParams={routeParams} />
 }

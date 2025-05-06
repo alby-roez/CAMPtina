@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
 /**
- * Hook personalitzat per gestionar reserves d’àpats.
+ * @description Hook personalitzat per gestionar reserves d’àpats.
  *
  * @function useAxiosPeticionsTriarApats
  * @returns {Object} Funcions i estats relacionats amb les reserves:
@@ -19,17 +19,23 @@ import axiosClient from './auth'
  */
 export const useAxiosPeticionsTriarApats = () => {
 
-    /** @type {Array} */
+    /**
+     * @type {Array}
+     */
     const [reserva, setReserva] = useState([])
 
-    /** @type {Object} */
+    /**
+     * @type {Object}
+     */
     const [reservaId, setReservaId] = useState([])
 
-    /** @type {Object|null} */
+    /**
+     * @type {Object|null}
+     */
     const [reservaIdUsuari, setReservaIdUsuari] = useState(null)
 
     /**
-     * Carrega totes les reserves.
+     * @description Carrega totes les reserves.
      * @async
      * @function carregarReserva
      * @returns {Promise<void>}
@@ -44,7 +50,7 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * Carrega una reserva específica per ID.
+     * @description Carrega una reserva específica per ID.
      * @async
      * @function carregarReservaId
      * @param {number|string} idReserva - ID de la reserva
@@ -60,7 +66,7 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * Carrega la reserva associada a un usuari.
+     * @description Carrega la reserva associada a un usuari.
      * @async
      * @function carregarReservaIdUsuari
      * @param {number|string} idReservaUsuari - ID de l'usuari
@@ -76,7 +82,7 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * Obté la primera reserva detallada d’un usuari.
+     * @description Obté la primera reserva detallada d’un usuari.
      * @async
      * @function obtenirReservaUsuari
      * @param {number|string} idUsuari - ID de l'usuari
@@ -86,7 +92,6 @@ export const useAxiosPeticionsTriarApats = () => {
         try {
             const resposta = await axiosClient.get(`/reserva/reservausuari/${idUsuari}`);
             setReservaIdUsuari(resposta.data);
-            console.log('Reserva previ crida:', resposta.data)
             return resposta.data;
         } catch (error) {
             console.error('Error obtenint la reserva: ', error);
@@ -95,7 +100,7 @@ export const useAxiosPeticionsTriarApats = () => {
     };
 
      /**
-     * Crea una nova reserva.
+     * @description Crea una nova reserva.
      * @async
      * @function crearReserva
      * @param {Object} novaReserva - Dades de la nova reserva
@@ -108,7 +113,6 @@ export const useAxiosPeticionsTriarApats = () => {
                     'Content-Type': 'application/json'
                 },
             })
-            console.log('Reserva creada:', resposta.data)
             await carregarReserva()
         } catch (error) {
             console.error('Error creant la reserva:', error.response?.data)
@@ -116,7 +120,7 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * Actualitza una reserva existent.
+     * @description Actualitza una reserva existent.
      * @async
      * @function actualitzarReserva
      * @param {number|string} idReserva - ID de la reserva
@@ -137,7 +141,7 @@ export const useAxiosPeticionsTriarApats = () => {
     }
 
     /**
-     * Elimina una reserva existent.
+     * @description Elimina una reserva existent.
      * @async
      * @function eliminarReserva
      * @param {number|string} idReserva - ID de la reserva

@@ -1,6 +1,5 @@
-import { Link } from '../Link'
 import logo_dark from '../assets/user_dark.png'
-import { loginUsuari } from '../services/AxiosPeticioLogin';
+import { loginUsuari } from '../services/AxiosPeticioLogin.js'
 import { useState } from 'react';
 import { ESDEVENIMENTS } from '../consts.js'
 
@@ -46,7 +45,6 @@ export default function Login() {
     const className_section = 'cn-section-login';
 
     const className_article_main = 'cn-article-main-login';
-    const className_article_footer = 'cn-article-footer-login';
 
     const className_img = 'cn-logo-login';
     const title_form = 'CAMPtina';
@@ -68,14 +66,6 @@ export default function Login() {
 
     const id_bttn_submit = 'id_access_login';
     const value_bttn_submit = 'Access';
-
-    const className_span = 'span-form-login';
-
-    const a_footer = 'Forgot your password?';
-    const p_footer = 'Don\'t have an account?';
-    const txt_signup = 'Sign Up';
-
-    const className_div_a = 'cn-div-a-login';
 
     return (
         <>
@@ -118,18 +108,8 @@ export default function Login() {
                             />
                         </form>
                     </article>
-                    <article className={className_article_footer}>
-                        <Link to='/send-mail'>{a_footer}</Link>
-                        <span className={className_span}></span>
-                        <div>
-                            <p>{p_footer}</p>
-                            <Link to='/sign-up'>{txt_signup}</Link>
-                        </div>
-                    </article>
                 </section>
-
             </main>
         </>
     )
-  
 }

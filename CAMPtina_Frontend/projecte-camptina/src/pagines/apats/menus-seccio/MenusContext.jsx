@@ -1,15 +1,8 @@
-import { useState, useEffect, createContext } from 'react'
-
+import { useState, createContext } from 'react'
 
 export const MenusContext = createContext()
 
 export function MenusProvider ({ children }) {
-    
-    //const { apats, carregarApats } = useAxiosPeticionsApats()
-    //const { menusApats, carregarMenusApats } = useAxiosPeticionsMenusApats()
-
-    useEffect(() => {
-    }, [])
 
     /**
      * @author Albert
@@ -31,13 +24,11 @@ export function MenusProvider ({ children }) {
 
     const addMenuPrimer = apat => {
         const apatsEnMenuIndex = menuPrimer.findIndex(item => item.id === apat.id)
-
         if (apatsEnMenuIndex >= 0) {
             const nouMenu = structuredClone(menuPrimer)
             nouMenu[apatsEnMenuIndex].afegit = true
             return setMenuPrimer(nouMenu)
         }
-
         setMenuPrimer(estatAnterior => ([
             ... estatAnterior,
             {
@@ -45,18 +36,15 @@ export function MenusProvider ({ children }) {
                 afegit: true
             }
         ]))
-
-        console.log(apat)
     }
+
     const addMenuSegon = apat => {
         const apatsEnMenuIndex = menuSegon.findIndex(item => item.id === apat.id)
-
         if (apatsEnMenuIndex >= 0) {
             const nouMenu = structuredClone(menuSegon)
             nouMenu[apatsEnMenuIndex].afegit = true
             return setMenuSegon(nouMenu)
         }
-
         setMenuSegon(estatAnterior => ([
             ... estatAnterior,
             {
@@ -64,18 +52,15 @@ export function MenusProvider ({ children }) {
                 afegit: true
             }
         ]))
-
-        console.log(apat)
     }
+
     const addMenuPostres = apat => {
         const apatsEnMenuIndex = menuPostres.findIndex(item => item.id === apat.id)
-
         if (apatsEnMenuIndex >= 0) {
             const nouMenu = structuredClone(menuPostres)
             nouMenu[apatsEnMenuIndex].afegit = true
             return setMenuPostres(nouMenu)
         }
-
         setMenuPostres(estatAnterior => ([
             ... estatAnterior,
             {
@@ -83,16 +68,16 @@ export function MenusProvider ({ children }) {
                 afegit: true
             }
         ]))
-
-        console.log(apat)
     }
 
     const removeMenuPrimer = apat => {
         setMenuPrimer(estatAnterior => estatAnterior.filter(item => item.id !== apat.id))
     }
+
     const removeMenuSegon = apat => {
         setMenuSegon(estatAnterior => estatAnterior.filter(item => item.id !== apat.id))
     }
+
     const removeMenuPostres = apat => {
         setMenuPostres(estatAnterior => estatAnterior.filter(item => item.id !== apat.id))
     }
@@ -100,9 +85,11 @@ export function MenusProvider ({ children }) {
     const clearMenuPrimer = () => {
         setMenuPrimer([])
     }
+
     const clearMenuSegon = () => {
         setMenuSegon([])
     }
+
     const clearMenuPostres = () => {
         setMenuPostres([])
     }

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
 /**
-* Hook personalitzat per gestionar la lògica relacionada amb els torns del sistema.
+* @description Hook personalitzat per gestionar la lògica relacionada amb els torns del sistema.
 *
 * @function useAxiosPeticionsTorns
 * @returns {Object} Objecte amb les funcions i estat dels torns:
@@ -15,13 +15,13 @@ import axiosClient from './auth'
 export const useAxiosPeticionsTorns = () => {
 
     /**
-     * Estat per guardar la llista de torns.
+     * @description Estat per guardar la llista de torns.
      * @type {Array}
      */
     const [torns, setTorns] = useState([])
 
      /**
-     * Carrega els torns de la base de dades.
+     * @description Carrega els torns de la base de dades.
      * @async
      * @function carregarTorns
      * @returns {Promise<void>}
@@ -36,7 +36,7 @@ export const useAxiosPeticionsTorns = () => {
     }
 
     /**
-     * Crea un nou torn al sistema.
+     * @description Crea un nou torn al sistema.
      * @async
      * @function crearTorn
      * @param {*} nouTorn - Objecte amb les dades del torn
@@ -49,16 +49,14 @@ export const useAxiosPeticionsTorns = () => {
                     'Content-Type': 'application/json'
                 },
             })
-            console.log('Torn creat:', resposta.data)
             await carregarTorns()
-           //setTorns([...torns, resposta.data])
         } catch (error) {
             console.error('Error creant el torn:', error.response?.data)
         }
     }
 
     /**
-     * Actualitza un torn existent.
+     * @description Actualitza un torn existent.
      * @async
      * @function actualitzarTorn
      * @param {*} idTorn - ID del torn a modificar
@@ -72,16 +70,14 @@ export const useAxiosPeticionsTorns = () => {
                     'Content-Type': 'application/json'
                 },
             })
-            console.log('Torn actualitzat:', resposta.data)
             await carregarTorns()
-            //setTorns(torns.map(torn => torn.id === idTorn ? resposta.data : torn))
         } catch (error) {
             console.error('Error actualitzant el torn:', error.response?.data)
         }
     }
 
      /**
-     * Elimina un torn existent.
+     * @description Elimina un torn existent.
      * @async
      * @function eliminarTorn
      * @param {*} idTorn - ID del torn a eliminar
@@ -91,7 +87,6 @@ export const useAxiosPeticionsTorns = () => {
         try {
             await axiosClient.delete(`/torn/${idTorn}`)
             await carregarTorns()
-            //setTorns(torns.filter(torn => torn.id !== idTorn));
         } catch (error) {
             console.log('Error eliminant el torn:', error)
         }

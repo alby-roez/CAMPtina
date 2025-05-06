@@ -2,30 +2,13 @@ import './LlistaUsuaris.css'
 import { useState, useEffect, useContext } from 'react'
 import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
 import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
-//import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
-import { DadesCamptinaContext } from "../../services/DadesCamptina.jsx";
+import { DadesCamptinaContext } from '../../services/DadesCamptina.jsx'
 import { PaginacioUsuaris } from './PaginacioUsuaris.jsx'
 
 export const LlistaUsuaris = () => {
-    //const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
+
     const { usuaris, eliminarUsuari, rols } = useContext(DadesCamptinaContext)
-    /*const rols = {
-import { useState, useEffect } from 'react'
-import { CloseFinestra, FilterIcona, UpdateLlapis, DeletePaperera } from '../../Icones.jsx'
-import { FormActualitzarUsuaris } from './FormActualitzarUsuaris.jsx'
-import { useAxiosPeticionsUsuaris } from '../../services/AxiosPeticionsUsuaris.js'
 
-
-export const LlistaUsuaris = () => {
-    const { usuaris, eliminarUsuari } = useAxiosPeticionsUsuaris()
-
-    const rols = {
-        1: 'Gestor',
-        2: 'Treballador',
-    }*/
-    //const { rols } = useAxiosPeticionsRols();
-
-    /* PaginacioApats ================================================== A- */
     const totalLlistaUsuaris = usuaris.length;
 
     const [usuarisPerPagina, setUsuarisPerPagina] = useState(10)
@@ -33,23 +16,21 @@ export const LlistaUsuaris = () => {
 
     const indexUsuarisFinal = paginaActual * usuarisPerPagina
     const indexUsuarisInicial = indexUsuarisFinal - usuarisPerPagina
-    /* PaginacioApats ================================================== -Z */
 
-    /* useState shaTancat ================================================== A- */
     const [shaTancat, setShaTancat] = useState(false)
     const [editantId, setEditantId] = useState(null);
     const tancarFinestra = () => {
         setShaTancat(!shaTancat);
     }
 
-
     const obtenirRol = (rolId) => {
         if (!rols || rols.length === 0) {
-          return 'Carregant...'; // O cualquier otro mensaje/valor por defecto
+          return 'Carregant...';
         }
         const rolTrobat = rols.find((rol) => rol.id === rolId);
         return rolTrobat ? rolTrobat.nom.charAt(0).toUpperCase() + rolTrobat.nom.slice(1).toLowerCase() : 'Rol Desconegut';
-      };
+    };
+
     useEffect(() => {
         const section = document.getElementById('id_section_llista_usuaris');
         const article = document.getElementById('id_article_llista_usuaris');
@@ -64,9 +45,7 @@ export const LlistaUsuaris = () => {
             paginacio.removeAttribute('style');
         }
     }, [shaTancat])
-    /* useState shaTancat ================================================== -Z */
 
-    /* useState shaFiltrat ================================================== A- */
     const [shaFiltrat, setShaFiltrat] = useState(false)
 
     const filtreIcona = () => {
@@ -107,29 +86,6 @@ export const LlistaUsuaris = () => {
     }
 
     const filtratUsuaris = filtreUsuaris(usuaris)
-    /* useState shaFiltrat ================================================== -Z */
-
-    /* useState shaActualitzat ================================================== A- */
-    /*const formAndBttn = {
-        form: '',
-        bttn: ''
-    }*/
-
-    //const [shaActualitzat, setShaActualitzat] = useState(false)
-    /*const actualitzarLlapis = event => {
-        setShaActualitzat(!shaActualitzat);
-        const actualForm = event.currentTarget.parentNode.parentNode.nextElementSibling.id;
-        const actualBttn = event.currentTarget.id;
-        const form = document.getElementById(actualForm);
-        const bttn = document.getElementById(actualBttn);
-        if (shaActualitzat) {
-            form.setAttribute('style', 'display: flex;');
-            bttn.setAttribute('style', 'background: #2bb;');
-        } else {
-            form.removeAttribute('style');
-            bttn.removeAttribute('style');
-        }
-    }*/
 
     useEffect(() => {
         const section = document.getElementById("id_section_llista_usuaris");
@@ -291,5 +247,5 @@ export const LlistaUsuaris = () => {
                 />
             </section>
         </>
-    );
-};
+    )
+}

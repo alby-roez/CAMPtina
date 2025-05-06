@@ -15,14 +15,9 @@ export default function TriarApat() {
 
     useEffect(() => {
         let actiu = true;
-        console.log("Es actiu:", actiu)
-        console.log("Usuari actiu (referència):", usuariActiu);
         const carregarReserva = async () => {
             try {
                 const resposta = await obtenirReservaUsuari(usuariActiu.id)
-                
-                console.log('Reserva despres de fer la crida: ', resposta)
-                console.log(resposta)
                 if (actiu) {
                     if (resposta) {
                         setReserva(resposta)
@@ -34,11 +29,9 @@ export default function TriarApat() {
                 }
             } catch (error) {
                 if (actiu) {
-                    console.error("Error obtenint la reserva:", error)
                     setReserva(null)
                     setReservaState(false)
                 }
-
             }
         }
         if (usuariActiu?.id) {
@@ -56,9 +49,7 @@ export default function TriarApat() {
             setReservaState(true)
         }
     }, [reserva]);
-    console.log("reservaState:", reservaState);
-    console.log("reserva:", reserva);
-    console.log("Render TriarApat");
+
     return (
         <>
             <Navegacio />
@@ -68,7 +59,7 @@ export default function TriarApat() {
                 </section>
                 {reserva
                     ? <ReservaFeta
-                        fn={() => setReserva(null)} // Quan s'elimina la reserva
+                        fn={() => setReserva(null)}
                         reserva={reserva}
                         eliminarReserva={eliminarReserva}
                     />

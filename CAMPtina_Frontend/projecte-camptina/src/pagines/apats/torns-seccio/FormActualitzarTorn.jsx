@@ -1,12 +1,10 @@
-import "./FormActualitzarTorn.css";
-import { useForm } from "react-hook-form";
-import { CheckIcona, CloseIcona } from "../../../Icones.jsx";
-//import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
-import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx"
-import { useContext, useEffect } from "react";
+import './FormActualitzarTorn.css'
+import { useForm } from 'react-hook-form'
+import { CheckIcona, CloseIcona } from '../../../Icones.jsx'
+import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
+import { useContext, useEffect } from 'react'
 
 export const FormActualitzarTorn = ({ torn, onCancel }) => {
-  //const { torns, actualitzarTorn } = useAxiosPeticions();
   const {torns, actualitzarTorn } = useContext(DadesCamptinaContext)
   const {
     register,
@@ -25,13 +23,12 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
     }
   }, [torn, setValue]);
 
-   // Valor hora inici
-   const horaInici = watch("horaInici");
-   
+  const horaInici = watch("horaInici");
+
   const peticioActualitzarTorn = handleSubmit(async (data) => {
     try {
       await actualitzarTorn(torn.id, data);
-      onCancel(); // Tancar el formulari després de l'actualització
+      onCancel();
     } catch (error) {
       console.error("Error actualitzant el torn:", error);
     }
@@ -40,13 +37,10 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
   function conflicteHorari(nouInici, nouFi, tornsExistents) {
     return tornsExistents.filter(t => t.id !== torn.id)
     .some((torn) => {  
-      // Convertim a minuts per facilitar la comparació
       const tornInici = convertirHoresAMinuts(torn.horaInici);
       const tornFi = convertirHoresAMinuts(torn.horaFi);
       const nouIniciMin = convertirHoresAMinuts(nouInici);
       const nouFiMin = convertirHoresAMinuts(nouFi);
-
-      // Comprovem si el rang d'hores coincideix amb un altre torn
       return nouIniciMin < tornFi && nouFiMin > tornInici;
     });
   }
@@ -59,7 +53,6 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
   return (
     <form className="form-update-torn" onSubmit={peticioActualitzarTorn}>
       <div className="form-grid-form-actualitzar-torn">
-        {/* Camp Nom */}
         <div className="form-group-form-actualitzar-torn">
           <input
             type="text"
@@ -75,8 +68,6 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
             <span className="error-message-form-actualitzar-torn">{errors.nom.message}</span>
           )}
         </div>
-
-        {/* Camp Aforament */}
         <div className="form-group-form-actualitzar-torn">
           <input
             type="number"
@@ -93,8 +84,6 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
             <span className="error-message-form-actualitzar-torn">{errors.aforament.message}</span>
           )}
         </div>
-
-        {/* Camp Hora Inici */}
         <div className="form-group-form-actualitzar-torn">
           <input
             type="time"
@@ -107,8 +96,6 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
             <span className="error-message-form-actualitzar-torn">{errors.horaInici.message}</span>
           )}
         </div>
-
-        {/* Camp Hora Fi */}
         <div className="form-group-form-actualitzar-torn">
           <input
             type="time"
@@ -116,7 +103,7 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
               required: "Hora fi obligatòria",
               validate: (value) => {
                 if (!horaInici) {
-                  return true; // Si no hi ha hora d'inici, no cal validar
+                  return true;
                 }
                 if (value === horaInici)
                   return "L'hora final no pot ser igual a la d'inici.";
@@ -135,7 +122,6 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
           )}
         </div>
       </div>
-
       <div className="form-actions-form-actualitzar-torn">
         <button type="button" onClick={onCancel} className="btn-cancel-form-actualitzar-torn">
           <CloseIcona />
@@ -145,5 +131,5 @@ export const FormActualitzarTorn = ({ torn, onCancel }) => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link } from '../Link.jsx'
 import logo from '../assets/logo.png'
 import usuari from '../assets/user.png'
-//import menu from '../assets/menu.png'
 import { ESDEVENIMENTS } from '../consts.js'
 import { logoutUsuari } from '../services/AxiosPeticioLogin.js'
 
@@ -35,9 +34,10 @@ export const Navegacio = () => {
     const esGestor = dadesUsuari?.rol === 'GESTOR';
     const esTreballador = dadesUsuari?.rol === 'TREBALLADOR';
 
-    // Funció per tancar sessió
+    /**
+     * @description Funció per tancar sessió
+     */
     const handleLogout = () => {
-        //localStorage.removeItem('jwtToken')
         logoutUsuari()
         localStorage.removeItem('dadesUsuari')
         setDadesUsuari(null)
@@ -52,12 +52,7 @@ export const Navegacio = () => {
     const className_article_usuari_imatge_navegacio = 'cn-article-usuari-imatge-navegacio';
     const className_img_logo = 'cn-img-logo';
     const className_img_usuari = 'cn-img-usuari';
-
-    //const className_num_li_2 = 'cn-num-li-2-navegacio';
-    //const className_num_li_3 = 'cn-num-li-3-navegacio';
     const className_num_li_5 = 'cn-num-li-5-navegacio';
-
-
 
     return (
         <>
@@ -70,8 +65,6 @@ export const Navegacio = () => {
                             {esTreballador && (
                                 <li><Link to='/apats/triar-apat'>Triar Apat</Link></li>
                             )}
-                            
-
                             {esGestor && (
                                 <>
                                     <li>
@@ -91,8 +84,7 @@ export const Navegacio = () => {
                             )}
                             <li><Link to='/contacte'>Contacte</Link></li>
                         </ul>
-                    </nav>
-                                 
+                    </nav>           
                 </section>
                 <section 
                 className={className_section_usuari_navegacio}

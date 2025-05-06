@@ -3,7 +3,7 @@ import { useMenus } from '../pagines/apats/menus-seccio/LogicaMenus.js'
 import axiosClient from './auth.js'
 
 /**
-* Hook personalitzat per gestionar les peticions relacionades amb la relació entre menús i àpats.
+* @description Hook personalitzat per gestionar les peticions relacionades amb la relació entre menús i àpats.
 * Proporciona funcions per carregar, crear i eliminar menús-àpats i per obtenir el contingut complet d'un menú.
 *
 * @function useAxiosPeticionsMenusApats
@@ -25,19 +25,18 @@ export const useAxiosPeticionsMenusApats = () => {
     const [menusApats, setMenusApats] = useState([])
 
     /**
-    * Estat per guardar IDs específics de menús-àpats.
+    * @description Estat per guardar IDs específics de menús-àpats.
     * @type {Array}
     */
     const [menusIdApats, setMenusIdApats] = useState([])
 
     /**
-    * Carrega tots els menús-àpats des del backend.
+    * @description Carrega tots els menús-àpats des del backend.
     * @async
     * @function carregarMenusApats
     * @returns {Promise<void>}
     */
     const carregarMenusApats = async () => {
-        console.log('Carregant... (MenusApats)')
         try {
             const resposta = await axiosClient.get('/menu-apat');
             setMenusApats(resposta.data)
@@ -47,7 +46,7 @@ export const useAxiosPeticionsMenusApats = () => {
     }
     
     /**
-    * Carrega els àpats d’un menú concret i els assigna a les seves categories.
+    * @description Carrega els àpats d’un menú concret i els assigna a les seves categories.
     * @async
     * @function carregarMenusComplet
     * @param {number|string} idMenu – ID del menú a carregar
@@ -61,12 +60,9 @@ export const useAxiosPeticionsMenusApats = () => {
             const primer = Array.isArray(apatsPerCategoria.PRIMER) ? apatsPerCategoria.PRIMER : [];
             const segon = Array.isArray(apatsPerCategoria.SEGON) ? apatsPerCategoria.SEGON : [];
             const postres = Array.isArray(apatsPerCategoria.POSTRE) ? apatsPerCategoria.POSTRE : [];
-
             setMenuPrimer(primer);
             setMenuSegon(segon);
             setMenuPostres(postres);
-
-            /* MALA PRACTICA O BONA NOSE -Z */
         } catch (error) {
             console.log('Error obtenint els menus:', error)
             setMenuPrimer([]);
@@ -77,7 +73,7 @@ export const useAxiosPeticionsMenusApats = () => {
     }
 
     /**
-    * Crea una nova relació menú-àpat al backend.
+    * @description Crea una nova relació menú-àpat al backend.
     * @async
     * @function crearMenusApats
     * @param {Object} nouMenuApats – Objecte amb les dades del nou menú-àpat
@@ -98,7 +94,7 @@ export const useAxiosPeticionsMenusApats = () => {
     }
 
     /**
-    * Elimina una relació menú-àpat donats els seus IDs.
+    * @description Elimina una relació menú-àpat donats els seus IDs.
     * @async
     * @function eliminarMenuApats
     * @param {number|string} idMenu – ID del menú
@@ -108,8 +104,6 @@ export const useAxiosPeticionsMenusApats = () => {
     const eliminarMenuApats = async (idMenu, idApat) => {
         try {
             await axiosClient.delete(`/menu-apat/${idMenu}/${idApat}`)
-            //carregarMenusComplet(1)
-            //carregarMenusApats()
         } catch (error) {
             console.log('Error eliminant el menusApats:', error)
         }
@@ -117,7 +111,7 @@ export const useAxiosPeticionsMenusApats = () => {
 
 
     useEffect(() => {
-        carregarMenusComplet(1) //MALA PRACTICA
+        carregarMenusComplet(1)
         carregarMenusApats()
     }, [])
 

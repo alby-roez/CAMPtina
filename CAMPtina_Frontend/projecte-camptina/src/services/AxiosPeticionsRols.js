@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
 /**
-* Hook personalitzat per gestionar la càrrega de rols d’usuari des del backend.
+* @description Hook personalitzat per gestionar la càrrega de rols d’usuari des del backend.
 *
 * @function useAxiosPeticionsRols
 * @returns {Object} Objecte amb:
@@ -12,13 +12,13 @@ import axiosClient from './auth'
 export const useAxiosPeticionsRols = () => {
 
     /**
-     * Estat per guardar la llista de rols.
+     * @description Estat per guardar la llista de rols.
      * @type {Array}
      */
     const [rols, setRols] = useState([])
     
     /**
-      * Carrega els rols de la base de dades.
+     * @description Carrega els rols de la base de dades.
      * @async
      * @function carregarRols
      * @returns {Promise<void>}

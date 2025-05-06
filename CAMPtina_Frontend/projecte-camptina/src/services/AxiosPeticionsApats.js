@@ -3,7 +3,7 @@ import axiosClient from './auth'
 
 
 /**
- * Hook personalitzat per gestionar les peticions relacionades amb els àpats.
+ * @description Hook personalitzat per gestionar les peticions relacionades amb els àpats.
  * Inclou funcionalitat per carregar, crear, actualitzar i eliminar àpats.
  *
  * @function
@@ -47,9 +47,7 @@ export const useAxiosPeticionsApats = () => {
                     'Content-Type': 'application/json'
                 },
             })
-            console.log('Àpat creat:', resposta.data)
             await carregarApats()
-            //setApats([...apats, resposta.data])
         } catch (error) {
             console.error('Error creant l\'àpat:', error.response?.data)
         }

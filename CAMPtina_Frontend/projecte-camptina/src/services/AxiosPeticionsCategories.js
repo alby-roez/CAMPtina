@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
 /**
- * Hook personalitzat per gestionar les peticions relacionades amb les categories.
+ * @description Hook personalitzat per gestionar les peticions relacionades amb les categories.
  * Proporciona estat i funció per carregar categories des del backend.
  *
  * @function useAxiosPeticionsCategories
@@ -15,8 +15,7 @@ export const useAxiosPeticionsCategories = () => {
     const [categories, setCategories] = useState([]);
 
     /**
-     * Carrega la llista de categories des de l'API i actualitza l'estat.
-     *
+     * @description Carrega la llista de categories des de l'API i actualitza l'estat.
      * @async
      * @function carregarCategories
      * @returns {Promise<void>}

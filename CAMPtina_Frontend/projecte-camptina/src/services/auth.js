@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ESDEVENIMENTS, PUBLIC_ROUTES } from '../consts.js'
 
 /**
- * Instància configurada d'Axios per fer peticions a l'API del backend.
+ * @description Instància configurada d'Axios per fer peticions a l'API del backend.
  * @type {axios.AxiosInstance}
  * @property {string} baseURL - URL base per totes les peticions
  */
@@ -11,7 +11,7 @@ const axiosClient = axios.create({
 })
 
 /**
- * Interceptor de petició Axios per a:
+ * @description Interceptor de petició Axios per a:
  * - Injectar automàticament el token JWT als headers de les peticions
  * @function
  * @param {axios.AxiosRequestConfig} config - Configuració de la petició
@@ -21,7 +21,6 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(config => {
   const token = localStorage.getItem('jwtToken');
   if (token) {
-    // Si hi ha token, l’afegim a l’header Authorization
     config.headers.Authorization = `Bearer ${token}`
   }
   return config
@@ -31,7 +30,7 @@ axiosClient.interceptors.request.use(config => {
 
 
 /**
- * Interceptor de resposta Axios per a:
+ * @description Interceptor de resposta Axios per a:
  * - Gestionar errors 401 (No autoritzat)
  * - Redirigir a /unauthorized si la petició falla per autenticació
  * @function
@@ -47,7 +46,6 @@ axiosClient.interceptors.response.use(
       const path = window.location.pathname;
 
       if (status === 401 && !PUBLIC_ROUTES.includes(path) && !token) {
-        // Només redirigim si NO som en una ruta pública
         window.history.pushState({}, '', '/unauthorized')
         window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
       }

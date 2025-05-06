@@ -1,4 +1,4 @@
-import { BotoAnterior, BotoAnteriorDisabled, BotoSeguent, BotoSeguentDisabled } from './BotonsPaginacio.jsx';
+import { BotoAnterior, BotoAnteriorDisabled, BotoSeguent, BotoSeguentDisabled } from './BotonsPaginacio.jsx'
 import './PaginacioMenus.css'
 
 export const PaginacioMenus = ({ totalApats, apatsPerPagina, paginaActual, setPaginaActual }) => {
@@ -14,7 +14,6 @@ export const PaginacioMenus = ({ totalApats, apatsPerPagina, paginaActual, setPa
     }
 
     const className_article_pagines = 'cn-article-pagines-paginacio-menus';
-
     const className_span_pagines = 'cn-span-pagines-paginacio-menus';
 
     return (

@@ -1,24 +1,19 @@
 import './App.css'
 import { Router } from './Router.jsx'
 import { Route } from './Route.jsx'
+import Page404 from './pagines/Page404.jsx'
 import Inici from './pagines/Inici.jsx'
 import Apats from './pagines/Apats.jsx'
 import Usuaris from './pagines/usuaris/gestio-usuaris.jsx'
 import Contacte from './pagines/Contacte.jsx'
 import Equip from './pagines/Equip.jsx'
-
 import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
 import CrearApat from './pagines/apats/CrearApat.jsx'
 import Torns from './pagines/apats/Torns.jsx'
 import Reserves from './pagines/apats/Reserves.jsx'
 
-import User from './pagines/User.jsx'
 import Login from './pagines/Login.jsx'
-import SignUp from './pagines/SignUp.jsx'
-import Page404 from './pagines/Page404.jsx'
-import SearchPage from './pagines/Search.jsx'
-import Contrasenya from './pagines/Contrasenya.jsx'
 import Unauthorized from './pagines/Unauthorized.jsx'
 
 import { MenusProvider } from './pagines/apats/menus-seccio/MenusContext.jsx'
@@ -72,25 +67,9 @@ const rutesApp = [
     Component: Equip
   },
   {
-    cami: '/user',
-    Component: User
-  },
-  {
     cami: '/login',
     Component: Login,
     requiresAuth: false
-  },
-  {
-    cami: '/sign-up',
-    Component: SignUp
-  },
-  {
-    cami: '/send-mail',
-    Component: Contrasenya
-  },
-  {
-    cami: '/search/:query',
-    Component: SearchPage
   }
 ]
 

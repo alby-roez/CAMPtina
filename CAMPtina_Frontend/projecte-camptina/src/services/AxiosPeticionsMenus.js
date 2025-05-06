@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
 /**
- * Hook personalitzat per gestionar les peticions relacionades amb els menús.
+ * @description Hook personalitzat per gestionar les peticions relacionades amb els menús.
  * Proporciona l’estat i les funcions per carregar, crear, actualitzar i eliminar menús des del backend.
  *
  * @function useAxiosPeticionsMenus
@@ -44,7 +44,6 @@ export const useAxiosPeticionsMenus = () => {
                     'Content-Type': 'application/json'
                 },
             })
-            //console.log('Menus creat:', resposta.data)
             setMenus([... menus, resposta.data])
         } catch (error) {
             console.error('Error creant el menus:', error.response?.data)

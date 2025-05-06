@@ -30,9 +30,6 @@ const ApatsExpandir = () => {
                         <h4>{reservaIdUsuari.nomPrimer || ''}</h4>
                     </div>
                 </div>
-                {/*<div className='cn-apat-container-descripcio-e-reserva-feta'>
-                    <p>{'APAT 1 es una descripció'}</p>
-                </div>*/}
             </div>
             <div className='cn-div-apats-expandir-reserva-feta'>
                 <div className='cn-container-h3-h4-reserva-feta'>
@@ -43,9 +40,6 @@ const ApatsExpandir = () => {
                         <h4>{reservaIdUsuari.nomSegon || ''}</h4>
                     </div>
                 </div>
-                {/*<div className='cn-apat-container-descripcio-e-reserva-feta'>
-                    <p>{'APAT 2 es una descripcióAPAT 2 es una descripcióAPAT 2 es una descripcióAPAT 2 es una descripcióAPAT 2 es una descripció'}</p>
-                </div>*/}
             </div>
             <div className='cn-div-apats-expandir-reserva-feta'>
                 <div className='cn-container-h3-h4-reserva-feta'>
@@ -56,9 +50,6 @@ const ApatsExpandir = () => {
                         <h4>{reservaIdUsuari.nomPostre || ''}</h4>
                     </div>
                 </div>
-                {/*<div className='cn-apat-container-descripcio-e-reserva-feta'>
-                    <p>{'APAT 3 es una descripció'}</p>
-                </div>*/}
             </div>
         </div>
     )
@@ -103,13 +94,10 @@ export const ReservaFeta = ({ fn, state }) => {
         fn(!state)
         try {
             const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
-            console.log(idUsuari)
             if (reservaIdUsuari?.idReserva) {
                 await eliminarReserva(reservaIdUsuari.idReserva)
 
-                // Actualització post-eliminació
                 await obtenirReservaUsuari(idUsuari)
-                // Opcional: Reset de l'estat local si cal
                 setReservaIdUsuari(null)
             }
         } catch (error) {
@@ -164,10 +152,7 @@ export const ReservaFeta = ({ fn, state }) => {
                                 console.log(idUsuari)
                                 if (reservaIdUsuari?.idReserva) {
                                     await eliminarReserva(reservaIdUsuari.idReserva)
-
-                                    // Actualització post-eliminació
                                     await obtenirReservaUsuari(idUsuari)
-                                    // Opcional: Reset de l'estat local si cal
                                     setReservaIdUsuari(null)
                                 }
                             } catch (error) {

@@ -2,13 +2,11 @@ import './FormActualitzarApat.css'
 import { useForm } from 'react-hook-form'
 import { useContext} from 'react'
 import { UpdateEnrere } from '../../../Icones.jsx'
-//import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const FormActualitzarApat = ({ id }) => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
-    //const { actualitzarApat } = useAxiosPeticionsApats()
     const { actualitzarApat, categories } = useContext(DadesCamptinaContext)
 
 
@@ -47,8 +45,6 @@ export const FormActualitzarApat = ({ id }) => {
     const className_txtarea_descripcio_update = 'cn-txtarea-descripcio-update-llista-apats';
     const id_txtarea_descripcio_update = `id_${id}_txtarea_descripcio_update_llista_apats`;
     const name_txtarea_descripcio_update = 'actualitzarDescripcio';
-
-
 
     const preTxtarea_update = 'Descriu l\'àpat...';
     const txtareaRows_update = 3;

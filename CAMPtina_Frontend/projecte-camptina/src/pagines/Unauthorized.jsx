@@ -1,11 +1,6 @@
-import { ESDEVENIMENTS } from '../consts.js'   // ← cal importar-ho!
+import { Link } from '../Link.jsx'
 
 export default function Unauthorized() {
-  const handleReturn = () => {
-    window.history.pushState({}, '', '/')
-    // fem que el Router noti el canvi
-    window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
-  }
 
   return (
     <div style={{
@@ -13,15 +8,16 @@ export default function Unauthorized() {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      color: 'black',
-      gap: '10px',
       margin: '20px',
       fontSize: '40px',
       overflow: 'auto'
     }}>
-      <h1 style={{ textAlign: 'center' }}>401 — No autoritzat</h1>
-      <p>No tens permisos per accedir a aquesta pàgina.</p>
-      <button onClick={handleReturn}>Tornar a Inici</button>
+      <h1 style={{ textAlign: 'center', color: '#222'}}>401 — No autoritzat</h1>
+      <h4 style={{textAlign: 'center', color: '#555'}}>No tens permisos per accedir a aquesta pàgina.</h4>
+      <br/>
+      <br/>
+      <br/>
+      <Link to='/'>Pàgina d'inici</Link>
     </div>
   )
 }

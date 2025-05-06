@@ -3,19 +3,17 @@ import { RemoveMenu } from '../../../Icones.jsx'
 import './ArticleMenus.css'
 import { useAxiosPeticionsMenusApats } from '../../../services/AxiosPeticionsMenusApats.js'
 
-export const ArticleMenus = ({ nomArticle, categoriaNom, nomLlista, menuPerCategoria, llista, setLlista, removeLlista })  => {
+export const ArticleMenus = ({ nomArticle, categoriaNom, llista, removeLlista })  => {
 
     const { eliminarMenuApats, carregarMenusComplet, carregarMenusApats } = useAxiosPeticionsMenusApats()
 
     const treureDelMenu = async item => {
-        //removeLlista(item)
         await eliminarMenuApats(1, item.id)
         await carregarMenusComplet(1)
         await carregarMenusApats()
         removeLlista(item)   
     }
-
-
+    
     const className_article = 'cn-article-menus';
 
     const className_h3_nom = 'cn-h3-nom-article-menus';

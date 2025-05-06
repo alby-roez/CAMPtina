@@ -2,15 +2,12 @@ import './LlistaApats.css'
 import { useState, useEffect, useContext } from 'react'
 import { FormActualitzarApat } from './FormActualitzarApat.jsx'
 import { CloseFinestra, FilterIcona, DeletePaperera } from '../../../Icones.jsx'
-//import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 import { PaginacioApats } from './PaginacioApats.jsx'
 import { BotoUpdate, BotoUpdateDisabled } from './BotonsApats.jsx'
 
 export const LlistaApats = () => {
 
-    /* useApats & categories ================================================== A- */
-    //const { apats, carregarApats, eliminarApat } = useAxiosPeticionsApats()
     const { apats, carregarApats, eliminarApat, categories } = useContext(DadesCamptinaContext)
 
     useEffect(() => {
@@ -25,7 +22,6 @@ export const LlistaApats = () => {
         return categoriaTrobada ? categoriaTrobada.nom.charAt(0).toUpperCase() + categoriaTrobada.nom.slice(1).toLowerCase() : 'Categoria no existent';
     }
 
-    /* PaginacioApats ================================================== A- */
     const totalLlistaApats = apats.length;
 
     const [apatsPerPagina] = useState(10)
@@ -33,9 +29,7 @@ export const LlistaApats = () => {
 
     const indexApatsFinal = paginaActual * apatsPerPagina
     const indexApatsInicial = indexApatsFinal - apatsPerPagina
-    /* PaginacioApats ================================================== -Z */
 
-    /* useState shaTancat ================================================== A- */
     const [shaTancat, setShaTancat] = useState(false)
 
     const tancarFinestra = () => {
@@ -59,9 +53,7 @@ export const LlistaApats = () => {
             paginacio.removeAttribute('style');
         }
     }, [shaTancat])
-    /* useState shaTancat ================================================== -Z */
 
-    /* useState shaFiltrat ================================================== A- */
     const [shaFiltrat, setShaFiltrat] = useState(false)
 
     const filtreIcona = () => {
@@ -80,7 +72,7 @@ export const LlistaApats = () => {
         }
     }, [shaFiltrat])
 
-    const [ setTxtActual] = useState('')
+    const [txtActual, setTxtActual] = useState('')
 
     const maneigFiltreBuscador = event => {
         setTxtActual(event.currentTarget.value)
@@ -98,20 +90,19 @@ export const LlistaApats = () => {
         }))
     }
 
-    /* FILTRAR UN ARRAY ¡IMPORTANT ESTUDIAR! */
     const filtreApats = (apats) => {
         return apats.filter(apat => {
             return (
                 (filters.categoriaId === 0 ||
-                    apat.categoriaId === filters.categoriaId)
+                    apat.categoriaId === filters.categoriaId) &&
+                    (txtActual === '' ||
+                    apat.nom.toLowerCase().startsWith(txtActual.toLowerCase()))
             )
         })
     }
 
     const filtratApats = filtreApats(apats)
-    /* useState shaFiltrat ================================================== -Z */
 
-    /* useState shaActualitzat ================================================== A- */
     const [shaActualitzat, setShaActualitzat] = useState(true)
     const [idActualitzacio, setIdActualitzacio] = useState({
         id: 0
@@ -135,7 +126,6 @@ export const LlistaApats = () => {
             id: id
         }))
     }
-    /* useState shaActualitzat ================================================== -Z */
 
     const className_section = 'cn-section-llista-apats';
     const id_section = 'id_section_llista_apats'

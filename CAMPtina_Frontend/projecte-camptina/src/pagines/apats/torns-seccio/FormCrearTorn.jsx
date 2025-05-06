@@ -1,14 +1,12 @@
-import "./FormCrearTorn.css";
-import { useForm } from "react-hook-form";
-import { useState, useEffect, useContext } from "react";
-import { ResetRoda, CloseFinestra } from "../../../Icones.jsx";
-//import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
-import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
+import './FormCrearTorn.css'
+import { useForm } from 'react-hook-form'
+import { useState, useEffect, useContext } from 'react'
+import { ResetRoda, CloseFinestra } from '../../../Icones.jsx'
+import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const FormCrearTorn = () => {
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
 
-  //const { torns, crearTorn } = useAxiosPeticions();
   const { torns, crearTorn } = useContext(DadesCamptinaContext);
 
   /**
@@ -23,7 +21,6 @@ export const FormCrearTorn = () => {
       horaInici: data.horaInici,
       horaFi: data.horaFinal,
     };
-    console.log("Torn creat: ", nouTorn);
 
     crearTorn(nouTorn);
     reset();
@@ -56,14 +53,10 @@ export const FormCrearTorn = () => {
 
   function conflicteHorari(nouInici, nouFi, tornsExistents) {
     return tornsExistents.some((torn) => {
-      
-      // Convertim a minuts per facilitar la comparació
       const tornInici = convertirHoresAMinuts(torn.horaInici);
       const tornFi = convertirHoresAMinuts(torn.horaFi);
       const nouIniciMin = convertirHoresAMinuts(nouInici);
       const nouFiMin = convertirHoresAMinuts(nouFi);
-
-      // Comprovem si el rang d'hores coincideix amb un altre torn
       return nouIniciMin < tornFi && nouFiMin > tornInici;
     });
   }
@@ -217,7 +210,7 @@ export const FormCrearTorn = () => {
                     required: "Hora final obligatòria",
                     validate: (value) => {
                       if (!horaInici) {
-                        return true; // Si no hi ha hora d'inici, no cal validar
+                        return true;
                       }
                       if (value === horaInici)
                         return "L'hora final no pot ser igual a la d'inici.";

@@ -1,13 +1,10 @@
 import './FormCrearUsuari.css'
 import { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form'
-//import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js'
 import { ResetRoda, CloseFinestra } from '../../Icones.jsx'
-//import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
 import { DadesCamptinaContext } from '../../services/DadesCamptina.jsx'
 
 export const FormCrearUsuari = () => {
-    //const { crearUsuari } = useAxiosPeticionsUsuaris()
     const { crearUsuari, rols } = useContext(DadesCamptinaContext)
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
 
@@ -23,10 +20,7 @@ export const FormCrearUsuari = () => {
 
         crearUsuari(nouUsuari); 
         reset();
-        
     })
-
-    //const { rols } = useAxiosPeticionsRols();
 
     const [esTancat, setEsTancat] = useState(false)
 
@@ -86,14 +80,12 @@ export const FormCrearUsuari = () => {
     const name_select = 'rolUsuari';
     const txtSelectRolUsuari = 'Rol:';
 
-    //const className_password = 'cn-contrasenya-form-crear-usuari';
     const id_password = 'id_contrasenya_form_crear_usuari';
     const name_password = 'contrasenyaUsuari';
     const txtPassword = 'Contrasenya:';
 
     const id_reset = 'id_reset_form_crear_usuari';
     const name_reset = 'resetejarCrearUsuari';
-    //const value_reset = 'Resetejar';
 
     const id_submit = 'id_submit_form_crear_usuari';
     const name_submit = 'crearUsuari';
@@ -102,7 +94,6 @@ export const FormCrearUsuari = () => {
     const className_bttn_finestra = 'cn-bttn-finestra-form-crear-usuari';
     const id_bttn_finestra = 'id_bttn_finestra_form_crear_usuari';
     const name_bttn_finestra = 'finestraDeFormCrear';
-
 
     const className_span = 'cn-span-error-form-crear-usuari';
 

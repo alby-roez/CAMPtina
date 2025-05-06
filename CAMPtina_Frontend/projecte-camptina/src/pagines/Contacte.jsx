@@ -13,8 +13,8 @@ export default function Contacte() {
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
     
     const enviarContacte = handleSubmit((data) => {
-        console.log(data) //Què fem amb les dades?
-        reset();
+        console.log(data)
+        reset()
     })
 
     const myCheckboxContacte = document.getElementById('id_form_checkbox_contacte');

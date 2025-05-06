@@ -2,11 +2,9 @@ import './FormCrearApat.css'
 import { useState, useEffect, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { CloseFinestra, ResetRoda } from '../../../Icones.jsx'
-//import { useAxiosPeticionsApats } from '../../../services/AxiosPeticionsApats.js'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
 export const FormCrearApat = () => {
-    //const { crearApat } = useAxiosPeticionsApats()
     const { crearApat, categories } = useContext(DadesCamptinaContext)
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm()
@@ -75,14 +73,6 @@ export const FormCrearApat = () => {
     const name_select = 'categoriaApat';
     const txtSelectCategoriaApat = 'Categoria de l\'àpat:';
 
-    const valuePrimer = 1;
-    const valueSegon = 2;
-    const valuePostres = 3;
-
-    const txtPrimer = 'Primer';
-    const txtSegon = 'Segon';
-    const txtPostres = 'Postres';
-
     const className_txtarea = 'cn-txtarea-form-crear-apat';
     const id_txtarea = 'id_txtarea_form_crear_apat';
     const name_txtarea = 'descripcioApat';
@@ -93,7 +83,6 @@ export const FormCrearApat = () => {
 
     const id_reset = 'id_reset_form_crear_apat';
     const name_reset = 'resetejarCrearApat';
-    const value_reset = 'Resetejar';
 
     const id_submit = 'id_submit_form_crear_apat';
     const name_submit = 'crearApat';

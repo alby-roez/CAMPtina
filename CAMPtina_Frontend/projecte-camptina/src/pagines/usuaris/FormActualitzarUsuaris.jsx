@@ -1,14 +1,10 @@
-import "./FormActualitzarUsuaris.css";
-import { useForm } from "react-hook-form";
-import { CheckIcona, CloseIcona } from "../../Icones.jsx";
-//import { useAxiosPeticionsUsuaris } from '../../services/UsuarisPeticions.js';
-import { useEffect, useContext } from "react";
-import { DadesCamptinaContext } from "../../services/DadesCamptina.jsx";
-//import { useAxiosPeticionsRols } from '../../services/RolsPeticions.js'
+import './FormActualitzarUsuaris.css'
+import { useForm } from 'react-hook-form'
+import { CheckIcona, CloseIcona } from '../../Icones.jsx'
+import { useEffect, useContext } from 'react'
+import { DadesCamptinaContext } from '../../services/DadesCamptina.jsx'
 
 export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
-    //const { actualitzarUsuari } = useAxiosPeticionsUsuaris();
-    //const { rols } = useAxiosPeticionsRols();
     const { actualitzarUsuari, rols } = useContext(DadesCamptinaContext)
     
     const {
@@ -17,8 +13,6 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
         formState: { errors },
         setValue,
     } = useForm();
-
-
 
     useEffect(() => {
         if (usuari) {
@@ -45,7 +39,6 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
     return (
         <form className="form-update-usuari" onSubmit={peticioActualitzarUsuari}>
             <div className="form-grid-form-actualitzar-usuaris">
-                {/* Camp Nom */}
                 <div className="form-group-form-actualitzar-usuaris">
                     <input
                         defaultValue={usuari.nom}

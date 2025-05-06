@@ -1,16 +1,13 @@
 import { useEffect, useState, useContext } from 'react';
-import { DadesCamptinaContext } from '../../../services/DadesCamptina';
-import './GestioReserves.css';
-import {
-    UpdateLlapis,
-    DeletePaperera
-} from "../../../Icones.jsx";
+import { DadesCamptinaContext } from '../../../services/DadesCamptina'
+import './GestioReserves.css'
+import { DeletePaperera} from '../../../Icones.jsx'
 
 
 export default function GestioReserves() {
     const { reserva, carregarReserva, eliminarReserva } = useContext(DadesCamptinaContext);
     const [llistaReserves, setLlistaReserves] = useState([]);
-    const [dataFiltrada, setDataFiltrada] = useState("");
+    const [dataFiltrada, setDataFiltrada] = useState('');
 
     useEffect(() => {
         const carregarReserves = async () => {
@@ -38,10 +35,8 @@ export default function GestioReserves() {
     const className_bttn_delete = "cn-bttn-delete-reserva";
     const id_bttn_delete = "id_bttn_delete_reserva";
     const name_bttn_delete = "deleteDeReserva";
-    //const className_bttn_update = "cn-bttn-update-reserva";
-    //const id_bttn_update = "id_bttn_update_reserva";
-    //const name_bttn_update = "updateDeReserva";
     const className_accions_reserva = "cn-accions-reserva";
+
     return (
         <>
             <section className={className_section} id={id_section}>
@@ -88,7 +83,6 @@ export default function GestioReserves() {
                                                     id={id_bttn_delete}
                                                     name={name_bttn_delete} onClick={() => eliminarReserva(reservaActual.idReserva)}>  <DeletePaperera /></button>
                                             </div>
-
                                         </td>
                                     </tr>
                                 ))}
@@ -100,8 +94,5 @@ export default function GestioReserves() {
                 </div>
             </section>
         </>
-
-
-    );
-
+    )
 }

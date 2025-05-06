@@ -10,21 +10,17 @@ import crearTorn from '../assets/crear-torn.png'
 export default function Apats() {
     const className_main = 'cn-main-navegacio';
     const className_section_video = 'cn-section-video-navegacio';
-
     const txt_menus = 'Secció on podeu veure la carta d\'avui, amb els seus plats i postres inclosos. És merament informatiu.';
-
     const txt_triar_apat = 'Secció on l\'usuari/client pot triar els àpats disponibles del menú i reservar hora a la cantina.';
-
     const txt_crear_apat = 'Secció on només el gerent pot entrar i crear/afegir un àpat al menú.';
-
     const txt_crear_torn = 'Secció on només el gerent pot entrar i crear/afegir un torn a la cantina.';
-
+    
     const mg = () => {
-        alert('Gran')
+        console.log('Gran')
     }
 
     const mp = () => {
-        alert('Petit')
+        console.log('Petit')
     }
 
     return (

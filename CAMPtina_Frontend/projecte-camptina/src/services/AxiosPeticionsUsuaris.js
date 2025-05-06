@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axiosClient from './auth'
 
 /**
- * Hook personalitzat per gestionar usuaris.
+ * @description Hook personalitzat per gestionar usuaris.
  *
  * @function useAxiosPeticionsUsuaris
  * @returns {Object} Funcions i estats relacionats amb els usuaris:
@@ -46,7 +46,6 @@ export const useAxiosPeticionsUsuaris = () => {
                     'Content-Type': 'application/json'
                 }
             })
-            //console.log("Usuari creat:", resposta.data)
             setUsuaris([... usuaris, resposta.data])
         } catch (error) {
             console.error("Error creant l'usuari:", error.response?.data)
@@ -84,7 +83,6 @@ export const useAxiosPeticionsUsuaris = () => {
     const eliminarUsuari = async (idUsuari) => {
         try {
             await axiosClient.delete(`/usuaris/${idUsuari}`)
-            //await carregarUsuaris()
             setUsuaris(usuaris.filter(usuari => usuari.id !== idUsuari));
         } catch (error) {
             console.log("Error eliminant l'usuari:", error)

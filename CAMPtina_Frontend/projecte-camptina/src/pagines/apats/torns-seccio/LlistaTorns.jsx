@@ -1,16 +1,8 @@
-import "./LlistaTorns.css";
-import { useState, useEffect, useContext } from "react";
-import {
-  CloseFinestra,
-  UpdateLlapis,
-  DeletePaperera,
-  CloseIcona,
-  CheckIcona,
-} from "../../../Icones.jsx";
-
-//import { useAxiosPeticions } from "../../../services/TornsPeticions.js"
-import { DadesCamptinaContext } from "../../../services/DadesCamptina.jsx";
-import { FormActualitzarTorn } from "./FormActualitzarTorn.jsx";
+import './LlistaTorns.css'
+import { useState, useEffect, useContext } from 'react'
+import { CloseFinestra, UpdateLlapis, DeletePaperera } from '../../../Icones.jsx'
+import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
+import { FormActualitzarTorn } from './FormActualitzarTorn.jsx'
 
 export const LlistaTorns = () => {
   const [shaTancat, setShaTancat] = useState(false);
@@ -19,12 +11,10 @@ export const LlistaTorns = () => {
     setShaTancat(!shaTancat);
   };
 
-  //const {torns, eliminarTorn} = useAxiosPeticions()
   const { torns, eliminarTorn } = useContext(DadesCamptinaContext);
 
   const [editantId, setEditantId ] = useState(null);
 
-  
   useEffect(() => {
     const section = document.getElementById("id_section_llista_torns");
     const article = document.getElementById("id_article_llista_torns");
@@ -37,7 +27,6 @@ export const LlistaTorns = () => {
     }
   }, [shaTancat]);
 
- 
   const className_section = "cn-section-llista-torns";
   const id_section = "id_section_llista_torns";
 
@@ -154,5 +143,5 @@ export const LlistaTorns = () => {
         </article>
       </section>
     </>
-  );
-};
+  )
+}

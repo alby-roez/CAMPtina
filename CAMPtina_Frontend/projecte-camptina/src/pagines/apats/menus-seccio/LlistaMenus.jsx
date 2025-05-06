@@ -41,7 +41,6 @@ export const LlistaMenus = () => {
             )
         })
     }
-   
 
     const llistaFiltrada = filtrarLlista(apats)
 
@@ -62,29 +61,6 @@ export const LlistaMenus = () => {
     const className_div_llista = 'cn-div-llista-menus';
     const className_h4_nom_llista = 'cn-h4-nom-llista-menus';
 
-    const defaultItems = indexFinal - llistaFiltrada.length;
-    const newArray = () => {
-        let defaultArray = [];
-        if (indexFinal > llistaFiltrada.length) {
-            if (defaultItems === 4) {
-                return ['no_1', 'no_2', 'no_3', 'no_4']
-            } else if (defaultItems === 3) {
-                return ['no_1', 'no_2', 'no_3']
-            } else if (defaultItems === 2) {
-                return ['no_1', 'no_2']
-            } else if (defaultItems === 1) {
-                return ['no_1']
-            } else if (defaultItems === 0) {
-                return defaultArray
-            } else {
-                return ['no_1', 'no_2', 'no_3', 'no_4', 'no_5']
-            }
-        } else {
-            return defaultArray
-        }
-    }
-
-    /* categoriaId class ================================================== A- */
     const categoriaApat = id => {
         if (id === 1) {
             return 'cn-div-nom-1-llista-menus'
@@ -96,7 +72,6 @@ export const LlistaMenus = () => {
             return 'cn-div-nom-llista-menus'
         }
     }
-    /* categoriaId class ================================================== -Z */
 
     const checkMenu = (apat) => {
         if (apat.categoriaId === 1) {
@@ -153,9 +128,6 @@ export const LlistaMenus = () => {
                         </div>
                     )
                 }).slice(indexInicial, indexFinal)}
-                {/*{newArray().map((item) => (
-                    <LlistaItem key={item} />
-                ))}*/}
             </article>
             <PaginacioMenus
                 totalApats={totalApats}

@@ -1,5 +1,4 @@
 import { useMenus } from '../menus-seccio/LogicaMenus.js'
-//import { ArticleTriarApat } from './ArticleTriarApat.jsx'
 import './SeccioTriarApat.css'
 import './ArticleTriarApat.css'
 import { useForm } from 'react-hook-form'
@@ -22,9 +21,7 @@ export const SeccioTriarApat = () => {
 
     const dadesUsuari = usuariGuardat ? JSON.parse(usuariGuardat) : null;
 
-
     const ferReserva = handleSubmit(async (data) => {
-        console.log(usuariGuardat);
         const obj = {
             idUsuari: JSON.parse(dadesUsuari.id),
             id: data.tornTriarApat,
@@ -45,8 +42,8 @@ export const SeccioTriarApat = () => {
         } catch (error) {
             console.error("Error creant la reserva:", error)
         }
-
     })
+
     useEffect(() => {
         if (idMenuSeleccionat) {
             carregarMenusComplet(idMenuSeleccionat).then(res => {
@@ -68,16 +65,7 @@ export const SeccioTriarApat = () => {
     const className_div_nom = 'cn-div-nom-triar-apat';
     const className_h3_nom = 'cn-h3-nom-triar-apat';
     const className_div_nom_apat = 'cn-div-nom-apat-triar-apat';
-
-    /* ESTILS DE RADIO A- */
     const className_radio_input = 'cn-radio-input-triar-apat';
-    //const className_radio_input_style = 'cn-radio-input-style-triar-apat';
-    /* ESTILS DE RADIO -Z */
-
-    const name_radio_input_primer = 'nameApatPrimer';
-    const name_radio_input_segon = 'nameApatSegon';
-    const name_radio_input_postres = 'nameApatPostres';
-    //const className_span = 'cn-span-error-triar-apat';
 
     const txt_section = 'Selecció d\'àpats';
     const id_submit = 'id_submit_seccio_triar_apat';
@@ -93,7 +81,6 @@ export const SeccioTriarApat = () => {
                 <article className={className_article_titol_seccio_triar_apat} id={id_article_titol_seccio_triar_apat}>
                     <h2 className={className_h2_titol_seccio_triar_apat}>{txt_section}</h2>
                 </article>
-                {/* Selecció de menú */}
                 <article className="cn-article-triar-apat">
                     <div className="cn-div-nom-triar-apat">
                         <h3 className="cn-h3-nom-triar-apat">Menú</h3>
@@ -113,7 +100,6 @@ export const SeccioTriarApat = () => {
                     </select>
                     {errors.idMenu && <span className="cn-span-error-message-torn-triar-apat">Has de seleccionar un menú</span>}
                 </article>
-                {/* TORNS */}
                 <article className={className_article}>
                     <div className={className_div_nom}>
                         <h3 className={className_h3_nom}>{'Torns'}</h3>
@@ -135,64 +121,61 @@ export const SeccioTriarApat = () => {
                     {errors.tornTriarApat?.type === 'required' &&
                         <span className={className_span_error}>Has de seleccionar un torn</span>}
                 </article>
-                {/* PRIMER */}
                 <article className={className_article}>
                     <div className={className_div_nom}>
                         <h3 className={className_h3_nom}>{'Primer'}</h3>
                     </div>
                     {menuPrimer.length > 0 && menuPrimer.map(apat => (
                         <div key={apat.id} className={className_div_nom_apat}>
-                            <label>{apat.nom}</label>
+                            <label htmlFor={`id_${apat.id}_triar_apat`}>{apat.nom}</label>
                             <input
+                                className={className_radio_input}
                                 type="radio"
                                 value={apat.id}
+                                id={`id_${apat.id}_triar_apat`}
                                 {...register('idPrimer', { required: true })}
                             />
                         </div>
                     ))}
 
-                    { /* MALA PARACTICA PER PROBAR SPAN (===) Switch (!==) */ true === false &&
-                        <span className={className_span_error_special_radio}>Has de seleccionar un primer</span>}
+                    {false && <span className={className_span_error_special_radio}>Has de seleccionar un primer</span>}
                 </article>
-                {/* SEGON */}
                 <article className={className_article}>
                     <div className={className_div_nom}>
                         <h3 className={className_h3_nom}>{'Segon'}</h3>
                     </div>
                     {menuSegon.length > 0 && menuSegon.map(apat => (
                         <div key={apat.id} className={className_div_nom_apat}>
-                            <label>{apat.nom}</label>
+                            <label htmlFor={`id_${apat.id}_triar_apat`}>{apat.nom}</label>
                             <input
+                                className={className_radio_input}
                                 type="radio"
                                 value={apat.id}
+                                id={`id_${apat.id}_triar_apat`}
                                 {...register('idSegon', { required: true })}
                             />
                         </div>
                     ))}
-                    { /* MALA PARACTICA PER PROBAR SPAN (===) Switch (!==) */ true === false &&
-                        <span className={className_span_error_special_radio}>Has de seleccionar un segon</span>}
+                    {false && <span className={className_span_error_special_radio}>Has de seleccionar un segon</span>}
                 </article>
-                {/* POSTRES */}
                 <article className={className_article}>
                     <div className={className_div_nom}>
                         <h3 className={className_h3_nom}>{'Postres'}</h3>
                     </div>
                     {menuPostres.length > 0 && menuPostres.map(apat => (
                         <div key={apat.id} className={className_div_nom_apat}>
-                            <label>{apat.nom}</label>
+                            <label htmlFor={`id_${apat.id}_triar_apat`}>{apat.nom}</label>
                             <input
+                                className={className_radio_input}
                                 type="radio"
                                 value={apat.id}
+                                id={`id_${apat.id}_triar_apat`}
                                 {...register('idPostres', { required: true })}
                             />
                         </div>
                     ))}
-                    { /* MALA PARACTICA PER PROBAR SPAN (===) Switch (!==) */ true === false &&
-                        <span className={className_span_error_special_radio}>Has de seleccionar un postres</span>}
+                    {false && <span className={className_span_error_special_radio}>Has de seleccionar un postres</span>}
                 </article>
-                {/*<ArticleTriarApat nomArticle={'Primer'} nomCategoria={'primer'} llista={menuPrimer} />*/}
-                {/*<ArticleTriarApat nomArticle={'Segon'} nomCategoria={'segon'} llista={menuSegon} />*/}
-                {/*<ArticleTriarApat nomArticle={'Postres'} nomCategoria={'postres'} llista={menuPostres} />*/}
                 <input
                     id={id_submit}
                     name={name_submit}

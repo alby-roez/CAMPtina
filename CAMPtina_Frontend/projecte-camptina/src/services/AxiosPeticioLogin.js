@@ -1,11 +1,11 @@
 import axiosClient from './auth'
 
 /**
- * Autenticació per gestionar login, logout i token JWT.
+ * @description Autenticació per gestionar login, logout i token JWT.
  */
 
 /**
- * Configura o elimina el token JWT a localStorage.
+ * @description Configura o elimina el token JWT a localStorage.
  * @function
  * @param {string|null} token - Token JWT a emmagatzemar. Si és null, elimina el token existent.
  */
@@ -19,7 +19,7 @@ const setAuthToken = (token) => {
 
 
 /**
- * Realitza el procés de login d'usuari.
+ * @description Realitza el procés de login d'usuari.
  * @async
  * @function
  * @param {string} email - Email de l'usuari
@@ -41,12 +41,7 @@ export const loginUsuari = async (email,contrasenya) => {
             email: email,
             contrasenya: contrasenya
         })
-
-        
-        // Obtenim dades del token
         const token = resposta.data.token
-        
-        // Configurem el token globalment
         setAuthToken(token)
 
         return {
@@ -66,8 +61,6 @@ export const loginUsuari = async (email,contrasenya) => {
                           error.response.data?.message || 
                           "Credencials incorrectes"
         }
-
-        // Netegem token en cas d'error
         setAuthToken(null)
         
         return {
@@ -79,7 +72,7 @@ export const loginUsuari = async (email,contrasenya) => {
 }
 
 /**
- * Tanca la sessió de l'usuari eliminant el token JWT.
+ * @description Tanca la sessió de l'usuari eliminant el token JWT.
  * @function
  * @returns {Object} Objecte amb resultat de l'operació:
  *  - {boolean} success - Sempre true
@@ -92,9 +85,3 @@ export const logoutUsuari = () => {
         message: "Sessió tancada correctament",
       }
 }
-
-// Configuració inicial si hi ha token
-//const token = localStorage.getItem('jwtToken')
-//if(token) {
-//    setAuthToken(token)
-//}
