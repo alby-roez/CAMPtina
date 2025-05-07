@@ -47,9 +47,7 @@ public class JwtTokenProvider {
 	public String generadorJwtToken(Authentication authentication) {
 
 		UserDetailsImpl usuariPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-		System.out.println(Jwts.builder().setSubject((usuariPrincipal.getUsername())).setIssuedAt(new Date())
-				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact());
+
 		return Jwts.builder().setSubject((usuariPrincipal.getUsername())).setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();

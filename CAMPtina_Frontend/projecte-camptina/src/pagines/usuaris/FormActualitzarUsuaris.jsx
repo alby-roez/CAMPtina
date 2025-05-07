@@ -82,7 +82,6 @@ export const FormActualitzarUsuaris = ({ usuari, onCancel }) => {
                         placeholder="Segon cognom"
                         min="1"
                         {...register("cognom2", {
-                            required: true,
                             minLength: 2,
                             maxLength: 45
                         })}
