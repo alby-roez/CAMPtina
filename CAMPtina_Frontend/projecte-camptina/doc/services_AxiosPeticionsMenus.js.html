@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/AxiosPeticionsMenus.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/AxiosPeticionsMenus.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from 'react'
+import axiosClient from './auth'
+
+/**
+ * @description Hook personalitzat per gestionar les peticions relacionades amb els menús.
+ * Proporciona l’estat i les funcions per carregar, crear, actualitzar i eliminar menús des del backend.
+ *
+ * @function useAxiosPeticionsMenus
+ * @returns {Object} Objecte amb:
+ *  - {Array} menus – Llista de menús obtinguda del servidor  
+ *  - {Function} carregarMenus – Funció per recarregar la llista de menús  
+ *  - {Function} crearMenus – Funció per crear un nou menú  
+ *  - {Function} actualitzarMenus – Funció per actualitzar un menú existent  
+ *  - {Function} eliminarMenus – Funció per eliminar un menú  
+ */
+export const useAxiosPeticionsMenus = () => {
+
+    /**
+     * @description Estat per guardar la llista de menus
+     */
+    const [menus, setMenus] = useState([])
+
+    /**
+     * @author Albert
+     * @description Funció per obtenir els menus del backend
+     */
+    const carregarMenus = async () => {
+        try {
+            const resposta = await axiosClient.get('/menu');
+            setMenus(resposta.data)
+        } catch (error) {
+            console.log('Error obtenint els menus:', error)
+        }
+    }
+
+    /**
+     * @param {*} nouMenu
+     * @description Funció per crear un nou menus
+     */
+    const crearMenus = async (nouMenu) => {
+        try {
+            const resposta = await axiosClient.post('/menu', nouMenu, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            setMenus([... menus, resposta.data])
+        } catch (error) {
+            console.error('Error creant el menus:', error.response?.data)
+        }
+    }
+
+    /**
+     * @param {*} idMenu
+     * @param {*} nouMenu
+     * @description Funció per actualitzar un menus
+     */
+    const actualitzarMenus = async (idMenu, nouMenu) => {
+        try {
+            const resposta = await axiosClient.put(`/menu/${idMenu}`, nouMenu, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            setMenus(menus.map(menu => menu.id === idMenu ? resposta.data : menu))
+        } catch (error) {
+            console.error('Error actualitzant el menus:', error.response?.data)
+        }
+    }
+
+    /**
+     * @param {*} idMenu
+     * @description Funció per eliminar un menus
+     */
+    const eliminarMenus = async (idMenu) => {
+        try {
+            await axiosClient.delete(`/menu/${idMenu}`)
+            setMenus(menus.filter(menu => menu.id !== idMenu));
+            await carregarMenus()
+        } catch (error) {
+            console.log('Error eliminant el menus:', error)
+        }
+    }
+
+    useEffect(() => {
+        carregarMenus()
+    }, [])
+
+    return { menus, carregarMenus, crearMenus, actualitzarMenus, eliminarMenus }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualitzarReserva">actualitzarReserva</a></li><li><a href="global.html#actualitzarTorn">actualitzarTorn</a></li><li><a href="global.html#actualitzarUsuari">actualitzarUsuari</a></li><li><a href="global.html#axiosClient">axiosClient</a></li><li><a href="global.html#carregarCategories">carregarCategories</a></li><li><a href="global.html#carregarMenusApats">carregarMenusApats</a></li><li><a href="global.html#carregarMenusComplet">carregarMenusComplet</a></li><li><a href="global.html#carregarReserva">carregarReserva</a></li><li><a href="global.html#carregarReservaId">carregarReservaId</a></li><li><a href="global.html#carregarReservaIdUsuari">carregarReservaIdUsuari</a></li><li><a href="global.html#carregarRols">carregarRols</a></li><li><a href="global.html#carregarTorns">carregarTorns</a></li><li><a href="global.html#carregarUsuaris">carregarUsuaris</a></li><li><a href="global.html#crearMenusApats">crearMenusApats</a></li><li><a href="global.html#crearReserva">crearReserva</a></li><li><a href="global.html#crearTorn">crearTorn</a></li><li><a href="global.html#crearUsuari">crearUsuari</a></li><li><a href="global.html#eliminarMenuApats">eliminarMenuApats</a></li><li><a href="global.html#eliminarReserva">eliminarReserva</a></li><li><a href="global.html#eliminarTorn">eliminarTorn</a></li><li><a href="global.html#eliminarUsuari">eliminarUsuari</a></li><li><a href="global.html#loginUsuari">loginUsuari</a></li><li><a href="global.html#logoutUsuari">logoutUsuari</a></li><li><a href="global.html#obtenirReservaUsuari">obtenirReservaUsuari</a></li><li><a href="global.html#setAuthToken">setAuthToken</a></li><li><a href="global.html#useAxiosPeticionsApats">useAxiosPeticionsApats</a></li><li><a href="global.html#useAxiosPeticionsCategories">useAxiosPeticionsCategories</a></li><li><a href="global.html#useAxiosPeticionsMenus">useAxiosPeticionsMenus</a></li><li><a href="global.html#useAxiosPeticionsMenusApats">useAxiosPeticionsMenusApats</a></li><li><a href="global.html#useAxiosPeticionsRols">useAxiosPeticionsRols</a></li><li><a href="global.html#useAxiosPeticionsTorns">useAxiosPeticionsTorns</a></li><li><a href="global.html#useAxiosPeticionsTriarApats">useAxiosPeticionsTriarApats</a></li><li><a href="global.html#useAxiosPeticionsUsuaris">useAxiosPeticionsUsuaris</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 18:20:45 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

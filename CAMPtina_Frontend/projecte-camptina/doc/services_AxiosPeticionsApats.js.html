@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/AxiosPeticionsApats.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/AxiosPeticionsApats.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from 'react'
+import axiosClient from './auth'
+
+
+/**
+ * @description Hook personalitzat per gestionar les peticions relacionades amb els àpats.
+ * Inclou funcionalitat per carregar, crear, actualitzar i eliminar àpats.
+ *
+ * @function
+ * @returns {Object} Objecte amb els mètodes i estat relacionats amb àpats
+ * @property {Array} apats - Llista d'àpats obtinguda del backend
+ * @property {Function} carregarApats - Funció per carregar àpats
+ * @property {Function} crearApat - Funció per crear un nou àpat
+ * @property {Function} actualitzarApat - Funció per actualitzar un àpat existent
+ * @property {Function} eliminarApat - Funció per eliminar un àpat
+ */
+export const useAxiosPeticionsApats = () => {
+
+    /**
+     * @author Miquel &amp; Albert
+     * @description Estat per guardar la llista d'àpats
+     */
+    const [apats, setApats] = useState([])
+
+    /**
+     * @author Miquel &amp; Albert
+     * @description Funció per obtenir els àpats del backend
+     */
+    const carregarApats = async () => {
+        try {
+            const resposta = await axiosClient.get('/apats');
+            setApats(resposta.data)
+        } catch (error) {
+            console.log('Error obtenint els àpats:', error)
+        }
+    }
+
+    /**
+     * @author Miquel &amp; Albert
+     * @param {*} nouApat
+     * @description Funció per crear un nou àpat
+     */
+    const crearApat = async (nouApat) => {
+        try {
+            const resposta = await axiosClient.post('', nouApat, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            await carregarApats()
+        } catch (error) {
+            console.error('Error creant l\'àpat:', error.response?.data)
+        }
+    }
+
+   /**
+    * @author Miquel &amp; Albert
+    * @param {*} idApat
+    * @param {*} nouApat
+    * @description Funció per actualitzar un àpat
+    */
+    const actualitzarApat = async (idApat, nouApat) => {
+        try {
+            const resposta = await axiosClient.put(`/${idApat}`, nouApat, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            setApats(apats.map(apat => apat.id === idApat ? resposta.data : apat))
+        } catch (error) {
+            console.error('Error actualitzant l\'àpat:', error.response?.data)
+        }
+    }
+
+    /**
+     * @author Miquel &amp; Albert
+     * @param {*} idApat
+     * @description Funció per eliminar un àpat
+     */
+    const eliminarApat = async (idApat) => {
+        try {
+            await axiosClient.delete(`/${idApat}`)
+            setApats(apats.filter(apat => apat.id !== idApat));
+            await carregarApats()
+        } catch (error) {
+            console.log('Error eliminant l\'àpat:', error)
+        }
+    }
+
+    useEffect(() => {
+        carregarApats()
+    }, [])
+
+    return { apats, carregarApats, crearApat, actualitzarApat, eliminarApat }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualitzarReserva">actualitzarReserva</a></li><li><a href="global.html#actualitzarTorn">actualitzarTorn</a></li><li><a href="global.html#actualitzarUsuari">actualitzarUsuari</a></li><li><a href="global.html#axiosClient">axiosClient</a></li><li><a href="global.html#carregarCategories">carregarCategories</a></li><li><a href="global.html#carregarMenusApats">carregarMenusApats</a></li><li><a href="global.html#carregarMenusComplet">carregarMenusComplet</a></li><li><a href="global.html#carregarReserva">carregarReserva</a></li><li><a href="global.html#carregarReservaId">carregarReservaId</a></li><li><a href="global.html#carregarReservaIdUsuari">carregarReservaIdUsuari</a></li><li><a href="global.html#carregarRols">carregarRols</a></li><li><a href="global.html#carregarTorns">carregarTorns</a></li><li><a href="global.html#carregarUsuaris">carregarUsuaris</a></li><li><a href="global.html#crearMenusApats">crearMenusApats</a></li><li><a href="global.html#crearReserva">crearReserva</a></li><li><a href="global.html#crearTorn">crearTorn</a></li><li><a href="global.html#crearUsuari">crearUsuari</a></li><li><a href="global.html#eliminarMenuApats">eliminarMenuApats</a></li><li><a href="global.html#eliminarReserva">eliminarReserva</a></li><li><a href="global.html#eliminarTorn">eliminarTorn</a></li><li><a href="global.html#eliminarUsuari">eliminarUsuari</a></li><li><a href="global.html#loginUsuari">loginUsuari</a></li><li><a href="global.html#logoutUsuari">logoutUsuari</a></li><li><a href="global.html#obtenirReservaUsuari">obtenirReservaUsuari</a></li><li><a href="global.html#setAuthToken">setAuthToken</a></li><li><a href="global.html#useAxiosPeticionsApats">useAxiosPeticionsApats</a></li><li><a href="global.html#useAxiosPeticionsCategories">useAxiosPeticionsCategories</a></li><li><a href="global.html#useAxiosPeticionsMenus">useAxiosPeticionsMenus</a></li><li><a href="global.html#useAxiosPeticionsMenusApats">useAxiosPeticionsMenusApats</a></li><li><a href="global.html#useAxiosPeticionsRols">useAxiosPeticionsRols</a></li><li><a href="global.html#useAxiosPeticionsTorns">useAxiosPeticionsTorns</a></li><li><a href="global.html#useAxiosPeticionsTriarApats">useAxiosPeticionsTriarApats</a></li><li><a href="global.html#useAxiosPeticionsUsuaris">useAxiosPeticionsUsuaris</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 18:20:45 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

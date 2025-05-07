@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/auth.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/auth.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axios from 'axios'
+import { ESDEVENIMENTS, PUBLIC_ROUTES } from '../consts.js'
+
+/**
+ * @description Instància configurada d'Axios per fer peticions a l'API del backend.
+ * @type {axios.AxiosInstance}
+ * @property {string} baseURL - URL base per totes les peticions
+ */
+const axiosClient = axios.create({
+  baseURL: "http://localhost:8080/api" 
+})
+
+/**
+ * @description Interceptor de petició Axios per a:
+ * - Injectar automàticament el token JWT als headers de les peticions
+ * @function
+ * @param {axios.AxiosRequestConfig} config - Configuració de la petició
+ * @returns {axios.AxiosRequestConfig} Configuració modificada amb el token si existeix
+ * @throws {Error} Propaga errors durant la configuració de la petició
+ */
+axiosClient.interceptors.request.use(config => {
+  const token = localStorage.getItem('jwtToken');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+}, error => {
+  return Promise.reject(error)
+})
+
+
+/**
+ * @description Interceptor de resposta Axios per a:
+ * - Gestionar errors 401 (No autoritzat)
+ * - Redirigir a /unauthorized si la petició falla per autenticació
+ * @function
+ * @param {axios.AxiosResponse} response - Resposta de l'API
+ * @returns {axios.AxiosResponse} Resposta directa si tot és correcte
+ * @throws {Error} Propaga l'error original amb gestió especial per codi 401
+ */
+axiosClient.interceptors.response.use(
+  response => response,
+  error => {
+      const token = localStorage.getItem('jwtToken')
+      const status = error.response?.status;
+      const path = window.location.pathname;
+
+      if (status === 401 &amp;&amp; !PUBLIC_ROUTES.includes(path) &amp;&amp; !token) {
+        window.history.pushState({}, '', '/unauthorized')
+        window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
+      }
+      return Promise.reject(error)
+    }
+)
+
+export default axiosClient</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualitzarReserva">actualitzarReserva</a></li><li><a href="global.html#actualitzarTorn">actualitzarTorn</a></li><li><a href="global.html#actualitzarUsuari">actualitzarUsuari</a></li><li><a href="global.html#axiosClient">axiosClient</a></li><li><a href="global.html#carregarCategories">carregarCategories</a></li><li><a href="global.html#carregarMenusApats">carregarMenusApats</a></li><li><a href="global.html#carregarMenusComplet">carregarMenusComplet</a></li><li><a href="global.html#carregarReserva">carregarReserva</a></li><li><a href="global.html#carregarReservaId">carregarReservaId</a></li><li><a href="global.html#carregarReservaIdUsuari">carregarReservaIdUsuari</a></li><li><a href="global.html#carregarRols">carregarRols</a></li><li><a href="global.html#carregarTorns">carregarTorns</a></li><li><a href="global.html#carregarUsuaris">carregarUsuaris</a></li><li><a href="global.html#crearMenusApats">crearMenusApats</a></li><li><a href="global.html#crearReserva">crearReserva</a></li><li><a href="global.html#crearTorn">crearTorn</a></li><li><a href="global.html#crearUsuari">crearUsuari</a></li><li><a href="global.html#eliminarMenuApats">eliminarMenuApats</a></li><li><a href="global.html#eliminarReserva">eliminarReserva</a></li><li><a href="global.html#eliminarTorn">eliminarTorn</a></li><li><a href="global.html#eliminarUsuari">eliminarUsuari</a></li><li><a href="global.html#loginUsuari">loginUsuari</a></li><li><a href="global.html#logoutUsuari">logoutUsuari</a></li><li><a href="global.html#obtenirReservaUsuari">obtenirReservaUsuari</a></li><li><a href="global.html#setAuthToken">setAuthToken</a></li><li><a href="global.html#useAxiosPeticionsApats">useAxiosPeticionsApats</a></li><li><a href="global.html#useAxiosPeticionsCategories">useAxiosPeticionsCategories</a></li><li><a href="global.html#useAxiosPeticionsMenus">useAxiosPeticionsMenus</a></li><li><a href="global.html#useAxiosPeticionsMenusApats">useAxiosPeticionsMenusApats</a></li><li><a href="global.html#useAxiosPeticionsRols">useAxiosPeticionsRols</a></li><li><a href="global.html#useAxiosPeticionsTorns">useAxiosPeticionsTorns</a></li><li><a href="global.html#useAxiosPeticionsTriarApats">useAxiosPeticionsTriarApats</a></li><li><a href="global.html#useAxiosPeticionsUsuaris">useAxiosPeticionsUsuaris</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 18:20:45 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

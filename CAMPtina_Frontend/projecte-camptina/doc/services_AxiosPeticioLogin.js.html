@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: services/AxiosPeticioLogin.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: services/AxiosPeticioLogin.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import axiosClient from './auth'
+
+/**
+ * @description Autenticació per gestionar login, logout i token JWT.
+ */
+
+/**
+ * @description Configura o elimina el token JWT a localStorage.
+ * @function
+ * @param {string|null} token - Token JWT a emmagatzemar. Si és null, elimina el token existent.
+ */
+const setAuthToken = (token) => {
+    if(token) {
+        localStorage.setItem('jwtToken', token)
+    } else {
+        localStorage.removeItem('jwtToken')
+    }
+}
+
+
+/**
+ * @description Realitza el procés de login d'usuari.
+ * @async
+ * @function
+ * @param {string} email - Email de l'usuari
+ * @param {string} contrasenya - Contrasenya de l'usuari
+ * @returns {Promise&lt;Object>} Objecte amb resultat de l'operació:
+ *  - {boolean} success - Indica si l'operació ha tingut èxit
+ *  - {string} [id] - ID de l'usuari (només si success=true)
+ *  - {string} [nom] - Nom de l'usuari
+ *  - {string} [cognom1] - Primer cognom
+ *  - {string} [email] - Email autenticat
+ *  - {string} [rol] - Rol de l'usuari
+ *  - {string} [token] - Token JWT
+ *  - {string} [error] - Missatge d'error (només si success=false)
+ * @throws {Error} Captura errors de xarxa o del servidor i retorna objecte amb missatge localitzat
+ */
+export const loginUsuari = async (email,contrasenya) => {
+    try {
+        const resposta = await axiosClient.post('auth/login', {
+            email: email,
+            contrasenya: contrasenya
+        })
+        const token = resposta.data.token
+        setAuthToken(token)
+
+        return {
+            success: true,
+            id: resposta.data.usuariId,
+            nom: resposta.data.nom,
+            cognom1: resposta.data.cognom1,
+            email: resposta.data.email,
+            rol: resposta.data.rolNom,
+            token: token
+        }
+    } catch (error) {
+        let errorMessage = "Error de connexió amb el servidor"
+        
+        if(error.response) {
+            errorMessage = error.response.data?.error || 
+                          error.response.data?.message || 
+                          "Credencials incorrectes"
+        }
+        setAuthToken(null)
+        
+        return {
+            success: false,
+            error: errorMessage
+        }
+    }
+
+}
+
+/**
+ * @description Tanca la sessió de l'usuari eliminant el token JWT.
+ * @function
+ * @returns {Object} Objecte amb resultat de l'operació:
+ *  - {boolean} success - Sempre true
+ *  - {string} message - Missatge de confirmació
+ */
+export const logoutUsuari = () => {
+    setAuthToken(null)
+    return {
+        success: true,
+        message: "Sessió tancada correctament",
+      }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualitzarReserva">actualitzarReserva</a></li><li><a href="global.html#actualitzarTorn">actualitzarTorn</a></li><li><a href="global.html#actualitzarUsuari">actualitzarUsuari</a></li><li><a href="global.html#axiosClient">axiosClient</a></li><li><a href="global.html#carregarCategories">carregarCategories</a></li><li><a href="global.html#carregarMenusApats">carregarMenusApats</a></li><li><a href="global.html#carregarMenusComplet">carregarMenusComplet</a></li><li><a href="global.html#carregarReserva">carregarReserva</a></li><li><a href="global.html#carregarReservaId">carregarReservaId</a></li><li><a href="global.html#carregarReservaIdUsuari">carregarReservaIdUsuari</a></li><li><a href="global.html#carregarRols">carregarRols</a></li><li><a href="global.html#carregarTorns">carregarTorns</a></li><li><a href="global.html#carregarUsuaris">carregarUsuaris</a></li><li><a href="global.html#crearMenusApats">crearMenusApats</a></li><li><a href="global.html#crearReserva">crearReserva</a></li><li><a href="global.html#crearTorn">crearTorn</a></li><li><a href="global.html#crearUsuari">crearUsuari</a></li><li><a href="global.html#eliminarMenuApats">eliminarMenuApats</a></li><li><a href="global.html#eliminarReserva">eliminarReserva</a></li><li><a href="global.html#eliminarTorn">eliminarTorn</a></li><li><a href="global.html#eliminarUsuari">eliminarUsuari</a></li><li><a href="global.html#loginUsuari">loginUsuari</a></li><li><a href="global.html#logoutUsuari">logoutUsuari</a></li><li><a href="global.html#obtenirReservaUsuari">obtenirReservaUsuari</a></li><li><a href="global.html#setAuthToken">setAuthToken</a></li><li><a href="global.html#useAxiosPeticionsApats">useAxiosPeticionsApats</a></li><li><a href="global.html#useAxiosPeticionsCategories">useAxiosPeticionsCategories</a></li><li><a href="global.html#useAxiosPeticionsMenus">useAxiosPeticionsMenus</a></li><li><a href="global.html#useAxiosPeticionsMenusApats">useAxiosPeticionsMenusApats</a></li><li><a href="global.html#useAxiosPeticionsRols">useAxiosPeticionsRols</a></li><li><a href="global.html#useAxiosPeticionsTorns">useAxiosPeticionsTorns</a></li><li><a href="global.html#useAxiosPeticionsTriarApats">useAxiosPeticionsTriarApats</a></li><li><a href="global.html#useAxiosPeticionsUsuaris">useAxiosPeticionsUsuaris</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 18:20:45 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
