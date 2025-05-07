@@ -55,7 +55,7 @@ export default function TriarApat() {
             <Navegacio />
             <main className={className_main}>
                 <section className={className_section_video}>
-                    <video id="id_video_menus_carta" src="/src/assets/menus_carta.mp4" autoPlay loop muted></video>
+                    <video id="id_video_menus_carta" src="/src/assets/camptina.mp4" autoPlay loop muted></video>
                 </section>
                 {reserva
                     ? <ReservaFeta

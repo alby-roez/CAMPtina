@@ -184,6 +184,7 @@
   gap: 50px;
   width: 830px;
   height: 60px;
+  position: relative;
 }
 
 /* header-a A- */
@@ -204,6 +205,7 @@
   align-items: center;
   width: 600px;
   height: 60px;
+
 }
 
 .cn-header-navegacio > section > nav > ul {
@@ -366,6 +368,25 @@
   height: 60px;
 }
 
+.cn-article-usuari-imatge-navegacio > button {
+  background: #369;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.cn-article-usuari-imatge-navegacio > button:hover {
+  background: #69c;
+}
+
+.cn-article-usuari-imatge-navegacio > button:active {
+  transform: scale(0.9);
+}
+
 .cn-article-usuari-imatge-navegacio > a {
   display: flex;
   justify-content: center;
@@ -378,8 +399,41 @@
 
 /* header-MEDIA A- */
 @media (max-width: 1200px) {
+  .cn-main-navegacio {
+    padding-top: 160px;
+  }
+
+  .cn-section-nav-navegacio {
+    width: 180px;
+  }
+
   .cn-header-navegacio > section > nav {
-    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0px;
+  }
+
+  .cn-header-navegacio > section > nav > ul > li > a {
+    background: #369;
+  }
+}
+
+@media (max-width: 620px) {
+  .cn-main-navegacio {
+    padding-top: 228px;
+  }
+  
+  .cn-header-navegacio > section > nav {
+    width: 296px;
+    height: 128px;
+    align-items: flex-start;
+  }
+
+  .cn-header-navegacio > section > nav > ul {
+    display: grid;
+    width: 296px;
+    height: 128px;
+    grid-template-columns: 1fr 1fr;
   }
 }
 /* header-MEDIA -Z */
@@ -413,7 +467,7 @@
   align-self: center;
 }
 
-.cn-section-footer-link-peu > a {
+.cn-section-footer-link-peu > p {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -427,15 +481,6 @@
   height: 100%;
 }
 
-.cn-section-footer-link-peu > a:hover {
-  font-size: 0.6em;
-  background: #9cf;
-}
-
-.cn-section-footer-link-peu > a:active {
-  transform: scale(0.9);
-}
-
 @media (max-width: 1200px) {
   .cn-section-footer-link-peu {
     width: 96%;
@@ -443,7 +488,7 @@
 }
 
 @media (max-width: 950px) {
-  .cn-section-footer-link-peu > a {
+  .cn-section-footer-link-peu > p {
     font-size: 0.4em;
   }
 }
@@ -645,6 +690,10 @@
 
 @media (max-width: 550px) {
   .cn-section-usuari-navegacio {
+    width: 60px;
+  }
+
+  .cn-article-usuari-ui-navegacio {
     display: none;
   }
 

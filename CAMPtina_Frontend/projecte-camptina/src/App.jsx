@@ -6,7 +6,6 @@ import Inici from './pagines/Inici.jsx'
 import Apats from './pagines/Apats.jsx'
 import Usuaris from './pagines/usuaris/gestio-usuaris.jsx'
 import Contacte from './pagines/Contacte.jsx'
-import Equip from './pagines/Equip.jsx'
 import Menus from './pagines/apats/Menus.jsx'
 import TriarApat from './pagines/apats/TriarApat.jsx'
 import CrearApat from './pagines/apats/CrearApat.jsx'
@@ -61,10 +60,6 @@ const rutesApp = [
     Component: Usuaris,
     requiresAuth: true,
     allowedRoles: ['GESTOR']
-  },
-  {
-    cami: '/equip/equip-dev',
-    Component: Equip
   },
   {
     cami: '/login',

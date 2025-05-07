@@ -336,7 +336,6 @@
 
 @media (max-width: 550px) {
     .cn-section-form-crear-torn {
-        margin-top: 100px;
         overflow: auto;
     }
 }

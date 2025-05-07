@@ -7,7 +7,7 @@
     border-radius: 8px;
     padding: 0.65em;
     width: 80%;
-    height: 300px;
+    height: 350px;
     background: #69c;
     overflow: auto;
 }
@@ -26,6 +26,22 @@
 }
 
 .cn-article-titol-torn-reserva-feta > h2 {
+    font-size: 1rem;
+}
+
+.cn-article-preu-reserva-feta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #369;
+    color: #fff;
+    border-radius: 4px;
+    width: 80%;
+    height: 40px;
+    overflow: auto;
+}
+
+.cn-article-preu-reserva-feta > h2 {
     font-size: 1rem;
 }
 
@@ -224,5 +240,56 @@
 @media (max-width: 1000px) {
     .cn-select-torns-triar-apat {
         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .cn-article-titol-torn-reserva-feta > h2 {
+        font-size: 0.8rem;
+    }
+    
+    .cn-article-preu-reserva-feta > h2 {
+        font-size: 0.8rem;
+    }
+    
+    .cn-div-actualitzar-eliminar-reserva-feta {
+        width: 30px;
+    }
+    
+    .cn-bttn-actualitzar-eliminar-reserva-feta {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .cn-div-apats-e-r-reserva-feta {
+        width: calc(90% - 60px);
+    }
+
+    .cn-a-container-e-reserva-feta {
+        width: 60px;
+    }
+    
+    .cn-div-container-titol-apats-reserva-feta > h3 {
+        font-size: 0.6rem;
+    }
+
+    .cn-apat-container-e-reserva-feta {
+        width: calc(98% - 60px);
+    }
+
+    .cn-div-apats-expandir-reduir-reserva-feta > h4 {
+        font-size: 0.6rem;
+    }
+    
+    .cn-a-container-e-reserva-feta > h3 {
+        font-size: 0.6rem;
+    }
+    
+    .cn-apat-container-e-reserva-feta > h4 {
+        font-size: 0.6rem;
+    }
+    
+    .cn-apat-container-descripcio-e-reserva-feta > p {
+        font-size: 0.6rem;
     }
 }

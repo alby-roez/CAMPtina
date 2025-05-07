@@ -43,7 +43,7 @@ export default function GestioReserves() {
                 <article className={className_article_nom}>
                     <h3 className={className_h3_nom}>{nomSeccio}</h3>
                 </article>
-                <div>
+                <div style={{overflow: 'auto'}}>
                     <label className={className_section_filtre} id={id_section_filtre}>                   
                         <input
                             type="date"

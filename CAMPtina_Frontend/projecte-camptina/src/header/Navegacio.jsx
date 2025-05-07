@@ -68,6 +68,9 @@ export const Navegacio = () => {
                             {esGestor && (
                                 <>
                                     <li>
+                                        <Link to='/usuaris/gestio-usuaris'>Usuaris</Link>
+                                    </li>
+                                    <li>
                                         <Link to=''>Àpats</Link>
                                         <ul className={className_num_li_5}>
                                             <li><Link to='/apats/menus'>Menús</Link></li>
@@ -76,9 +79,6 @@ export const Navegacio = () => {
                                             <li><Link to='/apats/gestio-reserves'>Reserves</Link></li>
                                             <li><Link to='/apats/torns'>Torns</Link></li>
                                         </ul>
-                                    </li>
-                                    <li>
-                                        <Link to='/usuaris/gestio-usuaris'>Usuaris</Link>
                                     </li>
                                 </>
                             )}
@@ -101,15 +101,6 @@ export const Navegacio = () => {
                         <article className={className_article_usuari_imatge_navegacio}>
                             <button
                                 onClick={handleLogout}
-                                style={{
-                                background: 'none',
-                                border: 'none',
-                                cursor: 'pointer',
-                                color: "white",
-                                fontWeight: 'bold',
-                                fontSize: '14px',
-                                padding: '8px',
-                                }}
                             >
                                 Tancar sessió
                             </button>

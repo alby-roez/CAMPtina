@@ -265,7 +265,6 @@
 
 @media (max-width: 550px) {
     .cn-section-form-crear-usuari {
-        margin-top: 100px;
         overflow: auto;
     }
 }

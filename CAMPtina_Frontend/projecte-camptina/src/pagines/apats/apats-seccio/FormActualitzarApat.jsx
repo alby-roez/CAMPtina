@@ -1,13 +1,21 @@
 import './FormActualitzarApat.css'
 import { useForm } from 'react-hook-form'
-import { useContext} from 'react'
+import { useContext, useEffect} from 'react'
 import { UpdateEnrere } from '../../../Icones.jsx'
 import { DadesCamptinaContext } from '../../../services/DadesCamptina.jsx'
 
-export const FormActualitzarApat = ({ id }) => {
+export const FormActualitzarApat = ({ id, apat }) => {
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm()
     const { actualitzarApat, categories } = useContext(DadesCamptinaContext)
+
+    useEffect(() => {
+        if (apat) {
+            setValue("nomDeApatUpdate", apat.nom);
+            setValue("categoriaDeApatUpdate", apat.categoriaId);
+            setValue("descripcioDeApatUpdate", apat.descripcio);
+        }
+    }, [apat, setValue]);
 
 
     const peticioActualitzarApat = handleSubmit(async (data) => {
@@ -68,7 +76,7 @@ export const FormActualitzarApat = ({ id }) => {
             <div className={className_form_div_inputs_update}>
                 <div className={className_form_div_inputs_nom_update}>
                     <input
-                        defaultValue={''}
+                        defaultValue={apat.nom}
                         className={className_input_nom_update}
                         id={id_input_nom_update}
                         name={name_input_nom_update}
@@ -83,7 +91,7 @@ export const FormActualitzarApat = ({ id }) => {
                 </div>
                 <div className={className_form_div_inputs_categoria_update}>
                     <select
-                        defaultValue={''}
+                        defaultValue={apat.categoriaId}
                         className={className_select_categoria_update}
                         id={id_select_categoria_update}
                         name={name_select_categoria_update}
@@ -103,7 +111,7 @@ export const FormActualitzarApat = ({ id }) => {
                 </div>
                 <div className={className_form_div_inputs_descripcio_update}>
                     <textarea
-                        defaultValue={''}
+                        defaultValue={apat.descripcio}
                         className={className_txtarea_descripcio_update}
                         id={id_txtarea_descripcio_update}
                         name={name_txtarea_descripcio_update}

@@ -263,7 +263,7 @@ export const LlistaApats = () => {
                                     </button>
                                 </li>
                             </ul>
-                            <FormActualitzarApat id={apat.id} />
+                            <FormActualitzarApat id={apat.id} apat={apat} />
                         </div>
                     )).slice(indexApatsInicial, indexApatsFinal)}
                 </article>

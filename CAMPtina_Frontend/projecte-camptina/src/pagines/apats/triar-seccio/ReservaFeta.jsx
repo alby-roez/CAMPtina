@@ -116,6 +116,9 @@ export const ReservaFeta = ({ fn, state }) => {
             <article className='cn-article-titol-torn-reserva-feta'>
                 <h2>{reservaIdUsuari?.nomTorn || ''}</h2>
             </article>
+            <article className='cn-article-preu-reserva-feta'>
+                <h2>{reservaIdUsuari.preuMenu || ''}€</h2>
+            </article>
             <article className='cn-article-contingut-reserva-feta'>
                 <div className='cn-div-actualitzar-eliminar-reserva-feta'>
                     <button
@@ -141,7 +144,6 @@ export const ReservaFeta = ({ fn, state }) => {
                         ? <ApatsReduir />
                         : <ApatsExpandir />}
                 </div>
-        
                 <div className='cn-div-actualitzar-eliminar-reserva-feta'>
                     <button
                         className='cn-bttn-actualitzar-eliminar-reserva-feta'
