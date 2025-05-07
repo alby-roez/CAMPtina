@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: header/Navegacio.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: header/Navegacio.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState, useEffect } from 'react'
+import { Link } from '../Link.jsx'
+import logo from '../assets/logo.png'
+import usuari from '../assets/user.png'
+import { ESDEVENIMENTS } from '../consts.js'
+import { logoutUsuari } from '../services/AxiosPeticioLogin.js'
+
+export const Navegacio = () => {
+
+    const[dadesUsuari, setDadesUsuari] = useState(null)
+
+    useEffect(() => {
+        const dadesGuardades = localStorage.getItem('dadesUsuari')
+        if(dadesGuardades) {
+            try {
+                const dades = JSON.parse(dadesGuardades)
+                setDadesUsuari(dades)
+            } catch(error) {
+                localStorage.removeItem('dadesUsuari')
+                localStorage.removeItem('jwtToken')
+            }
+        }
+
+        const refrescar = () => {
+            const dades = localStorage.getItem('dadesUsuari')
+            if (dades) setDadesUsuari(JSON.parse(dades))
+            else setDadesUsuari(null)
+        }
+
+        window.addEventListener(ESDEVENIMENTS.CAPENDAVANT, refrescar)
+        return () => window.removeEventListener(ESDEVENIMENTS.CAPENDAVANT, refrescar)
+    }, [])
+
+    const esGestor = dadesUsuari?.rol === 'GESTOR';
+    const esTreballador = dadesUsuari?.rol === 'TREBALLADOR';
+
+    /**
+     * @description Funció per tancar sessió
+     */
+    const handleLogout = () => {
+        logoutUsuari()
+        localStorage.removeItem('dadesUsuari')
+        setDadesUsuari(null)
+        window.history.pushState({}, '', '/login')
+        window.dispatchEvent(new Event(ESDEVENIMENTS.CAPENDAVANT))
+    }
+
+    const className_header_navegacio = 'cn-header-navegacio';
+    const className_section_nav_navegacio = 'cn-section-nav-navegacio';
+    const className_section_usuari_navegacio = 'cn-section-usuari-navegacio';
+    const className_article_usuari_ui_navegacio = 'cn-article-usuari-ui-navegacio';
+    const className_article_usuari_imatge_navegacio = 'cn-article-usuari-imatge-navegacio';
+    const className_img_logo = 'cn-img-logo';
+    const className_img_usuari = 'cn-img-usuari';
+    const className_num_li_5 = 'cn-num-li-5-navegacio';
+
+    return (
+        &lt;>
+            &lt;header className={className_header_navegacio}>
+                &lt;section className={className_section_nav_navegacio}>
+                    &lt;Link to='/'>&lt;img className={className_img_logo} src={logo} alt="Logo" />&lt;/Link>
+                    &lt;nav>
+                        &lt;ul>
+                            &lt;li>&lt;Link to='/'>Inici&lt;/Link>&lt;/li>
+                            {esTreballador &amp;&amp; (
+                                &lt;li>&lt;Link to='/apats/triar-apat'>Triar Apat&lt;/Link>&lt;/li>
+                            )}
+                            {esGestor &amp;&amp; (
+                                &lt;>
+                                    &lt;li>
+                                        &lt;Link to='/usuaris/gestio-usuaris'>Usuaris&lt;/Link>
+                                    &lt;/li>
+                                    &lt;li>
+                                        &lt;Link to=''>Àpats&lt;/Link>
+                                        &lt;ul className={className_num_li_5}>
+                                            &lt;li>&lt;Link to='/apats/menus'>Menús&lt;/Link>&lt;/li>
+                                            &lt;li>&lt;Link to='/apats/triar-apat'>Triar Àpat&lt;/Link>&lt;/li>
+                                            &lt;li>&lt;Link to='/apats/crear-apat'>Crear Àpat&lt;/Link>&lt;/li>
+                                            &lt;li>&lt;Link to='/apats/gestio-reserves'>Reserves&lt;/Link>&lt;/li>
+                                            &lt;li>&lt;Link to='/apats/torns'>Torns&lt;/Link>&lt;/li>
+                                        &lt;/ul>
+                                    &lt;/li>
+                                &lt;/>
+                            )}
+                            &lt;li>&lt;Link to='/contacte'>Contacte&lt;/Link>&lt;/li>
+                        &lt;/ul>
+                    &lt;/nav>           
+                &lt;/section>
+                &lt;section 
+                className={className_section_usuari_navegacio}
+                style={{
+                    justifyContent: dadesUsuari ? 'space-between' : 'flex-end'
+                }}
+                >
+                {dadesUsuari ? (
+                    &lt;>
+                        &lt;article className={className_article_usuari_ui_navegacio}>
+                            &lt;h3>{(dadesUsuari?.nom || '') + ' ' + (dadesUsuari?.cognom1 || '')}&lt;/h3>
+                            &lt;h4>{dadesUsuari?.email || ''}&lt;/h4>
+                        &lt;/article>
+                        &lt;article className={className_article_usuari_imatge_navegacio}>
+                            &lt;button
+                                onClick={handleLogout}
+                            >
+                                Tancar sessió
+                            &lt;/button>
+                        &lt;/article>
+                    &lt;/>
+                ) : (
+                    &lt;Link to='/login'>
+                        &lt;img className={className_img_usuari} src={usuari} alt="Iniciar sessió" />
+                    &lt;/Link>
+                )}
+                &lt;/section>
+            &lt;/header>
+        &lt;/>
+    )
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualitzarReserva">actualitzarReserva</a></li><li><a href="global.html#actualitzarTorn">actualitzarTorn</a></li><li><a href="global.html#actualitzarUsuari">actualitzarUsuari</a></li><li><a href="global.html#axiosClient">axiosClient</a></li><li><a href="global.html#carregarCategories">carregarCategories</a></li><li><a href="global.html#carregarMenusApats">carregarMenusApats</a></li><li><a href="global.html#carregarMenusComplet">carregarMenusComplet</a></li><li><a href="global.html#carregarReserva">carregarReserva</a></li><li><a href="global.html#carregarReservaId">carregarReservaId</a></li><li><a href="global.html#carregarReservaIdUsuari">carregarReservaIdUsuari</a></li><li><a href="global.html#carregarRols">carregarRols</a></li><li><a href="global.html#carregarTorns">carregarTorns</a></li><li><a href="global.html#carregarUsuaris">carregarUsuaris</a></li><li><a href="global.html#crearMenusApats">crearMenusApats</a></li><li><a href="global.html#crearReserva">crearReserva</a></li><li><a href="global.html#crearTorn">crearTorn</a></li><li><a href="global.html#crearUsuari">crearUsuari</a></li><li><a href="global.html#eliminarMenuApats">eliminarMenuApats</a></li><li><a href="global.html#eliminarReserva">eliminarReserva</a></li><li><a href="global.html#eliminarTorn">eliminarTorn</a></li><li><a href="global.html#eliminarUsuari">eliminarUsuari</a></li><li><a href="global.html#loginUsuari">loginUsuari</a></li><li><a href="global.html#logoutUsuari">logoutUsuari</a></li><li><a href="global.html#obtenirReservaUsuari">obtenirReservaUsuari</a></li><li><a href="global.html#setAuthToken">setAuthToken</a></li><li><a href="global.html#useAxiosPeticionsApats">useAxiosPeticionsApats</a></li><li><a href="global.html#useAxiosPeticionsCategories">useAxiosPeticionsCategories</a></li><li><a href="global.html#useAxiosPeticionsMenus">useAxiosPeticionsMenus</a></li><li><a href="global.html#useAxiosPeticionsMenusApats">useAxiosPeticionsMenusApats</a></li><li><a href="global.html#useAxiosPeticionsRols">useAxiosPeticionsRols</a></li><li><a href="global.html#useAxiosPeticionsTorns">useAxiosPeticionsTorns</a></li><li><a href="global.html#useAxiosPeticionsTriarApats">useAxiosPeticionsTriarApats</a></li><li><a href="global.html#useAxiosPeticionsUsuaris">useAxiosPeticionsUsuaris</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Wed May 07 2025 18:20:45 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

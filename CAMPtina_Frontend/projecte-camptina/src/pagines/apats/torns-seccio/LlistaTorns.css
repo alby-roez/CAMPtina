@@ -1,0 +1,463 @@
+.cn-section-llista-torns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  padding: 0.65em;
+  width: 80%;
+  min-height: 70px;
+  background: #69c;
+}
+
+.cn-article-nom-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #369;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  width: 100%;
+  height: 46px;
+  position: relative;
+}
+
+.cn-h3-nom-llista-torns {
+  font-size: 1.5em;
+}
+
+.cn-article-llista-torns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  min-height: 25px;
+}
+
+.cn-ul-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+  width: 100%;
+  height: 50px;
+}
+
+.cn-li-update-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  height: 100%;
+  background: #111;
+  border-bottom-right-radius: 8px;
+  visibility: hidden;
+}
+
+.cn-li-id-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 5%;
+  height: 100%;
+  background: #222;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-nom-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 34%;
+  height: 100%;
+  background: #333;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-aforament-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 15%;
+  height: 100%;
+  background: #444;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-horainici-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 15%;
+  height: 100%;
+  background: #555;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-horafi-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 15%;
+  height: 100%;
+  background: #666;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-delete-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  height: 100%;
+  background: #777;
+  border-bottom-left-radius: 8px;
+  visibility: hidden;
+}
+
+.cn-div-llista-torns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  min-height: 25px;
+}
+
+.cn-li-item-update-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.cn-li-item-id-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 5%;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-item-nom-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 34%;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-item-aforament-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 15%;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-item-horainici-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 15%;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-item-horafi-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2em;
+  width: 15%;
+  height: 100%;
+  background: #fff;
+  color: #222;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.cn-li-item-delete-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+/* CloseFinestra A- */
+.cn-bttn-finestra-llista-torns {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-top-right-radius: 4px;
+  background: #69c;
+  color: #fff;
+  cursor: pointer;
+  margin: 4px;
+  width: 38px;
+  height: 38px;
+}
+
+.cn-bttn-finestra-llista-torns:hover {
+  background: #9cf;
+}
+
+.cn-bttn-finestra-llista-torns:active {
+  transform: scale(0.9);
+}
+/* CloseFinestra -Z */
+
+/* UpdateLlapis A- */
+.cn-bttn-update-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: #369;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.cn-bttn-update-llista-torns:hover {
+  background: #9cf;
+}
+
+.cn-bttn-update-llista-torns:active {
+  transform: scale(0.9);
+}
+
+/* DeletePaperera A- */
+.cn-bttn-delete-llista-torns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background: #369;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.cn-bttn-delete-llista-torns:hover {
+  background: #9cf;
+}
+
+.cn-bttn-delete-llista-torns:active {
+  transform: scale(0.9);
+}
+/* DeletePaperera -Z */
+
+@media (max-width: 550px) {
+  .cn-section-llista-torns {
+    overflow: auto;
+  }
+}
+
+@media (max-width: 800px) {
+  .cn-section-llista-torns {
+    width: 96%;
+  }
+
+  .cn-h3-nom-llista-torns {
+    font-size: 1em;
+    overflow: auto;
+  }
+}
+
+@media (max-width: 1200px) {
+  .cn-li-id-llista-torns {
+    font-size: 1em;
+  }
+
+  .cn-li-nom-llista-torns {
+    font-size: 1em;
+  }
+
+  .cn-li-aforament-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-horainici-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-horafi-llista-torns {
+    font-size: 1em;
+  }
+
+  .cn-li-item-id-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-nom-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-aforament-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-horainici-llista-torns {
+    font-size: 1em;
+  }
+  
+  .cn-li-item-horafi-llista-torns {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 1000px) {
+  .cn-li-id-llista-torns {
+    font-size: 0.8em;
+  }
+
+  .cn-li-nom-llista-torns {
+    font-size: 0.8em;
+  }
+
+  .cn-li-aforament-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-horainici-llista-torns {
+    font-size: 0.7em;
+  }
+  
+  .cn-li-horafi-llista-torns {
+    font-size: 0.8em;
+  }
+
+  .cn-li-item-id-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-nom-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-aforament-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-horainici-llista-torns {
+    font-size: 0.8em;
+  }
+  
+  .cn-li-item-horafi-llista-torns {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 650px) {
+  .cn-li-horainici-llista-torns {
+    font-size: 0.6em;
+  }
+
+  .cn-li-horafi-llista-torns {
+    font-size: 0.6em;
+  }
+}
+
+@media (max-width: 550px) {    
+  .cn-ul-llista-torns {
+      height: 25px;
+  }
+
+  .cn-li-id-llista-torns {
+    font-size: 0.3em;
+  }
+
+  .cn-li-nom-llista-torns {
+    font-size: 0.3em;
+  }
+
+  .cn-li-aforament-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-horainici-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-horafi-llista-torns {
+    font-size: 0.3em;
+  }
+
+  .cn-li-item-id-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-nom-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-aforament-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-horainici-llista-torns {
+    font-size: 0.3em;
+  }
+  
+  .cn-li-item-horafi-llista-torns {
+    font-size: 0.3em;
+  }
+}

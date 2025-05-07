@@ -1,0 +1,140 @@
+:root {
+  --color-primary: #369;
+  --color-secondary: #9cf;
+  --color-error: #b44;
+}
+.form-update-usuari {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  background: #2bb;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.form-grid-form-actualitzar-usuaris {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.form-group-form-actualitzar-usuaris {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  height: 70px;
+}
+
+.form-group-form-actualitzar-usuaris > input {
+  display: flex;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8em;
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  color: #222;
+}
+
+.form-group-form-actualitzar-usuaris > input:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+.form-group-form-actualitzar-usuaris select {
+  cursor: pointer;
+  display: flex;
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8em;
+  width: 100%;
+  height: 40px;
+  background: #fff;
+  color: #222;
+}
+
+.form-group-form-actualitzar-usuaris select:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+.form-actions-form-actualitzar-usuaris {
+  display: flex;
+  gap: 1%;
+  justify-content: flex-end;
+  width: 100%;
+  height: 40px;
+}
+
+.btn-cancel-form-actualitzar-usuaris {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 100%;
+  background: #369;
+}
+
+.btn-submit-form-actualitzar-usuaris {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 100%;
+  background: #369;
+}
+
+.btn-cancel-form-actualitzar-usuaris:hover {
+  background: var(--color-secondary);
+}
+
+.btn-submit-form-actualitzar-usuaris:hover {
+  background: var(--color-secondary);
+}
+
+.btn-cancel-form-actualitzar-usuaris:active {
+  transform: scale(0.9);
+}
+
+.btn-submit-form-actualitzar-usuaris:active {
+  transform: scale(0.9);
+}
+
+/* DE MOMENT NO EL TOCO A- */
+.error-form-actualitzar-usuaris {
+  outline: 2px solid #b44;
+  color: #b44;
+  overflow: auto;
+}
+
+.error-message-form-actualitzar-usuaris {
+  display: flex;
+  align-items: center;
+  font-size: 0.6em;
+  padding-left: 5px;
+  background: #fff;
+  color: #b44;
+  width: 100%;
+  height: 25px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  overflow: auto;
+}
+/* DE MOMENT NO EL TOCO  -Z*/
+
+@media (max-width: 550px) {
+  .form-actions-form-actualitzar-usuaris {
+    justify-content: center;
+  }
+}

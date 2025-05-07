@@ -1,0 +1,295 @@
+.cn-section-reserva-feta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    padding: 0.65em;
+    width: 80%;
+    height: 350px;
+    background: #69c;
+    overflow: auto;
+}
+
+.cn-article-titol-torn-reserva-feta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #369;
+    color: #fff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    width: 100%;
+    height: 46px;
+    overflow: auto;
+}
+
+.cn-article-titol-torn-reserva-feta > h2 {
+    font-size: 1rem;
+}
+
+.cn-article-preu-reserva-feta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #369;
+    color: #fff;
+    border-radius: 4px;
+    width: 80%;
+    height: 40px;
+    overflow: auto;
+}
+
+.cn-article-preu-reserva-feta > h2 {
+    font-size: 1rem;
+}
+
+.cn-article-contingut-reserva-feta {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    gap: 5%;
+}
+
+.cn-div-actualitzar-eliminar-reserva-feta {
+    width: 80px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.cn-bttn-actualitzar-eliminar-reserva-feta {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background: #369;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.cn-bttn-actualitzar-eliminar-reserva-feta:hover {
+    background: #9cf;
+}
+
+.cn-bttn-actualitzar-eliminar-reserva-feta:active {
+    transform: scale(0.9);
+}
+
+.cn-div-apats-e-r-reserva-feta {
+    width: calc(90% - 160px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cn-div-container-titol-apats-reserva-feta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #369;
+    color: #fff;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: 100%;
+    height: 36px;
+    overflow: auto;
+    position: relative;
+}
+
+.cn-div-container-titol-apats-reserva-feta > h3 {
+    height: 30px;
+    font-size: 0.8rem;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cn-bttn-cambiar-tamany-reserva-feta {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-bottom-right-radius: 4px;
+    background: #69c;
+    cursor: pointer;
+    margin: 4px;
+    width: 28px;
+    height: 28px;
+}
+
+.cn-bttn-cambiar-tamany-reserva-feta:hover {
+    background: #9cf;
+}
+
+.cn-bttn-cambiar-tamany-reserva-feta:active {
+    transform: scale(0.9);
+}
+
+.cn-div-apats-expandir-reduir-reserva-feta {
+    width: 100%;
+    height: 174px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.cn-div-apats-expandir-reduir-reserva-feta > h4 {
+    width: 80%;
+    height: 30px;
+    font-size: 0.8rem;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: #222;
+}
+
+.cn-div-apats-expandir-reserva-feta {
+    width: 100%;
+    height: 50px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cn-container-h3-h4-reserva-feta {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    gap: 2%;
+}
+
+.cn-a-container-e-reserva-feta {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 5px;
+    background: #fff;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.cn-a-container-e-reserva-feta > h3 {
+    height: 24px;
+    font-size: 0.8rem;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222;
+}
+
+.cn-apat-container-e-reserva-feta {
+    width: calc(98% - 100px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    background: #fff;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.cn-apat-container-e-reserva-feta > h4 {
+    height: 24px;
+    font-size: 1rem;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222;
+}
+
+.cn-apat-container-descripcio-e-reserva-feta {
+    width: 100%;
+    height: 18px;
+    display: flex;
+    background: #fff;
+    padding-left: 5px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.cn-apat-container-descripcio-e-reserva-feta > p {
+    height: 16px;
+    font-size: 0.6rem;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222;
+}
+
+@media (max-width: 1000px) {
+    .cn-select-torns-triar-apat {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .cn-article-titol-torn-reserva-feta > h2 {
+        font-size: 0.8rem;
+    }
+    
+    .cn-article-preu-reserva-feta > h2 {
+        font-size: 0.8rem;
+    }
+    
+    .cn-div-actualitzar-eliminar-reserva-feta {
+        width: 30px;
+    }
+    
+    .cn-bttn-actualitzar-eliminar-reserva-feta {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .cn-div-apats-e-r-reserva-feta {
+        width: calc(90% - 60px);
+    }
+
+    .cn-a-container-e-reserva-feta {
+        width: 60px;
+    }
+    
+    .cn-div-container-titol-apats-reserva-feta > h3 {
+        font-size: 0.6rem;
+    }
+
+    .cn-apat-container-e-reserva-feta {
+        width: calc(98% - 60px);
+    }
+
+    .cn-div-apats-expandir-reduir-reserva-feta > h4 {
+        font-size: 0.6rem;
+    }
+    
+    .cn-a-container-e-reserva-feta > h3 {
+        font-size: 0.6rem;
+    }
+    
+    .cn-apat-container-e-reserva-feta > h4 {
+        font-size: 0.6rem;
+    }
+    
+    .cn-apat-container-descripcio-e-reserva-feta > p {
+        font-size: 0.6rem;
+    }
+}

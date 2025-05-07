@@ -1,0 +1,10 @@
+ioc.cat.camptina
+ioc.cat.camptina.controller
+ioc.cat.camptina.mapper
+ioc.cat.camptina.model.dto
+ioc.cat.camptina.model.entity
+ioc.cat.camptina.repository
+ioc.cat.camptina.security
+ioc.cat.camptina.security.jwt
+ioc.cat.camptina.security.service
+ioc.cat.camptina.service

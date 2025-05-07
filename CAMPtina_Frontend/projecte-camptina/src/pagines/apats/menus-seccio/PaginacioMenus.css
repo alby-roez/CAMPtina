@@ -1,0 +1,130 @@
+.cn-article-pagines-paginacio-menus {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 50px;
+    overflow: auto;
+}
+
+.cn-bttn-pagina-anterior-enabled-paginacio-menus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background: #222;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.cn-bttn-pagina-anterior-enabled-paginacio-menus:hover {
+    background: #9cf;
+}
+
+.cn-bttn-pagina-anterior-enabled-paginacio-menus:active {
+    transform: scale(0.9);
+}
+
+.cn-bttn-pagina-seguent-enabled-paginacio-menus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background: #222;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.cn-bttn-pagina-seguent-enabled-paginacio-menus:hover {
+    background: #9cf;
+}
+
+.cn-bttn-pagina-seguent-enabled-paginacio-menus:active {
+    transform: scale(0.9);
+}
+
+.cn-bttn-pagina-anterior-disabled-paginacio-menus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background: #666;
+    cursor: not-allowed;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.cn-bttn-pagina-seguent-disabled-paginacio-menus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background: #666;
+    cursor: not-allowed;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+}
+
+.cn-span-pagines-paginacio-menus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 50px;
+    max-width: 190px;
+    height: 50px;
+    background: #222;
+}
+
+.cn-actiu-span-bttn-paginacio-menus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background: #f80;
+    color: #fff;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.cn-actiu-span-bttn-paginacio-menus:hover {
+    background: #9cf;
+}
+
+.cn-actiu-span-bttn-paginacio-menus:active {
+    transform: scale(0.9);
+}
+
+.cn-desactiu-span-bttn-paginacio-menus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 4px;
+    background: #222;
+    color: #fff;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.cn-desactiu-span-bttn-paginacio-menus:hover {
+    background: #9cf;
+}
+
+.cn-desactiu-span-bttn-paginacio-menus:active {
+    transform: scale(0.9);
+}
