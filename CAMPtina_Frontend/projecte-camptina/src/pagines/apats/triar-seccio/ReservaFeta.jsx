@@ -117,7 +117,7 @@ export const ReservaFeta = ({ fn, state }) => {
                 <h2>{reservaIdUsuari?.nomTorn || ''}</h2>
             </article>
             <article className='cn-article-preu-reserva-feta'>
-                <h2>{reservaIdUsuari.preuMenu || ''}€</h2>
+                <h2>{reservaIdUsuari?.preuMenu || ''}€</h2>
             </article>
             <article className='cn-article-contingut-reserva-feta'>
                 <div className='cn-div-actualitzar-eliminar-reserva-feta'>
@@ -149,6 +149,7 @@ export const ReservaFeta = ({ fn, state }) => {
                         className='cn-bttn-actualitzar-eliminar-reserva-feta'
                         name='nameBttnEliminarReservaFeta'
                         onClick={async () => {
+                            
                             try {
                                 const idUsuari = JSON.parse(localStorage.getItem("dadesUsuari"))?.id
                                 console.log(idUsuari)
@@ -156,11 +157,13 @@ export const ReservaFeta = ({ fn, state }) => {
                                     await eliminarReserva(reservaIdUsuari.idReserva)
                                     await obtenirReservaUsuari(idUsuari)
                                     setReservaIdUsuari(null)
+                                    
                                 }
                             } catch (error) {
                                 console.error("Error eliminant reserva:", error)
                             }
-                        }}
+                        }
+                    }
                     >
                         <DeletePaperera />
                     </button>
