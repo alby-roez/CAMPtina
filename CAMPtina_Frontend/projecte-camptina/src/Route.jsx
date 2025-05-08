@@ -1,4 +1,4 @@
-export function Route ({ cami, Component }) {
+export function Route ({ cami, Component, requiresAuth = false, allowedRoles = []}) {
     return null
 }
 

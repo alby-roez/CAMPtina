@@ -76,10 +76,10 @@ function App() {
         <DadesCamptinaProvider>
           <div className={className_pagina}>
             <Router rutes={rutesApp} componentPerDefecte={Page404}>
-              <Route cami='/' Component={Inici} requiresAuth={true} allowedRoles={['GESTOR'] ['TREBALLADOR']}/>
-              <Route cami='/apats' Component={Apats} requiresAuth={true} allowedRoles={['GESTOR']['TREBALLADOR']}/>
+              <Route cami='/' Component={Inici} requiresAuth={true} allowedRoles={['GESTOR','TREBALLADOR']}/>
+              <Route cami='/apats' Component={Apats} requiresAuth={true} allowedRoles={['GESTOR','TREBALLADOR']}/>
               <Route cami='/usuaris' Component={Usuaris} requiresAuth={true} allowedRoles={['GESTOR']}/>
-              <Route cami='/contacte' Component={Contacte} requiresAuth={true} allowedRoles={['GESTOR'] ['TREBALLADOR']}/>
+              <Route cami='/contacte' Component={Contacte} requiresAuth={true} allowedRoles={['GESTOR','TREBALLADOR']}/>
             </Router>
           </div>
         </DadesCamptinaProvider>
